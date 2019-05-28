@@ -1,5 +1,5 @@
 
-config.php
+.config.php
 .storage/
 .system/storage/
 .admin/config.php
