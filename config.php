@@ -1,15 +1,15 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://kingsport.local/');
+define('HTTP_SERVER', 'http://ubm.local2/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://kingsport.local/');
+define('HTTPS_SERVER', 'http://ubm.local2/');
 
 // DIR
-define('DIR_APPLICATION', 'E:/www/kingsport/catalog/');
-define('DIR_SYSTEM', 'E:/www/kingsport/system/');
-define('DIR_IMAGE', 'E:/www/kingsport/image/');
-define('DIR_STORAGE', 'E:/www/kingsport/storage/');
+define('DIR_APPLICATION', 'E:/js/kart/catalog/');
+define('DIR_SYSTEM', 'E:/js/kart/system/');
+define('DIR_IMAGE', 'E:/js/kart/image/');
+define('DIR_STORAGE', 'E:/js/kart/storage/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/theme/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');

@@ -1,18 +1,18 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://kingsport.local/admin/');
-define('HTTP_CATALOG', 'http://kingsport.local/');
+define('HTTP_SERVER', 'http://ubm.local2/admin/');
+define('HTTP_CATALOG', 'http://ubm.local2/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://kingsport.local/admin/');
-define('HTTPS_CATALOG', 'http://kingsport.local/');
+define('HTTPS_SERVER', 'http://ubm.local2/admin/');
+define('HTTPS_CATALOG', 'http://ubm.local2/');
 
 // DIR
-define('DIR_APPLICATION', 'E:/www/kingsport/admin/');
-define('DIR_SYSTEM', 'E:/www/kingsport/system/');
-define('DIR_IMAGE', 'E:/www/kingsport/image/');
-define('DIR_STORAGE', 'E:/www/kingsport/storage/');
-define('DIR_CATALOG', 'E:/www/kingsport/catalog/');
+define('DIR_APPLICATION', 'E:/js/kart/admin/');
+define('DIR_SYSTEM', 'E:/js/kart/system/');
+define('DIR_IMAGE', 'E:/js/kart/image/');
+define('DIR_STORAGE', 'E:/js/kart/storage/');
+define('DIR_CATALOG', 'E:/js/kart/catalog/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');

@@ -1,0 +1,9 @@
+
+config.php
+.storage/
+.system/storage/
+.admin/config.php
+.image/
+.idea/
+error.log
+access.log
