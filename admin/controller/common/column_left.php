@@ -138,6 +138,14 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);					
 			}
+            
+            if ($this->user->hasPermission('access', 'web/category')) {		
+				$web[] = array(
+					'name'	   => $this->language->get('text_web_category'),
+					'href'     => $this->url->link('web/category', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);					
+			}
 
 			if ($this->user->hasPermission('access', 'web/blog')) {		
 				$web[] = array(
@@ -163,10 +171,10 @@ class ControllerCommonColumnLeft extends Controller {
 				);					
 			}
 
-			if ($this->user->hasPermission('access', 'web/supplier')) {		
+			if ($this->user->hasPermission('access', 'web/branch')) {		
 				$web[] = array(
-					'name'	   => $this->language->get('text_web_supplier'),
-					'href'     => $this->url->link('web/supplier', 'user_token=' . $this->session->data['user_token'], true),
+					'name'	   => $this->language->get('text_web_branch'),
+					'href'     => $this->url->link('web/branch', 'user_token=' . $this->session->data['user_token'], true),
 					'children' => array()		
 				);					
 			}

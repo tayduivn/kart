@@ -15,6 +15,11 @@ class ControllerCommonHome extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
+        $data['home_menu'] = $this->load->controller('common/home_menu');
+        
+        $this->load->model('setting/module');
+        $setting_info = $this->model_setting_module->getModulesByCode('recently_viewed');
+        $data['recently_viewed'] = $this->load->controller('extension/module/recently_viewed', $setting_info);
 
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}

@@ -1,0 +1,51 @@
+{% if categories %}
+<nav class="navbar-mega">
+	<ul class="navbar-list">
+		<li class="nav-link" style="background:#EE1C25;"><a href="javascript:void(0)">
+			<div class="category"><i class="fas fa-bars"><span>danh mục sản phẩm</span></i></div></a>
+        </li>
+        
+        {% for category in categories %}  
+        {% if category.children %}      
+		<li class="nav-link"><a href="{{ category.href }}">{{ category.name }}</a>
+			<div class="material-line"></div>
+			<ul class="mega-menu">
+				<div class="mega-menu-list">
+					<div class="row">
+						<div class="col-2">
+							<div class="nav-sub-image"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/running-machine/running-machine-1.png" alt="máy chạy bộ"></div>
+							<div class="title-nav-sub">
+								<h4>{{ category.name }}</h4>
+							</div>
+							<div class="nav-sub-caption">
+								<p>cấu trúc khung sườn chắc chắn</p>
+							</div>
+						</div>
+						<div class="col-10">
+                            {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+							<div class="row no-gutters">
+                                {% for child in children %}
+								<div class="col-2">
+									<h4 class="mega-title row">{{ child.name }}</h4>
+									<ul class="stander">
+										<li><a href="#">Sub menu</a></li>
+										<li><a href="#">Sub menu</a></li>
+										<li><a href="#">Sub menu</a></li>
+										<li><a href="#">Sub menu</a></li>
+									</ul>
+								</div>
+                                {% endfor %}
+							</div>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</ul>
+		</li>
+        {% else %}
+        <li class="nav-link"><a href="{{ category.href }}">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+	</ul>
+</nav>
+{% endif %}

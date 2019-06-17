@@ -381,6 +381,30 @@ class ControllerWebBlog extends Controller {
 			$data['status'] = true;
 		}
 
+		// Categories
+		$this->load->model('web/category');
+		if (isset($this->request->post['category_id'])) {
+			$data['category_id'] = $this->request->post['category_id'];
+		} elseif (!empty($blog_info)) {
+			$data['category_id'] = $blog_info['category_id'];
+		} else {
+			$data['category_id'] = 0;
+		}
+
+		if (isset($this->request->post['category'])) {
+			$data['category'] = $this->request->post['category'];
+		} elseif (!empty($blog_info)) {
+			$category_info = $this->model_web_category->getCategory($blog_info['category_id']);
+
+			if ($category_info) {
+				$data['category'] = $category_info['title'];
+			} else {
+				$data['category'] = '';
+			}
+		} else {
+			$data['category'] = '';
+		}
+
 		if (isset($this->request->post['sort_order'])) {
 			$data['sort_order'] = $this->request->post['sort_order'];
 		} elseif (!empty($blog_info)) {

@@ -34,6 +34,8 @@ $_['column_action']     = 'Thao tác';
 
 $_['entry_title']       = 'Tiêu đề:';
 
+$_['entry_category']       = 'Danh mục:';
+
 $_['entry_description'] = 'Mô tả:';
 
 $_['entry_store']       = 'Cửa hàng:';

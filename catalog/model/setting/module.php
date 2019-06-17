@@ -8,5 +8,15 @@ class ModelSettingModule extends Model {
 		} else {
 			return array();	
 		}
+	}
+    
+    public function getModulesByCode($code) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "module` WHERE `code` = '" . $this->db->escape($code) . "' ORDER BY `name`");
+
+		if ($query->row) {
+			return json_decode($query->row['setting'], true);
+		} else {
+			return array();	
+		}
 	}		
 }

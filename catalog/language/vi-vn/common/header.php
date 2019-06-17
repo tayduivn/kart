@@ -2,7 +2,7 @@
 // Text
 $_['text_home']     = 'Trang chủ';
 $_['text_blogs']           = 'Blogs';
-$_['text_wishlist'] = 'Yêu thích (%s)';
+$_['text_wishlist'] = ' Sản phẩm yêu thích (%s)';
 $_['text_cart']     = 'Giỏ hàng';
 $_['text_shopping_cart']  = 'Giỏ hàng';
 $_['text_items']    = '%s sản phẩm(s) - %s';
