@@ -179,3 +179,25 @@
 2019-06-16 23:55:34 - PHP Notice:  Undefined index: name in E:\www\kingsport\catalog\controller\extension\module\recently_viewed.php on line 30
 2019-06-17 0:02:09 - PHP Notice:  Undefined index: limit in E:\www\kingsport\catalog\controller\extension\module\recently_viewed.php on line 26
 2019-06-17 0:02:09 - PHP Notice:  Undefined index: name in E:\www\kingsport\catalog\controller\extension\module\recently_viewed.php on line 30
+2019-06-17 15:12:22 - PHP Notice:  Undefined index: bottom in E:\www\kingsport\admin\controller\web\category.php on line 372
+2019-06-17 15:12:22 - PHP Notice:  Undefined index: status in E:\www\kingsport\admin\controller\web\category.php on line 380
+2019-06-17 15:12:22 - PHP Notice:  Undefined index: sort_order in E:\www\kingsport\admin\controller\web\category.php on line 388
+2019-06-17 15:33:59 - PHP Notice:  Undefined index: bottom in E:\www\kingsport\admin\controller\web\category.php on line 373
+2019-06-17 15:33:59 - PHP Notice:  Undefined index: status in E:\www\kingsport\admin\controller\web\category.php on line 381
+2019-06-17 15:33:59 - PHP Notice:  Undefined index: sort_order in E:\www\kingsport\admin\controller\web\category.php on line 389
+2019-06-17 16:02:29 - PHP Notice:  Undefined index: bottom in E:\www\kingsport\admin\controller\web\category.php on line 373
+2019-06-17 16:02:29 - PHP Notice:  Undefined index: is_home in E:\www\kingsport\admin\controller\web\category.php on line 381
+2019-06-17 16:02:29 - PHP Notice:  Undefined index: status in E:\www\kingsport\admin\controller\web\category.php on line 389
+2019-06-17 16:02:29 - PHP Notice:  Undefined index: sort_order in E:\www\kingsport\admin\controller\web\category.php on line 397
+2019-06-17 16:02:47 - PHP Notice:  Undefined index: bottom in E:\www\kingsport\admin\controller\web\category.php on line 373
+2019-06-17 16:02:47 - PHP Notice:  Undefined index: is_home in E:\www\kingsport\admin\controller\web\category.php on line 381
+2019-06-17 16:02:47 - PHP Notice:  Undefined index: status in E:\www\kingsport\admin\controller\web\category.php on line 389
+2019-06-17 16:02:47 - PHP Notice:  Undefined index: sort_order in E:\www\kingsport\admin\controller\web\category.php on line 397
+2019-06-17 23:27:30 - PHP Warning:  mysqli::mysqli(): (HY000/2002): No connection could be made because the target machine actively refused it.
+ in E:\www\kingsport\system\library\db\mysqli.php on line 7
+2019-06-17 23:27:30 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in E:\www\kingsport\system\library\db\mysqli.php on line 10
+2019-06-17 23:27:30 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in E:\www\kingsport\system\library\db\mysqli.php on line 10
+2019-06-17 23:27:39 - PHP Warning:  mysqli::mysqli(): (HY000/2002): No connection could be made because the target machine actively refused it.
+ in E:\www\kingsport\system\library\db\mysqli.php on line 7
+2019-06-17 23:27:39 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in E:\www\kingsport\system\library\db\mysqli.php on line 10
+2019-06-17 23:27:39 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in E:\www\kingsport\system\library\db\mysqli.php on line 10

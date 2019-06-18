@@ -20,6 +20,16 @@ class ControllerCommonHome extends Controller {
         $this->load->model('setting/module');
         $setting_info = $this->model_setting_module->getModulesByCode('recently_viewed');
         $data['recently_viewed'] = $this->load->controller('extension/module/recently_viewed', $setting_info);
+        
+        $setting_info = $this->model_setting_module->getModulesByCode('special');
+        $data['special'] = $this->load->controller('extension/module/special', $setting_info);
+        
+        $setting_info = $this->model_setting_module->getModulesByCode('bestseller');
+        $data['bestseller'] = $this->load->controller('extension/module/bestseller', $setting_info);
+        
+        $data['newest'] = $this->load->controller('extension/module/newest', $setting_info);
+        
+        $data['blog'] = $this->load->controller('common/blog');
 
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}

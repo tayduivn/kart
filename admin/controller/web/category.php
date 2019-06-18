@@ -80,6 +80,7 @@ class ControllerWebCategory extends Controller {
 				'category_id' => $result['category_id'],
 				'title'            => $result['title'],
 				'sort_order'      => $result['sort_order'],
+                'is_home'         => $result['is_home'],
 				'edit'            => $this->url->link('web/category/edit', 'user_token=' . $this->session->data['user_token'] . '&category_id=' . $result['category_id'] . $url, true)
 			);
 		}
@@ -372,6 +373,14 @@ class ControllerWebCategory extends Controller {
 			$data['bottom'] = $category_info['bottom'];
 		} else {
 			$data['bottom'] = 0;
+		}
+        
+        if (isset($this->request->post['is_home'])) {
+			$data['is_home'] = $this->request->post['is_home'];
+		} elseif (!empty($category_info)) {
+			$data['is_home'] = $category_info['is_home'];
+		} else {
+			$data['is_home'] = 0;
 		}
 
 		if (isset($this->request->post['status'])) {

@@ -3,7 +3,7 @@ class ModelWebCategory extends Model {
 
 	public function addCategory($data) {
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "blog_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "blog_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', is_home = '" . (isset($data['is_home']) ? (int)$data['is_home'] : 0) . "', status = '" . (int)$data['status'] . "'");
 
 		$category_id = $this->db->getLastId();
 
@@ -40,7 +40,7 @@ class ModelWebCategory extends Model {
 	}
 
 	public function editCategory($category_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "blog_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "' WHERE category_id = '" . (int)$category_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "blog_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', is_home = '" . (isset($data['is_home']) ? (int)$data['is_home'] : 0) . "', status = '" . (int)$data['status'] . "' WHERE category_id = '" . (int)$category_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_category_description WHERE category_id = '" . (int)$category_id . "'");
 
@@ -90,7 +90,7 @@ class ModelWebCategory extends Model {
 	}
 
 	public function getCategory($category_id) {
-		$query = $this->db->query("SELECT DISTINCT id.* FROM " . DB_PREFIX . "blog_category i LEFT JOIN " . DB_PREFIX . "blog_category_description id ON (i.category_id = id.category_id) WHERE id.category_id = '" . (int)$category_id . "'");
+		$query = $this->db->query("SELECT DISTINCT i.* FROM " . DB_PREFIX . "blog_category i LEFT JOIN " . DB_PREFIX . "blog_category_description id ON (i.category_id = id.category_id) WHERE id.category_id = '" . (int)$category_id . "'");
 
 		return $query->row;
 	}
