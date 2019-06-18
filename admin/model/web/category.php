@@ -90,7 +90,7 @@ class ModelWebCategory extends Model {
 	}
 
 	public function getCategory($category_id) {
-		$query = $this->db->query("SELECT DISTINCT i.* FROM " . DB_PREFIX . "blog_category i LEFT JOIN " . DB_PREFIX . "blog_category_description id ON (i.category_id = id.category_id) WHERE id.category_id = '" . (int)$category_id . "'");
+		$query = $this->db->query("SELECT DISTINCT i.*, id.title FROM " . DB_PREFIX . "blog_category i LEFT JOIN " . DB_PREFIX . "blog_category_description id ON (i.category_id = id.category_id) WHERE id.category_id = '" . (int)$category_id . "'");
 
 		return $query->row;
 	}

@@ -10,6 +10,10 @@ class ModelWebBlog extends Model {
 				'i.sort_order'
 			);
 
+			if (isset($data['category_id'])) {
+			    $sql .= "AND i.category_id =" . (int)$data['category_id'];
+            }
+
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 				$sql .= " ORDER BY " . $data['sort'];
 			} else {

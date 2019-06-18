@@ -54,9 +54,11 @@ $_['entry_status']      = 'Tình trạng:';
 
 $_['entry_sort_order']  = 'Thứ tự:';
 
-
+$_['entry_image']            = 'Hình ảnh:';
 
 $_['entry_layout']      = 'Bố cục:';
+
+$_['entry_intro']      = 'Giới thiệu ngắn:';
 
 
 
