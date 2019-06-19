@@ -23,6 +23,7 @@ class ControllerCommonBlog extends Controller {
 		foreach ($categories as $category) {
 		    $filters = array(
 		        'category_id' => $category['category_id'],
+                'start' => 0,
                 'limit' => 6
             );
 
