@@ -48,6 +48,7 @@
 <body class="index-page">
 <div id="fb-root"></div>
 <main>
+    <div id="show-more-information"></div>    
 	<section class="header-mobile">
 		<div class="container">
 			<div class="mobile-header-wrapper" id="wrapper">
@@ -162,7 +163,7 @@
 						<ul class="shop-nav">
 							<li><a href="#"> Kiểm tra đơn hàng</a></li>
 							<li><a href="{{ wishlist }}"><i class="mdi mdi-heart"></i>
-									<p> {{ text_wishlist }}</p></a></li>
+									<p id="wishlist-total"> <span>{{ text_wishlist }}</span></p></a></li>
 							<li><a href="#"><i class="mdi mdi-phone pulsate-bck"></i>
 									<h5 class="opacity-6">Hotline</h5>
 									<p>0918648419 - 0936211210</p></a></li>
@@ -220,7 +221,10 @@
 								<li><a href="{{ register }}"><i class="mdi mdi-account-circle-outline"></i><span>Đăng ký</span></a></li>
 								<li><a href="{{ login }}">Đăng nhập</a></li>
 								<li><a href="#">
-										<div class="shopping-cart"><img src="catalog/view/theme/kingsport/image/options-1/cart-icon-v2.png" alt="Shopping cart item"></div></a></li>
+										<div class="shopping-cart"><img src="catalog/view/theme/kingsport/image/options-1/cart-icon-v2.png" alt="Shopping cart item" />
+                                        </div>
+                                        </a>
+                                </li>
 							</ul>
 						</div>
 					</div>
