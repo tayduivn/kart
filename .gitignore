@@ -1,5 +1,6 @@
-error
-access
+error.log
+access.log
 storage/
-config.php
-admin/config.php
+./config.php
+./admin/config.php
+image/
