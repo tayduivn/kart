@@ -1,0 +1,44 @@
+<section class="social-network-media-player">
+	<div class="container">
+		<div class="social-media-player-wrapper">
+			<div class="row no-gutters">
+                {% for video in videos %}
+                {% if video.main %}
+				<div class="col-12 col-xl-9 line">
+					<div class="social-media-content">
+						<iframe width="100%" height="480" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+					</div>
+				</div>
+                {% endif %}
+                {% endfor %}
+                
+				<div class="col-12 col-xl-3 line">
+					<div class="social-media-playlist">
+						<div class="media-thumbnail">
+                            {% for video in videos %}
+                            {% if video.main == 0 %}
+							<div class="row media-thumbnail-wrapper">
+								<div class="col-7 col-sm-6">
+									<div class="thumbnail-iframe">
+										<iframe width="100%" height="auto" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+									</div>
+								</div>
+								<div class="col-5 col-sm-6">
+									<div class="media-caption">
+										<h4>{{ video.title }}</h4>
+										<!--<h5>KingSport.vn</h5>
+										<p>2 lu?t xem</p>
+										<p>48 phút tru?c</p>-->
+									</div>
+								</div>
+							</div>
+                            {% endif %}
+						  {% endfor %}
+						</div>
+					</div>
+				</div>
+                
+			</div>
+		</div>
+	</div>
+</section>

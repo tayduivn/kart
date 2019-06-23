@@ -51,13 +51,15 @@ $(document).ready(function() {
 	});
 
 	/* Search */
-	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
+	$('#search .btn-search').on('click', function() {
 		var url = $('base').attr('href') + 'index.php?route=product/search';
 
 		var value = $('header #search input[name=\'search\']').val();
+        
+        var value2 = $('header #search select[name=\'category_id\']').val();
 
-		if (value) {
-			url += '&search=' + encodeURIComponent(value);
+		if (value || value2) {
+			url += '&search=' + encodeURIComponent(value) + '&category_id=' + value2;
 		}
 
 		location = url;
@@ -162,7 +164,7 @@ var cart = {
 					// Need to set timeout otherwise it wont update the total
 					setTimeout(function () {
 						$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
-                        $('.shopping-cart:after').css('content', json['total']);
+                        $('.shopping-cart .num-of-items').text(json['count_products']);
 					}, 100);
 
 					$('html, body').animate({ scrollTop: 0 }, 'slow');

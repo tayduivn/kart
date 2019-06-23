@@ -56,7 +56,9 @@ $_['entry_status']      = 'Tình trạng:';
 
 $_['entry_sort_order']  = 'Thứ tự:';
 
+$_['entry_home']      = 'Trang chủ:';
 
+$_['entry_main']      = 'Video chính:';
 
 $_['entry_layout']      = 'Bố cục:';
 

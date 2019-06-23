@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-06-02 15:52:31
+Date: 2019-06-23 14:11:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -267,6 +267,85 @@ INSERT INTO `ks_banner_image` VALUES ('111', '8', '2', 'Starbucks', '', 'catalog
 INSERT INTO `ks_banner_image` VALUES ('112', '8', '2', 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', '0');
 
 -- ----------------------------
+-- Table structure for ks_block
+-- ----------------------------
+DROP TABLE IF EXISTS `ks_block`;
+CREATE TABLE `ks_block` (
+  `block_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `bottom` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `sort_order` int(3) NOT NULL,
+  `date_added` datetime DEFAULT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`block_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of ks_block
+-- ----------------------------
+INSERT INTO `ks_block` VALUES ('3', '0', '1', '0', null, null);
+INSERT INTO `ks_block` VALUES ('4', '0', '1', '0', null, null);
+INSERT INTO `ks_block` VALUES ('5', '0', '1', '0', null, null);
+
+-- ----------------------------
+-- Table structure for ks_block_description
+-- ----------------------------
+DROP TABLE IF EXISTS `ks_block_description`;
+CREATE TABLE `ks_block_description` (
+  `block_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `category_id` int(255) DEFAULT NULL,
+  `banner_id` int(11) DEFAULT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `meta_description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `meta_keyword` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`block_id`,`language_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of ks_block_description
+-- ----------------------------
+INSERT INTO `ks_block_description` VALUES ('3', '2', '  Ghế Massage King-Sport G4', '33', '7', '  Ghế Massage King-Sport G4', '', '');
+INSERT INTO `ks_block_description` VALUES ('4', '2', '  Ghế Massage King-Sport G3', '33', '7', '  Ghế Massage King-Sport G3', '', '');
+INSERT INTO `ks_block_description` VALUES ('5', '2', '  Ghế Massage King-Sport G2', '33', '7', '  Ghế Massage King-Sport G4', '', '');
+
+-- ----------------------------
+-- Table structure for ks_block_to_layout
+-- ----------------------------
+DROP TABLE IF EXISTS `ks_block_to_layout`;
+CREATE TABLE `ks_block_to_layout` (
+  `block_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `layout_id` int(11) NOT NULL,
+  PRIMARY KEY (`block_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ks_block_to_layout
+-- ----------------------------
+INSERT INTO `ks_block_to_layout` VALUES ('3', '0', '0');
+INSERT INTO `ks_block_to_layout` VALUES ('4', '0', '0');
+INSERT INTO `ks_block_to_layout` VALUES ('5', '0', '0');
+
+-- ----------------------------
+-- Table structure for ks_block_to_store
+-- ----------------------------
+DROP TABLE IF EXISTS `ks_block_to_store`;
+CREATE TABLE `ks_block_to_store` (
+  `block_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`block_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ks_block_to_store
+-- ----------------------------
+INSERT INTO `ks_block_to_store` VALUES ('3', '0');
+INSERT INTO `ks_block_to_store` VALUES ('4', '0');
+INSERT INTO `ks_block_to_store` VALUES ('5', '0');
+
+-- ----------------------------
 -- Table structure for ks_blog
 -- ----------------------------
 DROP TABLE IF EXISTS `ks_blog`;
@@ -274,6 +353,7 @@ CREATE TABLE `ks_blog` (
   `blog_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
   `bottom` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `sort_order` int(3) NOT NULL,
   `date_added` datetime DEFAULT NULL,
@@ -284,13 +364,13 @@ CREATE TABLE `ks_blog` (
 -- ----------------------------
 -- Records of ks_blog
 -- ----------------------------
-INSERT INTO `ks_blog` VALUES ('1', null, '0', '1', '0', null, null);
-INSERT INTO `ks_blog` VALUES ('2', null, '0', '1', '0', null, null);
-INSERT INTO `ks_blog` VALUES ('3', null, '0', '1', '0', null, null);
-INSERT INTO `ks_blog` VALUES ('4', '2', '0', '1', '0', null, null);
-INSERT INTO `ks_blog` VALUES ('5', '1', '0', '1', '0', null, null);
-INSERT INTO `ks_blog` VALUES ('6', '5', '0', '1', '0', null, null);
-INSERT INTO `ks_blog` VALUES ('7', '4', '0', '1', '0', null, null);
+INSERT INTO `ks_blog` VALUES ('1', null, '0', null, '1', '0', '2019-06-20 21:51:46', null);
+INSERT INTO `ks_blog` VALUES ('2', null, '0', null, '1', '0', '2019-06-20 21:51:48', null);
+INSERT INTO `ks_blog` VALUES ('3', null, '0', null, '1', '0', '2019-06-20 21:51:50', null);
+INSERT INTO `ks_blog` VALUES ('4', '2', '0', null, '1', '0', '2019-06-20 21:51:51', null);
+INSERT INTO `ks_blog` VALUES ('5', '1', '0', null, '1', '0', '2019-06-10 21:51:55', null);
+INSERT INTO `ks_blog` VALUES ('6', '5', '0', null, '1', '0', '2019-06-20 21:52:00', null);
+INSERT INTO `ks_blog` VALUES ('7', '4', '0', null, '1', '0', '2019-06-20 21:52:02', null);
 
 -- ----------------------------
 -- Table structure for ks_blog_category
@@ -300,6 +380,7 @@ CREATE TABLE `ks_blog_category` (
   `category_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `bottom` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
+  `is_home` int(11) DEFAULT '0',
   `sort_order` int(3) NOT NULL,
   `date_added` datetime DEFAULT NULL,
   `date_modified` datetime DEFAULT NULL,
@@ -309,11 +390,11 @@ CREATE TABLE `ks_blog_category` (
 -- ----------------------------
 -- Records of ks_blog_category
 -- ----------------------------
-INSERT INTO `ks_blog_category` VALUES ('1', '0', '1', '0', null, null);
-INSERT INTO `ks_blog_category` VALUES ('2', '0', '1', '0', null, null);
-INSERT INTO `ks_blog_category` VALUES ('3', '0', '1', '0', null, null);
-INSERT INTO `ks_blog_category` VALUES ('4', '0', '1', '0', null, null);
-INSERT INTO `ks_blog_category` VALUES ('5', '0', '1', '0', null, null);
+INSERT INTO `ks_blog_category` VALUES ('1', '0', '0', '1', '0', null, null);
+INSERT INTO `ks_blog_category` VALUES ('2', '0', '1', '1', '0', null, null);
+INSERT INTO `ks_blog_category` VALUES ('3', '0', '1', '0', '0', null, null);
+INSERT INTO `ks_blog_category` VALUES ('4', '0', '1', '0', '0', null, null);
+INSERT INTO `ks_blog_category` VALUES ('5', '0', '1', '0', '0', null, null);
 
 -- ----------------------------
 -- Table structure for ks_blog_category_description
@@ -383,19 +464,20 @@ CREATE TABLE `ks_blog_description` (
   `blog_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `intro` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `description` text CHARACTER SET utf8,
   `meta_title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `meta_description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `meta_keyword` varchar(255) DEFAULT NULL,
+  `meta_keyword` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`blog_id`,`language_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ks_blog_description
 -- ----------------------------
-INSERT INTO `ks_blog_description` VALUES ('4', '2', 'aa', '&lt;p&gt;aaa&lt;/p&gt;', 'aaa', '', '');
-INSERT INTO `ks_blog_description` VALUES ('6', '2', 'bbb', '&lt;p&gt;bbb&lt;/p&gt;', 'bbb', '', '');
-INSERT INTO `ks_blog_description` VALUES ('7', '2', 'ccc', '&lt;p&gt;cc&lt;/p&gt;', 'ccc', '', '');
+INSERT INTO `ks_blog_description` VALUES ('4', '2', 'aa', null, '&lt;p&gt;aaa&lt;/p&gt;', 'aaa', '', '');
+INSERT INTO `ks_blog_description` VALUES ('6', '2', 'bbb', null, '&lt;p&gt;bbb&lt;/p&gt;', 'bbb', '', '');
+INSERT INTO `ks_blog_description` VALUES ('7', '2', 'ccc', null, '&lt;p&gt;cc&lt;/p&gt;', 'ccc', '', '');
 
 -- ----------------------------
 -- Table structure for ks_blog_to_layout
@@ -443,6 +525,8 @@ DROP TABLE IF EXISTS `ks_branch`;
 CREATE TABLE `ks_branch` (
   `branch_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `bottom` int(11) DEFAULT NULL,
+  `area` int(11) DEFAULT NULL,
+  `parking` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `sort_order` int(3) NOT NULL,
   `date_added` datetime DEFAULT NULL,
@@ -453,10 +537,10 @@ CREATE TABLE `ks_branch` (
 -- ----------------------------
 -- Records of ks_branch
 -- ----------------------------
-INSERT INTO `ks_branch` VALUES ('3', '0', '1', '0', null, null);
-INSERT INTO `ks_branch` VALUES ('4', '0', '1', '0', null, null);
-INSERT INTO `ks_branch` VALUES ('5', '0', '1', '0', null, null);
-INSERT INTO `ks_branch` VALUES ('6', '0', '1', '0', null, null);
+INSERT INTO `ks_branch` VALUES ('3', '0', '1', '1', '1', '0', null, null);
+INSERT INTO `ks_branch` VALUES ('4', '0', '2', null, '1', '0', null, null);
+INSERT INTO `ks_branch` VALUES ('5', '0', '3', null, '1', '0', null, null);
+INSERT INTO `ks_branch` VALUES ('6', '0', '1', null, '1', '0', null, null);
 
 -- ----------------------------
 -- Table structure for ks_branch_description
@@ -473,14 +557,14 @@ CREATE TABLE `ks_branch_description` (
   `lng` double DEFAULT NULL,
   `meta_title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `meta_description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `meta_keyword` varchar(255) DEFAULT NULL,
+  `meta_keyword` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`branch_id`,`language_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ks_branch_description
 -- ----------------------------
-INSERT INTO `ks_branch_description` VALUES ('3', '2', '  Ghế Massage King-Sport G4', null, '0', '', null, null, '  Gh? Massage King-Sport G4', '', '');
+INSERT INTO `ks_branch_description` VALUES ('3', '2', '  Ghế Massage King-Sport G4', null, null, '&lt;p&gt;aaaaaa&lt;/p&gt;', null, null, '  Gh? Massage King-Sport G4', '', '');
 INSERT INTO `ks_branch_description` VALUES ('4', '2', 'aa', null, null, '&lt;p&gt;addd&lt;/p&gt;', null, null, 'dasdasd', '', '');
 INSERT INTO `ks_branch_description` VALUES ('5', '2', 'aa', 'dasd', null, '&lt;p&gt;ssssssss&lt;/p&gt;', '1', '1', 'dasdasd', '', '');
 INSERT INTO `ks_branch_description` VALUES ('6', '2', 'aaaaaaaaaaaa2222', null, null, '&lt;p&gt;2222&lt;/p&gt;', null, null, '3123123', '', '');
@@ -556,7 +640,7 @@ CREATE TABLE `ks_cart` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`cart_id`),
   KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_cart
@@ -1253,7 +1337,7 @@ CREATE TABLE `ks_currency` (
 -- ----------------------------
 -- Records of ks_currency
 -- ----------------------------
-INSERT INTO `ks_currency` VALUES ('4', 'Việt Nam đồng', 'VND', '', 'đ', '0', '1.00000000', '1', '2019-05-27 22:25:33');
+INSERT INTO `ks_currency` VALUES ('4', 'Việt Nam đồng', 'VND', '', 'đ', '0', '1.00000000', '1', '2019-06-22 08:57:46');
 
 -- ----------------------------
 -- Table structure for ks_customer
@@ -1438,7 +1522,7 @@ CREATE TABLE `ks_customer_login` (
 -- ----------------------------
 -- Records of ks_customer_login
 -- ----------------------------
-INSERT INTO `ks_customer_login` VALUES ('1', 'admin', '127.0.0.1', '1', '2019-05-25 14:18:48', '2019-05-25 14:18:48');
+INSERT INTO `ks_customer_login` VALUES ('1', 'admin', '127.0.0.1', '4', '2019-05-25 14:18:48', '2019-06-19 15:27:15');
 
 -- ----------------------------
 -- Table structure for ks_customer_online
@@ -1455,6 +1539,22 @@ CREATE TABLE `ks_customer_online` (
 
 -- ----------------------------
 -- Records of ks_customer_online
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for ks_customer_product_viewed
+-- ----------------------------
+DROP TABLE IF EXISTS `ks_customer_product_viewed`;
+CREATE TABLE `ks_customer_product_viewed` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) DEFAULT NULL COMMENT 'customer_id from `ks_customer',
+  `product_id` int(11) DEFAULT NULL COMMENT 'product_id from `ks_product',
+  `viewed_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of ks_customer_product_viewed
 -- ----------------------------
 
 -- ----------------------------
@@ -1717,7 +1817,7 @@ CREATE TABLE `ks_extension` (
   `type` varchar(32) NOT NULL,
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_extension
@@ -1764,7 +1864,7 @@ INSERT INTO `ks_extension` VALUES ('40', 'report', 'customer_order');
 INSERT INTO `ks_extension` VALUES ('41', 'report', 'customer_reward');
 INSERT INTO `ks_extension` VALUES ('42', 'advertise', 'google');
 INSERT INTO `ks_extension` VALUES ('43', 'module', 'latest');
-INSERT INTO `ks_extension` VALUES ('44', 'module', 'news');
+INSERT INTO `ks_extension` VALUES ('53', 'theme', 'kingsport');
 INSERT INTO `ks_extension` VALUES ('45', 'module', 'special');
 INSERT INTO `ks_extension` VALUES ('46', 'module', 'html');
 INSERT INTO `ks_extension` VALUES ('47', 'module', 'filter');
@@ -1772,6 +1872,8 @@ INSERT INTO `ks_extension` VALUES ('48', 'feed', 'google_base');
 INSERT INTO `ks_extension` VALUES ('49', 'feed', 'google_sitemap');
 INSERT INTO `ks_extension` VALUES ('50', 'feed', 'openbaypro');
 INSERT INTO `ks_extension` VALUES ('51', 'module', 'bestseller');
+INSERT INTO `ks_extension` VALUES ('52', 'shipping', 'free');
+INSERT INTO `ks_extension` VALUES ('54', 'module', 'recently_viewed');
 
 -- ----------------------------
 -- Table structure for ks_extension_install
@@ -1783,11 +1885,12 @@ CREATE TABLE `ks_extension_install` (
   `filename` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`extension_install_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_extension_install
 -- ----------------------------
+INSERT INTO `ks_extension_install` VALUES ('1', '0', 'recentlyviewed.ocmod.zip', '2019-06-16 20:34:45');
 
 -- ----------------------------
 -- Table structure for ks_extension_path
@@ -1799,11 +1902,20 @@ CREATE TABLE `ks_extension_path` (
   `path` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`extension_path_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_extension_path
 -- ----------------------------
+INSERT INTO `ks_extension_path` VALUES ('1', '1', 'admin/model/extension/module', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('2', '1', 'admin/controller/extension/module/recently_viewed.php', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('3', '1', 'admin/model/extension/module/recently_viewed.php', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('4', '1', 'catalog/controller/extension/module/recently_viewed.php', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('5', '1', 'catalog/model/extension/module/recently_viewed.php', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('6', '1', 'admin/language/en-gb/extension/module/recently_viewed.php', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('7', '1', 'admin/view/template/extension/module/recently_viewed.twig', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('8', '1', 'catalog/language/en-gb/extension/module/recently_viewed.php', '2019-06-16 20:34:45');
+INSERT INTO `ks_extension_path` VALUES ('9', '1', 'catalog/view/theme/default/template/extension/module/recently_viewed.twig', '2019-06-16 20:34:45');
 
 -- ----------------------------
 -- Table structure for ks_filter
@@ -2229,7 +2341,7 @@ CREATE TABLE `ks_layout_module` (
   `position` varchar(14) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`layout_module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_layout_module
@@ -2239,11 +2351,12 @@ INSERT INTO `ks_layout_module` VALUES ('3', '4', '0', 'content_top', '1');
 INSERT INTO `ks_layout_module` VALUES ('20', '5', '0', 'column_left', '2');
 INSERT INTO `ks_layout_module` VALUES ('69', '10', 'account', 'column_right', '1');
 INSERT INTO `ks_layout_module` VALUES ('68', '6', 'account', 'column_right', '1');
-INSERT INTO `ks_layout_module` VALUES ('67', '1', 'carousel.29', 'content_top', '3');
-INSERT INTO `ks_layout_module` VALUES ('66', '1', 'slideshow.27', 'content_top', '1');
-INSERT INTO `ks_layout_module` VALUES ('65', '1', 'featured.28', 'content_top', '2');
+INSERT INTO `ks_layout_module` VALUES ('81', '1', 'bestseller.33', 'content_top', '3');
+INSERT INTO `ks_layout_module` VALUES ('80', '1', 'carousel.29', 'content_top', '2');
+INSERT INTO `ks_layout_module` VALUES ('79', '1', 'featured.28', 'content_top', '1');
 INSERT INTO `ks_layout_module` VALUES ('72', '3', 'category', 'column_left', '1');
 INSERT INTO `ks_layout_module` VALUES ('73', '3', 'banner.30', 'column_left', '2');
+INSERT INTO `ks_layout_module` VALUES ('78', '1', 'filter', 'content_top', '0');
 
 -- ----------------------------
 -- Table structure for ks_layout_route
@@ -2255,7 +2368,7 @@ CREATE TABLE `ks_layout_route` (
   `store_id` int(11) NOT NULL,
   `route` varchar(64) NOT NULL,
   PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_layout_route
@@ -2263,7 +2376,7 @@ CREATE TABLE `ks_layout_route` (
 INSERT INTO `ks_layout_route` VALUES ('38', '6', '0', 'account/%');
 INSERT INTO `ks_layout_route` VALUES ('17', '10', '0', 'affiliate/%');
 INSERT INTO `ks_layout_route` VALUES ('44', '3', '0', 'product/category');
-INSERT INTO `ks_layout_route` VALUES ('42', '1', '0', 'common/home');
+INSERT INTO `ks_layout_route` VALUES ('55', '1', '0', 'common/home');
 INSERT INTO `ks_layout_route` VALUES ('20', '2', '0', 'product/product');
 INSERT INTO `ks_layout_route` VALUES ('24', '11', '0', 'information/information');
 INSERT INTO `ks_layout_route` VALUES ('23', '7', '0', 'checkout/%');
@@ -2411,11 +2524,12 @@ CREATE TABLE `ks_modification` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`modification_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_modification
 -- ----------------------------
+INSERT INTO `ks_modification` VALUES ('1', '1', 'Recently Viewed', 'RecentlyViewed', '', '1.0', '', '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<modification>\r\n    <name>Recently Viewed</name>\r\n    <version>1.0</version>\r\n    <author></author>\r\n    <link></link>\r\n	<code>RecentlyViewed</code>\r\n	<!--\r\n	Start\r\n	==========================\r\n	add product id in table if customer viewed some product when logged in else set product id in cookies\r\n	==========================\r\n	-->\r\n	<file path=\"catalog/controller/product/product.php\">\r\n		<operation>\r\n			<search trim=\"true\" index=\"0\"><![CDATA[if ($product_info) {]]></search>\r\n			<add position=\"after\"><![CDATA[\r\n			$this->load->model(\'extension/module/recently_viewed\');\r\n			if($this->model_extension_module_recently_viewed->isEnabled()){\r\n				if ($this->customer->isLogged()) {\r\n					$this->model_extension_module_recently_viewed->setRecentlyViewedProducts($this->customer->getId(), $product_info[\'product_id\']);\r\n				} else {\r\n				\r\n					if(isset($this->request->cookie[\'recently_viewed\']) && !empty($this->request->cookie[\'recently_viewed\'])) {\r\n						$recently_viewed = json_decode(base64_decode($this->request->cookie[\'recently_viewed\']), true);\r\n						$recently_viewed[$product_info[\'product_id\']] = date(\"Y-m-d H:i:s\");\r\n						// sort by in recent viewed order\r\n						uasort($recently_viewed, function($a, $b){ return strtotime($a) > strtotime($b); });\r\n						array_unique($recently_viewed); // remove duplicates\r\n					} else {\r\n						$recently_viewed[$product_info[\'product_id\']] = date(\"Y-m-d H:i:s\");\r\n					}\r\n					\r\n					$recently_viewed = base64_encode(json_encode($recently_viewed));\r\n					setcookie(\'recently_viewed\', $recently_viewed, 0, \'/\', $this->request->server[\'HTTP_HOST\']);\r\n				}\r\n			}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<!--\r\n	End\r\n	==========================\r\n	add product id in table if customer viewed some product when logged in else set product id in cookies\r\n	==========================\r\n	-->\r\n</modification>', '1', '2019-06-16 20:34:46');
 
 -- ----------------------------
 -- Table structure for ks_module
@@ -2427,7 +2541,7 @@ CREATE TABLE `ks_module` (
   `code` varchar(32) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY (`module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_module
@@ -2437,7 +2551,10 @@ INSERT INTO `ks_module` VALUES ('29', 'Home Page', 'carousel', '{\"name\":\"Home
 INSERT INTO `ks_module` VALUES ('28', 'Home Page', 'featured', '{\"name\":\"Home Page\",\"product\":[\"43\",\"40\",\"42\",\"30\"],\"limit\":\"4\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}');
 INSERT INTO `ks_module` VALUES ('27', 'Home Page', 'slideshow', '{\"name\":\"Home Page\",\"banner_id\":\"7\",\"width\":\"1140\",\"height\":\"380\",\"status\":\"1\"}');
 INSERT INTO `ks_module` VALUES ('31', 'Banner 1', 'banner', '{\"name\":\"Banner 1\",\"banner_id\":\"6\",\"width\":\"182\",\"height\":\"182\",\"status\":\"1\"}');
-INSERT INTO `ks_module` VALUES ('32', 'Tin tuc', 'news', '{\"name\":\"Tin tuc\",\"banner_id\":\"7\",\"width\":\"1\",\"height\":\"2\",\"status\":\"1\"}');
+INSERT INTO `ks_module` VALUES ('33', 'Bán chạy nhất', 'bestseller', '{\"name\":\"B\\u00e1n ch\\u1ea1y nh\\u1ea5t\",\"limit\":\"5\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}');
+INSERT INTO `ks_module` VALUES ('34', 'Home Page', 'recently_viewed', '{\"name\":\"Home Page\",\"limit\":\"4\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}');
+INSERT INTO `ks_module` VALUES ('35', 'Home Page', 'latest', '{\"name\":\"Home Page\",\"limit\":\"5\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}');
+INSERT INTO `ks_module` VALUES ('36', 'Home Page', 'special', '{\"name\":\"Home Page\",\"limit\":\"5\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}');
 
 -- ----------------------------
 -- Table structure for ks_option
@@ -2643,11 +2760,13 @@ CREATE TABLE `ks_order` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_order
 -- ----------------------------
+INSERT INTO `ks_order` VALUES ('1', '0', 'INV-2019-00', '0', 'Your Store', 'http://kingsport.local/', '0', '1', 'duc', 'nguyen thanh', 'thducuit@gmail.com', '0932676897', '', '[]', 'duc', 'nguyen thanh', '', '10 quach van tuan', 'quach', 'tcm', '0999', 'Viet Nam', '230', 'Ho Chi Minh City', '3780', '', '[]', 'Cash On Delivery', 'cod', 'duc', 'nguyen thanh', '', '10 quach van tuan', 'quach', 'tcm', '0999', 'Viet Nam', '230', 'Ho Chi Minh City', '3780', '', '[]', 'Flat Shipping Rate', 'flat.flat', '', '606.0000', '1', '0', '0.0000', '0', '', '2', '4', 'VND', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36', 'vi,en;q=0.9,en-US;q=0.8,fr;q=0.7,fr-FR;q=0.6', '2019-06-15 21:08:43', '2019-06-15 21:08:48');
+INSERT INTO `ks_order` VALUES ('2', '0', 'INV-2019-00', '0', 'Your Store', 'http://kingsport.local/', '0', '1', 'duc', 'nguyen thanh', 'thducuit@gmail.com', '0932676897', '', '[]', 'duc', 'nguyen thanh', '', '10 quach van tuan', 'quach', 'tcm', '0999', 'Viet Nam', '230', 'Ho Chi Minh City', '3780', '', '[]', 'Cash On Delivery', 'cod', 'duc', 'nguyen thanh', '', '10 quach van tuan', 'quach', 'tcm', '0999', 'Viet Nam', '230', 'Ho Chi Minh City', '3780', '', '[]', 'Flat Shipping Rate', 'flat.flat', '', '106.0000', '0', '0', '0.0000', '0', '', '2', '4', 'VND', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36', 'vi,en;q=0.9,en-US;q=0.8,fr;q=0.7,fr-FR;q=0.6', '2019-06-15 21:29:31', '2019-06-15 21:29:31');
 
 -- ----------------------------
 -- Table structure for ks_order_history
@@ -2661,11 +2780,12 @@ CREATE TABLE `ks_order_history` (
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_order_history
 -- ----------------------------
+INSERT INTO `ks_order_history` VALUES ('1', '1', '1', '0', '', '2019-06-15 21:08:48');
 
 -- ----------------------------
 -- Table structure for ks_order_option
@@ -2704,11 +2824,14 @@ CREATE TABLE `ks_order_product` (
   `reward` int(8) NOT NULL,
   PRIMARY KEY (`order_product_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_order_product
 -- ----------------------------
+INSERT INTO `ks_order_product` VALUES ('1', '1', '40', 'iPhone', 'product 11', '1', '101.0000', '101.0000', '0.0000', '0');
+INSERT INTO `ks_order_product` VALUES ('2', '1', '43', 'MacBook', 'Product 16', '1', '500.0000', '500.0000', '0.0000', '600');
+INSERT INTO `ks_order_product` VALUES ('3', '2', '40', 'iPhone', 'product 11', '1', '101.0000', '101.0000', '0.0000', '0');
 
 -- ----------------------------
 -- Table structure for ks_order_recurring
@@ -2833,11 +2956,17 @@ CREATE TABLE `ks_order_total` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`order_total_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_order_total
 -- ----------------------------
+INSERT INTO `ks_order_total` VALUES ('1', '1', 'sub_total', 'Sub-Total', '601.0000', '1');
+INSERT INTO `ks_order_total` VALUES ('2', '1', 'shipping', 'Flat Shipping Rate', '5.0000', '3');
+INSERT INTO `ks_order_total` VALUES ('3', '1', 'total', 'Total', '606.0000', '9');
+INSERT INTO `ks_order_total` VALUES ('4', '2', 'sub_total', 'Sub-Total', '101.0000', '1');
+INSERT INTO `ks_order_total` VALUES ('5', '2', 'shipping', 'Flat Shipping Rate', '5.0000', '3');
+INSERT INTO `ks_order_total` VALUES ('6', '2', 'total', 'Total', '106.0000', '9');
 
 -- ----------------------------
 -- Table structure for ks_order_voucher
@@ -2899,31 +3028,32 @@ CREATE TABLE `ks_product` (
   `viewed` int(5) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
+  `is_featured` int(11) DEFAULT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_product
 -- ----------------------------
-INSERT INTO `ks_product` VALUES ('28', 'Product 1', '', '', '', '', '', '', '', '939', '7', 'catalog/demo/htc_touch_hd_1.jpg', '5', '1', '100.0000', '200', '9', '2009-02-03', '146.40000000', '2', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 16:06:50', '2011-09-30 01:05:39');
-INSERT INTO `ks_product` VALUES ('29', 'Product 2', '', '', '', '', '', '', '', '999', '6', 'catalog/demo/palm_treo_pro_1.jpg', '6', '1', '279.9900', '0', '9', '2009-02-03', '133.00000000', '2', '0.00000000', '0.00000000', '0.00000000', '3', '1', '1', '0', '1', '0', '2009-02-03 16:42:17', '2011-09-30 01:06:08');
-INSERT INTO `ks_product` VALUES ('30', 'Product 3', '', '', '', '', '', '', '', '7', '6', 'catalog/demo/canon_eos_5d_1.jpg', '9', '1', '100.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 16:59:00', '2011-09-30 01:05:23');
-INSERT INTO `ks_product` VALUES ('31', 'Product 4', '', '', '', '', '', '', '', '1000', '6', 'catalog/demo/nikon_d300_1.jpg', '0', '1', '80.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '3', '1', '1', '0', '1', '0', '2009-02-03 17:00:10', '2011-09-30 01:06:00');
-INSERT INTO `ks_product` VALUES ('32', 'Product 5', '', '', '', '', '', '', '', '999', '6', 'catalog/demo/ipod_touch_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 17:07:26', '2011-09-30 01:07:22');
-INSERT INTO `ks_product` VALUES ('33', 'Product 6', '', '', '', '', '', '', '', '1000', '6', 'catalog/demo/samsung_syncmaster_941bw.jpg', '0', '1', '200.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 17:08:31', '2011-09-30 01:06:29');
-INSERT INTO `ks_product` VALUES ('34', 'Product 7', '', '', '', '', '', '', '', '1000', '6', 'catalog/demo/ipod_shuffle_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 18:07:54', '2011-09-30 01:07:17');
-INSERT INTO `ks_product` VALUES ('35', 'Product 8', '', '', '', '', '', '', '', '1000', '5', '', '0', '0', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 18:08:31', '2011-09-30 01:06:17');
-INSERT INTO `ks_product` VALUES ('36', 'Product 9', '', '', '', '', '', '', '', '994', '6', 'catalog/demo/ipod_nano_1.jpg', '8', '0', '100.0000', '100', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 18:09:19', '2011-09-30 01:07:12');
-INSERT INTO `ks_product` VALUES ('40', 'product 11', '', '', '', '', '', '', '', '970', '5', 'catalog/demo/iphone_1.jpg', '8', '1', '101.0000', '0', '9', '2009-02-03', '10.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 21:07:12', '2011-09-30 01:06:53');
-INSERT INTO `ks_product` VALUES ('41', 'Product 14', '', '', '', '', '', '', '', '977', '5', 'catalog/demo/imac_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 21:07:26', '2011-09-30 01:06:44');
-INSERT INTO `ks_product` VALUES ('42', 'Product 15', '', '', '', '', '', '', '', '990', '5', 'catalog/demo/apple_cinema_30.jpg', '8', '1', '100.0000', '400', '9', '2009-02-04', '12.50000000', '1', '1.00000000', '2.00000000', '3.00000000', '1', '1', '2', '0', '1', '0', '2009-02-03 21:07:37', '2011-09-30 00:46:19');
-INSERT INTO `ks_product` VALUES ('43', 'Product 16', '', '', '', '', '', '', '', '929', '5', 'catalog/demo/macbook_1.jpg', '8', '0', '500.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '3', '2009-02-03 21:07:49', '2011-09-30 01:05:46');
-INSERT INTO `ks_product` VALUES ('44', 'Product 17', '', '', '', '', '', '', '', '1000', '5', 'catalog/demo/macbook_air_1.jpg', '8', '1', '1000.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 21:08:00', '2011-09-30 01:05:53');
-INSERT INTO `ks_product` VALUES ('45', 'Product 18', '', '', '', '', '', '', '', '998', '5', 'catalog/demo/macbook_pro_1.jpg', '8', '1', '2000.0000', '0', '100', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 21:08:17', '2011-09-15 22:22:01');
-INSERT INTO `ks_product` VALUES ('46', 'Product 19', '', '', '', '', '', '', '', '1000', '5', 'catalog/demo/sony_vaio_1.jpg', '10', '1', '1000.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 21:08:29', '2011-09-30 01:06:39');
-INSERT INTO `ks_product` VALUES ('47', 'Product 21', '', '', '', '', '', '', '', '1000', '5', 'catalog/demo/hp_1.jpg', '7', '1', '100.0000', '400', '9', '2009-02-03', '1.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '0', '1', '0', '1', '0', '2009-02-03 21:08:40', '2011-09-30 01:05:28');
-INSERT INTO `ks_product` VALUES ('48', 'product 20', 'test 1', '', '', '', '', '', 'test 2', '995', '5', 'catalog/demo/ipod_classic_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-08', '1.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-08 17:21:51', '2011-09-30 01:07:06');
-INSERT INTO `ks_product` VALUES ('49', 'SAM1', '', '', '', '', '', '', '', '0', '8', 'catalog/demo/samsung_tab_1.jpg', '0', '1', '199.9900', '0', '9', '2011-04-25', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '1', '1', '0', '2011-04-26 08:57:34', '2011-09-30 01:06:23');
+INSERT INTO `ks_product` VALUES ('28', 'Product 1', '', '', '', '', '', '', '', '939', '7', 'catalog/demo/htc_touch_hd_1.jpg', '5', '1', '0.0000', '200', '9', '2009-02-03', '146.40000000', '2', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 16:06:50', '2011-09-30 01:05:39', null);
+INSERT INTO `ks_product` VALUES ('29', 'Product 2', '', '', '', '', '', '', '', '999', '6', 'catalog/demo/palm_treo_pro_1.jpg', '6', '1', '279.9900', '0', '9', '2009-02-03', '133.00000000', '2', '0.00000000', '0.00000000', '0.00000000', '3', '1', '1', '0', '1', '0', '2009-02-03 16:42:17', '2011-09-30 01:06:08', null);
+INSERT INTO `ks_product` VALUES ('30', 'Product 3', '', '', '', '', '', '', '', '7', '6', 'catalog/demo/canon_eos_5d_1.jpg', '9', '1', '100.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '22', '2009-02-03 16:59:00', '2019-06-21 20:49:20', null);
+INSERT INTO `ks_product` VALUES ('31', 'Product 4', '', '', '', '', '', '', '', '1000', '6', 'catalog/demo/nikon_d300_1.jpg', '0', '1', '80.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '3', '1', '1', '0', '1', '0', '2009-02-03 17:00:10', '2011-09-30 01:06:00', null);
+INSERT INTO `ks_product` VALUES ('32', 'Product 5', '', '', '', '', '', '', '', '999', '6', 'catalog/demo/ipod_touch_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 17:07:26', '2011-09-30 01:07:22', null);
+INSERT INTO `ks_product` VALUES ('33', 'Product 6', '', '', '', '', '', '', '', '1000', '6', 'catalog/demo/samsung_syncmaster_941bw.jpg', '0', '1', '200.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 17:08:31', '2011-09-30 01:06:29', null);
+INSERT INTO `ks_product` VALUES ('34', 'Product 7', '', '', '', '', '', '', '', '1000', '6', 'catalog/demo/ipod_shuffle_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 18:07:54', '2011-09-30 01:07:17', null);
+INSERT INTO `ks_product` VALUES ('35', 'Product 8', '', '', '', '', '', '', '', '1000', '5', '', '0', '0', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 18:08:31', '2011-09-30 01:06:17', null);
+INSERT INTO `ks_product` VALUES ('36', 'Product 9', '', '', '', '', '', '', '', '994', '6', 'catalog/demo/ipod_nano_1.jpg', '8', '0', '100.0000', '100', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 18:09:19', '2011-09-30 01:07:12', null);
+INSERT INTO `ks_product` VALUES ('40', 'product 11', '', '', '', '', '', '', '', '969', '5', 'catalog/demo/iphone_1.jpg', '8', '1', '101.0000', '0', '9', '2009-02-03', '10.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '2', '2009-02-03 21:07:12', '2011-09-30 01:06:53', null);
+INSERT INTO `ks_product` VALUES ('41', 'Product 14', '', '', '', '', '', '', '', '977', '5', 'catalog/demo/imac_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-03', '5.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '0', '1', '0', '2009-02-03 21:07:26', '2011-09-30 01:06:44', null);
+INSERT INTO `ks_product` VALUES ('42', 'Product 15', '', '', '', '', '', '', '', '990', '5', 'catalog/demo/apple_cinema_30.jpg', '8', '1', '100.0000', '400', '9', '2009-02-04', '12.50000000', '1', '1.00000000', '2.00000000', '3.00000000', '1', '1', '1', '0', '1', '28', '2009-02-03 21:07:37', '2019-06-21 20:49:48', null);
+INSERT INTO `ks_product` VALUES ('43', 'Product 16', '', '', '', '', '', '', '', '928', '5', 'catalog/demo/macbook_1.jpg', '8', '0', '500.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '4', '2009-02-03 21:07:49', '2011-09-30 01:05:46', null);
+INSERT INTO `ks_product` VALUES ('44', 'Product 17', '', '', '', '', '', '', '', '1000', '5', 'catalog/demo/macbook_air_1.jpg', '8', '1', '1000.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 21:08:00', '2011-09-30 01:05:53', null);
+INSERT INTO `ks_product` VALUES ('45', 'Product 18', '', '', '', '', '', '', '', '998', '5', 'catalog/demo/macbook_pro_1.jpg', '8', '1', '2000.0000', '0', '100', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 21:08:17', '2011-09-15 22:22:01', null);
+INSERT INTO `ks_product` VALUES ('46', 'Product 19', '', '', '', '', '', '', '', '1000', '5', 'catalog/demo/sony_vaio_1.jpg', '10', '1', '1000.0000', '0', '9', '2009-02-03', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-03 21:08:29', '2011-09-30 01:06:39', null);
+INSERT INTO `ks_product` VALUES ('47', 'Product 21', '', '', '', '', '', '', '', '1000', '5', 'catalog/demo/hp_1.jpg', '7', '1', '100.0000', '400', '9', '2009-02-03', '1.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '0', '1', '0', '1', '3', '2009-02-03 21:08:40', '2011-09-30 01:05:28', null);
+INSERT INTO `ks_product` VALUES ('48', 'product 20', 'test 1', '', '', '', '', '', 'test 2', '995', '5', 'catalog/demo/ipod_classic_1.jpg', '8', '1', '100.0000', '0', '9', '2009-02-08', '1.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '2', '1', '1', '0', '1', '0', '2009-02-08 17:21:51', '2011-09-30 01:07:06', null);
+INSERT INTO `ks_product` VALUES ('49', 'SAM1', '', '', '', '', '', '', '', '0', '8', 'catalog/demo/samsung_tab_1.jpg', '0', '1', '199.9900', '0', '9', '2011-04-25', '0.00000000', '1', '0.00000000', '0.00000000', '0.00000000', '1', '1', '1', '1', '1', '0', '2011-04-26 08:57:34', '2011-09-30 01:06:23', null);
 
 -- ----------------------------
 -- Table structure for ks_product_attribute
@@ -2943,7 +3073,6 @@ CREATE TABLE `ks_product_attribute` (
 INSERT INTO `ks_product_attribute` VALUES ('43', '2', '1', '1');
 INSERT INTO `ks_product_attribute` VALUES ('47', '4', '1', '16GB');
 INSERT INTO `ks_product_attribute` VALUES ('43', '4', '1', '8gb');
-INSERT INTO `ks_product_attribute` VALUES ('42', '3', '1', '100mhz');
 INSERT INTO `ks_product_attribute` VALUES ('47', '2', '1', '4');
 INSERT INTO `ks_product_attribute` VALUES ('43', '2', '2', '1');
 INSERT INTO `ks_product_attribute` VALUES ('47', '4', '2', '16GB');
@@ -2988,8 +3117,6 @@ INSERT INTO `ks_product_description` VALUES ('34', '1', 'iPod Shuffle', '&lt;div
 INSERT INTO `ks_product_description` VALUES ('43', '1', 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'MacBook', '', '');
 INSERT INTO `ks_product_description` VALUES ('31', '1', 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'Nikon D300', '', '');
 INSERT INTO `ks_product_description` VALUES ('49', '1', 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', '');
-INSERT INTO `ks_product_description` VALUES ('42', '1', 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there\'s no limit to what you can achieve. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it\'s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple\'s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br&gt;\r\n	&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170° horizontal; 170° vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO \'03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Apple Cinema 30', '', '');
-INSERT INTO `ks_product_description` VALUES ('30', '1', 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon\'s press material for the EOS 5D states that it \'defines (a) new D-SLR category\', while we\'re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably \'chunkier\'). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR\'s, an important difference when compared to the latter is that the EOS 5D doesn\'t have any environmental seals. While Canon don\'t specifically refer to the EOS 5D as a \'professional\' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they\'ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', '');
 INSERT INTO `ks_product_description` VALUES ('35', '2', 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', 'Product 8', '', '');
 INSERT INTO `ks_product_description` VALUES ('48', '2', 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'iPod Classic', '', '');
 INSERT INTO `ks_product_description` VALUES ('40', '2', 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'iPhone', '', '');
@@ -3025,14 +3152,14 @@ CREATE TABLE `ks_product_discount` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=441 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=462 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_product_discount
 -- ----------------------------
-INSERT INTO `ks_product_discount` VALUES ('440', '42', '1', '30', '1', '66.0000', '0000-00-00', '0000-00-00');
-INSERT INTO `ks_product_discount` VALUES ('439', '42', '1', '20', '1', '77.0000', '0000-00-00', '0000-00-00');
-INSERT INTO `ks_product_discount` VALUES ('438', '42', '1', '10', '1', '88.0000', '0000-00-00', '0000-00-00');
+INSERT INTO `ks_product_discount` VALUES ('461', '42', '1', '30', '1', '66.0000', '0000-00-00', '0000-00-00');
+INSERT INTO `ks_product_discount` VALUES ('460', '42', '1', '20', '1', '77.0000', '0000-00-00', '0000-00-00');
+INSERT INTO `ks_product_discount` VALUES ('459', '42', '1', '10', '1', '88.0000', '0000-00-00', '0000-00-00');
 
 -- ----------------------------
 -- Table structure for ks_product_filter
@@ -3059,12 +3186,12 @@ CREATE TABLE `ks_product_image` (
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_image_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2352 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2401 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_product_image
 -- ----------------------------
-INSERT INTO `ks_product_image` VALUES ('2345', '30', 'catalog/demo/canon_eos_5d_2.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2395', '30', 'catalog/demo/canon_eos_5d_3.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2321', '47', 'catalog/demo/hp_3.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2035', '28', 'catalog/demo/htc_touch_hd_2.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2351', '41', 'catalog/demo/imac_3.jpg', '0');
@@ -3091,7 +3218,7 @@ INSERT INTO `ks_product_image` VALUES ('1991', '48', 'catalog/demo/ipod_classic_
 INSERT INTO `ks_product_image` VALUES ('1990', '48', 'catalog/demo/ipod_classic_3.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('1981', '40', 'catalog/demo/iphone_2.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('1980', '40', 'catalog/demo/iphone_5.jpg', '0');
-INSERT INTO `ks_product_image` VALUES ('2344', '30', 'catalog/demo/canon_eos_5d_3.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2394', '30', 'catalog/demo/canon_eos_5d_2.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2320', '47', 'catalog/demo/hp_2.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2034', '28', 'catalog/demo/htc_touch_hd_3.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2350', '41', 'catalog/demo/imac_2.jpg', '0');
@@ -3120,11 +3247,11 @@ INSERT INTO `ks_product_image` VALUES ('2325', '49', 'catalog/demo/samsung_tab_5
 INSERT INTO `ks_product_image` VALUES ('2324', '49', 'catalog/demo/samsung_tab_4.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2323', '49', 'catalog/demo/samsung_tab_3.jpg', '0');
 INSERT INTO `ks_product_image` VALUES ('2322', '49', 'catalog/demo/samsung_tab_2.jpg', '0');
-INSERT INTO `ks_product_image` VALUES ('2317', '42', 'catalog/demo/canon_logo.jpg', '0');
-INSERT INTO `ks_product_image` VALUES ('2316', '42', 'catalog/demo/hp_1.jpg', '0');
-INSERT INTO `ks_product_image` VALUES ('2315', '42', 'catalog/demo/compaq_presario.jpg', '0');
-INSERT INTO `ks_product_image` VALUES ('2314', '42', 'catalog/demo/canon_eos_5d_1.jpg', '0');
-INSERT INTO `ks_product_image` VALUES ('2313', '42', 'catalog/demo/canon_eos_5d_2.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2400', '42', 'catalog/demo/canon_eos_5d_1.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2399', '42', 'catalog/demo/compaq_presario.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2398', '42', 'catalog/demo/hp_1.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2397', '42', 'catalog/demo/canon_logo.jpg', '0');
+INSERT INTO `ks_product_image` VALUES ('2396', '42', 'catalog/demo/canon_eos_5d_2.jpg', '0');
 
 -- ----------------------------
 -- Table structure for ks_product_option
@@ -3144,16 +3271,16 @@ CREATE TABLE `ks_product_option` (
 -- ----------------------------
 INSERT INTO `ks_product_option` VALUES ('224', '35', '11', '', '1');
 INSERT INTO `ks_product_option` VALUES ('225', '47', '12', '2011-04-22', '1');
-INSERT INTO `ks_product_option` VALUES ('223', '42', '2', '', '1');
-INSERT INTO `ks_product_option` VALUES ('217', '42', '5', '', '1');
-INSERT INTO `ks_product_option` VALUES ('209', '42', '6', '', '1');
-INSERT INTO `ks_product_option` VALUES ('218', '42', '1', '', '1');
-INSERT INTO `ks_product_option` VALUES ('208', '42', '4', 'test', '1');
+INSERT INTO `ks_product_option` VALUES ('222', '42', '7', '', '0');
 INSERT INTO `ks_product_option` VALUES ('219', '42', '8', '2011-02-20', '1');
-INSERT INTO `ks_product_option` VALUES ('222', '42', '7', '', '1');
-INSERT INTO `ks_product_option` VALUES ('221', '42', '9', '22:25', '1');
-INSERT INTO `ks_product_option` VALUES ('220', '42', '10', '2011-02-20 22:25', '1');
+INSERT INTO `ks_product_option` VALUES ('208', '42', '4', 'test', '1');
+INSERT INTO `ks_product_option` VALUES ('218', '42', '1', '', '1');
+INSERT INTO `ks_product_option` VALUES ('217', '42', '5', '', '1');
 INSERT INTO `ks_product_option` VALUES ('226', '30', '5', '', '1');
+INSERT INTO `ks_product_option` VALUES ('209', '42', '6', '', '1');
+INSERT INTO `ks_product_option` VALUES ('223', '42', '2', '', '1');
+INSERT INTO `ks_product_option` VALUES ('220', '42', '10', '2011-02-20 22:25', '1');
+INSERT INTO `ks_product_option` VALUES ('221', '42', '9', '22:25', '1');
 
 -- ----------------------------
 -- Table structure for ks_product_option_value
@@ -3179,22 +3306,22 @@ CREATE TABLE `ks_product_option_value` (
 -- ----------------------------
 -- Records of ks_product_option_value
 -- ----------------------------
-INSERT INTO `ks_product_option_value` VALUES ('1', '217', '42', '5', '41', '100', '0', '1.0000', '+', '0', '+', '1.00000000', '+');
-INSERT INTO `ks_product_option_value` VALUES ('6', '218', '42', '1', '31', '146', '1', '20.0000', '+', '2', '-', '20.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('7', '218', '42', '1', '43', '300', '1', '30.0000', '+', '3', '+', '30.00000000', '+');
-INSERT INTO `ks_product_option_value` VALUES ('5', '218', '42', '1', '32', '96', '1', '10.0000', '+', '1', '+', '10.00000000', '+');
-INSERT INTO `ks_product_option_value` VALUES ('4', '217', '42', '5', '39', '92', '1', '4.0000', '+', '0', '+', '4.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('2', '217', '42', '5', '42', '200', '1', '2.0000', '+', '0', '+', '2.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('5', '218', '42', '1', '32', '96', '1', '10.0000', '+', '1', '+', '10.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('6', '218', '42', '1', '31', '146', '1', '20.0000', '+', '2', '-', '20.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('3', '217', '42', '5', '40', '300', '0', '3.0000', '+', '0', '+', '3.00000000', '+');
-INSERT INTO `ks_product_option_value` VALUES ('8', '223', '42', '2', '23', '48', '1', '10.0000', '+', '0', '+', '10.00000000', '+');
-INSERT INTO `ks_product_option_value` VALUES ('10', '223', '42', '2', '44', '2696', '1', '30.0000', '+', '0', '+', '30.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('1', '217', '42', '5', '41', '100', '0', '1.0000', '+', '0', '+', '1.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('9', '223', '42', '2', '24', '194', '1', '20.0000', '+', '0', '+', '20.00000000', '+');
-INSERT INTO `ks_product_option_value` VALUES ('11', '223', '42', '2', '45', '3998', '1', '40.0000', '+', '0', '+', '40.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('10', '223', '42', '2', '44', '2696', '1', '30.0000', '+', '0', '+', '30.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('12', '224', '35', '11', '46', '0', '1', '5.0000', '+', '0', '+', '0.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('13', '224', '35', '11', '47', '10', '1', '10.0000', '+', '0', '+', '0.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('14', '224', '35', '11', '48', '15', '1', '15.0000', '+', '0', '+', '0.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('16', '226', '30', '5', '40', '5', '1', '0.0000', '+', '0', '+', '0.00000000', '+');
 INSERT INTO `ks_product_option_value` VALUES ('15', '226', '30', '5', '39', '2', '1', '0.0000', '+', '0', '+', '0.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('11', '223', '42', '2', '45', '3998', '1', '40.0000', '+', '0', '+', '40.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('4', '217', '42', '5', '39', '92', '1', '4.0000', '+', '0', '+', '4.00000000', '+');
+INSERT INTO `ks_product_option_value` VALUES ('8', '223', '42', '2', '23', '48', '1', '10.0000', '+', '0', '+', '10.00000000', '+');
 
 -- ----------------------------
 -- Table structure for ks_product_recurring
@@ -3210,6 +3337,7 @@ CREATE TABLE `ks_product_recurring` (
 -- ----------------------------
 -- Records of ks_product_recurring
 -- ----------------------------
+INSERT INTO `ks_product_recurring` VALUES ('42', '1', '1');
 
 -- ----------------------------
 -- Table structure for ks_product_related
@@ -3239,19 +3367,19 @@ CREATE TABLE `ks_product_reward` (
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
   `points` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_reward_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=546 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=560 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_product_reward
 -- ----------------------------
-INSERT INTO `ks_product_reward` VALUES ('515', '42', '1', '100');
+INSERT INTO `ks_product_reward` VALUES ('559', '42', '1', '100');
 INSERT INTO `ks_product_reward` VALUES ('519', '47', '1', '300');
 INSERT INTO `ks_product_reward` VALUES ('379', '28', '1', '400');
 INSERT INTO `ks_product_reward` VALUES ('329', '43', '1', '600');
 INSERT INTO `ks_product_reward` VALUES ('339', '29', '1', '0');
 INSERT INTO `ks_product_reward` VALUES ('343', '48', '1', '0');
 INSERT INTO `ks_product_reward` VALUES ('335', '40', '1', '0');
-INSERT INTO `ks_product_reward` VALUES ('539', '30', '1', '200');
+INSERT INTO `ks_product_reward` VALUES ('558', '30', '1', '200');
 INSERT INTO `ks_product_reward` VALUES ('331', '44', '1', '700');
 INSERT INTO `ks_product_reward` VALUES ('333', '45', '1', '800');
 INSERT INTO `ks_product_reward` VALUES ('337', '31', '1', '0');
@@ -3278,14 +3406,14 @@ CREATE TABLE `ks_product_special` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_special_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=461 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_product_special
 -- ----------------------------
-INSERT INTO `ks_product_special` VALUES ('419', '42', '1', '1', '90.0000', '0000-00-00', '0000-00-00');
-INSERT INTO `ks_product_special` VALUES ('439', '30', '1', '2', '90.0000', '0000-00-00', '0000-00-00');
-INSERT INTO `ks_product_special` VALUES ('438', '30', '1', '1', '80.0000', '0000-00-00', '0000-00-00');
+INSERT INTO `ks_product_special` VALUES ('460', '42', '1', '1', '90.0000', '0000-00-00', '0000-00-00');
+INSERT INTO `ks_product_special` VALUES ('459', '30', '1', '2', '90.0000', '0000-00-00', '0000-00-00');
+INSERT INTO `ks_product_special` VALUES ('458', '30', '1', '1', '80.0000', '0000-00-00', '0000-00-00');
 
 -- ----------------------------
 -- Table structure for ks_product_to_category
@@ -3305,8 +3433,8 @@ INSERT INTO `ks_product_to_category` VALUES ('28', '20');
 INSERT INTO `ks_product_to_category` VALUES ('28', '24');
 INSERT INTO `ks_product_to_category` VALUES ('29', '20');
 INSERT INTO `ks_product_to_category` VALUES ('29', '24');
-INSERT INTO `ks_product_to_category` VALUES ('30', '20');
-INSERT INTO `ks_product_to_category` VALUES ('30', '33');
+INSERT INTO `ks_product_to_category` VALUES ('30', '25');
+INSERT INTO `ks_product_to_category` VALUES ('30', '30');
 INSERT INTO `ks_product_to_category` VALUES ('31', '33');
 INSERT INTO `ks_product_to_category` VALUES ('32', '34');
 INSERT INTO `ks_product_to_category` VALUES ('33', '20');
@@ -3317,7 +3445,7 @@ INSERT INTO `ks_product_to_category` VALUES ('36', '34');
 INSERT INTO `ks_product_to_category` VALUES ('40', '20');
 INSERT INTO `ks_product_to_category` VALUES ('40', '24');
 INSERT INTO `ks_product_to_category` VALUES ('41', '27');
-INSERT INTO `ks_product_to_category` VALUES ('42', '20');
+INSERT INTO `ks_product_to_category` VALUES ('42', '25');
 INSERT INTO `ks_product_to_category` VALUES ('42', '28');
 INSERT INTO `ks_product_to_category` VALUES ('43', '18');
 INSERT INTO `ks_product_to_category` VALUES ('43', '20');
@@ -3360,6 +3488,8 @@ CREATE TABLE `ks_product_to_layout` (
 -- ----------------------------
 -- Records of ks_product_to_layout
 -- ----------------------------
+INSERT INTO `ks_product_to_layout` VALUES ('42', '0', '0');
+INSERT INTO `ks_product_to_layout` VALUES ('30', '0', '0');
 
 -- ----------------------------
 -- Table structure for ks_product_to_store
@@ -3412,11 +3542,12 @@ CREATE TABLE `ks_recurring` (
   `status` tinyint(4) NOT NULL,
   `sort_order` int(11) NOT NULL,
   PRIMARY KEY (`recurring_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_recurring
 -- ----------------------------
+INSERT INTO `ks_recurring` VALUES ('1', '12000.0000', 'week', '2', '1', '0', '0.0000', 'day', '0', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for ks_recurring_description
@@ -3432,6 +3563,7 @@ CREATE TABLE `ks_recurring_description` (
 -- ----------------------------
 -- Records of ks_recurring_description
 -- ----------------------------
+INSERT INTO `ks_recurring_description` VALUES ('1', '2', 'test');
 
 -- ----------------------------
 -- Table structure for ks_return
@@ -3595,7 +3727,6 @@ INSERT INTO `ks_seo_url` VALUES ('834', '0', '1', 'category_id=26', 'pc');
 INSERT INTO `ks_seo_url` VALUES ('835', '0', '1', 'category_id=27', 'mac');
 INSERT INTO `ks_seo_url` VALUES ('730', '0', '1', 'manufacturer_id=8', 'apple');
 INSERT INTO `ks_seo_url` VALUES ('772', '0', '1', 'information_id=4', 'about_us');
-INSERT INTO `ks_seo_url` VALUES ('768', '0', '1', 'product_id=42', 'test');
 INSERT INTO `ks_seo_url` VALUES ('789', '0', '1', 'category_id=34', 'mp3-players');
 INSERT INTO `ks_seo_url` VALUES ('781', '0', '1', 'category_id=36', 'test2');
 INSERT INTO `ks_seo_url` VALUES ('774', '0', '1', 'category_id=18', 'laptop-notebook');
@@ -3631,7 +3762,6 @@ INSERT INTO `ks_seo_url` VALUES ('805', '0', '1', 'category_id=39', 'test6');
 INSERT INTO `ks_seo_url` VALUES ('806', '0', '1', 'category_id=40', 'test7');
 INSERT INTO `ks_seo_url` VALUES ('807', '0', '1', 'category_id=41', 'test8');
 INSERT INTO `ks_seo_url` VALUES ('808', '0', '1', 'category_id=42', 'test9');
-INSERT INTO `ks_seo_url` VALUES ('809', '0', '1', 'product_id=30', 'canon-eos-5d');
 INSERT INTO `ks_seo_url` VALUES ('840', '0', '1', 'product_id=47', 'hp-lp3065');
 INSERT INTO `ks_seo_url` VALUES ('811', '0', '1', 'product_id=28', 'htc-touch-hd');
 INSERT INTO `ks_seo_url` VALUES ('812', '0', '1', 'product_id=43', 'macbook');
@@ -3671,7 +3801,9 @@ CREATE TABLE `ks_session` (
 -- ----------------------------
 -- Records of ks_session
 -- ----------------------------
-INSERT INTO `ks_session` VALUES ('9fcae9e6c6795051f257b94bc8', '{\"language\":\"vi-vn\",\"currency\":\"VND\",\"user_id\":\"1\",\"user_token\":\"M1sJj1zLp2HqeaadGUL28rHSQl72JJr2\"}', '2019-06-02 09:15:49');
+INSERT INTO `ks_session` VALUES ('7995d2e8729f1eaa3173fea4ed', '{\"language\":\"vi-vn\",\"currency\":\"VND\",\"user_id\":\"1\",\"user_token\":\"vRfPwQM93cRVeMHlTpTxavmo38sHV1Jo\"}', '2019-06-23 07:18:26');
+INSERT INTO `ks_session` VALUES ('8b360e763d89b19efad6075336', '{\"language\":\"vi-vn\",\"currency\":\"VND\",\"wishlist\":[\"42\",\"30\",\"40\"]}', '2019-06-20 14:23:51');
+INSERT INTO `ks_session` VALUES ('9fcae9e6c6795051f257b94bc8', '{\"language\":\"vi-vn\",\"currency\":\"VND\",\"user_id\":\"1\",\"user_token\":\"agXHZL5IpglWnIZRfrvOh0EZvc1xHHYU\",\"wishlist\":[\"40\",\"42\",\"30\",\"43\"],\"account\":\"guest\",\"guest\":{\"customer_group_id\":\"1\",\"firstname\":\"duc\",\"lastname\":\"nguyen thanh\",\"email\":\"thducuit@gmail.com\",\"telephone\":\"0932676897\",\"custom_field\":[],\"shipping_address\":\"1\"},\"payment_address\":{\"firstname\":\"duc\",\"lastname\":\"nguyen thanh\",\"company\":\"\",\"address_1\":\"10 quach van tuan\",\"address_2\":\"quach\",\"postcode\":\"0999\",\"city\":\"tcm\",\"country_id\":\"230\",\"zone_id\":\"3780\",\"country\":\"Viet Nam\",\"iso_code_2\":\"VN\",\"iso_code_3\":\"VNM\",\"address_format\":\"\",\"custom_field\":[],\"zone\":\"Ho Chi Minh City\",\"zone_code\":\"HC\"},\"shipping_address\":{\"firstname\":\"duc\",\"lastname\":\"nguyen thanh\",\"company\":\"\",\"address_1\":\"10 quach van tuan\",\"address_2\":\"quach\",\"postcode\":\"0999\",\"city\":\"tcm\",\"country_id\":\"230\",\"zone_id\":\"3780\",\"country\":\"Viet Nam\",\"iso_code_2\":\"VN\",\"iso_code_3\":\"VNM\",\"address_format\":\"\",\"zone\":\"Ho Chi Minh City\",\"zone_code\":\"HC\",\"custom_field\":[]},\"comment\":\"\",\"order_id\":2,\"shipping_methods\":{\"flat\":{\"title\":\"Flat Rate\",\"quote\":{\"flat\":{\"code\":\"flat.flat\",\"title\":\"Flat Shipping Rate\",\"cost\":\"5.00\",\"tax_class_id\":\"9\",\"text\":\"5\\u0111\"}},\"sort_order\":\"1\",\"error\":false}},\"shipping_method\":{\"code\":\"flat.flat\",\"title\":\"Flat Shipping Rate\",\"cost\":\"5.00\",\"tax_class_id\":\"9\",\"text\":\"5\\u0111\"},\"payment_methods\":{\"cod\":{\"code\":\"cod\",\"title\":\"Cash On Delivery\",\"terms\":\"\",\"sort_order\":\"5\"}},\"payment_method\":{\"code\":\"cod\",\"title\":\"Cash On Delivery\",\"terms\":\"\",\"sort_order\":\"5\"},\"compare\":[\"30\",\"31\"],\"install\":\"PzEUyVcUAc\"}', '2019-06-19 15:53:28');
 INSERT INTO `ks_session` VALUES ('b09c0158a1e23bc6cc0b9c5007', '{\"api_id\":\"1\"}', '2019-05-25 10:14:18');
 INSERT INTO `ks_session` VALUES ('bffa404ba5530b264b568e7013', '{\"api_id\":\"1\"}', '2019-05-25 10:14:00');
 INSERT INTO `ks_session` VALUES ('f56095b1b7b9b115e21170fad5', '{\"api_id\":\"1\"}', '2019-05-26 06:50:39');
@@ -3689,55 +3821,57 @@ CREATE TABLE `ks_setting` (
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=551 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1255 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ks_setting
 -- ----------------------------
-INSERT INTO `ks_setting` VALUES ('550', '0', 'config', 'config_error_filename', 'error.log', '0');
-INSERT INTO `ks_setting` VALUES ('549', '0', 'config', 'config_error_log', '1', '0');
-INSERT INTO `ks_setting` VALUES ('548', '0', 'config', 'config_error_display', '1', '0');
-INSERT INTO `ks_setting` VALUES ('540', '0', 'config', 'config_compression', '0', '0');
-INSERT INTO `ks_setting` VALUES ('541', '0', 'config', 'config_secure', '0', '0');
-INSERT INTO `ks_setting` VALUES ('542', '0', 'config', 'config_password', '1', '0');
-INSERT INTO `ks_setting` VALUES ('543', '0', 'config', 'config_shared', '0', '0');
-INSERT INTO `ks_setting` VALUES ('544', '0', 'config', 'config_encryption', 'ihgM4nVkI7UAprMxdkPh6J6zPFEroQtjKpU21r8EM0HZYBNpa96g6ghmhqDfFBztTTC93zK555ENdKIobZowPaRZE3MZdD4mmSbj8o0O0jayS46BBwQcHCfwWl7i3A4tRTJpnteYWikZA0kAGtgEijzqZzJlpyqQf2nZ6PVV53DLP2fnKRgsG6pckosRHqEpayVbiDEW5j4b4jBTmyrk5t4yuvEYqnFDRDl1xhbPWJM1npYUveorM6vA2ZnC6XIUzuaOkC9sTDyxO0uFny3d6Jag7tQ1iqt1ehr4v3411RaxaRLjUEXvi9hjthzcnrdXz9ujmb87ZdLF6D4eCY1UNPyRvtZRBRTIz7hiqbFvukOSqys319hyOLtnon6ajXx7VGbgYV4W3WkCcQE1RUJi9yVqyEnpre94gwmH0R6TOZE5sWAOhe4wGGVKHlVP4fTGb0LaWehPUVDx1rKPkzAHgWAQNJaKSrDNsMlFIdciiwJWNhMWWzT4Hui3zoJVjlpWRywyXeb2zaGiimFhekJEIZvm4PxiYRzkr5tywaaVjeM3ZhAQhT4Iv7zOBmgtHgL8z5sVzgXZkis6LLzh8jJ1RyraMeWi3HZM29cnBY6va7u1XXV1TBi8m1yYeEwUSSIEc2ywm8m326JzVxlk3XKZHmGMJdlQxwHmYoPRumsXoQqxSJ1Ib5AxO4t5NecGAGwywPirp8rcHLzImFtf0m9Q5KTvZzP7DKTxGZyGsL2VNXC8LpPcHUVGpQQlUqf7Hm9f3iDvgJo6lKV5r1mnsjreVq3unN6l29h1mnAd76op648FFS3YikZsmkG6aZnj3LazDipsFg5ir0aUYxOKwbZWaCG9SP8Kph41szXA0qoGG31No7F7OcstJjU28TSNNp3jlHtulDaC2zsVnkKKeMWwR2VvpYGVofQD5YPsc1QB22rTWQ0O97UbTSZoLOQbO6c7Gvc5ulBIi8gT2akDWpibFPOGNGSspRn8Wg8QgeSStphbiVjJi6sxuI47Q9d2MMw6', '0');
-INSERT INTO `ks_setting` VALUES ('545', '0', 'config', 'config_file_max_size', '300000', '0');
-INSERT INTO `ks_setting` VALUES ('546', '0', 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', '0');
-INSERT INTO `ks_setting` VALUES ('547', '0', 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', '0');
+INSERT INTO `ks_setting` VALUES ('971', '0', 'theme_kingsport', 'theme_kingsport_image_location_width', '268', '0');
+INSERT INTO `ks_setting` VALUES ('1254', '0', 'config', 'config_error_filename', 'error.log', '0');
+INSERT INTO `ks_setting` VALUES ('1253', '0', 'config', 'config_error_log', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1252', '0', 'config', 'config_error_display', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1251', '0', 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', '0');
 INSERT INTO `ks_setting` VALUES ('4', '0', 'voucher', 'total_voucher_sort_order', '8', '0');
 INSERT INTO `ks_setting` VALUES ('5', '0', 'voucher', 'total_voucher_status', '1', '0');
-INSERT INTO `ks_setting` VALUES ('376', '0', 'module_filter', 'module_filter_status', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1249', '0', 'config', 'config_file_max_size', '300000', '0');
+INSERT INTO `ks_setting` VALUES ('1250', '0', 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', '0');
+INSERT INTO `ks_setting` VALUES ('556', '0', 'module_filter', 'module_filter_status', '0', '0');
 INSERT INTO `ks_setting` VALUES ('377', '0', 'feed_openbaypro', 'feed_openbaypro_status', '1', '0');
-INSERT INTO `ks_setting` VALUES ('538', '0', 'config', 'config_seo_url', '0', '0');
-INSERT INTO `ks_setting` VALUES ('539', '0', 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', '0');
-INSERT INTO `ks_setting` VALUES ('537', '0', 'config', 'config_maintenance', '0', '0');
-INSERT INTO `ks_setting` VALUES ('536', '0', 'config', 'config_mail_alert_email', '', '0');
-INSERT INTO `ks_setting` VALUES ('535', '0', 'config', 'config_mail_alert', '[\"order\"]', '1');
-INSERT INTO `ks_setting` VALUES ('533', '0', 'config', 'config_mail_smtp_port', '25', '0');
-INSERT INTO `ks_setting` VALUES ('534', '0', 'config', 'config_mail_smtp_timeout', '5', '0');
-INSERT INTO `ks_setting` VALUES ('532', '0', 'config', 'config_mail_smtp_password', '', '0');
-INSERT INTO `ks_setting` VALUES ('531', '0', 'config', 'config_mail_smtp_username', '', '0');
-INSERT INTO `ks_setting` VALUES ('530', '0', 'config', 'config_mail_smtp_hostname', '', '0');
-INSERT INTO `ks_setting` VALUES ('529', '0', 'config', 'config_mail_parameter', '', '0');
-INSERT INTO `ks_setting` VALUES ('528', '0', 'config', 'config_mail_engine', 'mail', '0');
-INSERT INTO `ks_setting` VALUES ('526', '0', 'config', 'config_logo', 'catalog/logo.png', '0');
-INSERT INTO `ks_setting` VALUES ('527', '0', 'config', 'config_icon', 'catalog/cart.png', '0');
-INSERT INTO `ks_setting` VALUES ('524', '0', 'config', 'config_captcha', '', '0');
-INSERT INTO `ks_setting` VALUES ('523', '0', 'config', 'config_return_status_id', '2', '0');
-INSERT INTO `ks_setting` VALUES ('525', '0', 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', '1');
-INSERT INTO `ks_setting` VALUES ('522', '0', 'config', 'config_return_id', '0', '0');
-INSERT INTO `ks_setting` VALUES ('521', '0', 'config', 'config_affiliate_id', '0', '0');
-INSERT INTO `ks_setting` VALUES ('519', '0', 'config', 'config_affiliate_auto', '0', '0');
-INSERT INTO `ks_setting` VALUES ('520', '0', 'config', 'config_affiliate_commission', '5', '0');
-INSERT INTO `ks_setting` VALUES ('518', '0', 'config', 'config_affiliate_approval', '0', '0');
-INSERT INTO `ks_setting` VALUES ('517', '0', 'config', 'config_affiliate_group_id', '1', '0');
-INSERT INTO `ks_setting` VALUES ('516', '0', 'config', 'config_stock_checkout', '0', '0');
-INSERT INTO `ks_setting` VALUES ('515', '0', 'config', 'config_stock_warning', '0', '0');
-INSERT INTO `ks_setting` VALUES ('513', '0', 'config', 'config_api_id', '1', '0');
-INSERT INTO `ks_setting` VALUES ('514', '0', 'config', 'config_stock_display', '0', '0');
-INSERT INTO `ks_setting` VALUES ('511', '0', 'config', 'config_complete_status', '[\"5\",\"3\"]', '1');
-INSERT INTO `ks_setting` VALUES ('512', '0', 'config', 'config_fraud_status_id', '7', '0');
+INSERT INTO `ks_setting` VALUES ('1244', '0', 'config', 'config_compression', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1245', '0', 'config', 'config_secure', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1246', '0', 'config', 'config_password', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1247', '0', 'config', 'config_shared', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1248', '0', 'config', 'config_encryption', 'ihgM4nVkI7UAprMxdkPh6J6zPFEroQtjKpU21r8EM0HZYBNpa96g6ghmhqDfFBztTTC93zK555ENdKIobZowPaRZE3MZdD4mmSbj8o0O0jayS46BBwQcHCfwWl7i3A4tRTJpnteYWikZA0kAGtgEijzqZzJlpyqQf2nZ6PVV53DLP2fnKRgsG6pckosRHqEpayVbiDEW5j4b4jBTmyrk5t4yuvEYqnFDRDl1xhbPWJM1npYUveorM6vA2ZnC6XIUzuaOkC9sTDyxO0uFny3d6Jag7tQ1iqt1ehr4v3411RaxaRLjUEXvi9hjthzcnrdXz9ujmb87ZdLF6D4eCY1UNPyRvtZRBRTIz7hiqbFvukOSqys319hyOLtnon6ajXx7VGbgYV4W3WkCcQE1RUJi9yVqyEnpre94gwmH0R6TOZE5sWAOhe4wGGVKHlVP4fTGb0LaWehPUVDx1rKPkzAHgWAQNJaKSrDNsMlFIdciiwJWNhMWWzT4Hui3zoJVjlpWRywyXeb2zaGiimFhekJEIZvm4PxiYRzkr5tywaaVjeM3ZhAQhT4Iv7zOBmgtHgL8z5sVzgXZkis6LLzh8jJ1RyraMeWi3HZM29cnBY6va7u1XXV1TBi8m1yYeEwUSSIEc2ywm8m326JzVxlk3XKZHmGMJdlQxwHmYoPRumsXoQqxSJ1Ib5AxO4t5NecGAGwywPirp8rcHLzImFtf0m9Q5KTvZzP7DKTxGZyGsL2VNXC8LpPcHUVGpQQlUqf7Hm9f3iDvgJo6lKV5r1mnsjreVq3unN6l29h1mnAd76op648FFS3YikZsmkG6aZnj3LazDipsFg5ir0aUYxOKwbZWaCG9SP8Kph41szXA0qoGG31No7F7OcstJjU28TSNNp3jlHtulDaC2zsVnkKKeMWwR2VvpYGVofQD5YPsc1QB22rTWQ0O97UbTSZoLOQbO6c7Gvc5ulBIi8gT2akDWpibFPOGNGSspRn8Wg8QgeSStphbiVjJi6sxuI47Q9d2MMw6', '0');
+INSERT INTO `ks_setting` VALUES ('1243', '0', 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', '0');
+INSERT INTO `ks_setting` VALUES ('1242', '0', 'config', 'config_seo_url', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1241', '0', 'config', 'config_maintenance', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1240', '0', 'config', 'config_mail_alert_email', '', '0');
+INSERT INTO `ks_setting` VALUES ('1239', '0', 'config', 'config_mail_alert', '[\"order\"]', '1');
+INSERT INTO `ks_setting` VALUES ('1238', '0', 'config', 'config_mail_smtp_timeout', '5', '0');
+INSERT INTO `ks_setting` VALUES ('1237', '0', 'config', 'config_mail_smtp_port', '25', '0');
+INSERT INTO `ks_setting` VALUES ('1236', '0', 'config', 'config_mail_smtp_password', '', '0');
+INSERT INTO `ks_setting` VALUES ('1235', '0', 'config', 'config_mail_smtp_username', '', '0');
+INSERT INTO `ks_setting` VALUES ('1234', '0', 'config', 'config_mail_smtp_hostname', '', '0');
+INSERT INTO `ks_setting` VALUES ('1233', '0', 'config', 'config_mail_parameter', '', '0');
+INSERT INTO `ks_setting` VALUES ('1231', '0', 'config', 'config_icon', 'catalog/cart.png', '0');
+INSERT INTO `ks_setting` VALUES ('1232', '0', 'config', 'config_mail_engine', 'mail', '0');
+INSERT INTO `ks_setting` VALUES ('1230', '0', 'config', 'config_logo', 'catalog/logo.png', '0');
+INSERT INTO `ks_setting` VALUES ('1229', '0', 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', '1');
+INSERT INTO `ks_setting` VALUES ('1228', '0', 'config', 'config_captcha', '', '0');
+INSERT INTO `ks_setting` VALUES ('1227', '0', 'config', 'config_return_status_id', '2', '0');
+INSERT INTO `ks_setting` VALUES ('1226', '0', 'config', 'config_return_id', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1225', '0', 'config', 'config_affiliate_id', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1223', '0', 'config', 'config_affiliate_auto', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1224', '0', 'config', 'config_affiliate_commission', '5', '0');
+INSERT INTO `ks_setting` VALUES ('1222', '0', 'config', 'config_affiliate_approval', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1221', '0', 'config', 'config_affiliate_group_id', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1220', '0', 'config', 'config_stock_checkout', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1219', '0', 'config', 'config_stock_warning', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1218', '0', 'config', 'config_stock_display', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1217', '0', 'config', 'config_api_id', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1216', '0', 'config', 'config_fraud_status_id', '7', '0');
+INSERT INTO `ks_setting` VALUES ('1215', '0', 'config', 'config_complete_status', '[\"5\",\"3\"]', '1');
+INSERT INTO `ks_setting` VALUES ('1214', '0', 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', '1');
 INSERT INTO `ks_setting` VALUES ('95', '0', 'payment_free_checkout', 'payment_free_checkout_status', '1', '0');
 INSERT INTO `ks_setting` VALUES ('96', '0', 'payment_free_checkout', 'free_checkout_order_status_id', '1', '0');
 INSERT INTO `ks_setting` VALUES ('97', '0', 'payment_free_checkout', 'payment_free_checkout_sort_order', '1', '0');
@@ -3746,11 +3880,11 @@ INSERT INTO `ks_setting` VALUES ('99', '0', 'payment_cod', 'payment_cod_total', 
 INSERT INTO `ks_setting` VALUES ('100', '0', 'payment_cod', 'payment_cod_order_status_id', '1', '0');
 INSERT INTO `ks_setting` VALUES ('101', '0', 'payment_cod', 'payment_cod_geo_zone_id', '0', '0');
 INSERT INTO `ks_setting` VALUES ('102', '0', 'payment_cod', 'payment_cod_status', '1', '0');
-INSERT INTO `ks_setting` VALUES ('103', '0', 'shipping_flat', 'shipping_flat_sort_order', '1', '0');
-INSERT INTO `ks_setting` VALUES ('104', '0', 'shipping_flat', 'shipping_flat_status', '1', '0');
-INSERT INTO `ks_setting` VALUES ('105', '0', 'shipping_flat', 'shipping_flat_geo_zone_id', '0', '0');
-INSERT INTO `ks_setting` VALUES ('106', '0', 'shipping_flat', 'shipping_flat_tax_class_id', '9', '0');
-INSERT INTO `ks_setting` VALUES ('107', '0', 'shipping_flat', 'shipping_flat_cost', '5.00', '0');
+INSERT INTO `ks_setting` VALUES ('555', '0', 'shipping_flat', 'shipping_flat_sort_order', '1', '0');
+INSERT INTO `ks_setting` VALUES ('554', '0', 'shipping_flat', 'shipping_flat_status', '0', '0');
+INSERT INTO `ks_setting` VALUES ('553', '0', 'shipping_flat', 'shipping_flat_geo_zone_id', '0', '0');
+INSERT INTO `ks_setting` VALUES ('552', '0', 'shipping_flat', 'shipping_flat_tax_class_id', '9', '0');
+INSERT INTO `ks_setting` VALUES ('551', '0', 'shipping_flat', 'shipping_flat_cost', '5.00', '0');
 INSERT INTO `ks_setting` VALUES ('108', '0', 'total_shipping', 'total_shipping_sort_order', '3', '0');
 INSERT INTO `ks_setting` VALUES ('109', '0', 'total_sub_total', 'sub_total_sort_order', '1', '0');
 INSERT INTO `ks_setting` VALUES ('110', '0', 'total_sub_total', 'total_sub_total_status', '1', '0');
@@ -3768,30 +3902,27 @@ INSERT INTO `ks_setting` VALUES ('121', '0', 'total_coupon', 'total_coupon_sort_
 INSERT INTO `ks_setting` VALUES ('122', '0', 'total_coupon', 'total_coupon_status', '1', '0');
 INSERT INTO `ks_setting` VALUES ('123', '0', 'module_category', 'module_category_status', '1', '0');
 INSERT INTO `ks_setting` VALUES ('124', '0', 'module_account', 'module_account_status', '1', '0');
-INSERT INTO `ks_setting` VALUES ('125', '0', 'theme_default', 'theme_default_product_limit', '15', '0');
-INSERT INTO `ks_setting` VALUES ('126', '0', 'theme_default', 'theme_default_product_description_length', '100', '0');
-INSERT INTO `ks_setting` VALUES ('127', '0', 'theme_default', 'theme_default_image_thumb_width', '228', '0');
-INSERT INTO `ks_setting` VALUES ('128', '0', 'theme_default', 'theme_default_image_thumb_height', '228', '0');
-INSERT INTO `ks_setting` VALUES ('129', '0', 'theme_default', 'theme_default_image_popup_width', '500', '0');
-INSERT INTO `ks_setting` VALUES ('130', '0', 'theme_default', 'theme_default_image_popup_height', '500', '0');
-INSERT INTO `ks_setting` VALUES ('131', '0', 'theme_default', 'theme_default_image_category_width', '80', '0');
-INSERT INTO `ks_setting` VALUES ('132', '0', 'theme_default', 'theme_default_image_category_height', '80', '0');
-INSERT INTO `ks_setting` VALUES ('133', '0', 'theme_default', 'theme_default_image_product_width', '228', '0');
-INSERT INTO `ks_setting` VALUES ('134', '0', 'theme_default', 'theme_default_image_product_height', '228', '0');
-INSERT INTO `ks_setting` VALUES ('135', '0', 'theme_default', 'theme_default_image_additional_width', '74', '0');
-INSERT INTO `ks_setting` VALUES ('136', '0', 'theme_default', 'theme_default_image_additional_height', '74', '0');
-INSERT INTO `ks_setting` VALUES ('137', '0', 'theme_default', 'theme_default_image_related_width', '200', '0');
-INSERT INTO `ks_setting` VALUES ('138', '0', 'theme_default', 'theme_default_image_related_height', '200', '0');
-INSERT INTO `ks_setting` VALUES ('139', '0', 'theme_default', 'theme_default_image_compare_width', '90', '0');
-INSERT INTO `ks_setting` VALUES ('140', '0', 'theme_default', 'theme_default_image_compare_height', '90', '0');
-INSERT INTO `ks_setting` VALUES ('141', '0', 'theme_default', 'theme_default_image_wishlist_width', '47', '0');
-INSERT INTO `ks_setting` VALUES ('142', '0', 'theme_default', 'theme_default_image_wishlist_height', '47', '0');
-INSERT INTO `ks_setting` VALUES ('143', '0', 'theme_default', 'theme_default_image_cart_height', '47', '0');
-INSERT INTO `ks_setting` VALUES ('144', '0', 'theme_default', 'theme_default_image_cart_width', '47', '0');
-INSERT INTO `ks_setting` VALUES ('145', '0', 'theme_default', 'theme_default_image_location_height', '50', '0');
-INSERT INTO `ks_setting` VALUES ('146', '0', 'theme_default', 'theme_default_image_location_width', '268', '0');
-INSERT INTO `ks_setting` VALUES ('147', '0', 'theme_default', 'theme_default_directory', 'default', '0');
-INSERT INTO `ks_setting` VALUES ('148', '0', 'theme_default', 'theme_default_status', '1', '0');
+INSERT INTO `ks_setting` VALUES ('993', '0', 'theme_default', 'theme_default_image_cart_width', '47', '0');
+INSERT INTO `ks_setting` VALUES ('992', '0', 'theme_default', 'theme_default_image_wishlist_height', '47', '0');
+INSERT INTO `ks_setting` VALUES ('991', '0', 'theme_default', 'theme_default_image_wishlist_width', '47', '0');
+INSERT INTO `ks_setting` VALUES ('990', '0', 'theme_default', 'theme_default_image_compare_height', '90', '0');
+INSERT INTO `ks_setting` VALUES ('989', '0', 'theme_default', 'theme_default_image_compare_width', '90', '0');
+INSERT INTO `ks_setting` VALUES ('988', '0', 'theme_default', 'theme_default_image_related_height', '200', '0');
+INSERT INTO `ks_setting` VALUES ('987', '0', 'theme_default', 'theme_default_image_related_width', '200', '0');
+INSERT INTO `ks_setting` VALUES ('986', '0', 'theme_default', 'theme_default_image_additional_height', '74', '0');
+INSERT INTO `ks_setting` VALUES ('985', '0', 'theme_default', 'theme_default_image_additional_width', '74', '0');
+INSERT INTO `ks_setting` VALUES ('984', '0', 'theme_default', 'theme_default_image_product_height', '228', '0');
+INSERT INTO `ks_setting` VALUES ('983', '0', 'theme_default', 'theme_default_image_product_width', '228', '0');
+INSERT INTO `ks_setting` VALUES ('982', '0', 'theme_default', 'theme_default_image_popup_height', '500', '0');
+INSERT INTO `ks_setting` VALUES ('981', '0', 'theme_default', 'theme_default_image_popup_width', '500', '0');
+INSERT INTO `ks_setting` VALUES ('980', '0', 'theme_default', 'theme_default_image_thumb_height', '228', '0');
+INSERT INTO `ks_setting` VALUES ('979', '0', 'theme_default', 'theme_default_image_thumb_width', '228', '0');
+INSERT INTO `ks_setting` VALUES ('978', '0', 'theme_default', 'theme_default_image_category_height', '80', '0');
+INSERT INTO `ks_setting` VALUES ('977', '0', 'theme_default', 'theme_default_image_category_width', '80', '0');
+INSERT INTO `ks_setting` VALUES ('976', '0', 'theme_default', 'theme_default_product_description_length', '100', '0');
+INSERT INTO `ks_setting` VALUES ('975', '0', 'theme_default', 'theme_default_product_limit', '15', '0');
+INSERT INTO `ks_setting` VALUES ('974', '0', 'theme_default', 'theme_default_status', '0', '0');
+INSERT INTO `ks_setting` VALUES ('973', '0', 'theme_default', 'theme_default_directory', 'default', '0');
 INSERT INTO `ks_setting` VALUES ('149', '0', 'dashboard_activity', 'dashboard_activity_status', '1', '0');
 INSERT INTO `ks_setting` VALUES ('150', '0', 'dashboard_activity', 'dashboard_activity_sort_order', '7', '0');
 INSERT INTO `ks_setting` VALUES ('151', '0', 'dashboard_sale', 'dashboard_sale_status', '1', '0');
@@ -3844,53 +3975,78 @@ INSERT INTO `ks_setting` VALUES ('197', '0', 'report_marketing', 'report_marketi
 INSERT INTO `ks_setting` VALUES ('198', '0', 'report_marketing', 'report_marketing_sort_order', '12', '0');
 INSERT INTO `ks_setting` VALUES ('199', '0', 'developer', 'developer_theme', '1', '0');
 INSERT INTO `ks_setting` VALUES ('200', '0', 'developer', 'developer_sass', '1', '0');
-INSERT INTO `ks_setting` VALUES ('510', '0', 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', '1');
-INSERT INTO `ks_setting` VALUES ('509', '0', 'config', 'config_order_status_id', '1', '0');
-INSERT INTO `ks_setting` VALUES ('508', '0', 'config', 'config_checkout_id', '0', '0');
-INSERT INTO `ks_setting` VALUES ('507', '0', 'config', 'config_checkout_guest', '1', '0');
-INSERT INTO `ks_setting` VALUES ('506', '0', 'config', 'config_cart_weight', '1', '0');
-INSERT INTO `ks_setting` VALUES ('505', '0', 'config', 'config_invoice_prefix', 'INV-2019-00', '0');
-INSERT INTO `ks_setting` VALUES ('504', '0', 'config', 'config_account_id', '0', '0');
-INSERT INTO `ks_setting` VALUES ('503', '0', 'config', 'config_login_attempts', '5', '0');
-INSERT INTO `ks_setting` VALUES ('502', '0', 'config', 'config_customer_price', '0', '0');
-INSERT INTO `ks_setting` VALUES ('501', '0', 'config', 'config_customer_group_display', '[\"1\"]', '1');
-INSERT INTO `ks_setting` VALUES ('500', '0', 'config', 'config_customer_group_id', '1', '0');
-INSERT INTO `ks_setting` VALUES ('499', '0', 'config', 'config_customer_search', '0', '0');
-INSERT INTO `ks_setting` VALUES ('498', '0', 'config', 'config_customer_activity', '0', '0');
-INSERT INTO `ks_setting` VALUES ('497', '0', 'config', 'config_customer_online', '0', '0');
-INSERT INTO `ks_setting` VALUES ('496', '0', 'config', 'config_tax_customer', 'shipping', '0');
-INSERT INTO `ks_setting` VALUES ('495', '0', 'config', 'config_tax_default', 'shipping', '0');
-INSERT INTO `ks_setting` VALUES ('494', '0', 'config', 'config_tax', '1', '0');
-INSERT INTO `ks_setting` VALUES ('493', '0', 'config', 'config_voucher_max', '1000', '0');
-INSERT INTO `ks_setting` VALUES ('492', '0', 'config', 'config_voucher_min', '1', '0');
-INSERT INTO `ks_setting` VALUES ('491', '0', 'config', 'config_review_guest', '1', '0');
-INSERT INTO `ks_setting` VALUES ('490', '0', 'config', 'config_review_status', '1', '0');
-INSERT INTO `ks_setting` VALUES ('489', '0', 'config', 'config_limit_admin', '20', '0');
-INSERT INTO `ks_setting` VALUES ('488', '0', 'config', 'config_product_count', '1', '0');
-INSERT INTO `ks_setting` VALUES ('487', '0', 'config', 'config_weight_class_id', '1', '0');
-INSERT INTO `ks_setting` VALUES ('486', '0', 'config', 'config_length_class_id', '1', '0');
-INSERT INTO `ks_setting` VALUES ('485', '0', 'config', 'config_currency_auto', '1', '0');
-INSERT INTO `ks_setting` VALUES ('484', '0', 'config', 'config_currency', 'VND', '0');
-INSERT INTO `ks_setting` VALUES ('483', '0', 'config', 'config_admin_language', 'vi-vn', '0');
-INSERT INTO `ks_setting` VALUES ('482', '0', 'config', 'config_language', 'vi-vn', '0');
-INSERT INTO `ks_setting` VALUES ('481', '0', 'config', 'config_zone_id', '3780', '0');
-INSERT INTO `ks_setting` VALUES ('480', '0', 'config', 'config_country_id', '230', '0');
-INSERT INTO `ks_setting` VALUES ('478', '0', 'config', 'config_open', '', '0');
-INSERT INTO `ks_setting` VALUES ('479', '0', 'config', 'config_comment', '', '0');
-INSERT INTO `ks_setting` VALUES ('477', '0', 'config', 'config_image', '', '0');
-INSERT INTO `ks_setting` VALUES ('476', '0', 'config', 'config_fax', '', '0');
-INSERT INTO `ks_setting` VALUES ('475', '0', 'config', 'config_telephone', '123456789', '0');
-INSERT INTO `ks_setting` VALUES ('474', '0', 'config', 'config_email', 'thducuit@gmail.com', '0');
-INSERT INTO `ks_setting` VALUES ('473', '0', 'config', 'config_geocode', '', '0');
-INSERT INTO `ks_setting` VALUES ('472', '0', 'config', 'config_address', 'Address 1', '0');
-INSERT INTO `ks_setting` VALUES ('471', '0', 'config', 'config_owner', 'Your Name', '0');
-INSERT INTO `ks_setting` VALUES ('470', '0', 'config', 'config_name', 'Your Store', '0');
-INSERT INTO `ks_setting` VALUES ('469', '0', 'config', 'config_layout_id', '4', '0');
-INSERT INTO `ks_setting` VALUES ('468', '0', 'config', 'config_theme', 'default', '0');
-INSERT INTO `ks_setting` VALUES ('467', '0', 'config', 'config_meta_keyword', '', '0');
-INSERT INTO `ks_setting` VALUES ('466', '0', 'config', 'config_meta_description', 'My Store', '0');
-INSERT INTO `ks_setting` VALUES ('465', '0', 'config', 'config_meta_title', 'Your Store', '0');
+INSERT INTO `ks_setting` VALUES ('1213', '0', 'config', 'config_order_status_id', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1212', '0', 'config', 'config_checkout_id', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1211', '0', 'config', 'config_checkout_guest', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1210', '0', 'config', 'config_cart_weight', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1209', '0', 'config', 'config_invoice_prefix', 'INV-2019-00', '0');
+INSERT INTO `ks_setting` VALUES ('1208', '0', 'config', 'config_account_id', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1207', '0', 'config', 'config_login_attempts', '5', '0');
+INSERT INTO `ks_setting` VALUES ('1206', '0', 'config', 'config_customer_price', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1205', '0', 'config', 'config_customer_group_display', '[\"1\"]', '1');
+INSERT INTO `ks_setting` VALUES ('1204', '0', 'config', 'config_customer_group_id', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1203', '0', 'config', 'config_customer_search', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1200', '0', 'config', 'config_tax_customer', 'shipping', '0');
+INSERT INTO `ks_setting` VALUES ('1201', '0', 'config', 'config_customer_online', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1202', '0', 'config', 'config_customer_activity', '0', '0');
+INSERT INTO `ks_setting` VALUES ('1199', '0', 'config', 'config_tax_default', 'shipping', '0');
+INSERT INTO `ks_setting` VALUES ('1198', '0', 'config', 'config_tax', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1197', '0', 'config', 'config_voucher_max', '1000', '0');
+INSERT INTO `ks_setting` VALUES ('1196', '0', 'config', 'config_voucher_min', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1195', '0', 'config', 'config_review_guest', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1194', '0', 'config', 'config_review_status', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1193', '0', 'config', 'config_limit_admin', '20', '0');
+INSERT INTO `ks_setting` VALUES ('1192', '0', 'config', 'config_product_count', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1191', '0', 'config', 'config_weight_class_id', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1190', '0', 'config', 'config_length_class_id', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1189', '0', 'config', 'config_currency_auto', '1', '0');
+INSERT INTO `ks_setting` VALUES ('1188', '0', 'config', 'config_currency', 'VND', '0');
+INSERT INTO `ks_setting` VALUES ('1187', '0', 'config', 'config_admin_language', 'vi-vn', '0');
+INSERT INTO `ks_setting` VALUES ('1186', '0', 'config', 'config_language', 'vi-vn', '0');
+INSERT INTO `ks_setting` VALUES ('1185', '0', 'config', 'config_zone_id', '3780', '0');
+INSERT INTO `ks_setting` VALUES ('1184', '0', 'config', 'config_country_id', '230', '0');
+INSERT INTO `ks_setting` VALUES ('1183', '0', 'config', 'config_comment', '', '0');
+INSERT INTO `ks_setting` VALUES ('1182', '0', 'config', 'config_open', '', '0');
+INSERT INTO `ks_setting` VALUES ('1181', '0', 'config', 'config_image', '', '0');
+INSERT INTO `ks_setting` VALUES ('1180', '0', 'config', 'config_fax', '', '0');
+INSERT INTO `ks_setting` VALUES ('1179', '0', 'config', 'config_telephone', '123456789', '0');
+INSERT INTO `ks_setting` VALUES ('1178', '0', 'config', 'config_email', 'thducuit@gmail.com', '0');
+INSERT INTO `ks_setting` VALUES ('1177', '0', 'config', 'config_geocode', '', '0');
+INSERT INTO `ks_setting` VALUES ('1176', '0', 'config', 'config_address', 'Address 1', '0');
+INSERT INTO `ks_setting` VALUES ('1175', '0', 'config', 'config_owner', 'Your Name', '0');
+INSERT INTO `ks_setting` VALUES ('1174', '0', 'config', 'config_name', 'Your Store', '0');
+INSERT INTO `ks_setting` VALUES ('1173', '0', 'config', 'config_layout_id', '2', '0');
+INSERT INTO `ks_setting` VALUES ('1172', '0', 'config', 'config_theme', 'kingsport', '0');
+INSERT INTO `ks_setting` VALUES ('1171', '0', 'config', 'config_meta_keyword', '', '0');
+INSERT INTO `ks_setting` VALUES ('1170', '0', 'config', 'config_meta_description', 'My Store', '0');
 INSERT INTO `ks_setting` VALUES ('378', '0', 'feed_openbaypro', 'feed_openbaypro_language', 'en_GB', '0');
+INSERT INTO `ks_setting` VALUES ('969', '0', 'theme_kingsport', 'theme_kingsport_image_cart_width', '47', '0');
+INSERT INTO `ks_setting` VALUES ('970', '0', 'theme_kingsport', 'theme_kingsport_image_cart_height', '47', '0');
+INSERT INTO `ks_setting` VALUES ('968', '0', 'theme_kingsport', 'theme_kingsport_image_wishlist_height', '47', '0');
+INSERT INTO `ks_setting` VALUES ('966', '0', 'theme_kingsport', 'theme_kingsport_image_compare_height', '90', '0');
+INSERT INTO `ks_setting` VALUES ('967', '0', 'theme_kingsport', 'theme_kingsport_image_wishlist_width', '47', '0');
+INSERT INTO `ks_setting` VALUES ('964', '0', 'theme_kingsport', 'theme_kingsport_image_related_height', '80', '0');
+INSERT INTO `ks_setting` VALUES ('965', '0', 'theme_kingsport', 'theme_kingsport_image_compare_width', '90', '0');
+INSERT INTO `ks_setting` VALUES ('963', '0', 'theme_kingsport', 'theme_kingsport_image_related_width', '80', '0');
+INSERT INTO `ks_setting` VALUES ('962', '0', 'theme_kingsport', 'theme_kingsport_image_additional_height', '74', '0');
+INSERT INTO `ks_setting` VALUES ('961', '0', 'theme_kingsport', 'theme_kingsport_image_additional_width', '74', '0');
+INSERT INTO `ks_setting` VALUES ('960', '0', 'theme_kingsport', 'theme_kingsport_image_product_height', '228', '0');
+INSERT INTO `ks_setting` VALUES ('959', '0', 'theme_kingsport', 'theme_kingsport_image_product_width', '228', '0');
+INSERT INTO `ks_setting` VALUES ('958', '0', 'theme_kingsport', 'theme_kingsport_image_popup_height', '500', '0');
+INSERT INTO `ks_setting` VALUES ('957', '0', 'theme_kingsport', 'theme_kingsport_image_popup_width', '500', '0');
+INSERT INTO `ks_setting` VALUES ('956', '0', 'theme_kingsport', 'theme_kingsport_image_thumb_height', '228', '0');
+INSERT INTO `ks_setting` VALUES ('955', '0', 'theme_kingsport', 'theme_kingsport_image_thumb_width', '228', '0');
+INSERT INTO `ks_setting` VALUES ('954', '0', 'theme_kingsport', 'theme_kingsport_image_category_height', '80', '0');
+INSERT INTO `ks_setting` VALUES ('953', '0', 'theme_kingsport', 'theme_kingsport_image_category_width', '80', '0');
+INSERT INTO `ks_setting` VALUES ('952', '0', 'theme_kingsport', 'theme_kingsport_product_description_length', '100', '0');
+INSERT INTO `ks_setting` VALUES ('951', '0', 'theme_kingsport', 'theme_kingsport_product_limit', '15', '0');
+INSERT INTO `ks_setting` VALUES ('950', '0', 'theme_kingsport', 'theme_kingsport_status', '1', '0');
+INSERT INTO `ks_setting` VALUES ('949', '0', 'theme_kingsport', 'theme_kingsport_directory', 'kingsport', '0');
+INSERT INTO `ks_setting` VALUES ('1169', '0', 'config', 'config_meta_title', 'Your Store', '0');
+INSERT INTO `ks_setting` VALUES ('972', '0', 'theme_kingsport', 'theme_kingsport_image_location_height', '50', '0');
+INSERT INTO `ks_setting` VALUES ('994', '0', 'theme_default', 'theme_default_image_cart_height', '47', '0');
+INSERT INTO `ks_setting` VALUES ('995', '0', 'theme_default', 'theme_default_image_location_width', '268', '0');
+INSERT INTO `ks_setting` VALUES ('996', '0', 'theme_default', 'theme_default_image_location_height', '50', '0');
 
 -- ----------------------------
 -- Table structure for ks_shipping_courier
@@ -3927,7 +4083,7 @@ CREATE TABLE `ks_statistics` (
 -- ----------------------------
 -- Records of ks_statistics
 -- ----------------------------
-INSERT INTO `ks_statistics` VALUES ('1', 'order_sale', '0.0000');
+INSERT INTO `ks_statistics` VALUES ('1', 'order_sale', '606.0000');
 INSERT INTO `ks_statistics` VALUES ('2', 'order_processing', '0.0000');
 INSERT INTO `ks_statistics` VALUES ('3', 'order_complete', '0.0000');
 INSERT INTO `ks_statistics` VALUES ('4', 'order_other', '0.0000');
@@ -4145,7 +4301,7 @@ CREATE TABLE `ks_user_group` (
 -- ----------------------------
 -- Records of ks_user_group
 -- ----------------------------
-INSERT INTO `ks_user_group` VALUES ('1', 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/news\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_braintree\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"marketplace\\/openbay\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"web\\/blog\",\"web\\/branch\",\"web\\/category\",\"web\\/information\",\"web\\/video\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/news\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_braintree\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"marketplace\\/openbay\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"web\\/blog\",\"web\\/branch\",\"web\\/category\",\"web\\/information\",\"web\\/video\"]}');
+INSERT INTO `ks_user_group` VALUES ('1', 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/news\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/recently_viewed\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_braintree\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/theme\\/kingsport\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"marketplace\\/openbay\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"web\\/block\",\"web\\/blog\",\"web\\/branch\",\"web\\/category\",\"web\\/information\",\"web\\/video\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/seo_url\",\"design\\/theme\",\"design\\/translation\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/news\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/recently_viewed\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_braintree\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/theme\\/kingsport\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"marketplace\\/openbay\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"web\\/block\",\"web\\/blog\",\"web\\/branch\",\"web\\/category\",\"web\\/information\",\"web\\/video\"]}');
 INSERT INTO `ks_user_group` VALUES ('10', 'Demonstration', '');
 
 -- ----------------------------
@@ -4155,17 +4311,21 @@ DROP TABLE IF EXISTS `ks_video`;
 CREATE TABLE `ks_video` (
   `video_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `bottom` int(11) DEFAULT NULL,
+  `main` int(11) DEFAULT NULL,
+  `home` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `sort_order` int(3) NOT NULL,
   `date_added` datetime DEFAULT NULL,
   `date_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`video_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ks_video
 -- ----------------------------
-INSERT INTO `ks_video` VALUES ('3', '0', '1', '0', null, null);
+INSERT INTO `ks_video` VALUES ('3', '0', '0', '1', '1', '0', null, null);
+INSERT INTO `ks_video` VALUES ('4', '0', '0', '1', '1', '0', null, null);
+INSERT INTO `ks_video` VALUES ('5', '0', '1', '1', '1', '0', null, null);
 
 -- ----------------------------
 -- Table structure for ks_video_description
@@ -4186,7 +4346,9 @@ CREATE TABLE `ks_video_description` (
 -- ----------------------------
 -- Records of ks_video_description
 -- ----------------------------
-INSERT INTO `ks_video_description` VALUES ('3', '2', '  Ghế Massage King-Sport G4', 'https://www.youtube.com/embed/8oiLRkgfsOU', '', '  Gh? Massage King-Sport G4', '', '');
+INSERT INTO `ks_video_description` VALUES ('3', '2', '  Ghế Massage King-Sport G4', 'https://www.youtube.com/embed/8oiLRkgfsOU', '', '  Ghế Massage King-Sport G4', '', '');
+INSERT INTO `ks_video_description` VALUES ('4', '2', '  Ghế Massage King-Sport G3', 'https://www.youtube.com/embed/8oiLRkgfsOU', '', '  Ghế Massage King-Sport G3', '', '');
+INSERT INTO `ks_video_description` VALUES ('5', '2', '  Ghế Massage King-Sport G2', 'https://www.youtube.com/embed/8oiLRkgfsOU', '', '  Ghế Massage King-Sport G4', '', '');
 
 -- ----------------------------
 -- Table structure for ks_video_to_layout
@@ -4203,6 +4365,8 @@ CREATE TABLE `ks_video_to_layout` (
 -- Records of ks_video_to_layout
 -- ----------------------------
 INSERT INTO `ks_video_to_layout` VALUES ('3', '0', '0');
+INSERT INTO `ks_video_to_layout` VALUES ('4', '0', '0');
+INSERT INTO `ks_video_to_layout` VALUES ('5', '0', '0');
 
 -- ----------------------------
 -- Table structure for ks_video_to_store
@@ -4218,6 +4382,8 @@ CREATE TABLE `ks_video_to_store` (
 -- Records of ks_video_to_store
 -- ----------------------------
 INSERT INTO `ks_video_to_store` VALUES ('3', '0');
+INSERT INTO `ks_video_to_store` VALUES ('4', '0');
+INSERT INTO `ks_video_to_store` VALUES ('5', '0');
 
 -- ----------------------------
 -- Table structure for ks_voucher

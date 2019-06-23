@@ -1,0 +1,181 @@
+{% for block in blocks %}
+<section class="product-original-v3">
+	<div class="container">
+		<div class="product-title-wrapper">
+			<div class="product-title">
+				<h2>{{ block['block']['title'] }}</h2>
+			</div>
+			<div class="product-tab-nav">
+				<ul id="category-mega-nav-2">
+					<li class="active"><a href="javascript:void(0)" data-type="tab-category-1">Sản phẩm nổi bật</a></li>
+					<li><a href="javascript:void(0)" data-type="tab-category-2">Khuyến mãi tháng 4</a></li>
+			</div>
+		</div>
+		<div class="product-wrapper">
+			<div class="row no-gutters">
+				<div class="col-12 col-lg-3">
+					<div class="row no-gutters video-wrapper">
+                        {% for banner in block.banners %}
+                        {% if banner.title == 'youtube' %}
+                        <div class="col-12 col-md-6 col-lg-12">
+							<div class="product-video">
+								<iframe width="560" height="315" src="{{ banner.link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+							</div>
+						</div>
+                        {% else %}
+						<div class="col-12 col-md-6 col-lg-12">
+							<div class="product-video"><img class="img-fluid" src="{{ banner.image }}" alt="{{ banner.title }}" title="{{ banner.title }}" /></div>
+						</div>
+						{% endif %}
+                        {% endfor %}
+					</div>
+				</div>
+				<div class="col-12 col-lg-9">
+					<div class="tab-category" id="tab-product-wrapper-2">
+                    
+						<div class="tab-panel-category active" id="tab-category-1">
+							<div class="swiper-container swipper-nested-product-1" id="swiper-nested-2v1">
+								<div class="swiper-wrapper">
+                                
+                                    {% for product in block['feature'] %}
+									<div class="swiper-slide">
+										<figure class="figure">
+											<div class="hot-item">
+												<h5>Hot</h5>
+											</div>
+											<div class="figure-image">
+                                                <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+												<!--<div class="swiper-lazy-preloader"></div>-->
+												<div class="add-cart">
+													<ul>
+														<li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
+                                                            <div class="label">
+                                                                <p>Lưu sản phẩm</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="mdi mdi-cart"></i></a>
+                                                            <div class="label">
+                                                                <p>Giỏ hàng</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a href="{{ product.href }}"><i class="mdi mdi-eye"></i></a>
+                                                            <div class="label">
+                                                                <p>Chi tiết</p>
+                                                            </div>
+                                                        </li>
+													</ul>
+												</div>
+											</div>
+											<div class="figure-caption">
+												<div class="caption-price">
+													{% if not product.special %}
+                                                        <h5>{{ product.price }}<span></span></h5>
+                                                    {% else %}
+                                                        <p>
+                                                            <s>{{ product.price }}</s>(-19%)
+                                                        </p>
+                                                        <h5>{{ product.special }}<span></span></h5>
+                                                    {% endif %}
+												</div>
+												<h5>{{ product.name }}</h5>
+												<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-1.png" alt="Sản phẩm tặng kèm">
+													<p>Tặng 30 kg tạ</p>
+												</div>
+												<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-2.png" alt="Sản phẩm tặng kèm">
+													<p>Tặng máy đo huyết áp</p>
+												</div>
+											</div>
+										</figure>
+									</div>
+                                    {% endfor %}
+                                    
+								</div>
+								<div class="button-prev-product"><i class="mdi mdi-chevron-left"></i></div>
+								<div class="button-next-product"><i class="mdi mdi-chevron-right"></i></div>
+							</div>
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-product-2v1"></div>
+							</div>
+						</div>
+                        
+						<div class="tab-panel-category" id="tab-category-2">
+							<div class="swiper-container swipper-nested-product-1" id="swiper-nested-2v2">
+								<div class="swiper-wrapper">
+                                
+									
+									{% for product in block['specials'] %}
+									<div class="swiper-slide">
+										<figure class="figure">
+											<div class="hot-item">
+												<h5>Hot</h5>
+											</div>
+											<div class="figure-image">
+                                                <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+												<!--<div class="swiper-lazy-preloader"></div>-->
+												<div class="add-cart">
+													<ul>
+														<li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
+                                                            <div class="label">
+                                                                <p>Lưu sản phẩm</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="mdi mdi-cart"></i></a>
+                                                            <div class="label">
+                                                                <p>Giỏ hàng</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a href="{{ product.href }}"><i class="mdi mdi-eye"></i></a>
+                                                            <div class="label">
+                                                                <p>Chi tiết</p>
+                                                            </div>
+                                                        </li>
+													</ul>
+												</div>
+											</div>
+											<div class="figure-caption">
+												<div class="caption-price">
+													{% if not product.special %}
+                                                        <h5>{{ product.price }}<span></span></h5>
+                                                    {% else %}
+                                                        <p>
+                                                            <s>{{ product.price }}</s>(-19%)
+                                                        </p>
+                                                        <h5>{{ product.special }}<span></span></h5>
+                                                    {% endif %}
+												</div>
+												<h5>{{ product.name }}</h5>
+												<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-1.png" alt="Sản phẩm tặng kèm">
+													<p>Tặng 30 kg tạ</p>
+												</div>
+												<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-2.png" alt="Sản phẩm tặng kèm">
+													<p>Tặng máy đo huyết áp</p>
+												</div>
+											</div>
+										</figure>
+									</div>
+                                    {% endfor %}
+                                    
+								</div>
+								<div class="button-prev-product"><i class="mdi mdi-chevron-left"></i></div>
+								<div class="button-next-product"><i class="mdi mdi-chevron-right"></i></div>
+							</div>
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-product-2v2"></div>
+							</div>
+						</div>
+						
+				
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-title-wrapper">
+			<div class="row">
+				<div class="col-12">
+					<div class="view-more" id="view-more"><a href="{{ block.href }}">Xem thêm</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endfor %}

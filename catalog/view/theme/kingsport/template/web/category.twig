@@ -1,0 +1,80 @@
+{{ header }}
+<div class="article-title">
+	<h2>{{ heading_title }}</h2>
+</div>
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+			</ol>
+		</nav>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-lg-3">
+        
+			{{ blog_menu }}
+            
+			<section class="news-sidebar">
+				<div class="desktop-title-2"><span class="text">Vì sao chọn  chúng tôi</span></div>
+				<div class="card-new-wrapper">
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-1.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-2.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-3.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-4.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+				</div>
+				<div class="news-image"><img src="catalog/view/theme/kingsport/image/options-1/news/banner.jpg" alt="Mạng lưới hệ thống toàn quốc"></div>
+			</section>
+		</div>
+		<div class="col-12 col-lg-9">
+			<section class="news-article">
+				<div class="row">
+                    {% for blog in blogs %}
+					<div class="col-12 col-sm-6 col-lg-4">
+						<div class="figure">
+							<div class="figure-image shine">
+                            <a href="{{ blog.href }}">
+                                <img src="{{ blog.thumb }}" alt="{{ blog.title }}" title="{{ blog.title }}" />
+                            </a>
+                            </div>
+							<div class="figure-caption">
+                            <a href="{{ blog.href }}">
+									<h4>{{ blog.title }}</h4>
+									<h5>{{ blog.date }}</h5>
+									<p>{{ blog.intro }}</p>
+                                    </a>
+                            </div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<!--Next-->
+{{ footer }}

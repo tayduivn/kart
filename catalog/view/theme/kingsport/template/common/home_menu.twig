@@ -27,12 +27,13 @@
                                 {% for child in children %}
 								<div class="col-2">
 									<h4 class="mega-title row">{{ child.name }}</h4>
+                                    {% if child.children %}
 									<ul class="stander">
-										<li><a href="#">Sub menu</a></li>
-										<li><a href="#">Sub menu</a></li>
-										<li><a href="#">Sub menu</a></li>
-										<li><a href="#">Sub menu</a></li>
+                                        {% for child3 in child.children %}
+										<li><a href="{{ child3.href }}">{{ child3.name }}</a></li>
+                                        {% endfor %}
 									</ul>
+                                    {% endif %}
 								</div>
                                 {% endfor %}
 							</div>

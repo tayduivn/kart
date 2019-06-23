@@ -40,9 +40,13 @@ class ControllerCommonBlog extends Controller {
                     'thumb'  => $image,
                     'title'  => $result['title'],
                     'intro'  => $result['intro'],
+                    'date'   => $result['date_added'],
+                    'href'   => $this->url->link('web/blog', 'blog_id=' . $result['blog_id'])   
                 );
             }
-
+            
+            $category['href'] = $this->url->link('web/category', '&blog_category_id=' . $category['category_id']);
+            
             $data['blogs'][] = $category;
 		}
 

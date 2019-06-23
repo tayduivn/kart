@@ -60,7 +60,9 @@ $_['entry_sort_order']  = 'Thứ tự:';
 
 $_['entry_layout']      = 'Bố cục:';
 
+$_['entry_parking']      = 'Chỗ đậu oto:';
 
+$_['entry_area']      = 'Khu vực:';
 
 // Help
 

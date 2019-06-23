@@ -55,5 +55,14 @@ class ModelWebCategory extends Model {
 			return $category_data;
 		}
 	}
+ 
+    
+    public function getCategory($category_id) {
+		$category_description_data = array();
+
+		$query = $this->db->query("SELECT DISTINCT i.*, id.* FROM " . DB_PREFIX . "blog_category i LEFT JOIN " . DB_PREFIX . "blog_category_description id ON (i.category_id = id.category_id) WHERE id.category_id = '" . (int)$category_id . "'");
+
+		return $query->row;
+	}
     
 }

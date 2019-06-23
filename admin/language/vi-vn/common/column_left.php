@@ -143,4 +143,5 @@ $_['text_web_information']      = 'Về chúng tôi';
 $_['text_web_blog']      		= 'Tin tức';
 $_['text_web_branch']      		= 'Hệ thống phân phối';
 $_['text_web_video']      		= 'Video';
-$_['text_web_category']    = 'Danh mục tin tức';
+$_['text_web_category']         = 'Danh mục tin tức';
+$_['text_web_block']            = 'Block sản phẩm trang chủ';

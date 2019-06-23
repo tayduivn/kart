@@ -1,5 +1,10 @@
 <div id="cart" class="btn-group btn-block">
-  <button type="button" data-toggle="dropdown" data-loading-text="{{ text_loading }}" class="btn btn-inverse btn-block btn-lg dropdown-toggle"><i class="fa fa-shopping-cart"></i> <span id="cart-total">{{ text_items }}</span></button>
+  <a data-toggle="dropdown" data-loading-text="{{ text_loading }}">
+	<div class="shopping-cart">
+        <img src="catalog/view/theme/kingsport/image/options-1/cart-icon-v2.png" alt="Shopping cart item" />
+        <span class="num-of-items">{{ count_products }}</span>    
+    </div>
+  </a>
   <ul class="dropdown-menu pull-right">
     {% if products or vouchers %}
     <li>

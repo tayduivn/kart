@@ -180,5 +180,23 @@
 				</div>
 			</section>
 		</main>
-	</body>
+        <script>
+			window.fbAsyncInit = function() {
+			FB.init({
+			appId            : 'your-app-id',
+			autoLogAppEvents : true,
+			xfbml            : true,
+			version          : 'v3.3'
+			});
+			};
+		</script>
+		<script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v3.3"></script>
+	    <script src="catalog/view/theme/kingsport/stylesheet/js/library.js" type="text/javascript"></script>
+        <script src="catalog/view/theme/kingsport/stylesheet/js/main.min.js" type="text/javascript"></script>   
+        {% for script in scripts %}
+        <script src="{{ script }}" type="text/javascript"></script>
+        {% endfor %}
+        <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+        <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    </body>
 </html>

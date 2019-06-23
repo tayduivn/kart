@@ -30,6 +30,12 @@ class ControllerCommonHome extends Controller {
         $data['newest'] = $this->load->controller('extension/module/newest', $setting_info);
         
         $data['blog'] = $this->load->controller('common/blog');
+        
+        $data['branch'] = $this->load->controller('common/branch');
+        
+        $data['home_video'] = $this->load->controller('common/home_video');
+        
+        $data['block'] = $this->load->controller('common/block');
 
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}

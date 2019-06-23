@@ -55,4 +55,14 @@ class ModelWebBlog extends Model {
 			return $blog_data;
 		}
 	}
+    
+    
+    public function getBlog($blog_id) {
+		$blog_description_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog i LEFT JOIN " . DB_PREFIX . "blog_description id ON (i.blog_id = id.blog_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' AND i.blog_id = '" . (int)$blog_id . "'");
+
+		return $query->row;
+	}
+    
 }

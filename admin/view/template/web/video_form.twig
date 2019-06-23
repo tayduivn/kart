@@ -107,6 +107,35 @@
                     {% endfor %}</div>
                 </div>
               </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-home">{{ entry_home }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if home %}
+                      <input type="checkbox" name="home" value="1" checked="checked" id="input-home" />
+                      {% else %}
+                      <input type="checkbox" name="home" value="1" id="input-home" />
+                      {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-main">{{ entry_main }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if main %}
+                      <input type="checkbox" name="main" value="1" checked="checked" id="input-main" />
+                      {% else %}
+                      <input type="checkbox" name="main" value="1" id="input-main" />
+                      {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
+              
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-bottom"><span data-toggle="tooltip" title="{{ help_bottom }}">{{ entry_bottom }}</span></label>
                 <div class="col-sm-10">
@@ -120,6 +149,7 @@
                   </div>
                 </div>
               </div>
+              
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
                 <div class="col-sm-10">

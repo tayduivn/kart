@@ -372,6 +372,22 @@ class ControllerWebBranch extends Controller {
 		} else {
 			$data['bottom'] = 0;
 		}
+        
+        if (isset($this->request->post['parking'])) {
+			$data['parking'] = $this->request->post['parking'];
+		} elseif (!empty($branch_info)) {
+			$data['parking'] = $branch_info['parking'];
+		} else {
+			$data['parking'] = 0;
+		}
+        
+        if (isset($this->request->post['area'])) {
+			$data['area'] = $this->request->post['area'];
+		} elseif (!empty($branch_info)) {
+			$data['area'] = $branch_info['area'];
+		} else {
+			$data['area'] = 0;
+		}
 
 		if (isset($this->request->post['status'])) {
 			$data['status'] = $this->request->post['status'];

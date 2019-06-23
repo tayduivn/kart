@@ -25,10 +25,10 @@
 		<div class="news-box">
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<div class="news-banner"><img class="img-fluid" src="./images/options-1/discount/ads-golden-1.jpg" alt="Khuyến mãi"></div>
+					<div class="news-banner"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/discount/ads-golden-1.jpg" alt="Khuyến mãi"></div>
 				</div>
 				<div class="col-12 col-md-6">
-					<div class="news-banner d-md"><img class="img-fluid" src="./images/options-1/discount/ads-golden-2.jpg" alt="Khuyến mãi"></div>
+					<div class="news-banner d-md"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/discount/ads-golden-2.jpg" alt="Khuyến mãi"></div>
 				</div>
 			</div>
 			<div class="row">
@@ -42,10 +42,12 @@
                                     {% for blog in category.blogs %}
 									<div class="swiper-slide">
 										<figure class="figure">
-											<div class="figure-image"><img class="img-fluid" src="{{ blog.thumb }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></div>
+											<div class="figure-image">
+                                                <a href="{{ blog.href }}"><img class="img-fluid" src="{{ blog.thumb }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></a>
+                                            </div>
 											<div class="figure-caption">
 												<h4>{{ blog.title }}</h4>
-												<h5></h5>
+												<h5>{{ blog.date }}</h5>
 												<p>{{ blog.intro }}</p>
 											</div>
 										</figure>
@@ -58,19 +60,20 @@
 							<div class="swiper-pagination-wrapper">
 								<div class="swiper-pagination swiper-pagination-news-1"></div>
 							</div>
-
+                            
+                            <div class="news-wrapper">
+                    			<div class="row">
+                    				<div class="col-12">
+                    					<div class="view-more" id="view-more"><a href="{{ category.href }}">Xem thêm</a></div>
+                    				</div>
+                    			</div>
+                    		</div>
 						</div>
                         {% endfor %}
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="news-wrapper">
-			<div class="row">
-				<div class="col-12">
-					<div class="view-more" id="view-more"><a href="#">Xem thêm</a></div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 </section>

@@ -178,6 +178,14 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);					
 			}
+            
+            if ($this->user->hasPermission('access', 'web/block')) {		
+				$web[] = array(
+					'name'	   => $this->language->get('text_web_block'),
+					'href'     => $this->url->link('web/block', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);					
+			}
 
 			if ($web) {
 				$data['menus'][] = array(

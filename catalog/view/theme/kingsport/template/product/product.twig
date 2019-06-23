@@ -72,8 +72,12 @@
 								<div class="col-12 col-xl-5">
 									<div class="product-information">
 										<div class="product-price">
-											<p>20.000.000đ</p>
-											<h2>18.000.000đ</h2>
+                                            {% if not special %}
+											<h2>{{ price }}</h2>
+                                            {% else %}
+                                            <p>{{ price }}</p>
+											<h2>{{ special }}</h2>
+                                            {% endif %}
 											<div class="credit-payment"><a href="#">Trả góp 0%</a></div>
 										</div>
 										<div class="shipping-time"><em class="mdi mdi-clock-outline"></em>
@@ -88,7 +92,7 @@
 											<p>* Không áp dụng khi mua trả góp 0% - 1.29%</p>
 										</div>
 										<div class="product-requirements">
-											<input type="checkbox">
+											<input type="checkbox" />
 											<label>Yêu cầu nhân viên kỹ thuật giao hàng: <span>hỗ trợ lắp đặt, cài đặt, hướng dẫn sử dụng máy mới, giải đáp thắc mắc sản phẩm.</span></label>
 										</div>
 										<div class="product-button">
@@ -119,7 +123,9 @@
 										</ul>
 										<div class="tab-content-product-detail">
 											<div class="tab-panel-product-detail active tab-panel-1">
-												{{ description }}
+												<article>
+                                                    {{ description }}
+                                                </article> 
 												<div class="show-more-wrapper"><a href="javascript:void(0)" id="show-more-information">Đọc thêm</a><span><em class="mdi mdi-menu-down"></em></span></div>
 											</div>
 											<div class="tab-panel-product-detail tab-panel-2">
@@ -294,6 +300,7 @@
 					</div>
 				</div>
 			</section>
+            {% if products %}
 			<section class="other-product">
 				<div class="container">
 					<h2>Sản phẩm cùng loại</h2>
@@ -364,6 +371,7 @@
 					</div>
 				</div>
 			</section>
+            {% endif %}
 			<!--<section class="pagination-verification">
 				<div class="container">
 					<ul style="justify-content: center;">

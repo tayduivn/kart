@@ -24,11 +24,23 @@ class ControllerCommonHomeMenu extends Controller {
 						'filter_category_id'  => $child['category_id'],
 						'filter_sub_category' => true
 					);
-
+                    
+                    $level3_children = $this->model_catalog_category->getCategories($child['category_id']);
+                    
+                    $level3 = array();
+                    
+                    foreach($level3_children as $level3_child) {
+                        $level3[] = array(
+                            'name'  => $level3_child['name'],
+						    'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'] . '_' . $level3_child['category_id'])
+                        );
+                    }
+                    
 					$children_data[] = array(
 						'name'  => $child['name'],
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
-					);
+						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
+					    'children' => $level3   
+                    );
 				}
 
 				// Level 1
@@ -40,6 +52,7 @@ class ControllerCommonHomeMenu extends Controller {
 				);
 			}
 		}
+        
 		return $this->load->view('common/home_menu', $data);
 	}
 }

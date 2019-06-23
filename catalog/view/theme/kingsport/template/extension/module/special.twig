@@ -16,7 +16,7 @@
 									<p>Lưu sản phẩm</p>
 								</div>
 							</li>
-							<li><a type="button" onclick="cart.add('{{ product.product_id }}');"><i class="mdi mdi-cart"></i></a>
+							<li><a onclick="cart.add('{{ product.product_id }}');"><i class="mdi mdi-cart"></i></a>
 								<div class="label">
 									<p>Giỏ hàng</p>
 								</div>
@@ -33,12 +33,12 @@
                     {% if product.price %}
                         <div class="caption-price"> 
                             {% if not product.special %}
-                            <h5>{{ product.price }}<span>đ</span></h5>
+                            <h5>{{ product.price }}<span></span></h5>
                             {% else %}
                             <p>
-    							<s>{{ product.price }}đ</s>(-19%)
+    							<s>{{ product.price }}</s>(-19%)
     						</p>
-    						<h5>{{ product.special }}<span>đ</span></h5>
+    						<h5>{{ product.special }}<span></span></h5>
                             {% endif %}
                         </div>
                     {% endif %}

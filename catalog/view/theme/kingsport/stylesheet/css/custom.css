@@ -1,0 +1,22 @@
+.kingsport-header-1v3 .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart:after {
+    display: none
+}
+
+.kingsport-header-1v3 .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #ed1c24;
+    color: #fff;
+}
+
+.add-cart a {
+    cursor: pointer
+}

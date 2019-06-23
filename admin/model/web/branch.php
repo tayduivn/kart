@@ -3,7 +3,7 @@ class ModelWebBranch extends Model {
 
 	public function addBranch($data) {
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "'" . "', area = '" . (int)$data['area'] . "'" . "', parking = '" . (int)$data['parking'] . "'");
 
 		$branch_id = $this->db->getLastId();
 
@@ -46,7 +46,7 @@ class ModelWebBranch extends Model {
 	}
 
 	public function editBranch($branch_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "' WHERE branch_id = '" . (int)$branch_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', area = '" . (int)$data['area'] . "', parking = '" . (int)$data['parking'] . "' WHERE branch_id = '" . (int)$branch_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "branch_description WHERE branch_id = '" . (int)$branch_id . "'");
 
