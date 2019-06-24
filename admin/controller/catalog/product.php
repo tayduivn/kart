@@ -649,6 +649,38 @@ class ControllerCatalogProduct extends Controller {
 			$data['mpn'] = '';
 		}
 
+        if (isset($this->request->post['is_new'])) {
+            $data['is_new'] = $this->request->post['is_new'];
+        } elseif (!empty($product_info)) {
+            $data['is_new'] = $product_info['is_new'];
+        } else {
+            $data['is_new'] = '';
+        }
+
+        if (isset($this->request->post['is_featured'])) {
+            $data['is_featured'] = $this->request->post['is_featured'];
+        } elseif (!empty($product_info)) {
+            $data['is_featured'] = $product_info['is_featured'];
+        } else {
+            $data['is_featured'] = '';
+        }
+
+        if (isset($this->request->post['is_second'])) {
+            $data['is_second'] = $this->request->post['is_second'];
+        } elseif (!empty($product_info)) {
+            $data['is_second'] = $product_info['is_second'];
+        } else {
+            $data['is_second'] = '';
+        }
+
+        if (isset($this->request->post['is_recurring'])) {
+            $data['is_recurring'] = $this->request->post['is_recurring'];
+        } elseif (!empty($product_info)) {
+            $data['is_recurring'] = $product_info['is_recurring'];
+        } else {
+            $data['is_recurring'] = '';
+        }
+
 		if (isset($this->request->post['location'])) {
 			$data['location'] = $this->request->post['location'];
 		} elseif (!empty($product_info)) {
@@ -1107,6 +1139,7 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
+		//related
 		if (isset($this->request->post['product_related'])) {
 			$products = $this->request->post['product_related'];
 		} elseif (isset($this->request->get['product_id'])) {
@@ -1127,6 +1160,28 @@ class ControllerCatalogProduct extends Controller {
 				);
 			}
 		}
+
+		//included
+        if (isset($this->request->post['product_included'])) {
+            $products = $this->request->post['product_included'];
+        } elseif (isset($this->request->get['product_id'])) {
+            $products = $this->model_catalog_product->getProductIncluded($this->request->get['product_id']);
+        } else {
+            $products = array();
+        }
+
+        $data['product_includeds'] = array();
+
+        foreach ($products as $product_id) {
+            $included_info = $this->model_catalog_product->getProduct($product_id);
+
+            if ($included_info) {
+                $data['product_includeds'][] = array(
+                    'product_id' => $included_info['product_id'],
+                    'name'       => $included_info['name']
+                );
+            }
+        }
 
 		if (isset($this->request->post['points'])) {
 			$data['points'] = $this->request->post['points'];

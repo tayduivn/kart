@@ -26,4 +26,13 @@ $_['text_rating_desc']  = 'Đánh giá (Cao nhất)';
 $_['text_model_asc']    = 'Kiểu (A - Z)';
 $_['text_model_desc']   = 'Kiểu (Z - A)';
 $_['text_limit']        = 'Hiển thị:';
+$_['text_under_2_mil']  = 'Dưới 2 triệu';
+$_['text_2_to_4_mil']  = 'Từ 2-4 triệu';
+$_['text_4_to_7_mil']  = 'Từ 4-7 triệu';
+$_['text_7_to_13_mil']  = 'Từ 7-13 triệu';
+$_['text_upper_13_mil']  = 'Trên 13 triệu';
+
+$_['text_is_new']  = 'Mới';
+$_['text_is_second']  = 'Thanh lý';
+$_['text_is_recurring']  = 'Trả góp 0%';
 ?>

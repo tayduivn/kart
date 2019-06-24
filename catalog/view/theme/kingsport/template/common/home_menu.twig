@@ -13,13 +13,18 @@
 				<div class="mega-menu-list">
 					<div class="row">
 						<div class="col-2">
-							<div class="nav-sub-image"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/running-machine/running-machine-1.png" alt="máy chạy bộ"></div>
+							<div class="nav-sub-image">
+							{% if category.thumb %}
+							<img class="img-fluid" src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" /></div>
+							{% endif %}
 							<div class="title-nav-sub">
 								<h4>{{ category.name }}</h4>
 							</div>
+            				{% autoescape %}
 							<div class="nav-sub-caption">
-								<p>cấu trúc khung sườn chắc chắn</p>
+                                {{ category.description|raw }}
 							</div>
+            				{% endautoescape %}
 						</div>
 						<div class="col-10">
                             {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}

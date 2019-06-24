@@ -276,25 +276,34 @@
 										<h5>98 showroom trên toàn quốc</h5><a href="#">Tìm cửa hàng gần nhất</a>
 									</div>
 								</div>
+
+								{% if included_products %}
 								<div class="card-4">
 									<h3>Gợi ý mua kèm</h3>
 									<div class="swiper-container swiper-prodcut-detail-sidebar">
 										<div class="swiper-wrapper">
-                                        
+                                        	{% for product in included_products %}
 											<div class="swiper-slide">
-												<div class="logo"><img src="catalog/view/theme/kingsport/image/options-1/product/ps-1.png" alt="PARTNER LOGO"></div>
+												<div class="logo">
+												<img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}"></div>
 												<div class="caption"><span>Giảm 10%</span>
-													<h4>KingSport BK-6000 đa năng</h4>
-													<h5>17.200.000<span>đ</span></h5>
+													<h4>{{ product.name }}</h4>
+
+                                                    {% if not product.special %}
+													<h5>{{ product.price }}</h5>
+                                                    {% else %}
+													<h5>{{ product.special }}</h5>
 													<p>
-														<s>18.200.000đ</s>
+														<s>{{ product.price }}</s>
 													</p>
+													{% endif %}
 												</div>
 											</div>
-                                            
+                                            {% endfor %}
 										</div>
 									</div>
 								</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -340,12 +349,12 @@
 										{% if product.price %}
                                             <div class="caption-price"> 
                                                 {% if not product.special %}
-                                                <h5>{{ product.price }}<span>đ</span></h5>
+                                                <h5>{{ product.price }}</h5>
                                                 {% else %}
                                                 <p>
-                        							<s>{{ product.price }}đ</s>(-19%)
+                        							<s>{{ product.price }}</s>(-19%)
                         						</p>
-                        						<h5>{{ product.special }}<span>đ</span></h5>
+                        						<h5>{{ product.special }}</h5>
                                                 {% endif %}
                                             </div>
                                         {% endif %}
