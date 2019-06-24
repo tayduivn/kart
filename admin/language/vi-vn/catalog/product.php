@@ -169,6 +169,8 @@ $_['entry_download']         = 'Tải về:';
 
 $_['entry_related']          = 'Sản phẩm cùng loại:';
 
+$_['entry_included']          = 'Sản phẩm đi kèm:';
+
 $_['entry_tag']              = 'Tags:';
 
 $_['entry_reward']           = 'Điểm thưởng:';
@@ -176,6 +178,14 @@ $_['entry_reward']           = 'Điểm thưởng:';
 $_['entry_layout']           = 'Bố cục:';
 
 $_['entry_profile']          = 'Hồ sơ sản phẩm:';
+
+$_['entry_is_new']          = 'Sản phẩm mới:';
+
+$_['entry_is_featured']          = 'Sản phẩm nổi bật:';
+
+$_['entry_is_second']          = 'Thanh lý:';
+
+$_['entry_is_recurring']          = 'Trả góp 0%:';
 
 
 

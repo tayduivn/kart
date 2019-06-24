@@ -135,6 +135,63 @@
                   <input type="text" name="mpn" value="{{ mpn }}" placeholder="{{ entry_mpn }}" id="input-mpn" class="form-control"/>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-is-new">{{ entry_is_new }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if is_new %}
+                        <input type="checkbox" name="is_new" value="1" checked="checked" id="input-is-new" />
+                        {% else %}
+                          <input type="checkbox" name="is_new" value="1" id="input-is-new" />
+                        {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-is-featured">{{ entry_is_featured }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if is_featured %}
+                        <input type="checkbox" name="is_featured" value="1" checked="checked" id="input-is-featured" />
+                        {% else %}
+                          <input type="checkbox" name="is_featured" value="1" id="input-is-featured" />
+                        {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-is-second">{{ entry_is_second }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if is_second %}
+                        <input type="checkbox" name="is_second" value="1" checked="checked" id="input-is-second" />
+                        {% else %}
+                          <input type="checkbox" name="is_second" value="1" id="input-is-second" />
+                        {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-is-recurring">{{ entry_is_recurring }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if is_recurring %}
+                        <input type="checkbox" name="is_recurring" value="1" checked="checked" id="input-is-recurring" />
+                        {% else %}
+                          <input type="checkbox" name="is_recurring" value="1" id="input-is-recurring" />
+                        {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-location">{{ entry_location }}</label>
                 <div class="col-sm-10">
@@ -439,6 +496,19 @@
                     {% endfor %}</div>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-included"><span data-toggle="tooltip" title="{{ help_included }}">{{ entry_included }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="included" value="" placeholder="{{ entry_included }}" id="input-included" class="form-control"/>
+                  <div id="product-included" class="well well-sm" style="height: 150px; overflow: auto;"> {% for product_included in product_includeds %}
+                      <div id="product-included{{ product_included.product_id }}"><i class="fa fa-minus-circle"></i> {{ product_included.name }}
+                        <input type="hidden" name="product_included[]" value="{{ product_included.product_id }}"/>
+                      </div>
+                      {% endfor %}</div>
+                </div>
+              </div>
+
             </div>
             <div class="tab-pane" id="tab-attribute">
               <div class="table-responsive">
@@ -1271,6 +1341,35 @@
 
   $('#product-related').delegate('.fa-minus-circle', 'click', function() {
 	  $(this).parent().remove();
+  });
+
+  // Included
+  $('input[name=\'included\']').autocomplete({
+      'source': function(request, response) {
+          $.ajax({
+              url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+              dataType: 'json',
+              success: function(json) {
+                  response($.map(json, function(item) {
+                      return {
+                          label: item['name'],
+                          value: item['product_id']
+                      }
+                  }));
+              }
+          });
+      },
+      'select': function(item) {
+          $('input[name=\'included\']').val('');
+
+          $('#product-included' + item['value']).remove();
+
+          $('#product-included').append('<div id="product-included' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_included[]" value="' + item['value'] + '" /></div>');
+      }
+  });
+
+  $('#product-included').delegate('.fa-minus-circle', 'click', function() {
+      $(this).parent().remove();
   });
   //--></script>
   <script type="text/javascript"><!--

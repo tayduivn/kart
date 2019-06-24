@@ -8,6 +8,8 @@ class ControllerCommonHomeMenu extends Controller {
 
 		$this->load->model('catalog/product');
 
+        $this->load->model('tool/image');
+
 		$data['categories'] = array();
 
 		$categories = $this->model_catalog_category->getCategories(0);
@@ -43,9 +45,17 @@ class ControllerCommonHomeMenu extends Controller {
                     );
 				}
 
+                if ($category['image']) {
+                    $image = $this->model_tool_image->resize($category['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_height'));
+                } else {
+                    $image = '';
+                }
+
 				// Level 1
 				$data['categories'][] = array(
 					'name'     => $category['name'],
+					'description' => htmlspecialchars_decode($category['description']),
+					'thumb' => $image,
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])

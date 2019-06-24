@@ -157,6 +157,40 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.is_featured = '1'";
 		}
 
+        if (!empty($data['is_new'])) {
+            $sql .= " AND p.is_new = '1'";
+        }
+
+        if (!empty($data['is_second'])) {
+            $sql .= " AND p.is_second = '1'";
+        }
+
+        if (!empty($data['is_recurring'])) {
+            $sql .= " AND p.is_recurring = '1'";
+        }
+
+        if (!empty($data['price'])) {
+		    if ($data['price'] == 'under2') {
+                $sql .= " AND p.price <= 2000000";
+            }
+
+            if ($data['price'] == '2to4') {
+                $sql .= " AND p.price >= 2000000 AND p.price <= 4000000";
+            }
+
+            if ($data['price'] == '4to7') {
+                $sql .= " AND p.price >= 4000000 AND p.price <= 7000000";
+            }
+
+            if ($data['price'] == '7to13') {
+                $sql .= " AND p.price >= 7000000 AND p.price <= 13000000";
+            }
+
+            if ($data['price'] == 'upper13') {
+                $sql .= " AND p.price >= 13000000";
+            }
+        }
+
 		$sql .= " GROUP BY p.product_id";
 
 		$sort_data = array(
@@ -446,6 +480,18 @@ class ModelCatalogProduct extends Model {
 
 		return $product_data;
 	}
+
+    public function getProductIncluded($product_id) {
+        $product_data = array();
+
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_included pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.included_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+
+        foreach ($query->rows as $result) {
+            $product_data[$result['included_id']] = $this->getProduct($result['included_id']);
+        }
+
+        return $product_data;
+    }
 
 	public function getProductLayoutId($product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "' AND store_id = '" . (int)$this->config->get('config_store_id') . "'");

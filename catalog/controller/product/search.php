@@ -41,6 +41,30 @@ class ControllerProductSearch extends Controller {
 			$sub_category = '';
 		}
 
+        if (isset($this->request->get['price'])) {
+            $price = $this->request->get['price'];
+        } else {
+            $price = '';
+        }
+
+        if (isset($this->request->get['is_new'])) {
+            $is_new = $this->request->get['is_new'];
+        } else {
+            $is_new = '';
+        }
+
+        if (isset($this->request->get['is_second'])) {
+            $is_second = $this->request->get['is_second'];
+        } else {
+            $is_second = '';
+        }
+
+        if (isset($this->request->get['is_recurring'])) {
+            $is_recurring = $this->request->get['is_recurring'];
+        } else {
+            $is_recurring = '';
+        }
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -118,6 +142,22 @@ class ControllerProductSearch extends Controller {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
 
+        if (isset($this->request->get['price'])) {
+            $url .= '&price=' . $this->request->get['price'];
+        }
+
+        if (isset($this->request->get['is_new'])) {
+            $url .= '&is_new=' . $this->request->get['is_new'];
+        }
+
+        if (isset($this->request->get['is_second'])) {
+            $url .= '&is_second=' . $this->request->get['is_second'];
+        }
+
+        if (isset($this->request->get['is_recurring'])) {
+            $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+        }
+
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('product/search', $url)
@@ -181,9 +221,13 @@ class ControllerProductSearch extends Controller {
 				'filter_category_id'  => $category_id,
 				'filter_sub_category' => $sub_category,
 				'sort'                => $sort,
+				'price'                => $price,
 				'order'               => $order,
 				'start'               => ($page - 1) * $limit,
-				'limit'               => $limit
+				'limit'               => $limit,
+                'is_new'             => $is_new,
+                'is_second'          => $is_second,
+                'is_recurring'       => $is_recurring,
 			);
 
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
@@ -260,6 +304,22 @@ class ControllerProductSearch extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
 
 			$data['sorts'] = array();
 
@@ -349,6 +409,22 @@ class ControllerProductSearch extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
 			$data['limits'] = array();
 
 			$limits = array_unique(array($this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit'), 25, 50, 75, 100));
@@ -397,6 +473,22 @@ class ControllerProductSearch extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
 			$pagination = new Pagination();
 			$pagination->total = $product_total;
 			$pagination->page = $page;
@@ -435,6 +527,116 @@ class ControllerProductSearch extends Controller {
 				$this->model_account_search->addSearch($search_data);
 			}
 		}
+
+        $url = '';
+
+        if (isset($this->request->get['search'])) {
+            $url .= '&search=' . urlencode(html_entity_decode($this->request->get['search'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['tag'])) {
+            $url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['description'])) {
+            $url .= '&description=' . $this->request->get['description'];
+        }
+
+        if (isset($this->request->get['category_id'])) {
+            $url .= '&category_id=' . $this->request->get['category_id'];
+        }
+
+        if (isset($this->request->get['sub_category'])) {
+            $url .= '&sub_category=' . $this->request->get['sub_category'];
+        }
+
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
+
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
+
+        if (isset($this->request->get['limit'])) {
+            $url .= '&limit=' . $this->request->get['limit'];
+        }
+
+        $data['prices'] = array(
+            array(
+                'label' => $this->language->get('text_under_2_mil'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&price=under2'),
+            ),
+            array(
+                'label' => $this->language->get('text_2_to_4_mil'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&price=2to4')
+            ),
+            array(
+                'label' => $this->language->get('text_4_to_7_mil'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&price=4to7')
+            ),
+            array(
+                'label' => $this->language->get('text_7_to_13_mil'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&price=7to13')
+            ),
+            array(
+                'label' => $this->language->get('text_upper_13_mil'),
+                'href'  => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&price=upper13')
+            )
+        );
+
+        $url = '';
+
+        if (isset($this->request->get['search'])) {
+            $url .= '&search=' . urlencode(html_entity_decode($this->request->get['search'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['tag'])) {
+            $url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['description'])) {
+            $url .= '&description=' . $this->request->get['description'];
+        }
+
+        if (isset($this->request->get['category_id'])) {
+            $url .= '&category_id=' . $this->request->get['category_id'];
+        }
+
+        if (isset($this->request->get['sub_category'])) {
+            $url .= '&sub_category=' . $this->request->get['sub_category'];
+        }
+
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
+
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
+
+        if (isset($this->request->get['limit'])) {
+            $url .= '&limit=' . $this->request->get['limit'];
+        }
+
+        if (isset($this->request->get['price'])) {
+            $url .= '&price=' . $this->request->get['price'];
+        }
+
+        $data['product_status'] = array(
+            array(
+                'label' => $this->language->get('text_is_new'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_new=1')
+            ),
+            array(
+                'label' => $this->language->get('text_is_second'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_second=1')
+            ),
+            array(
+                'label' => $this->language->get('text_is_recurring'),
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1')
+            )
+        );
 
 		$data['search'] = $search;
 		$data['description'] = $description;

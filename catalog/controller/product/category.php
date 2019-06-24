@@ -21,6 +21,30 @@ class ControllerProductCategory extends Controller {
 			$sort = 'p.sort_order';
 		}
 
+        if (isset($this->request->get['price'])) {
+            $price = $this->request->get['price'];
+        } else {
+            $price = '';
+        }
+
+        if (isset($this->request->get['is_new'])) {
+            $is_new = $this->request->get['is_new'];
+        } else {
+            $is_new = '';
+        }
+
+        if (isset($this->request->get['is_second'])) {
+            $is_second = $this->request->get['is_second'];
+        } else {
+            $is_second = '';
+        }
+
+        if (isset($this->request->get['is_recurring'])) {
+            $is_recurring = $this->request->get['is_recurring'];
+        } else {
+            $is_recurring = '';
+        }
+
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
@@ -60,6 +84,22 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
 
 			$path = '';
 
@@ -131,6 +171,22 @@ class ControllerProductCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
 			$data['categories'] = array();
 
 			$results = $this->model_catalog_category->getCategories($category_id);
@@ -148,9 +204,13 @@ class ControllerProductCategory extends Controller {
         				'sort'               => $sort,
         				'order'              => $order,
         				'start'              => 0,
-        				'limit'              => 12
+        				'limit'              => 12,
+                        'price'              => $price,
+                        'is_new'             => $is_new,
+                        'is_second'          => $is_second,
+                        'is_recurring'       => $is_recurring,
         			);
-                    
+
                     $products = $this->model_catalog_product->getProducts($filter_product_data);
                     
                     $product_list = array();
@@ -217,7 +277,11 @@ class ControllerProductCategory extends Controller {
     				'sort'               => $sort,
     				'order'              => $order,
     				'start'              => ($page - 1) * $limit,
-    				'limit'              => $limit
+    				'limit'              => $limit,
+                    'price'              => $price,
+                    'is_new'             => $is_new,
+                    'is_second'          => $is_second,
+                    'is_recurring'       => $is_recurring,
     			);
     
     			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
@@ -268,152 +332,288 @@ class ControllerProductCategory extends Controller {
     					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
     				);
     			}
-                
-                $url = '';
-
-    			if (isset($this->request->get['filter'])) {
-    				$url .= '&filter=' . $this->request->get['filter'];
-    			}
-    
-    			if (isset($this->request->get['limit'])) {
-    				$url .= '&limit=' . $this->request->get['limit'];
-    			}
-    
-    			$data['sorts'] = array();
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_default'),
-    				'value' => 'p.sort_order-ASC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.sort_order&order=ASC' . $url)
-    			);
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_name_asc'),
-    				'value' => 'pd.name-ASC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=pd.name&order=ASC' . $url)
-    			);
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_name_desc'),
-    				'value' => 'pd.name-DESC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=pd.name&order=DESC' . $url)
-    			);
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_price_asc'),
-    				'value' => 'p.price-ASC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=ASC' . $url)
-    			);
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_price_desc'),
-    				'value' => 'p.price-DESC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=DESC' . $url)
-    			);
-    
-    			if ($this->config->get('config_review_status')) {
-    				$data['sorts'][] = array(
-    					'text'  => $this->language->get('text_rating_desc'),
-    					'value' => 'rating-DESC',
-    					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=DESC' . $url)
-    				);
-    
-    				$data['sorts'][] = array(
-    					'text'  => $this->language->get('text_rating_asc'),
-    					'value' => 'rating-ASC',
-    					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=ASC' . $url)
-    				);
-    			}
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_model_asc'),
-    				'value' => 'p.model-ASC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=ASC' . $url)
-    			);
-    
-    			$data['sorts'][] = array(
-    				'text'  => $this->language->get('text_model_desc'),
-    				'value' => 'p.model-DESC',
-    				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
-    			);
-    
-    			$url = '';
-    
-    			if (isset($this->request->get['filter'])) {
-    				$url .= '&filter=' . $this->request->get['filter'];
-    			}
-    
-    			if (isset($this->request->get['sort'])) {
-    				$url .= '&sort=' . $this->request->get['sort'];
-    			}
-    
-    			if (isset($this->request->get['order'])) {
-    				$url .= '&order=' . $this->request->get['order'];
-    			}
-    
-    			$data['limits'] = array();
-    
-    			$limits = array_unique(array($this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit'), 25, 50, 75, 100));
-    
-    			sort($limits);
-    
-    			foreach($limits as $value) {
-    				$data['limits'][] = array(
-    					'text'  => $value,
-    					'value' => $value,
-    					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $value)
-    				);
-    			}
-    
-    			$url = '';
-    
-    			if (isset($this->request->get['filter'])) {
-    				$url .= '&filter=' . $this->request->get['filter'];
-    			}
-    
-    			if (isset($this->request->get['sort'])) {
-    				$url .= '&sort=' . $this->request->get['sort'];
-    			}
-    
-    			if (isset($this->request->get['order'])) {
-    				$url .= '&order=' . $this->request->get['order'];
-    			}
-    
-    			if (isset($this->request->get['limit'])) {
-    				$url .= '&limit=' . $this->request->get['limit'];
-    			}
-    
-    			$pagination = new Pagination();
-    			$pagination->total = $product_total;
-    			$pagination->page = $page;
-    			$pagination->limit = $limit;
-    			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
-    
-    			$data['pagination'] = $pagination->render();
-    
-    			$data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
-    
-    			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
-    			if ($page == 1) {
-    			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id']), 'canonical');
-    			} else {
-    				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. $page), 'canonical');
-    			}
-    			
-    			if ($page > 1) {
-    			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . (($page - 2) ? '&page='. ($page - 1) : '')), 'prev');
-    			}
-    
-    			if ($limit && ceil($product_total / $limit) > $page) {
-    			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page + 1)), 'next');
-    			}
-    
-    			$data['sort'] = $sort;
-    			$data['order'] = $order;
-    			$data['limit'] = $limit;
             }
 
-			
+            $url = '';
+
+            if (isset($this->request->get['filter'])) {
+                $url .= '&filter=' . $this->request->get['filter'];
+            }
+
+            if (isset($this->request->get['limit'])) {
+                $url .= '&limit=' . $this->request->get['limit'];
+            }
+
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
+            $data['sorts'] = array();
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_default'),
+                'value' => 'p.sort_order-ASC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.sort_order&order=ASC' . $url)
+            );
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_name_asc'),
+                'value' => 'pd.name-ASC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=pd.name&order=ASC' . $url)
+            );
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_name_desc'),
+                'value' => 'pd.name-DESC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=pd.name&order=DESC' . $url)
+            );
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_price_asc'),
+                'value' => 'p.price-ASC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=ASC' . $url)
+            );
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_price_desc'),
+                'value' => 'p.price-DESC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=DESC' . $url)
+            );
+
+            if ($this->config->get('config_review_status')) {
+                $data['sorts'][] = array(
+                    'text'  => $this->language->get('text_rating_desc'),
+                    'value' => 'rating-DESC',
+                    'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=DESC' . $url)
+                );
+
+                $data['sorts'][] = array(
+                    'text'  => $this->language->get('text_rating_asc'),
+                    'value' => 'rating-ASC',
+                    'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=ASC' . $url)
+                );
+            }
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_model_asc'),
+                'value' => 'p.model-ASC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=ASC' . $url)
+            );
+
+            $data['sorts'][] = array(
+                'text'  => $this->language->get('text_model_desc'),
+                'value' => 'p.model-DESC',
+                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
+            );
+
+            $url = '';
+
+            if (isset($this->request->get['filter'])) {
+                $url .= '&filter=' . $this->request->get['filter'];
+            }
+
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
+
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
+
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
+            $data['limits'] = array();
+
+            $limits = array_unique(array($this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit'), 25, 50, 75, 100));
+
+            sort($limits);
+
+            foreach($limits as $value) {
+                $data['limits'][] = array(
+                    'text'  => $value,
+                    'value' => $value,
+                    'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $value)
+                );
+            }
+
+            $url = '';
+
+            if (isset($this->request->get['filter'])) {
+                $url .= '&filter=' . $this->request->get['filter'];
+            }
+
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
+
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
+
+            if (isset($this->request->get['limit'])) {
+                $url .= '&limit=' . $this->request->get['limit'];
+            }
+
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
+            $pagination = new Pagination();
+            $pagination->total = $product_total;
+            $pagination->page = $page;
+            $pagination->limit = $limit;
+            $pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
+
+            $data['pagination'] = $pagination->render();
+
+            $data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
+
+            // http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
+            if ($page == 1) {
+                $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id']), 'canonical');
+            } else {
+                $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. $page), 'canonical');
+            }
+
+            if ($page > 1) {
+                $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . (($page - 2) ? '&page='. ($page - 1) : '')), 'prev');
+            }
+
+            if ($limit && ceil($product_total / $limit) > $page) {
+                $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page + 1)), 'next');
+            }
+
+            $url = '';
+
+            if (isset($this->request->get['filter'])) {
+                $url .= '&filter=' . $this->request->get['filter'];
+            }
+
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
+
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
+
+            if (isset($this->request->get['limit'])) {
+                $url .= '&limit=' . $this->request->get['limit'];
+            }
+
+            if (isset($this->request->get['is_new'])) {
+                $url .= '&is_new=' . $this->request->get['is_new'];
+            }
+
+            if (isset($this->request->get['is_second'])) {
+                $url .= '&is_second=' . $this->request->get['is_second'];
+            }
+
+            if (isset($this->request->get['is_recurring'])) {
+                $url .= '&is_recurring=' . $this->request->get['is_recurring'];
+            }
+
+            $data['prices'] = array(
+                array(
+                    'label' => $this->language->get('text_under_2_mil'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&price=under2'),
+                ),
+                array(
+                    'label' => $this->language->get('text_2_to_4_mil'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&price=2to4')
+                ),
+                array(
+                    'label' => $this->language->get('text_4_to_7_mil'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&price=4to7')
+                ),
+                array(
+                    'label' => $this->language->get('text_7_to_13_mil'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&price=7to13')
+                ),
+                array(
+                    'label' => $this->language->get('text_upper_13_mil'),
+                    'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&price=upper13')
+                )
+            );
+
+            $url = '';
+
+            if (isset($this->request->get['filter'])) {
+                $url .= '&filter=' . $this->request->get['filter'];
+            }
+
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
+
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
+
+            if (isset($this->request->get['limit'])) {
+                $url .= '&limit=' . $this->request->get['limit'];
+            }
+
+            if (isset($this->request->get['price'])) {
+                $url .= '&price=' . $this->request->get['price'];
+            }
+
+            $data['product_status'] = array(
+                array(
+                    'label' => $this->language->get('text_is_new'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_new=1')
+                ),
+                array(
+                    'label' => $this->language->get('text_is_second'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_second=1')
+                ),
+                array(
+                    'label' => $this->language->get('text_is_recurring'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1')
+                )
+            );
+
+            $data['sort'] = $sort;
+            $data['order'] = $order;
+            $data['limit'] = $limit;
 
 			$data['continue'] = $this->url->link('common/home');
 

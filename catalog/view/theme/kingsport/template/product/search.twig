@@ -20,36 +20,28 @@
                 <h2>Chọn mức giá:</h2>
                 <div class="price-filter">
                     <ul>
-                        <li><a href="#">Dưới 2 tiệu</a></li>
-                        <li><a href="#">Từ 2-4 triệu</a></li>
-                        <li><a href="#">Từ 4-7 triệu</a></li>
-                        <li><a href="#">Từ 7-13 triệu</a></li>
-                        <li><a href="#">Trên 13 triệu</a></li>
+                        {% for price in prices %}
+                            <li><a href="{{ price.href }}">{{ price.label }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="price-check">
                     <ul>
-                        <li>
-                            <input type="checkbox" value="Mới" />
-                            <label>Mới</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Thanh lý" />
-                            <label>Thanh lý</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Trả góp 0%" />
-                            <label>Trả góp 0%</label>
-                        </li>
+                        {% for status in product_status %}
+                            <li>
+                                <input type="checkbox" value="{{ status.href }}" onchange="location = this.value;"/>
+                                <label>{{ status.label }}</label>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="select-option">
                     <label>
                         <select class="custom-select-option"><span></span>
                             <option selected="">Tính năng</option>
-                            <option value="1">One</option>
+                            <!--<option value="1">One</option>
                             <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="3">Three</option>-->
                         </select>
                     </label>
                 </div>
@@ -58,10 +50,13 @@
                 <div class="select-sort">
                     <label>
                         <select class="custom-select-sort">
-                            <option selected="">Sắp xếp</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {% for sorts in sorts %}
+                                {% if sorts.value == '%s-%s'|format(sort, order) %}
+                                    <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+                                {% else %}
+                                    <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </label>
                 </div>

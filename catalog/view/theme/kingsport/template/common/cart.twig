@@ -5,7 +5,7 @@
         <span class="num-of-items">{{ count_products }}</span>    
     </div>
   </a>
-  <ul class="dropdown-menu pull-right">
+  <!--<ul class="dropdown-menu pull-right">
     {% if products or vouchers %}
     <li>
       <table class="table table-striped">
@@ -32,25 +32,18 @@
           <td class="text-center text-danger"><button type="button" onclick="voucher.remove('{{ voucher.key }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
         </tr>
         {% endfor %}
+        {% for total in totals %}
+            <tr>
+              <td class="text-right" colspan="2"><strong>{{ total.title }}</strong></td>
+              <td class="text-right" colspan="3">{{ total.text }}</td>
+            </tr>
+        {% endfor %}
       </table>
-    </li>
-    <li>
-      <div>
-        <table class="table table-bordered">
-          {% for total in totals %}
-          <tr>
-            <td class="text-right"><strong>{{ total.title }}</strong></td>
-            <td class="text-right">{{ total.text }}</td>
-          </tr>
-          {% endfor %}
-        </table>
-        <p class="text-right"><a href="{{ cart }}"><strong><i class="fa fa-shopping-cart"></i> {{ text_cart }}</strong></a>&nbsp;&nbsp;&nbsp;<a href="{{ checkout }}"><strong><i class="fa fa-share"></i> {{ text_checkout }}</strong></a></p>
-      </div>
     </li>
     {% else %}
     <li>
       <p class="text-center">{{ text_empty }}</p>
     </li>
     {% endif %}
-  </ul>
+  </ul>-->
 </div>
