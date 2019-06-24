@@ -7,8 +7,13 @@ class ControllerCommonBlogMenu extends Controller {
 		$this->load->model('web/category');
 
 		$data['categories'] = array();
+        
+        $filter_data = array(
+                'sort' => 'i.sort_order',
+                'order' => 'desc'
+    		);
 
-		$categories = $this->model_web_category->getCategories(0);
+		$categories = $this->model_web_category->getCategories($filter_data);
 
 		foreach ($categories as $category) {
 			// Level 1
