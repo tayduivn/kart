@@ -99,6 +99,10 @@ class ModelWebCategory extends Model {
 		if ($data) {
 			$sql = "SELECT * FROM " . DB_PREFIX . "blog_category i LEFT JOIN " . DB_PREFIX . "blog_category_description id ON (i.category_id = id.category_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
+            if (!empty($data['filter_name'])) {
+			     $sql .= " AND id.title LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+		    }
+            
 			$sort_data = array(
 				'id.title',
 				'i.sort_order'
