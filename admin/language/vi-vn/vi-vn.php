@@ -334,6 +334,8 @@ $_['tab_store']               = 'Cửa hàng';
 
 $_['tab_special']             = 'Khuyến mãi';
 
+$_['tab_gift']                = 'Quà tặng/Ưu đãi';
+
 $_['tab_local']               = 'Khu vực';
 
 $_['tab_mail']                = 'Email';

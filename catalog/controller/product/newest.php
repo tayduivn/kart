@@ -1,7 +1,7 @@
 <?php
-class ControllerProductSpecial extends Controller {
+class ControllerProductNewest extends Controller {
 	public function index() {
-		$this->load->language('product/special');
+		$this->load->language('product/newest');
 
 		$this->load->model('catalog/product');
 
@@ -60,7 +60,7 @@ class ControllerProductSpecial extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('product/special', $url)
+			'href' => $this->url->link('product/newest', $url)
 		);
 
 		$data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
@@ -78,7 +78,7 @@ class ControllerProductSpecial extends Controller {
 
 		$product_total = $this->model_catalog_product->getTotalProductSpecials();
 
-		$results = $this->model_catalog_product->getProductSpecials($filter_data);
+		$results = $this->model_catalog_product->getNewestProducts();
 
 		foreach ($results as $result) {
 			if ($result['image']) {
@@ -138,57 +138,57 @@ class ControllerProductSpecial extends Controller {
 		$data['sorts'][] = array(
 			'text'  => $this->language->get('text_default'),
 			'value' => 'p.sort_order-ASC',
-			'href'  => $this->url->link('product/special', 'sort=p.sort_order&order=ASC' . $url)
+			'href'  => $this->url->link('product/newest', 'sort=p.sort_order&order=ASC' . $url)
 		);
 
 		$data['sorts'][] = array(
 			'text'  => $this->language->get('text_name_asc'),
 			'value' => 'pd.name-ASC',
-			'href'  => $this->url->link('product/special', 'sort=pd.name&order=ASC' . $url)
+			'href'  => $this->url->link('product/newest', 'sort=pd.name&order=ASC' . $url)
 		);
 
 		$data['sorts'][] = array(
 			'text'  => $this->language->get('text_name_desc'),
 			'value' => 'pd.name-DESC',
-			'href'  => $this->url->link('product/special', 'sort=pd.name&order=DESC' . $url)
+			'href'  => $this->url->link('product/newest', 'sort=pd.name&order=DESC' . $url)
 		);
 
 		$data['sorts'][] = array(
 			'text'  => $this->language->get('text_price_asc'),
 			'value' => 'ps.price-ASC',
-			'href'  => $this->url->link('product/special', 'sort=ps.price&order=ASC' . $url)
+			'href'  => $this->url->link('product/newest', 'sort=ps.price&order=ASC' . $url)
 		);
 
 		$data['sorts'][] = array(
 			'text'  => $this->language->get('text_price_desc'),
 			'value' => 'ps.price-DESC',
-			'href'  => $this->url->link('product/special', 'sort=ps.price&order=DESC' . $url)
+			'href'  => $this->url->link('product/newest', 'sort=ps.price&order=DESC' . $url)
 		);
 
 		if ($this->config->get('config_review_status')) {
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_rating_desc'),
 				'value' => 'rating-DESC',
-				'href'  => $this->url->link('product/special', 'sort=rating&order=DESC' . $url)
+				'href'  => $this->url->link('product/newest', 'sort=rating&order=DESC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_rating_asc'),
 				'value' => 'rating-ASC',
-				'href'  => $this->url->link('product/special', 'sort=rating&order=ASC' . $url)
+				'href'  => $this->url->link('product/newest', 'sort=rating&order=ASC' . $url)
 			);
 		}
 
 		$data['sorts'][] = array(
 				'text'  => $this->language->get('text_model_asc'),
 				'value' => 'p.model-ASC',
-				'href'  => $this->url->link('product/special', 'sort=p.model&order=ASC' . $url)
+				'href'  => $this->url->link('product/newest', 'sort=p.model&order=ASC' . $url)
 		);
 
 		$data['sorts'][] = array(
 			'text'  => $this->language->get('text_model_desc'),
 			'value' => 'p.model-DESC',
-			'href'  => $this->url->link('product/special', 'sort=p.model&order=DESC' . $url)
+			'href'  => $this->url->link('product/newest', 'sort=p.model&order=DESC' . $url)
 		);
 
 		$url = '';
@@ -211,7 +211,7 @@ class ControllerProductSpecial extends Controller {
 			$data['limits'][] = array(
 				'text'  => $value,
 				'value' => $value,
-				'href'  => $this->url->link('product/special', $url . '&limit=' . $value)
+				'href'  => $this->url->link('product/newest', $url . '&limit=' . $value)
 			);
 		}
 
@@ -233,7 +233,7 @@ class ControllerProductSpecial extends Controller {
 		$pagination->total = $product_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('product/special', $url . '&page={page}');
+		$pagination->url = $this->url->link('product/newest', $url . '&page={page}');
 
 		$data['pagination'] = $pagination->render();
 
@@ -241,17 +241,17 @@ class ControllerProductSpecial extends Controller {
 
 		// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
 		if ($page == 1) {
-		    $this->document->addLink($this->url->link('product/special', '', true), 'canonical');
+		    $this->document->addLink($this->url->link('product/newest', '', true), 'canonical');
 		} else {
-		    $this->document->addLink($this->url->link('product/special', 'page='. $page , true), 'canonical');
+		    $this->document->addLink($this->url->link('product/newest', 'page='. $page , true), 'canonical');
 		}		
 		
 		if ($page > 1) {
-			$this->document->addLink($this->url->link('product/special', (($page - 2) ? '&page='. ($page - 1) : ''), true), 'prev');
+			$this->document->addLink($this->url->link('product/newest', (($page - 2) ? '&page='. ($page - 1) : ''), true), 'prev');
 		}
 
 		if ($limit && ceil($product_total / $limit) > $page) {
-		    $this->document->addLink($this->url->link('product/special', 'page='. ($page + 1), true), 'next');
+		    $this->document->addLink($this->url->link('product/newest', 'page='. ($page + 1), true), 'next');
 		}
 
 		$data['sort'] = $sort;
@@ -267,6 +267,6 @@ class ControllerProductSpecial extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		$this->response->setOutput($this->load->view('product/special', $data));
+		$this->response->setOutput($this->load->view('product/newest', $data));
 	}
 }

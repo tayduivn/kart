@@ -72,12 +72,11 @@
 							<div class="col-wrapper">
 								<h4>Về kingsport</h4>
 								<ul>
-									<li><a href="#">Giới thiệu chung</a></li>
-									<li><a href="#">Tầm nhìn và sứ mệnh</a></li>
-									<li><a href="#">Định hướng phát triển</a></li>
-									<li><a href="#">Chính Sách Bảo Mật</a></li>
-									<li><a href="#">Cam Kết Về Thông Tin</a></li>
-									<li><a href="#">Trả góp qua thẻ tín dụng</a></li>
+									{% for information in informations %}
+                                    {% if information.left == 1 %}
+									<li><a href="{{ information.href }}">{{ information.title }}</a></li>
+                                    {% endif %}
+									{% endfor %}
 								</ul>
 							</div>
 						</div>
@@ -85,12 +84,11 @@
 							<div class="col-wrapper">
 								<h4>hướng dẫn</h4>
 								<ul>
-									<li><a href="#">Hướng dẫn mua hàng</a></li>
-									<li><a href="#">Tiêu chí bán hàng</a></li>
-									<li><a href="#">Hướng dẫn thanh toán</a></li>
-									<li><a href="#">Chính sách đổi trả</a></li>
-									<li><a href="#">Chính sách vận chuyển</a></li>
-									<li><a href="#">Chính sách bảo hành</a></li>
+                                    {% for information in informations %}
+										{% if information.left == 0 %}
+										<li><a href="{{ information.href }}">{{ information.title }}</a></li>
+                                    	{% endif %}
+									{% endfor %}
 								</ul>
 							</div>
 						</div>
@@ -98,10 +96,10 @@
 							<div class="col-wrapper">
 								<h4>Xem thêm</h4>
 								<ul>
-									<li><a href="#">Tin tức</a></li>
+									<li><a href="{{ blog }}">Tin tức</a></li>
 									<li><a href="#">Thông Tin Tuyển Dụng</a></li>
 									<li><a href="#">Video</a></li>
-									<li><a href="#">Hệ thống phân phối</a></li>
+									<li><a href="{{ store }}">Hệ thống phân phối</a></li>
 									<li><a href="#">Liên hệ</a></li>
 								</ul>
 							</div>

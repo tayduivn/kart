@@ -1,0 +1,131 @@
+{{ header }}
+<div class="article-title">
+    <h2>{{ heading_title }}</h2>
+    <div class="find-showroom">
+        <input type="submit" value="Tìm cửa hàng gần nhất">
+    </div>
+</div>
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+</div>
+<!--Next-->
+<section class="showroom-wrapper">
+    <div class="container">
+        <nav class="top-nav-showroom">
+            <ul>
+                <li class="active"><a href="javascript:void(0)" data-type="tab-panel-showroom-1">{{ tabs[0] }}</a></li>
+                <li><a href="javascript:void(0)" data-type="tab-panel-showroom-2">{{ tabs[1] }}</a></li>
+                <li><a href="javascript:void(0)" data-type="tab-panel-showroom-3">{{ tabs[2] }}</a></li>
+            </ul>
+        </nav>
+        <div class="tab-content-showroom">
+            <div class="tab-panel active tab-panel-showroom-1">
+                <div class="row">
+
+                    {% for branch in branches[1] %}
+                    <div class="col-12 col-xl-6">
+                        <div class="figure">
+                            {% if branch.thumb %}
+                            <div class="figure-image">
+                                <img src="{{ branch.thumb }}" alt="">
+                            </div>
+                            {% endif %}
+                            <div class="figure-caption">
+                                <h5>{{ branch.title }}</h5>
+                                <p>Địa chỉ: {{ branch.address }}</p>
+                                <p>Điện thoại: {{ branch.phone }}</p>
+                                <p>{% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+                                <div class="figure-fancy">
+                                    <p>Hình ảnh chi tiết</p>
+                                    <a data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" href="https://www.google.com/maps/search/?api=1&amp;query=kingsport+nam+sai+gon">
+                                        <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
+                                    {% for image in branch.images %}
+                                    <a data-fancybox="gallery" href="{{ image.popup }}">
+                                        <img src="{{ image.thumb }}"></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="tab-panel tab-panel-showroom-2">
+                <div class="row">
+
+                    {% for branch in branches[2] %}
+                    <div class="col-12 col-xl-6">
+                        <div class="figure">
+                            {% if branch.thumb %}
+                                <div class="figure-image">
+                                    <img src="{{ branch.thumb }}" alt="">
+                                </div>
+                            {% endif %}
+                            <div class="figure-caption">
+                                <h5>{{ branch.title }}</h5>
+                                <p>Địa chỉ: {{ branch.address }}</p>
+                                <p>Điện thoại: {{ branch.phone }}</p>
+                                <p>{% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+                                <div class="figure-fancy">
+                                    <p>Hình ảnh chi tiết</p>
+                                    <a data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" href="https://www.google.com/maps/search/?api=1&amp;query=kingsport+nam+sai+gon">
+                                        <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
+
+                                        {% for image in branch.images %}
+                                        <a data-fancybox="gallery" href="{{ image.popup }}">
+                                            <img src="{{ image.thumb }}"></a>
+                                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="tab-panel tab-panel-showroom-3">
+                <div class="row">
+
+                    {% for branch in branches[3] %}
+                    <div class="col-12 col-xl-6">
+                        <div class="figure">
+                            {% if branch.thumb %}
+                                <div class="figure-image">
+                                    <img src="{{ branch.thumb }}" alt="">
+                                </div>
+                            {% endif %}
+                            <div class="figure-caption">
+                                <h5>{{ branch.title }}</h5>
+                                <p>Địa chỉ: {{ branch.address }}</p>
+                                <p>Điện thoại: {{ branch.phone }}</p>
+                                <p>{% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+                                <div class="figure-fancy">
+                                    <p>Hình ảnh chi tiết</p>
+                                    <a data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" href="https://www.google.com/maps/search/?api=1&amp;query=kingsport+nam+sai+gon">
+                                        <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
+
+                                    {% for image in branch.images %}
+                                    <a data-fancybox="gallery" href="{{ image.popup }}">
+                                        <img src="{{ image.thumb }}"></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ footer }}

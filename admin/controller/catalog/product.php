@@ -654,7 +654,7 @@ class ControllerCatalogProduct extends Controller {
         } elseif (!empty($product_info)) {
             $data['is_new'] = $product_info['is_new'];
         } else {
-            $data['is_new'] = '';
+            $data['is_new'] = 0;
         }
 
         if (isset($this->request->post['is_featured'])) {
@@ -662,7 +662,7 @@ class ControllerCatalogProduct extends Controller {
         } elseif (!empty($product_info)) {
             $data['is_featured'] = $product_info['is_featured'];
         } else {
-            $data['is_featured'] = '';
+            $data['is_featured'] = 0;
         }
 
         if (isset($this->request->post['is_second'])) {
@@ -670,7 +670,7 @@ class ControllerCatalogProduct extends Controller {
         } elseif (!empty($product_info)) {
             $data['is_second'] = $product_info['is_second'];
         } else {
-            $data['is_second'] = '';
+            $data['is_second'] = 0;
         }
 
         if (isset($this->request->post['is_recurring'])) {
@@ -678,7 +678,7 @@ class ControllerCatalogProduct extends Controller {
         } elseif (!empty($product_info)) {
             $data['is_recurring'] = $product_info['is_recurring'];
         } else {
-            $data['is_recurring'] = '';
+            $data['is_recurring'] = 0;
         }
 
 		if (isset($this->request->post['location'])) {
@@ -1047,6 +1047,7 @@ class ControllerCatalogProduct extends Controller {
 			);
 		}
 
+		//special
 		if (isset($this->request->post['product_special'])) {
 			$product_specials = $this->request->post['product_special'];
 		} elseif (isset($this->request->get['product_id'])) {
@@ -1066,6 +1067,29 @@ class ControllerCatalogProduct extends Controller {
 				'date_end'          => ($product_special['date_end'] != '0000-00-00') ? $product_special['date_end'] :  ''
 			);
 		}
+
+        //gift
+        if (isset($this->request->post['product_gift'])) {
+            $product_gifts = $this->request->post['product_gift'];
+        } elseif (isset($this->request->get['product_id'])) {
+            $product_gifts = $this->model_catalog_product->getProductGifts($this->request->get['product_id']);
+        } else {
+            $product_gifts = array();
+        }
+
+        $data['product_gifts'] = array();
+
+        foreach ($product_gifts as $product_gift) {
+            $data['product_gifts'][] = array(
+                'customer_group_id' => $product_gift['customer_group_id'],
+                'priority'          => $product_gift['priority'],
+                'price'             => $product_gift['price'],
+                'description'       => $product_gift['description'],
+                'content'           => $product_gift['content'],
+                'date_start'        => ($product_gift['date_start'] != '0000-00-00') ? $product_gift['date_start'] : '',
+                'date_end'          => ($product_gift['date_end'] != '0000-00-00') ? $product_gift['date_end'] :  ''
+            );
+        }
 		
 		// Image
 		if (isset($this->request->post['image'])) {

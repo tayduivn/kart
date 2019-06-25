@@ -48,6 +48,8 @@ $_['entry_keyword']     = 'Liên kết thân thiện:';
 
 $_['entry_bottom']           = 'Cuối trang';
 
+$_['entry_left']           = 'Cột đầu';
+
 $_['entry_status']      = 'Tình trạng:';
 
 $_['entry_sort_order']  = 'Thứ tự:';
@@ -63,6 +65,8 @@ $_['entry_layout']      = 'Bố cục:';
 $_['help_keyword']           = 'Không để khoảng trống, bạn có thể dùng ký tự - để thay thế khoảng trắng và xác định liên kết này là duy nhất.';
 
 $_['help_bottom']            = 'Hiển thị trong mục thông tin ở cuối trang';
+
+$_['help_left']            = 'Hiển thị trên cột menu đầu tiên';
 
 // Error 
 

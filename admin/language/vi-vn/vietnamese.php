@@ -379,6 +379,8 @@ $_['tab_price']               = 'Giá ';
 $_['tab_sale']                      = 'Quản lý bán hàng';
 $_['tab_session']                   = 'Phiên làm việc';
 
+$_['tab_gift']                = 'Quà tặng/Ưu đãi';
+
 // Error
 
 $_['error_exception']               = 'Error Code(%s): %s in %s on line %s';

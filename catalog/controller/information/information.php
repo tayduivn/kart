@@ -42,8 +42,9 @@ class ControllerInformationInformation extends Controller {
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
+            $data['blog_menu'] = $this->load->controller('common/blog_menu');
 
-			$this->response->setOutput($this->load->view('information/information', $data));
+            $this->response->setOutput($this->load->view('information/information', $data));
 		} else {
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('text_error'),
@@ -66,6 +67,7 @@ class ControllerInformationInformation extends Controller {
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
+            $data['blog_menu'] = $this->load->controller('common/blog_menu');
 
 			$this->response->setOutput($this->load->view('error/not_found', $data));
 		}

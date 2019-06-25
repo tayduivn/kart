@@ -66,6 +66,15 @@
                       <div class="text-danger">{{ error_phone[language.language_id] }}</div>
                       {% endif %} </div>
                   </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-address{{ language.language_id }}">{{ entry_address }}</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="branch_description[{{ language.language_id }}][address]" value="{{ branch_description[language.language_id] ? branch_description[language.language_id].address }}" placeholder="{{ entry_address }}" id="input-address{{ language.language_id }}" class="form-control" />
+                        {% if error_address[language.language_id] %}
+                          <div class="text-danger">{{ error_address[language.language_id] }}</div>
+                        {% endif %} </div>
+                  </div>
                   
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-lat{{ language.language_id }}">{{ entry_lat }}</label>
@@ -140,6 +149,13 @@
                       {% endif %}
                       &nbsp;</label>
                   </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{ entry_image }}</label>
+                <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                  <input type="hidden" name="image" value="{{ image }}" id="input-image" />
                 </div>
               </div>
               

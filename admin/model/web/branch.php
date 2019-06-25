@@ -7,8 +7,12 @@ class ModelWebBranch extends Model {
 
 		$branch_id = $this->db->getLastId();
 
+        if (isset($data['image'])) {
+            $this->db->query("UPDATE " . DB_PREFIX . "branch SET image = '" . $this->db->escape($data['image']) . "' WHERE branch_id = '" . (int)$branch_id . "'");
+        }
+
 		foreach ($data['branch_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "branch_description SET branch_id = '" . (int)$branch_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', phone = '" . $this->db->escape($value['phone']) . "', lat = '" . $this->db->escape($value['lat']). "', lng = '" . $this->db->escape($value['lng']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "branch_description SET branch_id = '" . (int)$branch_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', phone = '" . $this->db->escape($value['phone']) . "', address = '" . $this->db->escape($value['address']) . "', lat = '" . $this->db->escape($value['lat']). "', lng = '" . $this->db->escape($value['lng']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		if (isset($data['branch_store'])) {
@@ -48,10 +52,14 @@ class ModelWebBranch extends Model {
 	public function editBranch($branch_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', area = '" . (int)$data['area'] . "', parking = '" . (int)$data['parking'] . "' WHERE branch_id = '" . (int)$branch_id . "'");
 
+        if (isset($data['image'])) {
+            $this->db->query("UPDATE " . DB_PREFIX . "branch SET image = '" . $this->db->escape($data['image']) . "' WHERE branch_id = '" . (int)$branch_id . "'");
+        }
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "branch_description WHERE branch_id = '" . (int)$branch_id . "'");
 
 		foreach ($data['branch_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "branch_description SET branch_id = '" . (int)$branch_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "branch_description SET branch_id = '" . (int)$branch_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', phone = '" . $this->db->escape($value['phone']) . "', address = '" . $this->db->escape($value['address']) . "', lat = '" . $this->db->escape($value['lat']). "', lng = '" . $this->db->escape($value['lng']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "branch_to_store WHERE branch_id = '" . (int)$branch_id . "'");
@@ -173,6 +181,7 @@ class ModelWebBranch extends Model {
 				'phone'            => $result['phone'],
 				'lat'              => $result['lat'],
 				'lng'              => $result['lng'],
+				'address'              => $result['address'],
 				'meta_title'       => $result['meta_title'],
 				'meta_description' => $result['meta_description'],
 				'meta_keyword'     => $result['meta_keyword']

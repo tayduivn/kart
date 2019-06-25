@@ -51,5 +51,11 @@ class ModelWebBranch extends Model {
 			return $branch_data;
 		}
 	}
+
+    public function getBranchImages($branch_id) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "branch_image WHERE branch_id = '" . (int)$branch_id . "' ORDER BY sort_order ASC");
+
+        return $query->rows;
+    }
     
 }

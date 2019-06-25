@@ -11,12 +11,16 @@ class ControllerCommonFooter extends Controller {
 			if ($result['bottom']) {
 				$data['informations'][] = array(
 					'title' => $result['title'],
+					'left' => $result['left'],
 					'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
 				);
 			}
 		}
 
 		$data['contact'] = $this->url->link('information/contact');
+		$data['blog'] = $this->url->link('web/category');
+		$data['store'] = $this->url->link('web/store');
+//		$data['career'] = $this->url->link('web/category');
 		$data['return'] = $this->url->link('account/return/add', '', true);
 		$data['sitemap'] = $this->url->link('information/sitemap');
 		$data['tracking'] = $this->url->link('information/tracking');

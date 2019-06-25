@@ -66,7 +66,9 @@ $_['entry_meta_keyword']     = 'Từ khóa:';
 
 $_['entry_meta_description'] = 'Mô tả từ khóa:';
 
-$_['entry_description']      = 'Mô tả sản phẩm:';
+$_['entry_description']      = 'Mô tả ngắn:';
+
+$_['entry_content']          = 'Chi tiết:';
 
 $_['entry_store']            = 'Cửa hàng:';
 
@@ -186,6 +188,8 @@ $_['entry_is_featured']          = 'Sản phẩm nổi bật:';
 $_['entry_is_second']          = 'Thanh lý:';
 
 $_['entry_is_recurring']          = 'Trả góp 0%:';
+
+$_['entry_video']          = 'Video giới thiệu:';
 
 
 

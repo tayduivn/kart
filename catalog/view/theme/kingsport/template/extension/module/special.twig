@@ -36,18 +36,15 @@
                             <h5>{{ product.price }}<span></span></h5>
                             {% else %}
                             <p>
-    							<s>{{ product.price }}</s>(-19%)
+    							<s>{{ product.price }}</s>{{ product.percent }}
     						</p>
     						<h5>{{ product.special }}<span></span></h5>
                             {% endif %}
                         </div>
                     {% endif %}
 					<h5>{{ product.name }}</h5>
-					<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-1.png" alt="Sản phẩm tặng kèm" />
-						<p>Tặng 30 kg tạ</p>
-					</div>
-					<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-2.png" alt="Sản phẩm tặng kèm" />
-						<p>Tặng máy đo huyết áp</p>
+					<div class="gift">
+						{{ product.gift|raw }}
 					</div>
 				</div>
 			</figure>
@@ -58,4 +55,10 @@
 </div>
 <div class="swiper-pagination-wrapper">
 	<div class="swiper-pagination swiper-pagination-product-discount"></div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<div class="view-more" id="view-more"><a href="{{ readmore }}">Xem thêm</a></div>
+	</div>
 </div>

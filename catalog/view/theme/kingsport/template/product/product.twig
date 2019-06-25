@@ -83,14 +83,14 @@
 										<div class="shipping-time"><em class="mdi mdi-clock-outline"></em>
 											<h2>Nhận hàng trong 24 giờ</h2>
 										</div>
+
 										<div class="product-card">
 											<h3>Khuyển mãi</h3>
-											<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product/gift-1.png" alt="Phiếu mua hàng trị giá 100,000đ"><span>Phiếu mua hàng trị giá 100.000đ (Áp dụng từ 8/5) *</span></div>
 											<div class="gift">
-												<div class="yl-bg"><img src="catalog/view/theme/kingsport/image/options-1/product/gift-2.png" alt="Phiếu mua hàng trị giá 100,000đ"></div><span>Đổi máy cũ tiết kiệm đến 2.850.000đ (Từ 1/5 đến 31/5)<a href="#">Xem chi tiết</a></span>
+												{{ product_gift|raw }}
 											</div>
-											<p>* Không áp dụng khi mua trả góp 0% - 1.29%</p>
 										</div>
+
 										<div class="product-requirements">
 											<input type="checkbox" />
 											<label>Yêu cầu nhân viên kỹ thuật giao hàng: <span>hỗ trợ lắp đặt, cài đặt, hướng dẫn sử dụng máy mới, giải đáp thắc mắc sản phẩm.</span></label>
@@ -148,7 +148,7 @@
                                                 </table>
 											</div>
 											<div class="tab-panel-product-detail tab-panel-3">
-												
+												{{ video }}
 											</div>
 											<div class="tab-panel-product-detail tab-panel-4">
                                                 {% if review_status %}
@@ -359,11 +359,8 @@
                                             </div>
                                         {% endif %}
 										<h5>{{ product.name }}</h5>
-										<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-1.png" alt="Sản phẩm tặng kèm">
-											<p>Tặng 30 kg tạ</p>
-										</div>
-										<div class="gift"><img src="catalog/view/theme/kingsport/image/options-1/product-icon-2.png" alt="Sản phẩm tặng kèm">
-											<p>Tặng máy đo huyết áp</p>
+										<div class="gift">
+                                            {{ product.gift }}
 										</div>
 									</div>
 								</figure>

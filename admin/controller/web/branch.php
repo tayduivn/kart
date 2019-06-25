@@ -365,6 +365,24 @@ class ControllerWebBranch extends Controller {
 			$data['branch_store'] = array(0);
 		}
 
+        if (isset($this->request->post['image'])) {
+            $data['image'] = $this->request->post['image'];
+        } elseif (!empty($category_info)) {
+            $data['image'] = $category_info['image'];
+        } else {
+            $data['image'] = '';
+        }
+
+        $this->load->model('tool/image');
+
+        if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+            $data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+        } elseif (!empty($branch_info) && is_file(DIR_IMAGE . $branch_info['image'])) {
+            $data['thumb'] = $this->model_tool_image->resize($branch_info['image'], 100, 100);
+        } else {
+            $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+        }
+
 		if (isset($this->request->post['bottom'])) {
 			$data['bottom'] = $this->request->post['bottom'];
 		} elseif (!empty($branch_info)) {
