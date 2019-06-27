@@ -167,8 +167,11 @@ class ControllerProductProduct extends Controller {
 				} else {
 				
 					if(isset($this->request->cookie['recently_viewed']) && !empty($this->request->cookie['recently_viewed'])) {
-						$recently_viewed = json_decode(base64_decode($this->request->cookie['recently_viewed']), true);
-						$recently_viewed[$product_info['product_id']] = date("Y-m-d H:i:s");
+						$recently_viewed = json_decode(base64_decode( urldecode($this->request->cookie['recently_viewed']) ), true);
+						
+                        $recently_viewed = is_array($recently_viewed) ? $recently_viewed: [];
+                        
+                        $recently_viewed[$product_info['product_id']] = date("Y-m-d H:i:s");
 						// sort by in recent viewed order
 						uasort($recently_viewed, function($a, $b){ return strtotime($a) > strtotime($b); });
 						array_unique($recently_viewed); // remove duplicates
@@ -266,7 +269,10 @@ class ControllerProductProduct extends Controller {
 			$data['video'] = html_entity_decode($product_info['video'], ENT_QUOTES, 'UTF-8');
 
             $product_gift = $this->model_catalog_product->getProductGift($this->request->get['product_id']);
-            $data['product_gift'] = html_entity_decode($product_gift['content'], ENT_QUOTES, 'UTF-8');
+            if ($product_gift && isset($product_gift)) {
+                $data['product_gift'] = html_entity_decode($product_gift['content'], ENT_QUOTES, 'UTF-8');    
+            }
+            
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
@@ -405,11 +411,11 @@ class ControllerProductProduct extends Controller {
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
 
 			foreach ($results as $result) {
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
-				}
+				 if ($result['image']) {
+            					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+            				} else {
+            					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+            				}
 
 				if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
@@ -457,10 +463,10 @@ class ControllerProductProduct extends Controller {
 
             foreach ($results as $result) {
                 if ($result['image']) {
-                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
-                } else {
-                    $image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
-                }
+            					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+            				} else {
+            					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+            				}
 
                 if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
                     $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);

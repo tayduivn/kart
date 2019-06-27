@@ -15,20 +15,18 @@
 						<div class="col-2">
 							<div class="nav-sub-image">
 							{% if category.thumb %}
-							<img class="img-fluid" src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" /></div>
+							<img class="img-fluid" src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" />
+                            
 							{% endif %}
+                            </div>
 							<div class="title-nav-sub">
 								<h4>{{ category.name }}</h4>
 							</div>
-            				{% autoescape %}
-							<div class="nav-sub-caption">
-                                {{ category.description|raw }}
-							</div>
-            				{% endautoescape %}
 						</div>
 						<div class="col-10">
-                            {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                            
 							<div class="row no-gutters">
+                            {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
                                 {% for child in children %}
 								<div class="col-2">
 									<h4 class="mega-title row">{{ child.name }}</h4>
@@ -41,8 +39,9 @@
                                     {% endif %}
 								</div>
                                 {% endfor %}
+                                {% endfor %}
 							</div>
-                            {% endfor %}
+                            
 						</div>
 					</div>
 				</div>

@@ -34,11 +34,31 @@
 												<div class="col-12 pad-0">
 													<div class="row no-gutters overflow-scrollbar">
                                                     
+														{% for branch in branches[0] %}
+														<div class="col-12 col-sm-6 col-lg-4">
+															<div class="card">
+																<h3>{{ branch.title }}</h3>
+																<p>{{ branch.address }}</p>
+																<p>Điện thoại: {{ branch.phone }}</p>
+																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+															</div>
+														</div>
+                                                        {% endfor %}
+                                                        
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="swiper-slide">
+											<div class="row no-gutters scrollbar-wrapper">
+												<div class="col-12 pad-0">
+													<div class="row no-gutters overflow-scrollbar">
+														
 														{% for branch in branches[1] %}
 														<div class="col-12 col-sm-6 col-lg-4">
 															<div class="card">
 																<h3>{{ branch.title }}</h3>
-																<p>1051-1053 Cách Mạng Tháng 8, Phường 7, Q. Tân Bình</p>
+																<p>{{ branch.address }}</p>
 																<p>Điện thoại: {{ branch.phone }}</p>
 																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
 															</div>
@@ -58,27 +78,7 @@
 														<div class="col-12 col-sm-6 col-lg-4">
 															<div class="card">
 																<h3>{{ branch.title }}</h3>
-																<p>1051-1053 Cách Mạng Tháng 8, Phường 7, Q. Tân Bình</p>
-																<p>Điện thoại: {{ branch.phone }}</p>
-																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
-															</div>
-														</div>
-                                                        {% endfor %}
-                                                        
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="swiper-slide">
-											<div class="row no-gutters scrollbar-wrapper">
-												<div class="col-12 pad-0">
-													<div class="row no-gutters overflow-scrollbar">
-														
-														{% for branch in branches[3] %}
-														<div class="col-12 col-sm-6 col-lg-4">
-															<div class="card">
-																<h3>{{ branch.title }}</h3>
-																<p>1051-1053 Cách Mạng Tháng 8, Phường 7, Q. Tân Bình</p>
+																<p>{{ branch.address }}</p>
 																<p>Điện thoại: {{ branch.phone }}</p>
 																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
 															</div>

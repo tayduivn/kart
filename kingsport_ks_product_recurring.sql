@@ -1,1 +1,0 @@
-INSERT INTO kingsport.ks_product_recurring (product_id, recurring_id, customer_group_id) VALUES (42, 1, 1);

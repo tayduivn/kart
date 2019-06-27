@@ -87,7 +87,7 @@
                         <h5>Hot</h5>
                     </div>
                     <div class="figure-image">
-                        <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                        <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
                         <div class="add-cart">
                             <ul>
                                 <li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
@@ -119,7 +119,7 @@
                                 <h5>{{ product.special }}<span></span></h5>
                             {% endif %}
                         </div>
-                        <h5>{{ product.name }}</h5>
+                        <a href="{{ product.href }}"><h5>{{ product.name }}</h5></a>
                         <div class="gift">
                             {{ product.gift|raw }}
                         </div>
@@ -157,7 +157,7 @@
                         <h5>Hot</h5>
                     </div>
                     <div class="figure-image">
-                        <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                        <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
                         <div class="add-cart">
                             <ul>
                                 <li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
@@ -189,7 +189,7 @@
                                 <h5>{{ product.special }}<span></span></h5>
                             {% endif %}
                         </div>
-                        <h5>{{ product.name }}</h5>
+                        <a href="{{ product.href }}"><h5>{{ product.name }}</h5></a>
                         <div class="gift">
                             {{ product.gift|raw }}
                         </div>

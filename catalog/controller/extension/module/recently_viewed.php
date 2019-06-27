@@ -38,8 +38,11 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 			
 			/* if user is logged in then save all recently_viewed products to database if available in cookie and then clear the cookie */
 			if(isset($this->request->cookie['recently_viewed']) && !empty($this->request->cookie['recently_viewed'])) {
-				$recently_viewed = json_decode(base64_decode($this->request->cookie['recently_viewed']), true);
-				// sort by in recent viewed order
+				$recently_viewed = json_decode(base64_decode(urldecode( $this->request->cookie['recently_viewed'] )), true);
+				
+                $recently_viewed = is_array($recently_viewed) ? $recently_viewed : [];
+                
+                // sort by in recent viewed order
 				uasort($recently_viewed, function($a, $b){ return strtotime($a) < strtotime($b); });
 				foreach($recently_viewed as $k=>$v){
 					$this->model_extension_module_recently_viewed->setRecentlyViewedProducts($this->customer->getId(), $k, $v);
@@ -55,9 +58,15 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 				}
 			}
 		} else if(isset($this->request->cookie['recently_viewed']) && !empty($this->request->cookie['recently_viewed'])) {
-			$recently_viewed = json_decode(base64_decode($this->request->cookie['recently_viewed']), true);
-			// sort by in recent viewed order
+			$recently_viewed = json_decode(base64_decode(  urldecode($this->request->cookie['recently_viewed']) ), true);
+			
+            
+            $recently_viewed = is_array($recently_viewed) ? $recently_viewed : [];
+            
+            // sort by in recent viewed order
 			uasort($recently_viewed, function($a, $b){ return strtotime($a) < strtotime($b); });
+
+            
 
 			// if user is on product detail page then do not show current product in recently_viewed list
 			if($current_product_id) {

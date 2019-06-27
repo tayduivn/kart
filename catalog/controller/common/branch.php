@@ -10,6 +10,8 @@ class ControllerCommonBranch extends Controller {
 
 		$branches = $this->model_web_branch->getBranches(0);
         
+        
+        
         $area = array();
 
 		foreach ($branches as $branch) {
@@ -21,12 +23,15 @@ class ControllerCommonBranch extends Controller {
 				'title'     => $branch['title'],
                 'description'  => $branch['description'],
                 'phone'     => $branch['phone'],
+                'address'     => $branch['address'],
                 'parking'  => $branch['parking'],
 				'href'     => $this->url->link('web/branch', '&branch_id=' . $branch['branch_id'])
 			);
 		}
         
         $data['branches'] = $area;
+        
+        
         
         $data['tabs'] = array(
             0 => $this->language->get('text_south'),

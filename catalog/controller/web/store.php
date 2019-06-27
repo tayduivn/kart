@@ -48,7 +48,7 @@ class ControllerWebStore extends Controller {
                 'title'     => $branch['title'],
                 'description'  => $branch['description'],
                 'phone'     => $branch['phone'],
-                'address'     => $branch['address'],
+                'address'     => isset($branch['address']) ? $branch['address'] : '',
                 'thumb' => $image,
                 'parking'  => $branch['parking'],
                 'href'     => $this->url->link('web/branch', '&branch_id=' . $branch['branch_id']),

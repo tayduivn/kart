@@ -3,7 +3,7 @@ class ModelWebBranch extends Model {
 
 	public function addBranch($data) {
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "'" . "', area = '" . (int)$data['area'] . "'" . "', parking = '" . (int)$data['parking'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', area = '" . (int)$data['area'] . "', parking = '" . (isset($data['parking']) ? (int)$data['parking']: 0) . "'");
 
 		$branch_id = $this->db->getLastId();
 

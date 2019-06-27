@@ -1,7 +1,5 @@
 error.log
 access.log
-storage/
-image/
 /config.php
 /admin/config.php
 /storage
