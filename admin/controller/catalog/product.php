@@ -224,6 +224,31 @@ class ControllerCatalogProduct extends Controller {
 		$this->getList();
 	}
 
+    public function repair() {
+
+        $this->load->model('catalog/product');
+
+        $this->model_catalog_product->repairProducts();
+
+        $this->session->data['success'] = $this->language->get('text_success');
+
+        $url = '';
+
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
+
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
+
+        if (isset($this->request->get['page'])) {
+            $url .= '&page=' . $this->request->get['page'];
+        }
+
+        $this->response->redirect($this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . $url, true));
+    }
+
 	protected function getList() {
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];

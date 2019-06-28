@@ -6,38 +6,45 @@ class ControllerCommonBranch extends Controller {
 		// Menu
 		$this->load->model('web/branch');
 
+		$this->load->model('web/branch_category');
+
 		$data['branches'] = array();
 
-		$branches = $this->model_web_branch->getBranches(0);
-        
-        
+		$branch_categories = $this->model_web_branch_category->getCategories([
+		    'sort' => 'sort_order',
+            'order' => 'ASC'
+        ]);
         
         $area = array();
+        $index = 1;
+		foreach ($branch_categories as $branch_category) {
 
-		foreach ($branches as $branch) {
-			if(!isset($area[$branch['area']])) {
-			 $area[$branch['area']] = array();
-			}
-            
-			$area[$branch['area']][] = array(
-				'title'     => $branch['title'],
-                'description'  => $branch['description'],
-                'phone'     => $branch['phone'],
-                'address'     => $branch['address'],
-                'parking'  => $branch['parking'],
-				'href'     => $this->url->link('web/branch', '&branch_id=' . $branch['branch_id'])
-			);
+            $branches = $this->model_web_branch->getBranches([
+                'branch_category_id' => $branch_category['branch_category_id']
+            ]);
+
+            $branchArr = array();
+            foreach ($branches as $branch) {
+                $branchArr[] = array(
+                    'title'     => $branch['title'],
+                    'description'  => $branch['description'],
+                    'phone'     => $branch['phone'],
+                    'address'     => $branch['address'],
+                    'parking'  => $branch['parking'],
+                    'href'     => $this->url->link('web/branch', '&branch_id=' . $branch['branch_id'])
+                );
+            }
+
+			$area[] = array(
+			    'title' => $branch_category['title'],
+			    'id' => $branch_category['branch_category_id'],
+			    'active' => $index == 1 ? 'active':'',
+                'branches' => $branchArr
+            );
+            $index++;
 		}
         
         $data['branches'] = $area;
-        
-        
-        
-        $data['tabs'] = array(
-            0 => $this->language->get('text_south'),
-            1 => $this->language->get('text_middle'),
-            2 => $this->language->get('text_north'),
-        );
         
         $data['heading_title'] = $this->language->get('heading_title');
         

@@ -16,9 +16,9 @@
 							<div class="map-showroom-nav">
 								<div class="swiper-container" id="map-showroom-navigation">
 									<div class="swiper-wrapper">
-										<div class="swiper-slide"><a class="active" href="javascript:void(0)">{{ tabs[0] }}</a></div>
-										<div class="swiper-slide"><a href="javascript:void(0)">{{ tabs[1] }}</a></div>
-										<div class="swiper-slide"><a href="javascript:void(0)">{{ tabs[2] }}</a></div>
+                                        {% for branch in branches %}
+										<div class="swiper-slide"><a class="{{ branch.active  }}" href="javascript:void(0)">{{ branch.title }}</a></div>
+                                        {% endfor %}
 									</div>
 								</div>
 								<div class="button-prev-map"><i class="mdi mdi-chevron-left"></i></div>
@@ -29,38 +29,20 @@
 							<div class="address-wrapper">
 								<div class="swiper-container" id="map-showroom-address">
 									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<div class="row no-gutters scrollbar-wrapper">
-												<div class="col-12 pad-0">
-													<div class="row no-gutters overflow-scrollbar">
-                                                    
-														{% for branch in branches[0] %}
-														<div class="col-12 col-sm-6 col-lg-4">
-															<div class="card">
-																<h3>{{ branch.title }}</h3>
-																<p>{{ branch.address }}</p>
-																<p>Điện thoại: {{ branch.phone }}</p>
-																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
-															</div>
-														</div>
-                                                        {% endfor %}
-                                                        
-													</div>
-												</div>
-											</div>
-										</div>
+
+                                        {% for branch in branches %}
 										<div class="swiper-slide">
 											<div class="row no-gutters scrollbar-wrapper">
 												<div class="col-12 pad-0">
 													<div class="row no-gutters overflow-scrollbar">
 														
-														{% for branch in branches[1] %}
+														{% for branch_child in branch.branches %}
 														<div class="col-12 col-sm-6 col-lg-4">
 															<div class="card">
-																<h3>{{ branch.title }}</h3>
-																<p>{{ branch.address }}</p>
-																<p>Điện thoại: {{ branch.phone }}</p>
-																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+																<h3>{{ branch_child.title }}</h3>
+																<p>{{ branch_child.address }}</p>
+																<p>Điện thoại: {{ branch_child.phone }}</p>
+																<p>Xem Bản Đồ {% if branch_child.parking %}(Có chỗ đậu ô tô){% endif %}</p>
 															</div>
 														</div>
                                                         {% endfor %}
@@ -69,26 +51,8 @@
 												</div>
 											</div>
 										</div>
-										<div class="swiper-slide">
-											<div class="row no-gutters scrollbar-wrapper">
-												<div class="col-12 pad-0">
-													<div class="row no-gutters overflow-scrollbar">
-														
-														{% for branch in branches[2] %}
-														<div class="col-12 col-sm-6 col-lg-4">
-															<div class="card">
-																<h3>{{ branch.title }}</h3>
-																<p>{{ branch.address }}</p>
-																<p>Điện thoại: {{ branch.phone }}</p>
-																<p>Xem Bản Đồ {% if branch.parking %}(Có chỗ đậu ô tô){% endif %}</p>
-															</div>
-														</div>
-                                                        {% endfor %}
-                                                        
-													</div>
-												</div>
-											</div>
-										</div>
+                                        {% endfor %}
+
 									</div>
 								</div>
 							</div>

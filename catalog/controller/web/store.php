@@ -7,11 +7,16 @@ class ControllerWebStore extends Controller {
         // Menu
         $this->load->model('web/branch');
 
+        $this->load->model('web/branch_category');
+
         $this->load->model('tool/image');
 
         $data['branches'] = array();
 
-        $branches = $this->model_web_branch->getBranches(0);
+        $branch_categories = $this->model_web_branch_category->getCategories([
+            'sort' => 'sort_order',
+            'order' => 'ASC'
+        ]);
 
         $data['breadcrumbs'] = array();
 
@@ -20,40 +25,56 @@ class ControllerWebStore extends Controller {
             'href' => $this->url->link('common/home')
         );
 
+
+
         $area = array();
+        $index = 1;
+        foreach ($branch_categories as $branch_category) {
 
-        foreach ($branches as $branch) {
-            if(!isset($area[$branch['area']])) {
-                $area[$branch['area']] = array();
-            }
+            $branches = $this->model_web_branch->getBranches([
+                'branch_category_id' => $branch_category['branch_category_id']
+            ]);
 
-            $results = $this->model_web_branch->getBranchImages($branch['branch_id']);
 
-            $images = array();
+            $branchArr = array();
+            foreach ($branches as $branch) {
 
-            foreach ($results as $result) {
-                $images[] = array(
-                    'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')),
-                    'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'))
+                $results = $this->model_web_branch->getBranchImages($branch['branch_id']);
+
+                $images = array();
+
+                foreach ($results as $result) {
+                    $images[] = array(
+                        'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')),
+                        'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'))
+                    );
+                }
+
+                if ($branch['image']) {
+                    $image = $this->model_tool_image->resize($branch['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_height'));
+                } else {
+                    $image = '';
+                }
+
+                $branchArr[] = array(
+                    'title'     => $branch['title'],
+                    'description'  => $branch['description'],
+                    'phone'     => $branch['phone'],
+                    'address'     => isset($branch['address']) ? $branch['address'] : '',
+                    'thumb' => $image,
+                    'parking'  => $branch['parking'],
+                    'href'     => $this->url->link('web/branch', '&branch_id=' . $branch['branch_id']),
+                    'images'   => $images
                 );
             }
 
-            if ($branch['image']) {
-                $image = $this->model_tool_image->resize($branch['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_height'));
-            } else {
-                $image = '';
-            }
-
-            $area[$branch['area']][] = array(
-                'title'     => $branch['title'],
-                'description'  => $branch['description'],
-                'phone'     => $branch['phone'],
-                'address'     => isset($branch['address']) ? $branch['address'] : '',
-                'thumb' => $image,
-                'parking'  => $branch['parking'],
-                'href'     => $this->url->link('web/branch', '&branch_id=' . $branch['branch_id']),
-                'images'   => $images
+            $area[] = array(
+                'title' => $branch_category['title'],
+                'id' => $branch_category['branch_category_id'],
+                'active' => $index == 1 ? 'active':'',
+                'branches' => $branchArr
             );
+            $index++;
         }
 
         $data['branches'] = $area;

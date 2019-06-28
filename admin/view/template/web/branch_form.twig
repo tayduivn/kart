@@ -137,6 +137,13 @@
                     {% endfor %}</div>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-branch-category">{{ entry_area }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="branch_category" value="{{ branch_category }}" placeholder="{{ entry_area }}" id="input-branch-category" class="form-control"/> <input type="hidden" name="branch_category_id" value="{{ branch_category_id }}"/>
+                </div>
+              </div>
               
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-bottom"><span data-toggle="tooltip" title="{{ help_bottom }}">{{ entry_bottom }}</span></label>
@@ -183,27 +190,6 @@
                     {% else %}
                     <option value="1">{{ text_enabled }}</option>
                     <option value="0" selected="selected">{{ text_disabled }}</option>
-                    {% endif %}
-                  </select>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-area">{{ entry_area }}</label>
-                <div class="col-sm-10">
-                  <select name="area" id="input-area" class="form-control">
-                    {% if area == 0 %}
-                    <option value="0" selected="selected">south</option>
-                    <option value="1">middle</option>
-                    <option value="2">north</option>
-                    {% elseif area == 1 %}
-                    <option value="0">south</option>
-                    <option value="1" selected="selected">middle</option>
-                    <option value="2">north</option>
-                    {% elseif area == 2%}
-                    <option value="0">south</option>
-                    <option value="1">middle</option>
-                    <option value="2" selected="selected">north</option>
                     {% endif %}
                   </select>
                 </div>
@@ -327,20 +313,50 @@
 $('#language a:first').tab('show');
 //--></script>
 <script type="text/javascript"><!--
-  var image_row = {{ image_row }};
+var image_row = {{ image_row }};
 
-  function addImage() {
-	  html = '<tr id="image-row' + image_row + '">';
-	  html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="branch_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
-	  html += '  <td class="text-right"><input type="text" name="branch_image[' + image_row + '][sort_order]" value="" placeholder="{{ entry_sort_order }}" class="form-control" /></td>';
-	  html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	  html += '</tr>';
+function addImage() {
+    html = '<tr id="image-row' + image_row + '">';
+    html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="branch_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
+    html += '  <td class="text-right"><input type="text" name="branch_image[' + image_row + '][sort_order]" value="" placeholder="{{ entry_sort_order }}" class="form-control" /></td>';
+    html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+    html += '</tr>';
 
-	  $('#images tbody').append(html);
+    $('#images tbody').append(html);
 
-	  image_row++;
-  }
+    image_row++;
+}
 
+//--></script>
+
+
+<script type="text/javascript"><!--
+  // Category
+  $('input[name=\'branch_category\']').autocomplete({
+      'source': function(request, response) {
+          $.ajax({
+              url: 'index.php?route=web/branch_category/autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+              dataType: 'json',
+              success: function(json) {
+                  json.unshift({
+                      branch_category_id: 0,
+                      title: '{{ text_none }}'
+                  });
+
+                  response($.map(json, function(item) {
+                      return {
+                          label: item['title'],
+                          value: item['branch_category_id']
+                      }
+                  }));
+              }
+          });
+      },
+      'select': function(item) {
+          $('input[name=\'branch_category\']').val(item['label']);
+          $('input[name=\'branch_category_id\']').val(item['value']);
+      }
+  });
   //--></script>
 </div>
 

@@ -1,0 +1,104 @@
+{{ header }}
+<div class="article-title">
+	<h2>{{ heading_title }}</h2>
+</div>
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+			</ol>
+		</nav>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-lg-3">
+        
+			{{ video_menu }}
+            
+			<section class="news-sidebar">
+				<div class="desktop-title-2"><span class="text">Vì sao chọn  chúng tôi</span></div>
+				<div class="card-new-wrapper">
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-1.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-2.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-3.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+					<div class="card-news">
+						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-4.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-caption">
+							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
+						</div>
+					</div>
+				</div>
+				<div class="news-image"><img src="catalog/view/theme/kingsport/image/options-1/news/banner.jpg" alt="Mạng lưới hệ thống toàn quốc"></div>
+			</section>
+		</div>
+
+		<div class="col-12 col-lg-9">
+			<section class="product-media-iframe">
+				<div class="product-media-wrapper">
+					<div class="row">
+						<div class="col-12 col-md-6">
+							<div class="media-wrapper">
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/0s_yNPfTQz4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="media-banner"><a href="#"><img src="catalog/view/theme/kingsport/image/options-1/discount/ads-golden-1.jpg" alt="Khuyến mãi tháng 6"></a></div>
+						</div>
+					</div>
+				</div>
+				<div class="media-title-product">
+					<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2><span>Xem thêm chi tiết thông số kỷ thuật <a href="#">tại đây</a></span>
+				</div>
+
+
+				<div class="product-media-thumbnail-wrapper">
+
+					{% for video in videos %}
+					<div class="item-w20">
+						<div class="figure">
+							<div class="figure-image">
+							<a href="{{ video.href }}"><img src="catalog/view/theme/kingsport/image/options-1/media/1.jpg" alt="{{ video.title }} "></a></div>
+							<div class="figure-caption">
+								<h5>{{ video.title }}  </h5><span>Xem thêm chi tiết thông số kỷ thuật <a href="{{ video.href }}">tại đây</a></span>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</section>
+
+			{#<section class="pagination-verification">#}
+				{#<ul style="justify-content: flex-start;">#}
+					{#<li class="active"><a href="#">1</a></li>#}
+					{#<li><a href="#">2</a></li>#}
+					{#<li><a href="#">3</a></li>#}
+					{#<li><a href="#"><em class="mdi mdi-chevron-right"></em></a></li>#}
+				{#</ul>#}
+			{#</section>#}
+
+		</div>
+
+	</div>
+</div>
+<!--Next-->
+{{ footer }}

@@ -1,6 +1,10 @@
 <?php
 class ModelWebVideo extends Model {
 
+    public function updateViewed($video_id) {
+        $this->db->query("UPDATE " . DB_PREFIX . "video SET viewed = (viewed + 1) WHERE video_id = '" . (int)$video_id . "'");
+    }
+
 	public function getVideos($data = array()) {
 		if ($data) {
 			$sql = "SELECT * FROM " . DB_PREFIX . "video i LEFT JOIN " . DB_PREFIX . "video_description id ON (i.video_id = id.video_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
@@ -13,6 +17,10 @@ class ModelWebVideo extends Model {
 				'id.title',
 				'i.sort_order'
 			);
+
+            if (isset($data['video_category_id'])) {
+                $sql .= "AND i.video_category_id =" . (int)$data['video_category_id'];
+            }
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 				$sql .= " ORDER BY " . $data['sort'];
@@ -55,5 +63,14 @@ class ModelWebVideo extends Model {
 			return $video_data;
 		}
 	}
+
+
+    public function getVideo($blog_id) {
+        $blog_description_data = array();
+
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "video i LEFT JOIN " . DB_PREFIX . "video_description id ON (i.video_id = id.video_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' AND i.video_id = '" . (int)$blog_id . "'");
+
+        return $query->row;
+    }
     
 }

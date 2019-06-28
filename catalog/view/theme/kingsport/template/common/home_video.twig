@@ -20,15 +20,14 @@
 							<div class="row media-thumbnail-wrapper">
 								<div class="col-7 col-sm-6">
 									<div class="thumbnail-iframe">
-										<iframe width="100%" height="auto" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+										<iframe width="100%" height="auto" src="{{ video.youtube_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 									</div>
 								</div>
 								<div class="col-5 col-sm-6">
 									<div class="media-caption">
 										<h4>{{ video.title }}</h4>
-										<!--<h5>KingSport.vn</h5>
-										<p></p>
-										<p></p>-->
+										<p>{{ video.viewed }} lượt xem</p>
+										<p>{{ video.date_added }}</p>
 									</div>
 								</div>
 							</div>

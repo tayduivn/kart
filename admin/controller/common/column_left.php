@@ -163,6 +163,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);					
 			}
 
+            if ($this->user->hasPermission('access', 'web/video_category')) {
+                $web[] = array(
+                    'name'	   => $this->language->get('text_web_video_category'),
+                    'href'     => $this->url->link('web/video_category', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
 			if ($this->user->hasPermission('access', 'web/video')) {		
 				$web[] = array(
 					'name'	   => $this->language->get('text_web_video'),
@@ -170,6 +178,14 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);					
 			}
+
+            if ($this->user->hasPermission('access', 'web/branch_category')) {
+                $web[] = array(
+                    'name'	   => $this->language->get('text_web_branch_category'),
+                    'href'     => $this->url->link('web/branch_category', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
 
 			if ($this->user->hasPermission('access', 'web/branch')) {		
 				$web[] = array(

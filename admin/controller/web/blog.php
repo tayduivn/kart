@@ -367,8 +367,8 @@ class ControllerWebBlog extends Controller {
 
         if (isset($this->request->post['image'])) {
             $data['image'] = $this->request->post['image'];
-        } elseif (!empty($category_info)) {
-            $data['image'] = $category_info['image'];
+        } elseif (!empty($blog_info)) {
+            $data['image'] = $blog_info['image'];
         } else {
             $data['image'] = '';
         }

@@ -782,4 +782,22 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function repairProducts()
+    {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product");
+
+        foreach ($query->rows as $product) {
+            // Delete the path below the current one
+            $this->db->query("DELETE FROM `" . DB_PREFIX . "product_to_category` WHERE product_id = '" . (int)$product['product_id'] . "'");
+
+            $cat_id = $product['cat_id'];
+            $cat_ids = explode(',', $cat_id);
+
+            foreach ($cat_ids as $cat_id) {
+                $this->db->query("INSERT INTO `" . DB_PREFIX . "product_to_category` SET category_id = '" . (int)$cat_id . "', `product_id` = '" . (int)$product['product_id'] . "'");
+
+            }
+        }
+    }
 }

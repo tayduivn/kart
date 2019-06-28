@@ -3,7 +3,7 @@ class ModelWebBranch extends Model {
 
 	public function addBranch($data) {
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', area = '" . (int)$data['area'] . "', parking = '" . (isset($data['parking']) ? (int)$data['parking']: 0) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', branch_category_id = '" . (int)$data['branch_category_id'] . "', area = '" . (int)$data['area'] . "', parking = '" . (isset($data['parking']) ? (int)$data['parking']: 0) . "'");
 
 		$branch_id = $this->db->getLastId();
 
@@ -50,7 +50,7 @@ class ModelWebBranch extends Model {
 	}
 
 	public function editBranch($branch_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', area = '" . (int)$data['area'] . "', parking = '" . (int)$data['parking'] . "' WHERE branch_id = '" . (int)$branch_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "branch SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', branch_category_id = '" . (int)$data['branch_category_id'] . "', status = '" . (int)$data['status'] . "', area = '" . (int)$data['area'] . "', parking = '" . (int)$data['parking'] . "' WHERE branch_id = '" . (int)$branch_id . "'");
 
         if (isset($data['image'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "branch SET image = '" . $this->db->escape($data['image']) . "' WHERE branch_id = '" . (int)$branch_id . "'");

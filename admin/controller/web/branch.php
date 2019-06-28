@@ -367,8 +367,8 @@ class ControllerWebBranch extends Controller {
 
         if (isset($this->request->post['image'])) {
             $data['image'] = $this->request->post['image'];
-        } elseif (!empty($category_info)) {
-            $data['image'] = $category_info['image'];
+        } elseif (!empty($branch_info)) {
+            $data['image'] = $branch_info['image'];
         } else {
             $data['image'] = '';
         }
@@ -390,6 +390,30 @@ class ControllerWebBranch extends Controller {
 		} else {
 			$data['bottom'] = 0;
 		}
+
+        // Categories
+        $this->load->model('web/branch_category');
+        if (isset($this->request->post['branch_category_id'])) {
+            $data['branch_category_id'] = $this->request->post['branch_category_id'];
+        } elseif (!empty($branch_info)) {
+            $data['branch_category_id'] = $branch_info['branch_category_id'];
+        } else {
+            $data['branch_category_id'] = 0;
+        }
+
+        if (isset($this->request->post['branch_category'])) {
+            $data['branch_category'] = $this->request->post['branch_category'];
+        } elseif (!empty($branch_info)) {
+            $category_info = $this->model_web_branch_category->getCategory($branch_info['branch_category_id']);
+
+            if ($category_info) {
+                $data['branch_category'] = $category_info['title'];
+            } else {
+                $data['branch_category'] = '';
+            }
+        } else {
+            $data['branch_category'] = '';
+        }
         
         if (isset($this->request->post['parking'])) {
 			$data['parking'] = $this->request->post['parking'];
