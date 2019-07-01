@@ -1,17 +1,23 @@
 <div class="col-9 box">
+    {% for banner in banners %}
+    {% if banner.title == 'youtube' %}
 	<div class="video-content">
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/8oiLRkgfsOU" allowfullscreen=""></iframe>
+		<iframe width="560" height="315" src="{{ banner.link }}" allowfullscreen=""></iframe>
 	</div>
+    {% endif %}
+    {% endfor %}
 </div>
 <div class="col-3 box">
 	<div class="row no-gutters">
+        {% for banner in banners %}
+        {% if banner.title == 'youtube' %}
 		<div class="col-12"><a href="#">
 				<figure class="figure">
-					<div class="figure-image"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/home-image-1v2.png" alt="Đại lễ gia đình nhiều ưu đãi"></div>
+					<div class="figure-image">
+						<img class="img-fluid" src="{{ banner.image }}" alt="{{ banner.title }}">
+					</div>
 				</figure></a></div>
-		<div class="col-12"><a href="#">
-				<figure class="figure">
-					<div class="figure-image"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/home-image-2v2f.png" alt="Trả góp đơn giản lãi suất thấp bất ngờ"></div>
-				</figure></a></div>
+        {% endif %}
+        {% endfor %}
 	</div>
 </div>

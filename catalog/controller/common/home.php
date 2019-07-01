@@ -15,7 +15,7 @@ class ControllerCommonHome extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
-        $data['home_menu'] = $this->load->controller('common/home_menu');
+
         
         $this->load->model('setting/module');
         $setting_info = $this->model_setting_module->getModulesByCode('recently_viewed');
@@ -34,7 +34,13 @@ class ControllerCommonHome extends Controller {
         $data['branch'] = $this->load->controller('common/branch');
         
         $data['home_video'] = $this->load->controller('common/home_video');
-        
+
+        $data['home_banner'] = $this->load->controller('common/home_banner');
+
+        $data['mobile_home_banner'] = $this->load->controller('common/mobile_home_banner');
+
+        $data['mobile_home_menu'] = $this->load->controller('common/mobile_home_menu');
+
         $data['block'] = $this->load->controller('common/block');
 
 		$this->response->setOutput($this->load->view('common/home', $data));

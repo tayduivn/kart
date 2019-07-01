@@ -24,12 +24,13 @@
 		</div>
 		<div class="news-box">
 			<div class="row">
+				{% for banner in banners %}
 				<div class="col-12 col-md-6">
-					<div class="news-banner"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/discount/ads-golden-1.jpg" alt="Khuyến mãi"></div>
+					<div class="news-banner">
+						<a href="{{ banner.link }}"><img class="img-fluid" src="{{ banner.image }}" alt="{{ banner.title }}" title="{{ banner.title }}" /></a>
+					</div>
 				</div>
-				<div class="col-12 col-md-6">
-					<div class="news-banner d-md"><img class="img-fluid" src="catalog/view/theme/kingsport/image/options-1/discount/ads-golden-2.jpg" alt="Khuyến mãi"></div>
-				</div>
+				{% endfor %}
 			</div>
 			<div class="row">
 				<div class="col-12">

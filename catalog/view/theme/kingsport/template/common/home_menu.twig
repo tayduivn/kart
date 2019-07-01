@@ -1,10 +1,21 @@
 {% if categories %}
-<nav class="navbar-mega">
-	<ul class="navbar-list">
-		<li class="nav-link" style="background:#EE1C25;"><a href="javascript:void(0)">
-			<div class="category"><i class="fas fa-bars"><span>danh mục sản phẩm</span></i></div></a>
+<nav class="laptop-navigation-all">
+    <ul class="navbar-list navbar-list-top">
+        <li class="nav-link" style="background:#EE1C25;"><a href="javascript:void(0)">
+                <div id="category-toggle" class="category"><i class="fas fa-bars"><span>danh mục sản phẩm</span></i></div></a>
         </li>
-        
+    </ul>
+	<script>
+		$('#category-toggle').click(function () {
+			var laptop = $('.laptop-navigation-all');
+			if(laptop.hasClass('active')) {
+                laptop.removeClass('active');
+			}else {
+                laptop.addClass('active');
+			}
+        });
+	</script>
+	<ul class="navbar-list navbar-list-bottom">
         {% for category in categories %}  
         {% if category.children %}      
 		<li class="nav-link"><a href="{{ category.href }}">{{ category.name }}</a>

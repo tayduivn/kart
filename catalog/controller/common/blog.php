@@ -48,6 +48,20 @@ class ControllerCommonBlog extends Controller {
             $category['href'] = $this->url->link('web/category', '&blog_category_id=' . $category['category_id']);
             
             $data['blogs'][] = $category;
+
+            $banners = $this->model_design_banner->getBanner(3);
+
+            $data['banners'] = array();
+
+            foreach ($banners as $banner) {
+                if (is_file(DIR_IMAGE . $banner['image'])) {
+                    $data['banners'][] = array(
+                        'title' => $banner['title'],
+                        'link'  => $banner['link'],
+                        'image' => $this->model_tool_image->resize($banner['image'], 700, 400)
+                    );
+                }
+            }
 		}
 
 		return $this->load->view('common/blog', $data);
