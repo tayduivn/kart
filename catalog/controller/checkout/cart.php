@@ -211,6 +211,8 @@ class ControllerCheckoutCart extends Controller {
 					'title' => $total['title'],
 					'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
 				);
+                
+                $data['totals_text'] = $this->currency->format($total['value'], $this->session->data['currency']);
 			}
 
 			$data['continue'] = $this->url->link('common/home');
@@ -219,7 +221,7 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->load->model('setting/extension');
 
-			$data['modules'] = array();
+			/*$data['modules'] = array();
 			
 			$files = glob(DIR_APPLICATION . '/controller/extension/total/*.php');
 
@@ -231,7 +233,10 @@ class ControllerCheckoutCart extends Controller {
 						$data['modules'][] = $result;
 					}
 				}
-			}
+			}*/
+            
+            $data['coupon'] = $this->load->controller('extension/total/coupon');
+            $data['reward'] = $this->load->controller('extension/total/reward');
 
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
@@ -386,7 +391,7 @@ class ControllerCheckoutCart extends Controller {
 		$this->load->language('checkout/cart');
 
 		$json = array();
-
+        
 		// Update
 		if (!empty($this->request->post['quantity'])) {
 			foreach ($this->request->post['quantity'] as $key => $value) {
@@ -477,4 +482,13 @@ class ControllerCheckoutCart extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+    
+    public function price() {
+        $quantity   = $this->request->post['quantity'];
+        $cart_id = $this->request->post['cart_id'];
+        $this->cart->update($cart_id, $quantity);
+        $json = $this->cart->get($cart_id);
+        $this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+    }
 }
