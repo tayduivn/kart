@@ -55,6 +55,8 @@ class ControllerCommonHome extends Controller {
 
         $data['block'] = $this->load->controller('common/block');
 
+        $data['product_other'] = $this->load->controller('common/product_other');
+
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}
 }

@@ -1,0 +1,57 @@
+{% if products %}
+<section class="product-today">
+    <div class="container">
+        <div class="product-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-title">
+                        <h2>Sản phẩm khác</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="multi-row-product-today">
+                        <div class="swiper-container" id="product-today-slider">
+                            <div class="swiper-wrapper">
+
+                                {% for product in products %}
+                                <div class="swiper-slide">
+                                    <a href="{{ product.href }}">
+                                        <figure class="figure">
+                                            <div class="figure-image">
+                                                <img src="{{ product.thumb }}" alt="">
+                                            </div>
+                                            <div class="figure-caption"><span>Giảm {{ product.percent }}</span>
+                                                <h4>{{ product.title }}</h4>
+                                                {% if not product.special %}
+                                                    <h5>{{ product.price }}<span></span></h5>
+                                                {% else %}
+                                                    <p>
+                                                        <s>{{ product.price }}</s>{{ product.percent }}
+                                                    </p>
+                                                    <h5>{{ product.special }}<span></span></h5>
+                                                {% endif %}
+                                            </div>
+                                        </figure>
+                                    </a>
+                                </div>
+                                {% enfor %}
+
+                            </div>
+                        </div>
+                        <div class="swiper-pagination-wrapper">
+                            <div class="swiper-pagination swiper-pagination-product-today"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="view-more" id="view-more"><a href="{{ readmore }}">Xem thêm</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
