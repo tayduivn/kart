@@ -39,7 +39,7 @@ class ControllerCommonBlog extends Controller {
                 $category['blogs'][] = array(
                     'thumb'  => $image,
                     'title'  => $result['title'],
-                    'intro'  => $result['intro'],
+                    'intro'  => utf8_substr(trim(strip_tags(html_entity_decode($result['intro'], ENT_QUOTES, 'UTF-8'))), 0, 120) . '..',
                     'date'   => $result['date_added'],
                     'href'   => $this->url->link('web/blog', 'blog_id=' . $result['blog_id'])   
                 );
@@ -63,6 +63,8 @@ class ControllerCommonBlog extends Controller {
                 }
             }
 		}
+
+        
 
 		return $this->load->view('common/blog', $data);
 	}

@@ -1,0 +1,11 @@
+<section class="mobile-home-slider">
+	<div class="swiper-container" id="swiper-home-slide">
+		<div class="swiper-wrapper">
+			{% for banner in banners %}
+			<div class="swiper-slide">
+				<a href="{{ banner.link }}"><img class="img-fluid" src="{{ banner.image }}" alt="{{ banner.title }}" /></a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

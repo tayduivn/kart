@@ -14,7 +14,7 @@ class ControllerWebBlog extends Controller {
 	}
 	
 
-	protected function getList() {
+	protected function getList() { 
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -33,7 +33,17 @@ class ControllerWebBlog extends Controller {
 			$page = 1;
 		}
 
+		if (isset($this->request->get['category'])) {
+			$category = $this->request->get['category'];
+		} else {
+			$category = 0;
+		}
+
 		$url = '';
+
+		if (isset($this->request->get['category'])) {
+			$url .= '&category=' . $this->request->get['category'];
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -65,6 +75,7 @@ class ControllerWebBlog extends Controller {
 		$data['blogs'] = array();
 
 		$filter_data = array(
+			'category'  => $category,
 			'sort'  => $sort,
 			'order' => $order,
 			'start' => ($page - 1) * $this->config->get('config_limit_admin'),
@@ -79,10 +90,14 @@ class ControllerWebBlog extends Controller {
 			$data['blogs'][] = array(
 				'blog_id' => $result['blog_id'],
 				'title'            => $result['title'],
+				'category_title'   => $result['category_title'],
+				'category_filter'  => $this->url->link('web/blog', 'user_token=' . $this->session->data['user_token'] . '&category=' . $result['category_id'] . $url, true),
 				'sort_order'      => $result['sort_order'],
 				'edit'            => $this->url->link('web/blog/edit', 'user_token=' . $this->session->data['user_token'] . '&blog_id=' . $result['blog_id'] . $url, true)
 			);
 		}
+
+
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -116,10 +131,18 @@ class ControllerWebBlog extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		if (isset($this->request->get['category'])) {
+			$url .= '&category=' . $this->request->get['category'];
+		}
+
 		$data['sort_name'] = $this->url->link('web/blog', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url, true);
 		$data['sort_sort_order'] = $this->url->link('web/blog', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_order' . $url, true);
 
 		$url = '';
+
+		if (isset($this->request->get['category'])) {
+			$url .= '&category=' . $this->request->get['category'];
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -465,7 +488,7 @@ class ControllerWebBlog extends Controller {
 		}
 
 		foreach ($this->request->post['blog_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 1) || (utf8_strlen($value['title']) > 64)) {
+			if ((utf8_strlen($value['title']) < 1) ) {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 

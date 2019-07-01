@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+<!--<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />-->
+
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+
+
+<link href="catalog/view/theme/kingsport/stylesheet/css/library.css" rel="stylesheet" />
+<link href="catalog/view/theme/kingsport/stylesheet/css/main.css" rel="stylesheet" />
+<link href="catalog/view/theme/kingsport/stylesheet/css/custom.css" rel="stylesheet" />
+
+
+
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+
+</head>
+<body class="index-page">
+<div id="fb-root"></div>
+<main>
+    <div id="show-more-information"></div>    
+	<section class="header-mobile">
+		<div class="container">
+			<div class="mobile-header-wrapper" id="wrapper">
+				<!--mobile-->
+                {{ mobile_menu }}
+				<div class="mobile-header-content-wrapper">
+					<div class="nav-mobile-left">
+						<div class="hamburger-button"><a class="hamburger hamburger--elastic hamburger-mobile" href="#menu-toggle" id="menu-toggle">
+								<div class="hamburger-box">
+									<div class="hamburger-inner"></div>
+								</div>
+								<p>Menu</p></a></div>
+						<div class="form-group-mobile-search">
+							<div class="search-input">
+								<div class="mt-search">
+									<input class="mt-input-search" type="text" placeholder="Search..." />
+									<div class="search"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="nav-brand">
+                        <a href="{{ home }}"><img class="img-fluid" src="catalog/view/theme/kingsport/image/icon-mobile/logo-mobile.png" alt="temp logo mobile" /></a>
+                    </div>
+					<div class="nav-mobile-right">
+						<div class="hot-line-mobile">
+							<p>Hotline</p>
+							<h5>0918 64 84 19</h5>
+						</div>
+						<div class="mobile-hotline"><a href="#"><img class="img-fluid pulsate-bck" src="catalog/view/theme/kingsport/image/icon-mobile/icon-phone.png" alt="hot line icon" /></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<header class="kingsport-header-all">
+		<section class="kingsport-top-nav">
+			<div class="container">
+				<div class="top-nav-wrapper">
+					<div class="top-location-address"><i class="mdi mdi-map-marker"></i>
+						<p>Khu vực của bạn </p>
+						<div class="location-contact-options">
+							<ul class="default-select" data-selected-value="ted">
+								<li class="default-select-options"><span> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh</span></li>
+								<ul class="options" id="selectLocationOption">
+									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh 1 </li>
+									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh2 </li>
+									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh 3 </li>
+									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh 4</li>
+								</ul>
+							</ul>
+						</div>
+					</div>
+					<div class="top-right-navigation">
+						<ul class="shop-nav">
+							<li><a href="{{ shopping_cart }}"> Kiểm tra đơn hàng</a></li>
+                            <!--<li><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_checkout }}</span></a></li>-->
+							<li><a href="{{ wishlist }}"><i class="mdi mdi-heart"></i>
+									<p id="wishlist-total"> <span>{{ text_wishlist }}</span></p></a>
+                            </li>
+							<li><a href="#"><i class="mdi mdi-phone pulsate-bck"></i>
+									<h5 class="opacity-6">Hotline</h5>
+									<p>0918648419 - 0936211210</p></a>
+                            </li>
+							<li>
+                                <a href="#">
+									<h5 class="opacity-6">Hỗ trợ</h5>
+									<div class="hotline-contact-option">
+										<ul class="default-hotline-select" data-selected-value="ted">
+											<li class="default-hotline-option"><span>1800 6862</span></li>
+											<ul class="hotline-option" id="selectHotlineOption">
+												<li data-value="">1800 68623</li>
+												<li data-value="">1800 68624</li>
+												<li data-value="">1800 68625</li>
+												<li data-value="">1800 68626</li>
+											</ul>
+										</ul>
+									</div>
+                                </a>
+                             </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="kingsport-main-nav">
+			<div class="container">
+				<div class="main-nav-wrapper">
+					<div class="navbar-brand">
+                        <a href="{{ home }}"><img src="catalog/view/theme/kingsport/image/options-1/logo-v3.png" title="{{ name }}" alt="{{ name }}" /></a>   
+                    </div>
+					<div class="bottom-nav-wrapper">
+						<div class="search-nav-wrapper">
+							<div class="top-nav-dropdown">
+                                {{ home_menu }}
+							</div>
+							<!--search-->
+                            {{ search }}
+							<ul class="login-nav">
+								<li><a href="{{ register }}"><i class="mdi mdi-account-circle-outline"></i><span>Đăng ký</span></a></li>
+								<li><a href="{{ login }}">Đăng nhập</a></li>
+								<li>
+                                    {{ cart }}
+                                </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav-wrapper">
+				<div class="container">
+					<ul class="nav-main-menu">
+						<li><a href="#">98 Showroom trên toàn quốc</a></li>
+						<li><a href="#">10 triệu khách hàng tin dùng</a></li>
+						<li><a href="#">về king sport</a></li>
+						<li><a href="#">khuyến mãi</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+	</header>

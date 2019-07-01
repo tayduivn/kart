@@ -1,0 +1,43 @@
+<!--<div id="search" class="input-group">
+  <input type="text" name="search" value="{{ search }}" placeholder="{{ text_search }}" class="form-control input-lg" />
+  <span class="input-group-btn">
+    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
+  </span>
+</div>-->
+
+<form class="form-search" id="search">
+	<div class="nav-left">
+		<div class="form-group">
+			<input id="searchProduct" name="search" type="text" placeholder="Tìm kiếm sản phẩm bạn cần" value="{{ search }}"/>
+		</div>
+	</div>
+	<div class="nav-category">
+		<div class="nav-category-dropdown-card" id="select-container">
+			<fieldset>
+				<div class="select">
+					<div class="select-wrapper">
+						<select id="category-select" required="" name="category_id">
+							<option value="0" selected="">Tất cả danh mục</option>
+                            {% for category in categories %}
+							<option value="{{ category.id }}">{{ category.name }}</option>
+                            
+                            {% for category2 in category.children %}
+                                <option value="{{ category2.id }}">--{{ category2.name }}</option>
+                                
+                                {% for category3 in category2.children %}
+                                    <option value="{{ category3.id }}">----{{ category3.name }}</option>
+                                {% endfor %}
+                            
+                            {% endfor %}
+                            
+                            {% endfor %}
+						</select><i class="mdi mdi-chevron-down"></i>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="nav-right ripple">
+		<div class="nav-search-submit"><a class="btn-search"><i class="fas fa-search"></i></a></div>
+	</div>
+</form>

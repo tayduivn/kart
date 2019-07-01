@@ -23,7 +23,9 @@
 				<div class="desktop-title-2"><span class="text">Vì sao chọn  chúng tôi</span></div>
 				<div class="card-new-wrapper">
 					<div class="card-news">
-						<div class="card-image"><img src="catalog/view/theme/kingsport/image/options-1/news/card-1.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt"></div>
+						<div class="card-image">
+						<img src="catalog/view/theme/kingsport/image/options-1/news/card-1.png" alt="Mang lại sức khỏe , hạnh phúc cho người dân việt">
+						</div>
 						<div class="card-caption">
 							<p>Mang lại sức khỏe , hạnh phúc cho người dân việt</p>
 						</div>
@@ -76,9 +78,11 @@
 					<div class="item-w20">
 						<div class="figure">
 							<div class="figure-image">
-							<a href="{{ video.href }}"><img src="catalog/view/theme/kingsport/image/options-1/media/1.jpg" alt="{{ video.title }} "></a></div>
+							<a href="{{ video.href }}">
+							<img src="{{ video.thumb }}" alt="{{ video.title }}"></a></div>
 							<div class="figure-caption">
-								<h5>{{ video.title }}  </h5><span>Xem thêm chi tiết thông số kỷ thuật <a href="{{ video.href }}">tại đây</a></span>
+								<a href="{{ video.href }}"><h5>{{ video.title }}</h5></a>
+								<span>Xem thêm chi tiết thông số kỷ thuật <a href="{{ video.href }}">tại đây</a></span>
 							</div>
 						</div>
 					</div>

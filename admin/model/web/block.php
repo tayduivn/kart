@@ -8,7 +8,7 @@ class ModelWebBlock extends Model {
 		$block_id = $this->db->getLastId();
 
 		foreach ($data['block_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int)$block_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', url = '" . $this->db->escape($value['url']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int)$block_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', category_id = '" . $this->db->escape($value['category_id'])  . "', banner_id = '" . $this->db->escape($value['banner_id']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		if (isset($data['block_store'])) {

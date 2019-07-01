@@ -1,19 +1,19 @@
 {{ header }}
 <div class="article-title">
-				<h2>{{ heading_title }}</h2>
-			</div>
-			<div class="breadcrumb-wrapper">
-				<div class="container">
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							{% for breadcrumb in breadcrumbs %}
-                            <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-                            {% endfor %}
-						</ol>
-					</nav>
-				</div>
-			</div>
-<section class="shopping-cart-check-out">
+	<h2>{{ heading_title }}</h2>
+</div>
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+			</ol>
+		</nav>
+	</div>
+</div>
+<section class="shopping-cart-check-out"> 
 				<div class="container">
 					<div class="previous-page">
                         <a href="{{ continue }}">
@@ -21,7 +21,11 @@
     							<p>Mua thêm sản phẩm khác</p>
                         </a>
                     </div>
+                    
+                    
+                  
 					<div class="cart-item-wrapper">
+                    
                         {% if attention %}
                         <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ attention }}
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -37,111 +41,143 @@
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         </div>
                         {% endif %}
-                        <form action="{{ action }}" method="post" enctype="multipart/form-data">
-                        {% for product in products %}
-						<div class="cart-item-information-wrapper">
-							<div class="cart-image">
-                                {% if product.thumb %} <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail" /></a> {% endif %}
-								<div class="remove-item">
-                                    <a onclick="cart.remove('{{ product.cart_id }}');">
-										<h5>Xóa</h5>
-                                    </a>
+                        
+                        
+                        <div class="mid-content">
+                             <div class="style_order">
+                                <div class="style_step">
+                                   <ul>
+                                      <li class="active"><span class="number">1</span><a href="https://www.kingsport.vn/san-pham/cart.html" class="text">Giỏ hàng</a></li>
+                                      <li><span class="number">2</span><span class="text">THÔNG TIN VÀ THANH TOÁN</span></li>
+                                      <li><span class="number">3</span><span class="text">Xác nhận hóa đơn</span></li>
+                                      <li><span class="number">4</span><span class="text">Hoàn tất</span></li>
+                                   </ul>
+                                   <div class="clear"></div>
                                 </div>
-							</div>
-							<div class="cart-item-data">
-								<h2>{{ product.name }}</h2>
-								<p>Phiếu mua hàng trị giá 100.000đ (Áp dụng từ 8/5) *</p>
-								<p>Đổi máy cũ tiết kiệm đến 2.850.000đ (Từ 1/5 đến 31/5)<span><a href="{{ product.href }}">Xem chi tiết</a></span></p>
-								<p>Giao hàng toàn quốc | chính sách giao hàng</p>
-								<p>Thanh toán khi nhận hàng</p>
-								<p>Trả hàng trong 7 ngày</p>
-								<p>Hotline: <span>(08) 66 79 79 67</span></p>
-							</div>
-							<div class="cart-price">
-								<h2>{{ product.price }}</h2>
-								<div class="cart-item-quantity">
-									<div class="input-group">
-										<div class="input-group-btn">
-											<button class="qty-minus btn btn-default btn-number" type="button" disabled="disabled" data-type="minus" data-field="quantity[{{ product.cart_id }}]"></button><em class="mdi mdi-minus"></em>
-										</div>
-										<input class="product-details-quantity form-control input-number" type="text" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" min="1" max="100" />
-										<div class="input-group-btn">
-											<button class="qty-plus btn btn-default btn-number" type="button" data-type="plus" data-field="quantity[{{ product.cart_id }}]"></button><em class="mdi mdi-plus"></em>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-                        {% endfor %}
-						<div class="cart-item-price">
-							<div class="sum-1">
-								<p>Tổng tiền</p>
-								<p>18.000.000<span>đ</span></p>
-							</div>
-							<div class="sum-2">
-								<h3>Tổng tiền </h3>
-								<div class="sum-right">
-									<h2>18.000.000<span>đ</span></h2>
-									<h5>Sử dụng khuyến mãi</h5>
-									<div class="discount-code">
-										<div class="form-group">
-											<input class="form-control" id="discountCode" type="text" aria-describedby="emailHelp" placeholder="Nhập mã khuyến mãi">
-										</div>
-										<div class="discount-button"><a href="#">Áp dụng</a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-                        </form>
-						<div class="cart-customer-information">
-							<div class="customer-gender">
-								<div class="form-check">
-									<input class="form-check-input" id="radioGender1" type="radio" name="exampleRadios" value="option1" checked="checked">
-									<label class="form-check-label" for="radioGender">Anh</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" id="radioGender2" type="radio" name="exampleRadios" value="option2">
-									<label class="form-check-label" for="radioGender2">Chị</label>
-								</div>
-							</div>
-							<div class="customer-form">
-								<div class="row">
-									<div class="col-12 col-lg-6">
-										<div class="form-group">
-											<input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Họ và tên">
-										</div>
-									</div>
-									<div class="col-12 col-lg-6">
-										<div class="form-group">
-											<input class="form-control" id="exampleInputPassword1" type="text" placeholder="Số điện thoại">
-										</div>
-									</div>
-									<div class="col-12">
-										<div class="form-group mt">
-											<input class="form-control" id="exampleInputPassword1" type="text" placeholder="Yêu cầu khác (Không bắt buộc)">
-										</div>
-									</div>
-								</div>
-								<h5>Để được phục vụ nhanh hơn<span>, hãy chọn thêm</span></h5>
-								<div class="form-check">
-									<input class="form-check-input" id="radioLocation-1" type="radio" name="location" value="op-1" checked="">
-									<label class="form-check-label" for="radioLocation-1">Địa chỉ giao hàng</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" id="radioLocation-2" type="radio" name="location" value="op-2">
-									<label class="form-check-label" for="radioLocation-2">Nhận tại showroom</label>
-								</div>
-							</div>
-							<div class="cart-submit">
-								<div class="submit-button yellow"><a href="#">
-										<h2>Thanh toán khi nhận hàng </h2>
-										<p>Kiểm tra hàng trước khi trả tiền</p></a></div>
-								<div class="submit-button red"><a href="#">
-										<h2>Thanh toán Online</h2>
-										<p>bằng thẻ Visa, master, JCB</p></a></div>
-							</div>
-						</div>
+                                <div class="style_form">
+                                   <form action="{{ action }}" method="post" enctype="multipart/form-data" class="cart-form">
+                                      <table class="addtocart2">
+                                         <thead>
+                                            <tr>
+                                               <td>Tên sản phẩm</td>
+                                               <td>Giá</td>
+                                               <td>Số lượng</td>
+                                               <td>Tổng cộng</td>
+                                               <td><img src="https://www.kingsport.vn/modules/product/images/icon-clear.png" alt="" /></td>
+                                            </tr>
+                                         </thead>
+                                         <tbody>
+                                            {% for product in products %}
+                                            <tr>
+                                               <td>
+                                                  <table class="img-title">
+                                                     <tbody>
+                                                        <tr>
+                                                           <td>
+                                                           {% if product.thumb %}
+                                                            <a href="{{ product.href }}">
+                                                            <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                                                            {% endif %}
+                                                           </a>
+                                                           </td>
+                                                           <td>
+                                                              <div class="i-title">
+                                                                <a href="{{ product.href }}">{{ product.name }}</a>
+                                                              </div>
+                                                           </td>
+                                                        </tr>
+                                                     </tbody>
+                                                  </table>
+                                               </td>
+                                               <td class="price">{{ product.price }}</td>
+                                               <td>
+                                                  <div class="choose-quantity">
+                                                     <div class="input-group spinner cart_spinner">
+                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="fa fa-plus"></i></button> 
+                                                        <input name="quantity[{{ product.cart_id }}]" type="text" readonly="readonly" value="{{ product.quantity }}" class="product-details-quantity-{{ product.cart_id }} form-control input-number" /> 
+                                                        <button type="button" data-action='minus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-minus btn btn-default btn-number"><i aria-hidden="true" class="fa fa-minus"></i></button>
+                                                    </div>
+                                                  </div>
+                                               </td>
+                                               <td class="price colorRed"><span>{{ product.total }}</span></td>
+                                               <td>
+                                               <a onclick="cart.remove('{{ product.cart_id }}');" class="btnclear">
+                                                    <img src="https://www.kingsport.vn/modules/product/images/icon-clear.png" alt="" />
+                                               </a></td>
+                                            </tr>
+                                            {% endfor %}
+                                         </tbody>
+                                      </table>
+                                      <div class="coupon_Total">
+                                         <div class="Total">
+                                            <div id="info_coupon"></div>
+                                            <div class="row-total">
+                                               <div class="t-tile"><span id="text_cart_total">Tổng giỏ hàng</span> :</div>
+                                               <div class="t-price colorRed"><span id="TotalCart_price">{{ totals_text }}</span></div>
+                                               <div class="clear"></div>
+                                            </div>
+                                         </div>
+                                         
+                                         {{ coupon }}
+                                         
+                                         {{ reward }}
+                                         <div class="clear"></div>
+                                      </div>
+                                      <div class="policy-pay">
+                                         <div class="policy">
+                                            <ul>
+                                               <li class="fa-check">GIAO HÀNG TOÀN QUỐC <span class="padding">|</span> <a href="/chinh-sach-van-chuyen-giao-nhan.html" class="colorRed">CHÍNH SÁCH GIAO HÀNG</a></li>
+                                               <li class="fa-check">THANH TOÁN KHI NHẬN HÀNG</li>
+                                               <li class="fa-check">TRẢ HÀNG TRONG 7&nbsp;NGÀY</li>
+                                               <li class="fa-phone">HOTLINE: (08) 66 79 79 67</li>
+                                            </ul>
+                                         </div>
+                                         <div class="pay">
+                                            <div>Các hình thức thanh toán</div>
+                                            <div><img src="https://www.kingsport.vn/modules/product/images/img-pay.jpg" alt="" /></div>
+                                         </div>
+                                         <div class="clear"></div>
+                                      </div>
+                                      <div>
+                                         <div class="button-form">
+                                            <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
+                                            <div class="fr">
+                                               <div class="fr"><a type="button" name="btnCheckout" onclick="location.href='{{ checkout }}'" class="btn do_submit"><span>Tiến hành thanh toán</span></a></div>
+                                               <div class="fr"><button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn do_clear"><span>Hủy bỏ</span></button></div>
+                                               <div class="clear"></div>
+                                            </div>
+                                            <div class="clear"></div>
+                                         </div>
+                                      </div>
+                                   </form>
+                                </div>
+                             </div>
+                          </div>
+                  
+                        
+						
 					</div>
+                    
 				</div>
 			</section>
+            
+            <script type="text/javascript"><!--
+                $('.qty-number').on('click', function() {
+                    var cart_id = $(this).data('cart-id');
+                    var action = $(this).data('action');
+                    var quatity_ele = $('.product-details-quantity-' + cart_id);
+                    var quantity = parseInt(quatity_ele.val(), 10);
+                    if(action === 'plus') {
+                        quantity = quantity + 1;
+                    }else {
+                        if (quantity > 1) {
+                            quantity = quantity - 1;
+                        }
+                    }
+                	quatity_ele.val(quantity);
+                    setTimeout(function () {
+                        $('.cart-form').submit();
+                    }, 200);
+                });
+                //--></script> 
 {{ footer }} 

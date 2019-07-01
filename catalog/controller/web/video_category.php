@@ -38,15 +38,15 @@ class ControllerWebVideoCategory extends Controller {
             
             foreach ($results as $result) {
     				
-                    if ($result['image']) {
-    					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
-    				} else {
-    					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
-    				}
+        //             if ($result['image']) {
+    				// 	$image = $this->model_tool_image->resize($result['image'], 300, 200);
+    				// } else {
+    				// 	$image = $this->model_tool_image->resize('placeholder.png', 300, 200);
+    				// }
                     
     				$data['videos'][] = array(
     					'title'  => $result['title'],
-                        'thumb'  => $image,
+                        'thumb'  => '/image/' . $result['image'],
 //                        'intro'  => $result['intro'],
                         'date'   => $result['date_added'],
                         'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id'])

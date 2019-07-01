@@ -1,15 +1,16 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title"><a href="#collapse-reward" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion">{{ heading_title }} <i class="fa fa-caret-down"></i></a></h4>
-  </div>
-  <div id="collapse-reward" class="panel-collapse collapse">
-    <div class="panel-body">
-      <label class="col-sm-2 control-label" for="input-reward">{{ entry_reward }}</label>
-      <div class="input-group">
-        <input type="text" name="reward" value="{{ reward }}" placeholder="{{ entry_reward }}" id="input-reward" class="form-control" />
-        <span class="input-group-btn">
-        <input type="submit" value="{{ button_reward }}" id="button-reward" data-loading-text="{{ text_loading }}"  class="btn btn-primary" />
-        </span></div>
+<div class="cart_box_points">
+    <h3>Sử dụng điểm tích lũy</h3>
+    <div class="input-group">
+      <input type="text" id="input-reward" name="reward" value="{{ reward }}" class="form-control" /> 
+      <span class="input-group-btn">
+          <button id="button-reward" data-loading-text="{{ text_loading }}"  class="btn btn-primary">
+            <span>Sử dụng</span>
+          </button>
+      </span>
+    </div>
+    <p>Bạn đang có: <span>{{ points_total }}</span> điểm</p>
+    
+</div>
       <script type="text/javascript"><!--
 $('#button-reward').on('click', function() {
 	$.ajax({
@@ -42,6 +43,3 @@ $('#button-reward').on('click', function() {
 	});
 });
 //--></script>
-    </div>
-  </div>
-</div>

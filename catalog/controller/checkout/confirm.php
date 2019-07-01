@@ -10,9 +10,9 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 
 			// Validate if shipping method has been set.
-			if (!isset($this->session->data['shipping_method'])) {
-				$redirect = $this->url->link('checkout/checkout', '', true);
-			}
+//			if (!isset($this->session->data['shipping_method'])) {
+//				$redirect = $this->url->link('checkout/checkout', '', true);
+//			}
 		} else {
 			unset($this->session->data['shipping_address']);
 			unset($this->session->data['shipping_method']);
@@ -25,9 +25,9 @@ class ControllerCheckoutConfirm extends Controller {
 		}
 
 		// Validate if payment method has been set.
-		if (!isset($this->session->data['payment_method'])) {
-			$redirect = $this->url->link('checkout/checkout', '', true);
-		}
+//		if (!isset($this->session->data['payment_method'])) {
+//			$redirect = $this->url->link('checkout/checkout', '', true);
+//		}
 
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
@@ -407,7 +407,7 @@ class ControllerCheckoutConfirm extends Controller {
 				);
 			}
 
-			$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
+			//$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
 		} else {
 			$data['redirect'] = $redirect;
 		}

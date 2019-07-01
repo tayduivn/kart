@@ -59,7 +59,7 @@
 								<div class="button-next-news"><i class="mdi mdi-chevron-right"></i></div>
 							</div>
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-news-1"></div>
+								<div class="swiper-pagination swiper-pagination-news-{{ category.category_id }}"></div>
 							</div>
                             
                             <div class="news-wrapper">
@@ -69,6 +69,42 @@
                     				</div>
                     			</div>
                     		</div>
+                            
+                            <script>
+                                new Swiper("#news-swiper-{{ category.category_id }}", {
+                                    paginationClickable: !0,
+                                    direction: "horizontal",
+                                    spaceBetween: 30,
+                                    slidesPerView: 4,
+                                    navigation: {
+                                        nextEl: ".button-next-news",
+                                        prevEl: ".button-prev-news"
+                                    },
+                                    pagination: {
+                                        el: ".swiper-pagination-news-{{ category.category_id }}",
+                                        type: "bullets"
+                                    },
+                                    breakpointsInverse: !0,
+                                    breakpoints: {
+                                        0: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 20
+                                        },
+                                        768: {
+                                            slidesPerView: 3,
+                                            spaceBetween: 10
+                                        },
+                                        992: {
+                                            slidesPerView: 3,
+                                            spaceBetween: 30
+                                        },
+                                        1200: {
+                                            slidesPerView: 4,
+                                            spaceBetween: 40
+                                        }
+                                    }
+                                });
+                            </script>
 						</div>
                         {% endfor %}
 					</div>

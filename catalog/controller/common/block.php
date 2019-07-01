@@ -18,12 +18,14 @@ class ControllerCommonBlock extends Controller {
             
         foreach ($blocks as $block) {
             
+            //san pham noi bat
             $filter_data = array(
     			'sort'  => 'pd.name',
     			'order' => 'ASC',
     			'start' => 0,
     			'limit' => 6,
                 'filter_category_id'  => $block['category_id'],
+                'filter_sub_category' => true,
                 'filter_featured'=> true
     		);
         
@@ -34,13 +36,35 @@ class ControllerCommonBlock extends Controller {
             foreach($featured_products as $product) {
                 $featuredProductsArr[] = $this->createProduct($product, $block['category_id']);
             }
+
+            //san pham moi
+            $filter_data = array(
+                'sort'  => 'pd.name',
+                'order' => 'ASC',
+                'start' => 0,
+                'limit' => 6,
+                'filter_category_id'  => $block['category_id'],
+                'filter_sub_category' => true,
+                'is_new'=> true
+            );
+        
+            $new_products = $this->model_catalog_product->getProducts($filter_data);
             
+            $newProductsArr = array();
+            
+            foreach($new_products as $product) {
+                $newProductsArr[] = $this->createProduct($product, $block['category_id']);
+            }
+
+            //san pham khuyen mai
             $filter_data = array(
     			'sort'  => 'pd.name',
     			'order' => 'ASC',
     			'start' => 0,
     			'limit' => 6,
-                'filter_category_id'  => $block['category_id']
+                'filter_category_id'  => $block['category_id'],
+                'category_id'  => $block['category_id'],
+                'filter_sub_category' => true,
     		);
             
     		$specials = $this->model_catalog_product->getProductSpecials($filter_data);
@@ -70,6 +94,7 @@ class ControllerCommonBlock extends Controller {
                 'feature' =>  $featuredProductsArr,
                 'specials' => $specialsArr,
                 'banners' => $bannersArr,
+                'newest' => $newProductsArr,
                 'href'  => $this->url->link('product/category', 'path=' . $block['category_id'])
              );
             

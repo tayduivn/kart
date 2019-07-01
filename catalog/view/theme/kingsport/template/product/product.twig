@@ -48,10 +48,11 @@
 						<div class="col-12 col-xl-9">
 							<div class="row">
 								<div class="col-12 col-xl-7">
-                                    {% if images %}
+                                    
 									<div class="product-detail-swiper">
 										<div class="swiper-container swiper-product-top">
 											<div class="swiper-wrapper">
+												<div class="swiper-slide"><img src="{{ popup }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
                                                 {% for image in images %}
 												<div class="swiper-slide"><img src="{{ image.popup }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
 							                    {% endfor %}
@@ -61,13 +62,14 @@
 										</div>
 										<div class="swiper-container swiper-product-thumbs">
 											<div class="swiper-wrapper">
+												<div class="swiper-slide"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
 												{% for image in images %}
                                                 <div class="swiper-slide"><img src="{{ image.thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
 							                    {% endfor %}
                                             </div>
 										</div>
 									</div>
-                                    {% endif %}
+                                    
 								</div>
 								<div class="col-12 col-xl-5">
 									<div class="product-information">
@@ -96,7 +98,8 @@
 											<label>Yêu cầu nhân viên kỹ thuật giao hàng: <span>hỗ trợ lắp đặt, cài đặt, hướng dẫn sử dụng máy mới, giải đáp thắc mắc sản phẩm.</span></label>
 										</div>
 										<div class="product-button">
-											<div class="check-out"><a href="#">
+											<div class="check-out">
+												<a href="#" id="button-cart">
 													<h3>Mua ngay</h3>
 													<p>Giao hàng trong 24 giờ hoặc tại showroom</p></a></div>
 											<div class="other-check-out-wrapper">
@@ -378,16 +381,66 @@
 				</div>
 			</section>
             {% endif %}
-			<!--<section class="pagination-verification">
-				<div class="container">
-					<ul style="justify-content: center;">
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#"><em class="mdi mdi-chevron-right"></em></a></li>
-					</ul>
-				</div>
-			</section>-->
+
+
+<script type="text/javascript"><!--
+    $('#button-cart').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'index.php?route=checkout/cart/add',
+            type: 'post',
+            data: {
+                'product_id': '{{ product_id }}',
+                'quantity': 1
+            },
+            dataType: 'json',
+            beforeSend: function() {
+                $('#button-cart').attr('disabled','disabled');
+            },
+            complete: function() {
+                $('#button-cart').button('reset');
+            },
+            success: function(json) {
+                $('.alert-dismissible, .text-danger').remove();
+                $('.form-group').removeClass('has-error');
+
+                if (json['error']) {
+                    if (json['error']['option']) {
+                        for (i in json['error']['option']) {
+                            var element = $('#input-option' + i.replace('_', '-'));
+
+                            if (element.parent().hasClass('input-group')) {
+                                element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+                            } else {
+                                element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+                            }
+                        }
+                    }
+
+                    if (json['error']['recurring']) {
+                        $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+                    }
+
+                    // Highlight any found errors
+                    $('.text-danger').parent().addClass('has-error');
+                }
+
+                if (json['success']) {
+                    //$('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+                    //$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+
+                    //$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+                    window.location.href = 'index.php?route=checkout/cart';
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    });
+    //--></script>
 {{ footer }} 
 
 			

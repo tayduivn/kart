@@ -1,0 +1,80 @@
+<section class="kingsport-news-option1v3">
+	<div class="container">
+		<div class="news-wrapper">
+			<div class="news-title">
+				<h2>Tin tức</h2>
+			</div>
+			<div class="news-tab-nav">
+				<ul id="news-navigation">
+                    {% for category in blogs %}
+					<li {{  loop.index == 1 ? "class='active'" : "" }}><a href="javascript:void(0)" data-type="tab-news-{{ category.category_id }}">{{ category.title }}</a></li>
+                    {% endfor %}
+				</ul>
+			</div>
+			<div class="select-news-mobile-options" id="select-news-mobile-options">
+				<ul class="default-footer-select" data-selected-value="ted">
+					<li class="default-select-options"><span>Các thông tin khác </span></li>
+					<ul class="options" id="newsMobileSelectedOption">
+                        {% for category in blogs %}
+						<li data-value-selected="tab-news-{{ category.category_id }}">{{ category.title }}</li>
+                        {% endfor %}
+					</ul>
+				</ul>
+			</div>
+		</div>
+		<div class="news-box">
+			<div class="row">
+				{% for banner in banners %}
+				<div class="col-12 col-md-6">
+					<div class="news-banner">
+						<a href="{{ banner.link }}"><img class="img-fluid" src="{{ banner.image }}" alt="{{ banner.title }}" title="{{ banner.title }}" /></a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="tab-content-news">
+                        {% for category in blogs %}
+						<div class="tab-panel-news {{  loop.index == 1 ? "active" : "" }}" id="tab-news-{{ category.category_id }}">
+
+							<div class="swiper-container" id="news-swiper-{{ category.category_id }}">
+								<div class="swiper-wrapper">
+                                    {% for blog in category.blogs %}
+									<div class="swiper-slide">
+										<figure class="figure">
+											<div class="figure-image">
+                                                <a href="{{ blog.href }}"><img class="img-fluid" src="{{ blog.thumb }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></a>
+                                            </div>
+											<div class="figure-caption">
+												<h4>{{ blog.title }}</h4>
+												<h5>{{ blog.date }}</h5>
+												<p>{{ blog.intro }}</p>
+											</div>
+										</figure>
+									</div>
+                                    {% endfor %}
+								</div>
+								<div class="button-prev-news"><i class="mdi mdi-chevron-left"></i></div>
+								<div class="button-next-news"><i class="mdi mdi-chevron-right"></i></div>
+							</div>
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-news-1"></div>
+							</div>
+                            
+                            <div class="news-wrapper">
+                    			<div class="row">
+                    				<div class="col-12">
+                    					<div class="view-more" id="view-more"><a href="{{ category.href }}">Xem thêm</a></div>
+                    				</div>
+                    			</div>
+                    		</div>
+						</div>
+                        {% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>

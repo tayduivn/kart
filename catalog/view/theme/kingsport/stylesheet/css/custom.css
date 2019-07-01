@@ -1,8 +1,8 @@
-.kingsport-header-1v3 .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart:after {
+.kingsport-header-main .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart:after {
     display: none
 }
 
-.kingsport-header-1v3 .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items {
+.kingsport-header-main .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,4 +68,9 @@
 
 .active .navbar-list-bottom {
     display: block;
+}
+
+.kingsport-news-option1v3 .news-box .swiper-container .swiper-wrapper .swiper-slide .figure .figure-image img {
+    max-width: 100%;
+    width: auto;
 }

@@ -45,13 +45,13 @@ class ControllerWebStore extends Controller {
 
                 foreach ($results as $result) {
                     $images[] = array(
-                        'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')),
-                        'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'))
+                        'popup' => $this->model_tool_image->resize($result['image'], 100, 100),
+                        'thumb' => $this->model_tool_image->resize($result['image'], 900 , 900)
                     );
                 }
 
                 if ($branch['image']) {
-                    $image = $this->model_tool_image->resize($branch['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_category_height'));
+                    $image = $this->model_tool_image->resize($branch['image'], 270, 248);
                 } else {
                     $image = '';
                 }
@@ -60,6 +60,8 @@ class ControllerWebStore extends Controller {
                     'title'     => $branch['title'],
                     'description'  => $branch['description'],
                     'phone'     => $branch['phone'],
+                    'lat'     => $branch['lat'],
+                    'lng'     => $branch['lng'],
                     'address'     => isset($branch['address']) ? $branch['address'] : '',
                     'thumb' => $image,
                     'parking'  => $branch['parking'],
