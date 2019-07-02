@@ -1,11 +1,8 @@
-@import url("nmc.css"); /* Using a url */
-
-.kingsport-header-main .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart:after {
-
+.kingsport-header-1v3 .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart:after {
     display: none
 }
 
-.kingsport-header-main .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items {
+.kingsport-header-1v3 .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items {
     display: flex;
     justify-content: center;
     align-items: center;

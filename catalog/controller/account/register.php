@@ -98,6 +98,7 @@ class ControllerAccountRegister extends Controller {
 		}
 
 		$data['action'] = $this->url->link('account/register', '', true);
+		$data['login'] = $this->url->link('account/login', '', true);
 
 		$data['customer_groups'] = array();
 

@@ -1,0 +1,79 @@
+.style_form .choose-quantity {max-width: 40px;}
+table.addtocart2 tbody tr td{border-right: 1px solid #eaeaea;}
+table.addtocart2 table.img-title tr td{border-right: 0px;}
+table.addtocart2 tbody tr td .btnclear{cursor: pointer;}
+.policy-pay .policy ul {list-style: none; padding: 0px;}
+.policy-pay .policy ul li{position: relative;}
+.policy-pay .policy ul li:before{ position: absolute; left:0px; top:5px; font-family: fontawesome; content: '\f00c';}
+.policy-pay .policy ul li.fa-phone:before{content: '\f095';}
+.account-form .well{background: transparent; margin-top: 30px;   border: 1px solid #ebebeb; border-radius: 0px; padding: 20px;}
+.account-form .btn{border-radius: 0px; line-height: 24px; height: 40px;}
+.account-form .btn.btn-primary{    background: #ec1d25; text-transform: uppercase; border:0px;
+background: #df2025;
+    border: 2px solid #df2025;
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    height: 40px;
+    min-width: 170px;
+    line-height: 24px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.account-form .btn.btn-submit span {
+    display: inline-block;
+    position: relative;
+    z-index: 4;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.account-form .btn.btn-submit span i {
+    font-size: 25px;
+    float: right;
+    margin-left: 10px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.account-form .btn.btn-submit:before {
+    content: '';
+    position: absolute;
+    background: #fff;
+    right: 100%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.account-form .btn.btn-submit:hover:before {
+    right: 0;
+}
+.account-form .btn.btn-submit:hover span,
+.account-form .btn.btn-submit:hover span i {
+    color: #df2025;
+}
+.account-form .btn.btn-submit:hover{
+    background: #fff;
+}
+.account-form .form-group{margin-bottom: 15px;}
+.account-form .form-group .form-control
+{
+	border-left:0px; border-radius: 0px;	
+}
+.account-form .form-group .control-label{display: none;}
+.account-form .btn-forgot{color: #333; margin-top: 10px; display: block;}
+.account-form .input-group-addon{background: transparent; border-radius: 0px;}
+
+    

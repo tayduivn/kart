@@ -52,7 +52,9 @@
                                       <li><span class="number">3</span><span class="text">Xác nhận hóa đơn</span></li>
                                       <li><span class="number">4</span><span class="text">Hoàn tất</span></li>
                                    </ul>
-                                   <div class="clear"></div>
+
+                                   <div class="clearfix"></div>
+
                                 </div>
                                 <div class="style_form">
                                    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="cart-form">
@@ -63,7 +65,7 @@
                                                <td>Giá</td>
                                                <td>Số lượng</td>
                                                <td>Tổng cộng</td>
-                                               <td><img src="https://www.kingsport.vn/modules/product/images/icon-clear.png" alt="" /></td>
+                                               <td><img src="catalog/view/theme/kingsport/images/icon-clear.png" alt="" /></td>
                                             </tr>
                                          </thead>
                                          <tbody>
@@ -93,35 +95,45 @@
                                                <td>
                                                   <div class="choose-quantity">
                                                      <div class="input-group spinner cart_spinner">
-                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="fa fa-plus"></i></button> 
+
+                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-plus"></i></button> 
                                                         <input name="quantity[{{ product.cart_id }}]" type="text" readonly="readonly" value="{{ product.quantity }}" class="product-details-quantity-{{ product.cart_id }} form-control input-number" /> 
-                                                        <button type="button" data-action='minus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-minus btn btn-default btn-number"><i aria-hidden="true" class="fa fa-minus"></i></button>
+                                                        <button type="button" data-action='minus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-minus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-minus"></i></button>
+
                                                     </div>
                                                   </div>
                                                </td>
                                                <td class="price colorRed"><span>{{ product.total }}</span></td>
                                                <td>
                                                <a onclick="cart.remove('{{ product.cart_id }}');" class="btnclear">
-                                                    <img src="https://www.kingsport.vn/modules/product/images/icon-clear.png" alt="" />
+
+                                                    <img src="catalog/view/theme/kingsport/images/icon-clear.png" alt="" />
+
                                                </a></td>
                                             </tr>
                                             {% endfor %}
                                          </tbody>
                                       </table>
-                                      <div class="coupon_Total">
-                                         <div class="Total">
+
+                                      <div class="total-price">
+                                        <div class="Total">
+
                                             <div id="info_coupon"></div>
                                             <div class="row-total">
                                                <div class="t-tile"><span id="text_cart_total">Tổng giỏ hàng</span> :</div>
                                                <div class="t-price colorRed"><span id="TotalCart_price">{{ totals_text }}</span></div>
-                                               <div class="clear"></div>
+
+                                               <div class="clearfix"></div>
                                             </div>
                                          </div>
-                                         
+                                      </div>
+                                      <div class="coupon_Total">
+                                        
                                          {{ coupon }}
                                          
                                          {{ reward }}
-                                         <div class="clear"></div>
+                                         <div class="clearfix"></div>
+
                                       </div>
                                       <div class="policy-pay">
                                          <div class="policy">
@@ -134,19 +146,26 @@
                                          </div>
                                          <div class="pay">
                                             <div>Các hình thức thanh toán</div>
-                                            <div><img src="https://www.kingsport.vn/modules/product/images/img-pay.jpg" alt="" /></div>
+
+                                            <div><img src="catalog/view/theme/kingsport/images/img-pay.jpg" alt="" /></div>
                                          </div>
-                                         <div class="clear"></div>
+                                         <div class="clearfix"></div>
                                       </div>
                                       <div>
                                          <div class="button-form">
-                                            <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
-                                            <div class="fr">
-                                               <div class="fr"><a type="button" name="btnCheckout" onclick="location.href='{{ checkout }}'" class="btn do_submit"><span>Tiến hành thanh toán</span></a></div>
-                                               <div class="fr"><button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn do_clear"><span>Hủy bỏ</span></button></div>
-                                               <div class="clear"></div>
+                                          <div class="row">
+                                            <div class="col-4">
+                                               <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
                                             </div>
-                                            <div class="clear"></div>
+                                            <div class="col-8 text-right">
+                                              <button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn btn-default do_clear"><span>Hủy bỏ</span></button>
+                                              <a type="button" name="btnCheckout" onclick="location.href='{{ checkout }}'" class="btn btn-default do_submit"><span>Tiến hành thanh toán</span></a>
+                                            </div>
+                                          </div>
+                                           
+                                            
+                                            <div class="clearfix"></div>
+
                                          </div>
                                       </div>
                                    </form>
