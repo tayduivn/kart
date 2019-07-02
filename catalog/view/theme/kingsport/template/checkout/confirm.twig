@@ -1,55 +1,94 @@
 {% if not redirect %}
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <td class="text-left">{{ column_name }}</td>
-        <td class="text-left">{{ column_model }}</td>
-        <td class="text-right">{{ column_quantity }}</td>
-        <td class="text-right">{{ column_price }}</td>
-        <td class="text-right">{{ column_total }}</td>
-      </tr>
-    </thead>
-    <tbody>
-    
-    {% for product in products %}
-    <tr>
-      <td class="text-left"><a href="{{ product.href }}">{{ product.name }}</a> {% for option in product.option %} <br />
-        &nbsp;<small> - {{ option.name }}: {{ option.value }}</small> {% endfor %}
-        {% if product.recurring %} <br />
-        <span class="label label-info">{{ text_recurring_item }}</span> <small>{{ product.recurring }}</small> {% endif %}</td>
-      <td class="text-left">{{ product.model }}</td>
-      <td class="text-right">{{ product.quantity }}</td>
-      <td class="text-right">{{ product.price }}</td>
-      <td class="text-right">{{ product.total }}</td>
-    </tr>
-    {% endfor %}
-    {% for voucher in vouchers %}
-    <tr>
-      <td class="text-left">{{ voucher.description }}</td>
-      <td class="text-left"></td>
-      <td class="text-right">1</td>
-      <td class="text-right">{{ voucher.amount }}</td>
-      <td class="text-right">{{ voucher.amount }}</td>
-    </tr>
-    {% endfor %}
-      </tbody>
-    
-    <tfoot>
-    
-    {% for total in totals %}
-    <tr>
-      <td colspan="4" class="text-right"><strong>{{ total.title }}:</strong></td>
-      <td class="text-right">{{ total.text }}</td>
-    </tr>
-    {% endfor %}
-      </tfoot>
-    
-  </table>
-</div>
-{{ payment }}
-{% else %} 
-<script type="text/javascript"><!--
-location = '{{ redirect }}';
-//--></script> 
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <td class="text-left">{{ column_name }}</td>
+                <td class="text-left">{{ column_model }}</td>
+                <td class="text-right">{{ column_quantity }}</td>
+                <td class="text-right">{{ column_price }}</td>
+                <td class="text-right">{{ column_total }}</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for product in products %}
+                <tr>
+                    <td class="text-left"><a
+                                href="{{ product.href }}">{{ product.name }}</a> {% for option in product.option %}
+                            <br/>
+                            &nbsp;
+                            <small> - {{ option.name }}: {{ option.value }}</small> {% endfor %}
+                        {% if product.recurring %} <br/>
+                            <span class="label label-info">{{ text_recurring_item }}</span>
+                            <small>{{ product.recurring }}</small> {% endif %}</td>
+                    <td class="text-left">{{ product.model }}</td>
+                    <td class="text-right">{{ product.quantity }}</td>
+                    <td class="text-right">{{ product.price }}</td>
+                    <td class="text-right">{{ product.total }}</td>
+                </tr>
+            {% endfor %}
+            {% for voucher in vouchers %}
+                <tr>
+                    <td class="text-left">{{ voucher.description }}</td>
+                    <td class="text-left"></td>
+                    <td class="text-right">1</td>
+                    <td class="text-right">{{ voucher.amount }}</td>
+                    <td class="text-right">{{ voucher.amount }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+            <tfoot>
+
+            {% for total in totals %}
+                <tr>
+                    <td colspan="4" class="text-right"><strong>{{ total.title }}:</strong></td>
+                    <td class="text-right">{{ total.text }}</td>
+                </tr>
+            {% endfor %}
+            </tfoot>
+
+        </table>
+    </div>
+    {{ payment }}
+    <div class="buttons clearfix">
+        <div class="pull-right">
+            <input type="button" value="Finish" id="button-payment-finish" data-loading-text="{{ text_loading }}"
+                   class="btn btn-primary"/>
+        </div>
+    </div>
+    <script type="text/javascript"><!--
+        $(document).delegate('#button-payment-finish', 'click', function () {
+            $.ajax({
+                url: 'index.php?route=checkout/confirm/finish',
+                type: 'post',
+                data: {},
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#button-payment-finish').button('loading');
+                },
+                success: function (json) {
+                    $('.alert-dismissible, .text-danger').remove();
+
+                    if (json['redirect']) {
+                        location = json['redirect'];
+                    } else if (json['error']) {
+                        $('#button-payment-finish').button('reset');
+
+                        if (json['error']['warning']) {
+                            $('#collapse-checkout-confirm').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        });
+        //--></script>
+{% else %}
+    <script type="text/javascript"><!--
+        location = '{{ redirect }}';
+        //--></script>
 {% endif %} 

@@ -19,7 +19,7 @@
     {% set class = 'col-sm-12' %}
     {% endif %}
     
-    <div class="wrapper">
+    <div class="container">
        <div class="mod-content">
           <div class="row">
              <div class="col-xs-12">
@@ -44,99 +44,106 @@
                                   </ul>
                                   <div class="clear"></div>
                                </div>
-                               <form action="" method="post" name="f_checkout" id="f_checkout" enctype="multipart/form-data" novalidate="true">
-                                  <div class="info_order">
-                                     <div class="info_col f1st">
-                                        <div class="info-order">
-                                           <div class="wrap-info-order">
-                                              <div class="div_title">Thông tin đặt hàng</div>
-                                              <table class="table-order">
-                                                 <thead>
-                                                    <tr>
-                                                       <td width="285px">Tên sản phẩm</td>
-                                                       <td width="112px" align="center">Giá</td>
-                                                       <td width="61px" align="center">SL</td>
-                                                       <td width="146px" align="center">Thành tiền</td>
-                                                    </tr>
-                                                 </thead>
-                                                 <tbody>
-                                                    {% for product in products %}
-                                                    <tr>
-                                                       <td>
-                                                            {% if product.thumb %}
-                                                          <div class="img">
-                                                            <a href="{{ product.href }}">
-                                                            <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
-                                                            </a>
-                                                          </div>
-                                                            {% endif %}
-                                                          <div class="title"><a href="{{ product.href }}">{{ product.name }}</a></div>
-                                                       </td>
-                                                       <td align="right">{{ product.price }}</td>
-                                                       <td align="center">{{ product.quantity }}</td>
-                                                       <td>{{ product.total }}</td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                    <tr>
-                                                       <td colspan="3" align="right">Tổng giỏ hàng</td>
-                                                       <td>{{ totals_text }}</td>
-                                                    </tr>
-                                                    <tr></tr>
-                                                    <tr>
-                                                       <td colspan="3" align="right">Thành tiền</td>
-                                                       <td>{{ totals_text }}</td>
-                                                    </tr>
-                                                 </tbody>
-                                              </table>
-                                           </div>
+                                <div id="collapse-checkout-confirm"></div>
+                                <div>
+                                    <form action="" method="post" name="f_checkout" id="f_checkout" enctype="multipart/form-data" novalidate="true">
+                                        <div class="info_order">
+                                            <div class="col-md-8 f1st">
+                                                <div class="info-order">
+                                                    <div class="wrap-info-order">
+                                                        <div class="div_title">Thông tin đặt hàng</div>
+                                                        <table class="table-order">
+                                                            <thead>
+                                                            <tr>
+                                                                <td width="285px">Tên sản phẩm</td>
+                                                                <td width="112px" align="center">Giá</td>
+                                                                <td width="61px" align="center">SL</td>
+                                                                <td width="146px" align="center">Thành tiền</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for product in products %}
+                                                                <tr>
+                                                                    <td>
+                                                                        {% if product.thumb %}
+                                                                            <div class="img">
+                                                                                <a href="{{ product.href }}">
+                                                                                    <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                                                                                </a>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        <div class="title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+                                                                    </td>
+                                                                    <td align="right">{{ product.price }}</td>
+                                                                    <td align="center">{{ product.quantity }}</td>
+                                                                    <td>{{ product.total }}</td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                            <tr>
+                                                                <td colspan="3" align="right">Tổng giỏ hàng</td>
+                                                                <td>{{ totals_text }}</td>
+                                                            </tr>
+                                                            <tr></tr>
+                                                            <tr>
+                                                                <td colspan="3" align="right">Thành tiền</td>
+                                                                <td>{{ totals_text }}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="info_customer">
+                                                    <div id="collapse-checkout-option"></div>
+                                                    <div id="collapse-payment-address"></div>
+                                                    <div id="collapse-shipping-address"></div>
+                                                    <div id="collapse-shipping-method"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 s2nd">
+                                                <div class="info_method">
+                                                    <div class="div_title">Phương thức giao hàng</div>
+                                                    <div id="defaultSelected"  class="radio-button moduleRowSelected">
+                                                        <label><input type="radio" name="rShipping"  value="shipping" checked="checked"><span>Giao hàng tận nơi</span></label>
+                                                        <p>Theo chính sách giao hàng của công ty. Cước phí vận chuyển sẽ được thông báo trực tiếp đến khách hàng</p>
+                                                    </div>
+                                                    <div class="radio-button class ='moduleRow'">
+                                                        <label><input type="radio" name="rShipping"  value="Nhà xe"><span>Gửi bảo đảm qua Dịch Vụ vận tải</span></label>
+                                                        <p>&nbsp;Khách hàng phải thanh toán tiền trước khi giao hàng (chuyển khoản, nhờ người thân thanh toán hoặc thanh toán tại nhà xe dịch vụ vận tải ). Chúng tôi sẽ được hỗ trợ &nbsp;vận chuyển thông qua các nhà xe tạo sự thuận tiện nhất mà hàng có thể đến với khách hàng. Thời gian nhận hàng trung bình từ 3h-24h tùy theo nhà xe.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="info_method">
+                                                    <div class="div_title">PHƯƠNG THỨC THANH TOÁN</div>
+                                                    <div  class="radio-button">
+                                                        <label><input type="radio" name="payment_method" value="home" required="required" checked title=""><span>Thanh Toán Tại Nhà</span></label>
+                                                        <p>Giao hàng và thu tiền tại nhà đối với các khách hàng ở khu vực Chi Nhánh trực thuộc của công ty và các vùng lân cận.</p>
+                                                    </div>
+                                                    <div  class="radio-button">
+                                                        <label><input type="radio" name="payment_method" value="alepay" required="required" title=""><span>TRẢ GÓP ONLINE</span></label>
+                                                        <p>Thanh toán trả góp bằng thẻ tín dụng quốc tế Visa, Master, JCB</p>
+                                                    </div>
+                                                    <div  class="radio-button first-charge-option">
+                                                        <label><input type="radio" name="payment_method" value="nganluong" required="required" title=""><span>THANH TOÁN ONLINE THẺ ATM</span></label>
+                                                        <p>Bằng thẻ ATM nội địa</p>
+                                                    </div>
+                                                    <div id="defaultSelected_payment" class="radio-button moduleRowSelected first-charge-option">
+                                                        <label><input type="radio" name="payment_method" value="alepay_qt" required="required" title=""><span>THANH TOÁN ONLINE THẺ QUỐC TẾ</span></label>
+                                                        <p><strong>Thanh toán qua thẻ Visa, Master Card, JCB</strong><br>
+                                                            Lưu ý: "Quý khách vui lòng nhập đúng thông tin họ và tên để thực hiện thanh toán và thực hiện xác nhận 3D – Secure".
+                                                        </p>
+                                                    </div>
+                                                    <div class="first-charge" style="display: none">
+                                                        <label for="">Trả trước</label>
+                                                        <input type="text" class="" name="comment_price"/>
+                                                    </div>
+                                                </div>
+                                                <div class="io-button"><input name="do_process" type="hidden" value="1">
+                                                    <button type="button" disabled name="btnConfirm" value="TIẾP TỤC THANH TOÁN" class="btn dosubmit" id="button-payment-method"><span>TIẾP TỤC THANH TOÁN</span>
+                                                    </button></div>
+                                            </div>
+                                            <div class="clear"></div>
                                         </div>
-                                        <div class="info_customer">
-                                            <div id="collapse-checkout-option"></div>
-                                            <div id="collapse-payment-address"></div>
-                                            <div id="collapse-shipping-address"></div>
-                                            <div id="collapse-checkout-confirm"></div>
-                                        </div>
-                                     </div>
-                                     <div class="info_col s2nd">
-                                        <div class="info_method">
-                                           <div class="div_title">Phương thức giao hàng</div>
-                                           <div id="defaultSelected" onclick="rowOverEffect(this,0);" class="radio-button moduleRowSelected">
-                                              <label><input type="radio" name="rShipping" id="rShipping" value="shipping" checked="checked"><span>Giao hàng tận nơi</span></label> 
-                                              <p>Theo chính sách giao hàng của công ty. Cước phí vận chuyển sẽ được thông báo trực tiếp đến khách hàng</p>
-                                           </div>
-                                           <div onclick="rowOverEffect(this,1);" class="radio-button class ='moduleRow'">
-                                              <label><input type="radio" name="rShipping" id="rShipping" value="Nhà xe"><span>Gửi bảo đảm qua Dịch Vụ vận tải</span></label> 
-                                              <p>&nbsp;Khách hàng phải thanh toán tiền trước khi giao hàng (chuyển khoản, nhờ người thân thanh toán hoặc thanh toán tại nhà xe dịch vụ vận tải ). Chúng tôi sẽ được hỗ trợ &nbsp;vận chuyển thông qua các nhà xe tạo sự thuận tiện nhất mà hàng có thể đến với khách hàng. Thời gian nhận hàng trung bình từ 3h-24h tùy theo nhà xe.</p>
-                                           </div>
-                                        </div>
-                                        <div class="info_method">
-                                           <div class="div_title">PHƯƠNG THỨC THANH TOÁN</div>
-                                           <div  class="radio-button class ='moduleRow'">
-                                              <label><input type="radio" name="payment_method" id="rPayment" value="home" required="required" title=""><span>Thanh Toán Tại Nhà</span></label>
-                                              <p>Giao hàng và thu tiền tại nhà đối với các khách hàng ở khu vực Chi Nhánh trực thuộc của công ty và các vùng lân cận.</p>
-                                           </div>
-                                           <div  class="radio-button class ='moduleRow'">
-                                              <label><input type="radio" name="payment_method" id="rPayment" value="alepay" required="required" title=""><span>TRẢ GÓP ONLINE</span></label>
-                                              <p>Thanh toán trả góp bằng thẻ tín dụng quốc tế Visa, Master, JCB</p>
-                                           </div>
-                                           <div  class="radio-button class ='moduleRow'">
-                                              <label><input type="radio" name="payment_method" id="rPayment" value="nganluong" required="required" title=""><span>THANH TOÁN ONLINE THẺ ATM</span></label>
-                                              <p>Bằng thẻ ATM nội địa</p>
-                                           </div>
-                                           <div id="defaultSelected_payment" class="radio-button moduleRowSelected">
-                                              <label><input type="radio" name="payment_method" id="rPayment" value="alepay_qt" checked="checked" required="required" title=""><span>THANH TOÁN ONLINE THẺ QUỐC TẾ</span></label>
-                                              <p><strong>Thanh toán qua thẻ Visa, Master Card, JCB</strong><br>
-                                                 Lưu ý: "Quý khách vui lòng nhập đúng thông tin họ và tên để thực hiện thanh toán và thực hiện xác nhận 3D – Secure".
-                                              </p>
-                                           </div>
-                                        </div>
-                                        <div class="io-button"><input name="do_process" type="hidden" value="1">
-                                            <button type="button" name="btnConfirm" value="TIẾP TỤC THANH TOÁN" class="btn dosubmit" id="button-payment-method"><span>TIẾP TỤC THANH TOÁN</span>
-                                            </button></div>
-                                     </div>
-                                     <div class="clear"></div>
-                                  </div>
-                               </form>
+                                    </form>
+                                </div>
                             </div>
                          </div>
                       </div>
@@ -150,6 +157,8 @@
     </div>
 </div>
 <script type="text/javascript"><!--
+
+
 $(document).on('change', 'input[name=\'account\']', function() {
 	if ($('#collapse-payment-address').parent().find('.panel-heading .panel-title > *').is('a')) {
 		if (this.value == 'register') {
@@ -256,7 +265,7 @@ $(document).delegate('#button-login', 'click', function() {
             if (json['redirect']) {
                 location = json['redirect'];
             } else if (json['error']) {
-                $('#collapse-checkout-option .panel-body').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                $('#collapse-checkout-option').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 				// Highlight any found errors
 				$('input[name=\'email\']').parent().addClass('has-error');
@@ -289,7 +298,7 @@ $(document).delegate('#button-register', 'click', function() {
                 $('#button-register').button('reset');
 
                 if (json['error']['warning']) {
-                    $('#collapse-payment-address .panel-body').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-payment-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
 
 				for (i in json['error']) {
@@ -428,7 +437,7 @@ $(document).delegate('#button-payment-address', 'click', function() {
                 location = json['redirect'];
             } else if (json['error']) {
                 if (json['error']['warning']) {
-                    $('#collapse-payment-address .panel-body').prepend('<div class="alert alert-warning alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-payment-address').prepend('<div class="alert alert-warning alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
 
 				for (i in json['error']) {
@@ -533,7 +542,7 @@ $(document).delegate('#button-shipping-address', 'click', function() {
                 $('#button-shipping-address').button('reset');
 
                 if (json['error']['warning']) {
-                    $('#collapse-shipping-address .panel-body').prepend('<div class="alert alert-warning alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-shipping-address').prepend('<div class="alert alert-warning alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
 
 				for (i in json['error']) {
@@ -619,7 +628,7 @@ $(document).delegate('#button-guest', 'click', function() {
                 $('#button-guest').button('reset');
 
                 if (json['error']['warning']) {
-                    $('#collapse-payment-address .panel-body').prepend('<div class="alert alert-warning alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-payment-address').prepend('<div class="alert alert-warning alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
 
 				for (i in json['error']) {
@@ -751,7 +760,7 @@ $(document).delegate('#button-guest-shipping', 'click', function() {
                 $('#button-guest-shipping').button('reset');
 
                 if (json['error']['warning']) {
-                    $('#collapse-shipping-address .panel-body').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-shipping-address').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
 
 				for (i in json['error']) {
@@ -813,7 +822,7 @@ $(document).delegate('#button-shipping-method', 'click', function() {
                 $('#button-shipping-method').button('reset');
 
                 if (json['error']['warning']) {
-                    $('#collapse-shipping-method .panel-body').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-shipping-method').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
             } else {
                 $.ajax({
@@ -824,6 +833,8 @@ $(document).delegate('#button-shipping-method', 'click', function() {
                     },
                     success: function(html) {
                         //open nut checkout
+                        $('#button-payment-method').prop('disabled', false);
+
                         //$('#collapse-payment-method').html(html);
 
 						//$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<a href="#collapse-payment-method" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle">{{ text_checkout_payment_method }} <i class="fa fa-caret-down"></i></a>');
@@ -848,7 +859,7 @@ $(document).delegate('#button-payment-method', 'click', function() {
     $.ajax({
         url: 'index.php?route=checkout/payment_method/save',
         type: 'post',
-        data: $('.info_method input[type=\'radio\']:checked, .info_method input[type=\'checkbox\']:checked, .info_method textarea'),
+        data: $('.info_method input[type=\'radio\']:checked, .info_method input[type=\'checkbox\']:checked, .info_method input[type=\'text\']'),
         dataType: 'json',
         beforeSend: function() {
          	$('#button-payment-method').button('loading');
@@ -857,13 +868,12 @@ $(document).delegate('#button-payment-method', 'click', function() {
             $('.alert-dismissible, .text-danger').remove();
 
             if (json['redirect']) {
-                //location = json['redirect'];
-                console.log(json['redirect']);
+                location = json['redirect'];
             } else if (json['error']) {
                 $('#button-payment-method').button('reset');
                 
                 if (json['error']['warning']) {
-                    $('#collapse-payment-method .panel-body').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-payment-method').prepend('<div class="alert alert-danger alert-dismissible">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
             } else {
                 $.ajax({
@@ -875,6 +885,8 @@ $(document).delegate('#button-payment-method', 'click', function() {
                     success: function(html) {
                         //redirect sang trang confirm
                         $('#collapse-checkout-confirm').html(html);
+
+                        $('#f_checkout').hide();
 
 						//$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<a href="#collapse-checkout-confirm" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle">{{ text_checkout_confirm }} <i class="fa fa-caret-down"></i></a>');
 

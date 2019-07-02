@@ -54,7 +54,23 @@
  * @link      http://phpseclib.sourceforge.net
  */
 
-namespace App\Lib\Alepays\Crypt;
+/**#@+
+ * @access private
+ * @see self::Crypt_Hash()
+ */
+/**
+ * Toggles the internal implementation
+ */
+define('CRYPT_HASH_MODE_INTERNAL', 1);
+/**
+ * Toggles the mhash() implementation, which has been deprecated on PHP 5.3.0+.
+ */
+define('CRYPT_HASH_MODE_MHASH',    2);
+/**
+ * Toggles the hash() implementation, which works on PHP 5.1.2+.
+ */
+define('CRYPT_HASH_MODE_HASH',     3);
+/**#@-*/
 
 /**
  * Pure-PHP implementations of keyed-hash message authentication codes (HMACs) and various cryptographic hashing functions.
@@ -63,7 +79,7 @@ namespace App\Lib\Alepays\Crypt;
  * @author  Jim Wigginton <terrafrost@php.net>
  * @access  public
  */
-class Hash
+class Crypt_Hash
 {
     /**
      * Hash Parameter

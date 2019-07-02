@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 
 
@@ -19,9 +19,7 @@ if (!defined('DIR_APPLICATION')) {
 	exit;
 }
 
-require( './Lib/Alepay.php');
-require('./NL//NL_Checkoutv3.php');	
-require('./NL/nganluong.class.php');
+require_once( './Alepay/Lib/Alepay.php');
 
 // Startup
 require_once(DIR_SYSTEM . 'startup.php');

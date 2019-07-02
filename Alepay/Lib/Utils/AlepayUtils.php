@@ -1,19 +1,19 @@
 <?php
 
-
+include(ROOT_PATH . DS . 'Crypt/RSA.php');
 
 class AlepayUtils {
 
-    public function encryptData($data, $publicKey) {
-        $rsa = new RSA();
+    function encryptData($data, $publicKey) {
+        $rsa = new Crypt_RSA();
         $rsa->loadKey($publicKey); // public key
         $rsa->setEncryptionMode(CRYPT_RSA_ENCRYPTION_PKCS1);
         $output = $rsa->encrypt($data);
         return base64_encode($output);
     }
 
-    public function decryptData($data, $publicKey) {
-        $rsa = new RSA();
+    function decryptData($data, $publicKey) {
+        $rsa = new Crypt_RSA();
         $rsa->setEncryptionMode(CRYPT_RSA_ENCRYPTION_PKCS1);
         $ciphertext = base64_decode($data);
         $rsa->loadKey($publicKey); // public key
@@ -22,7 +22,7 @@ class AlepayUtils {
         return $output;
     }
 
-    public function decryptCallbackData($data, $publicKey) {
+    function decryptCallbackData($data, $publicKey) {
         $decoded = base64_decode($data);
         return $this->decryptData($decoded, $publicKey);
     }
