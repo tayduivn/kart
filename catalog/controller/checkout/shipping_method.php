@@ -68,6 +68,8 @@ class ControllerCheckoutShippingMethod extends Controller {
 		} else {
 			$data['comment'] = '';
 		}
+
+		$data['button_back'] = 'Trở về';
 		
 		$this->response->setOutput($this->load->view('checkout/shipping_method', $data));
 	}

@@ -209,9 +209,16 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 
 			$order_data['products'] = array();
+			$this->load->model('tool/image');
 
 			foreach ($this->cart->getProducts() as $product) {
 				$option_data = array();
+
+				if ($product['image']) {
+					$image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
+				} else {
+					$image = '';
+				}
 
 				foreach ($product['option'] as $option) {
 					$option_data[] = array(
@@ -228,6 +235,7 @@ class ControllerCheckoutConfirm extends Controller {
 				$order_data['products'][] = array(
 					'product_id' => $product['product_id'],
 					'name'       => $product['name'],
+					'thumb'     => $image,
 					'model'      => $product['model'],
 					'option'     => $option_data,
 					'download'   => $product['download'],
@@ -332,6 +340,12 @@ class ControllerCheckoutConfirm extends Controller {
 			foreach ($this->cart->getProducts() as $product) {
 				$option_data = array();
 
+				if ($product['image']) {
+					$image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
+				} else {
+					$image = '';
+				}
+
 				foreach ($product['option'] as $option) {
 					if ($option['type'] != 'file') {
 						$value = $option['value'];
@@ -377,6 +391,7 @@ class ControllerCheckoutConfirm extends Controller {
 					'cart_id'    => $product['cart_id'],
 					'product_id' => $product['product_id'],
 					'name'       => $product['name'],
+					'thumb'       => $image,
 					'model'      => $product['model'],
 					'option'     => $option_data,
 					'recurring'  => $recurring,
@@ -407,6 +422,8 @@ class ControllerCheckoutConfirm extends Controller {
 					'title' => $total['title'],
 					'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
 				);
+
+				$data['totals_text'] = $this->currency->format($total['value'], $this->session->data['currency']);
 			}
 
 			//$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
@@ -414,6 +431,12 @@ class ControllerCheckoutConfirm extends Controller {
 		} else {
 			$data['redirect'] = $redirect;
 		}
+
+		$data['button_back'] = 'Trở lại';
+
+		$data['order'] = $order_data;
+
+		$data['method'] = $this->session->data['payment_method_kingsport'];
 
 		$this->response->setOutput($this->load->view('checkout/confirm', $data));
 	}
@@ -424,7 +447,7 @@ class ControllerCheckoutConfirm extends Controller {
         $method = $this->session->data['payment_method_kingsport'];
 
         if($this->session->data['payment_method_kingsport'] == 'home') {
-            //save lai
+            $json['redirect'] = $this->url->link('checkout/success');
         }else
             if($this->session->data['payment_method_kingsport'] == 'alepay') {
             $result = $this->alepay();
@@ -451,7 +474,7 @@ class ControllerCheckoutConfirm extends Controller {
     }
 
     public function alepay() {
-
+		$this->load->model('account/customer');
         if ($this->customer->isLogged()) {
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
             $firstname = $customer_info['firstname'];
@@ -523,7 +546,7 @@ class ControllerCheckoutConfirm extends Controller {
     }
 
     public function alepay_qt() {
-
+		$this->load->model('account/customer');
         if ($this->customer->isLogged()) {
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
             $firstname = $customer_info['firstname'];
@@ -599,7 +622,7 @@ class ControllerCheckoutConfirm extends Controller {
     }
 
     public function nganluong() {
-
+    	$this->load->model('account/customer');
         if ($this->customer->isLogged()) {
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
             $firstname = $customer_info['firstname'];

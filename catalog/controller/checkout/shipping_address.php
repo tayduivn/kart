@@ -53,6 +53,8 @@ class ControllerCheckoutShippingAddress extends Controller {
 		} else {
 			$data['shipping_address_custom_field'] = array();
 		}
+
+		$data['button_back'] = 'Trở về';
 		
 		$this->response->setOutput($this->load->view('checkout/shipping_address', $data));
 	}

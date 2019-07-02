@@ -70,6 +70,8 @@ class ControllerCheckoutRegister extends Controller {
 		}
 
 		$data['shipping_required'] = $this->cart->hasShipping();
+
+		$data['button_back'] = 'Trở về';
 		
 		$this->response->setOutput($this->load->view('checkout/register', $data));
 	}

@@ -136,6 +136,8 @@ class ControllerCheckoutGuest extends Controller {
 		} else {
 			$data['captcha'] = '';
 		}
+
+		$data['button_back'] = "Trở về";
 		
 		$this->response->setOutput($this->load->view('checkout/guest', $data));
 	}

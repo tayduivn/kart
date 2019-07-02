@@ -1,63 +1,115 @@
 {% if not redirect %}
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <td class="text-left">{{ column_name }}</td>
-                <td class="text-left">{{ column_model }}</td>
-                <td class="text-right">{{ column_quantity }}</td>
-                <td class="text-right">{{ column_price }}</td>
-                <td class="text-right">{{ column_total }}</td>
-            </tr>
-            </thead>
-            <tbody>
+    
 
-            {% for product in products %}
-                <tr>
-                    <td class="text-left"><a
-                                href="{{ product.href }}">{{ product.name }}</a> {% for option in product.option %}
-                            <br/>
-                            &nbsp;
-                            <small> - {{ option.name }}: {{ option.value }}</small> {% endfor %}
-                        {% if product.recurring %} <br/>
-                            <span class="label label-info">{{ text_recurring_item }}</span>
-                            <small>{{ product.recurring }}</small> {% endif %}</td>
-                    <td class="text-left">{{ product.model }}</td>
-                    <td class="text-right">{{ product.quantity }}</td>
-                    <td class="text-right">{{ product.price }}</td>
-                    <td class="text-right">{{ product.total }}</td>
-                </tr>
-            {% endfor %}
-            {% for voucher in vouchers %}
-                <tr>
-                    <td class="text-left">{{ voucher.description }}</td>
-                    <td class="text-left"></td>
-                    <td class="text-right">1</td>
-                    <td class="text-right">{{ voucher.amount }}</td>
-                    <td class="text-right">{{ voucher.amount }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-
-            <tfoot>
-
-            {% for total in totals %}
-                <tr>
-                    <td colspan="4" class="text-right"><strong>{{ total.title }}:</strong></td>
-                    <td class="text-right">{{ total.text }}</td>
-                </tr>
-            {% endfor %}
-            </tfoot>
-
-        </table>
-    </div>
-    {{ payment }}
-    <div class="buttons clearfix">
-        <div class="pull-right">
-            <input type="button" value="Finish" id="button-payment-finish" data-loading-text="{{ text_loading }}"
-                   class="btn btn-primary"/>
+<form action="#" method="post" name="f_checkout_2" id="f_checkout_2">
+  <div class="info_order">
+     <div class="col-md-8 f1st">
+        <div class="info-order">
+           <div class="wrap-info-order">
+              <div class="div_title">Thông tin đặt hàng</div>
+              <table class="table-order">
+                 <thead>
+                    <tr>
+                       <td width="285px">Tên sản phẩm</td>
+                       <td width="112px" align="center">Giá</td>
+                       <td width="61px" align="center">SL</td>
+                       <td width="146px" align="center">Thành tiền</td>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    {% for product in products %}
+                    <td>
+                        {% if product.thumb %}
+                            <div class="img">
+                                <a href="{{ product.href }}">
+                                    <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+                    </td>
+                    <td align="right">{{ product.price }}</td>
+                    <td align="center">{{ product.quantity }}</td>
+                    <td>{{ product.total }}</td>
+                    {% endfor %}
+                    <tr>
+                       <td colspan="3" align="right">Tổng giỏ hàng</td>
+                       <td>{{ totals_text }}</td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                       <td colspan="3" align="right">Thành tiền</td>
+                       <td>{{ totals_text }}</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
         </div>
-    </div>
+     </div>
+
+     <div class="col-md-4 s2nd">
+        <div style="margin-bottom: 30px;" class="info_customer">
+           <div class="div_title">Thông tin đặt hàng</div>
+           <div>
+              <div class="sub_title">Thông tin thanh toán</div>
+              <div class="info-form">
+                 Họ tên: <b>{{ order['firstname'] }} {{ order['lastname'] }}</b><br>
+                 Địa chỉ : {{ order['payment_address_1'] }}<br>
+                 Điện thoại : {{ order['telephone'] }}<br>
+                 E-mail : {{ order['email'] }}
+              </div>
+           </div>
+           <div>
+              <div class="sub_title">Thông tin giao hàng</div>
+              <div class="info-form">
+                 Họ tên: <b>{{ order['shipping_firstname'] }} {{ order['shipping_lastname'] }}</b><br>
+                 Địa chỉ : {{ order['shipping_address_1'] }}<br>
+                 Điện thoại : {{ order['telephone'] }}
+              </div>
+           </div>
+           <div>
+              <div class="sub_title">Phương thức giao hàng</div>
+              <div class="info-form">
+                 <strong>Giao hàng tận nơi</strong> 
+                 <div>Theo chính sách giao hàng của công ty. Cước phí vận chuyển sẽ được thông báo trực tiếp đến khách hàng</div>
+              </div>
+           </div>
+           <div class="last_f">
+              <div class="sub_title">Phương thức thanh toán</div>
+              <div class="info-form">
+                 {% if method == 'home' %}   
+                 <strong>Thanh Toán Tại Nhà</strong> 
+                 <div>Giao hàng và thu tiền tại nhà đối với các khách hàng ở khu vực Chi Nhánh trực thuộc của công ty và các vùng lân cận.</div>
+                 {% endif %}
+                 {% if method == 'alepay' %}   
+                 <strong>Trả góp online</strong> 
+                 <div>Thanh toán trả góp bằng thẻ tín dụng quốc tế Visa, Master, JCB</div>
+                 {% endif %}
+                 {% if method == 'nganluong' %}   
+                 <strong>Thanh toán online thẻ ATM</strong> 
+                 <div>Bằng thẻ ATM nội địa</div>
+                 {% endif %}
+                 {% if method == 'alepay_qt' %}   
+                 <strong>Thanh toán online thẻ quốc tế</strong> 
+                 <div><strong>Thanh toán qua thẻ Visa, Master Card, JCB</strong><br>
+                                                            Lưu ý: "Quý khách vui lòng nhập đúng thông tin họ và tên để thực hiện thanh toán và thực hiện xác nhận 3D – Secure".</div>
+                 {% endif %}
+              </div>
+           </div>
+        </div>
+        <div class="buttons clearfix">
+            <div class="pull-left">
+                <button class="btn btn-default" id="button-payment-finish-back" type="button">{{ button_back }}</button>
+            </div>
+            <div class="pull-right">
+                <input type="button" value="Xác nhận" id="button-payment-finish" data-loading-text="{{ text_loading }}"
+                       class="btn btn-primary"/>
+            </div>
+        </div>
+     </div>
+     <div class="clear"></div>
+  </div>
+</form>
     <script type="text/javascript"><!--
         $(document).delegate('#button-payment-finish', 'click', function () {
             $.ajax({
