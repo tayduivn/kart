@@ -105,7 +105,11 @@ class ModelWebBlog extends Model {
 
 	public function getBlogs($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM " . DB_PREFIX . "blog i LEFT JOIN " . DB_PREFIX . "blog_description id ON (i.blog_id = id.blog_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT id.*, i.*, bcd.title as category_title FROM " . DB_PREFIX . "blog i LEFT JOIN " . DB_PREFIX . "blog_description id ON (i.blog_id = id.blog_id) LEFT JOIN " . DB_PREFIX . "blog_category_description bcd ON (bcd.category_id = i.category_id)  WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+			if ( isset($data['category']) && !empty($data['category'])  ) {
+				$sql .= ' AND i.category_id = ' . (int)$data['category'];
+			}
 
 			$sort_data = array(
 				'id.title',

@@ -311,6 +311,29 @@ class ModelCatalogProduct extends Model {
         AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) 
         AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) GROUP BY ps.product_id";
 
+		if (isset($data['category_id'])) {
+            $sql = "SELECT DISTINCT ps.product_id, 
+            (SELECT AVG(rating) FROM " . DB_PREFIX . "review r1 
+            WHERE r1.product_id = ps.product_id AND r1.status = '1' 
+            GROUP BY r1.product_id) AS rating 
+            FROM " . DB_PREFIX . "product_special ps 
+            LEFT JOIN " . DB_PREFIX . "product p 
+            ON (ps.product_id = p.product_id) 
+            LEFT JOIN " . DB_PREFIX . "product_description pd 
+            ON (p.product_id = pd.product_id) 
+            LEFT JOIN " . DB_PREFIX . "product_to_store p2s 
+            ON (p.product_id = p2s.product_id) 
+            LEFT JOIN " . DB_PREFIX . "product_to_category p2c 
+            ON (p.product_id = p2c.product_id) 
+            LEFT JOIN " . DB_PREFIX . "category_path cp ON (cp.category_id = p2c.category_id) 
+            WHERE p.status = '1' AND p.date_available <= NOW()  
+            AND p2c.category_id = '" . (int)$data['category_id'] . "'
+            AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' 
+            AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' 
+            AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) 
+            AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) GROUP BY ps.product_id";
+        }
+
 		$sort_data = array(
 			'pd.name',
 			'p.model',
@@ -434,7 +457,7 @@ class ModelCatalogProduct extends Model {
 		    $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p 
             LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) 
             WHERE p.status = '1' AND p.date_available <= NOW() 
-            AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND p.is_new = 0 
+            AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND p.is_new = 1 
             ORDER BY p.date_added DESC ";
 
 		    if($limit) {
@@ -546,10 +569,24 @@ class ModelCatalogProduct extends Model {
 		$product_data = array();
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_related pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
-
-		foreach ($query->rows as $result) {
-			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
-		}
+        
+        if ( $query->num_rows == 0 ) {
+            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE product_id = " . (int)$product_id . " LIMIT 0, 1");
+            
+            $category_id = $query->row['category_id'];
+            
+            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) INNER JOIN " . DB_PREFIX . "product_to_category as p2c ON(p.product_id = p2c.product_id) WHERE p2c.category_id = '" . (int)$category_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+        
+            foreach ($query->rows as $result) {
+    			$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
+    		}
+        }else {
+            foreach ($query->rows as $result) {
+    			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
+    		}
+        }
+        
+		
 
 		return $product_data;
 	}

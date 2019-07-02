@@ -40,6 +40,7 @@
                     {% else %}
                     <a href="{{ sort_name }}">{{ column_title }}</a>
                     {% endif %}</td>
+                  <td>{{ column_category }}</td>  
                   <td class="text-right">{% if sort == 'sort_order' %}
                     <a href="{{ sort_sort_order }}" class="{{ order|lower }}">{{ column_sort_order }}</a>
                     {% else %}
@@ -58,6 +59,7 @@
                     <input type="checkbox" name="selected[]" value="{{ blog.blog_id }}" />
                     {% endif %}</td>
                   <td class="text-left">{{ blog.title }}</td>
+                  <td class="text-left"><a href='{{ blog.category_filter }}'>{{ blog.category_title }}</a></td>
                   <td class="text-right">{{ blog.sort_order }}</td>
                   <td class="text-right"><a href="{{ blog.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>

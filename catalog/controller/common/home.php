@@ -17,14 +17,26 @@ class ControllerCommonHome extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 
         
-        $this->load->model('setting/module');
-        $setting_info = $this->model_setting_module->getModulesByCode('recently_viewed');
+        
+        $setting_info = [
+            'limit' => 12,
+            'width' => 298,
+            'height' => 298
+        ];
+        //$this->load->model('setting/module');
+        //$setting_info = $this->model_setting_module->getModulesByCode('recently_viewed');
         $data['recently_viewed'] = $this->load->controller('extension/module/recently_viewed', $setting_info);
         
-        $setting_info = $this->model_setting_module->getModulesByCode('special');
+        
+        $setting_info = [
+            'limit' => 16,
+            'width' => 265,
+            'height' => 265
+        ];
+        //$setting_info = $this->model_setting_module->getModulesByCode('special');
         $data['special'] = $this->load->controller('extension/module/special', $setting_info);
         
-        $setting_info = $this->model_setting_module->getModulesByCode('bestseller');
+        //$setting_info = $this->model_setting_module->getModulesByCode('bestseller');
         $data['bestseller'] = $this->load->controller('extension/module/bestseller', $setting_info);
         
         $data['newest'] = $this->load->controller('extension/module/newest', $setting_info);
@@ -42,6 +54,8 @@ class ControllerCommonHome extends Controller {
         $data['mobile_home_menu'] = $this->load->controller('common/mobile_home_menu');
 
         $data['block'] = $this->load->controller('common/block');
+
+        $data['product_other'] = $this->load->controller('common/product_other');
 
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}

@@ -10,9 +10,9 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 
 			// Validate if shipping method has been set.
-			if (!isset($this->session->data['shipping_method'])) {
-				$redirect = $this->url->link('checkout/checkout', '', true);
-			}
+//			if (!isset($this->session->data['shipping_method'])) {
+//				$redirect = $this->url->link('checkout/checkout', '', true);
+//			}
 		} else {
 			unset($this->session->data['shipping_address']);
 			unset($this->session->data['shipping_method']);
@@ -25,9 +25,9 @@ class ControllerCheckoutConfirm extends Controller {
 		}
 
 		// Validate if payment method has been set.
-		if (!isset($this->session->data['payment_method'])) {
-			$redirect = $this->url->link('checkout/checkout', '', true);
-		}
+//		if (!isset($this->session->data['payment_method'])) {
+//			$redirect = $this->url->link('checkout/checkout', '', true);
+//		}
 
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
@@ -66,6 +66,8 @@ class ControllerCheckoutConfirm extends Controller {
 				'taxes'  => &$taxes,
 				'total'  => &$total
 			);
+
+			$this->session->data['total_data'] = $total_data;
 
 			$this->load->model('setting/extension');
 
@@ -407,11 +409,259 @@ class ControllerCheckoutConfirm extends Controller {
 				);
 			}
 
-			$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
+			//$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
+
 		} else {
 			$data['redirect'] = $redirect;
 		}
 
 		$this->response->setOutput($this->load->view('checkout/confirm', $data));
 	}
+
+	public function finish() {
+        $json = array();
+
+        $method = $this->session->data['payment_method_kingsport'];
+
+        if($this->session->data['payment_method_kingsport'] == 'home') {
+            //save lai
+        }else
+            if($this->session->data['payment_method_kingsport'] == 'alepay') {
+            $result = $this->alepay();
+            if(isset($result->checkoutUrl)) {
+                $json['redirect'] = $result->checkoutUrl;
+            }else {
+                $json['error'] = $result->errorDescription;
+            }
+
+        }else if($this->session->data['payment_method_kingsport'] == 'nganluong') {
+             $json['redirect'] = $this->nganluong();
+
+        }else if($this->session->data['payment_method_kingsport'] == 'alepay_qt') {
+            $result = $this->alepay_qt();
+            if(isset($result->checkoutUrl)) {
+                $json['redirect'] = $result->checkoutUrl;
+            }else {
+                $json['error'] = $result->errorDescription;
+            }
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
+
+    public function alepay() {
+
+        if ($this->customer->isLogged()) {
+            $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+            $firstname = $customer_info['firstname'];
+            $lastname = $customer_info['lastname'];
+            $email = $customer_info['email'];
+            $telephone = $customer_info['telephone'];
+        } elseif (isset($this->session->data['guest'])) {
+            $firstname = $this->session->data['guest']['firstname'];
+            $lastname = $this->session->data['guest']['lastname'];
+            $email = $this->session->data['guest']['email'];
+            $telephone = $this->session->data['guest']['telephone'];
+        }
+
+        $product_desc = '';
+        $nums = 0;
+        foreach ($this->cart->getProducts() as $product) {
+            $product_desc .= $product['model'] . "-" . $product['name'] . ":" . $product['quantity'] . 'x' . $this->currency->format($product['price'], $this->session->data['currency']) . '=' . $this->currency->format($product['total'], $this->session->data['currency']) . "\n";
+            $nums += $product['quantity'];
+        }
+
+        $total_data = $this->session->data['total_data'];
+
+        $price = (int)$total_data['total']['value'] ;
+
+        $buyerAddress = !empty($this->session->data['payment_address']['address_1']) ? $this->session->data['payment_address']['address_1'] : $this->session->data['shipping_address']['address_1'];
+        $buyerCity = !empty($this->session->data['payment_address']['city']) ? $this->session->data['payment_address']['city'] : $this->session->data['shipping_address']['city'];
+        $buyerCountry = !empty($this->session->data['payment_address']['country']) ? $this->session->data['payment_address']['country'] : $this->session->data['shipping_address']['country'];
+
+
+        $config = array(
+            "apiKey" => "0COVspcyOZRNrsMsbHTdt8zesP9m0y", //Là key dùng để xác định tài khoản nào đang được sử dụng.
+            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIh+tv4h3y4piNwwX2WaDa7lo0uL7bo7vzp6xxNFc92HIOAo6WPZ8fT+EXURJzORhbUDhedp8B9wDsjgJDs9yrwoOYNsr+c3x8kH4re+AcBx/30RUwWve8h/VenXORxVUHEkhC61Onv2Y9a2WbzdT9pAp8c/WACDPkaEhiLWCbbwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
+            "checksumKey" => "hjuEmsbcohOwgJLCmJlf7N2pPFU1Le", //Là key dùng để tạo checksum data.
+            "callbackUrl" => $this->url->link('checkout/success'),
+            "env" => "test",
+        );
+        $alepay = new Alepay($config);
+        $data = array();
+
+        $data['cancelUrl'] = $this->url->link('checkout/failure');
+        $data['amount'] = intval(preg_replace('@\D+@', '', $price));
+        $data['orderCode'] = $this->session->data['order_id'];
+        $data['currency'] = 'VND';
+        $data['orderDescription'] = $product_desc;
+        $data['totalItem'] = intval($nums);
+        $data['checkoutType'] = 3; // Thanh toán trả góp + nội địa + quốc tế
+        $data['buyerName'] = trim($firstname . $lastname);
+        $data['buyerEmail'] = trim($email);
+        $data['buyerPhone'] = trim($telephone);
+        $data['buyerAddress'] = trim($buyerAddress);
+        $data['buyerCity'] = trim($buyerCity);
+        $data['buyerCountry'] = trim($buyerCountry);
+//        $data['month'] = 3;
+        $data['paymentHours'] = 48; //48 tiếng :  Thời gian cho phép thanh toán (tính bằng giờ)
+
+
+        foreach ($data as $k => $v) {
+            if (empty($v)) {
+                $alepay->return_json("NOK", "Bắt buộc phải nhập/chọn tham số [ " . $k . " ]");
+                die();
+            }
+        }
+        $data['allowDomestic'] = true;
+
+
+        $result = $alepay->sendOrderToAlepay($data); // Khởi tạo
+
+        return $result;
+    }
+
+    public function alepay_qt() {
+
+        if ($this->customer->isLogged()) {
+            $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+            $firstname = $customer_info['firstname'];
+            $lastname = $customer_info['lastname'];
+            $email = $customer_info['email'];
+            $telephone = $customer_info['telephone'];
+        } elseif (isset($this->session->data['guest'])) {
+            $firstname = $this->session->data['guest']['firstname'];
+            $lastname = $this->session->data['guest']['lastname'];
+            $email = $this->session->data['guest']['email'];
+            $telephone = $this->session->data['guest']['telephone'];
+        }
+
+        $product_desc = '';
+        $nums = 0;
+        foreach ($this->cart->getProducts() as $product) {
+            $product_desc .= $product['model'] . "-" . $product['name'] . ":" . $product['quantity'] . 'x' . $this->currency->format($product['price'], $this->session->data['currency']) . '=' . $this->currency->format($product['total'], $this->session->data['currency']) . "\n";
+            $nums += $product['quantity'];
+        }
+
+        $total_data = $this->session->data['total_data'];
+        $first_charge = $this->session->data['comment_price'];
+
+        $price = !empty($first_charge) ? $first_charge : (int)$total_data['total']['value'] ;
+
+        $buyerAddress = !empty($this->session->data['payment_address']['address_1']) ? $this->session->data['payment_address']['address_1'] : $this->session->data['shipping_address']['address_1'];
+        $buyerCity = !empty($this->session->data['payment_address']['city']) ? $this->session->data['payment_address']['city'] : $this->session->data['shipping_address']['city'];
+        $buyerCountry = !empty($this->session->data['payment_address']['country']) ? $this->session->data['payment_address']['country'] : $this->session->data['shipping_address']['country'];
+
+        $config = array(
+            "apiKey" => "0COVspcyOZRNrsMsbHTdt8zesP9m0y", //Là key dùng để xác định tài khoản nào đang được sử dụng.
+            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIh+tv4h3y4piNwwX2WaDa7lo0uL7bo7vzp6xxNFc92HIOAo6WPZ8fT+EXURJzORhbUDhedp8B9wDsjgJDs9yrwoOYNsr+c3x8kH4re+AcBx/30RUwWve8h/VenXORxVUHEkhC61Onv2Y9a2WbzdT9pAp8c/WACDPkaEhiLWCbbwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
+            "checksumKey" => "hjuEmsbcohOwgJLCmJlf7N2pPFU1Le", //Là key dùng để tạo checksum data.
+            "callbackUrl" => $this->url->link('checkout/success'),
+            "env" => "test",
+        );
+
+        $alepay = new Alepay($config);
+        $data = array();
+
+        $data['cancelUrl'] = $this->url->link('checkout/failure');
+        $data['amount'] = intval(preg_replace('@\D+@', '', $price));
+        $data['orderCode'] = $this->session->data['order_id'];
+        $data['currency'] = 'VND';
+        $data['orderDescription'] = $product_desc;
+        if(!empty($first_charge)) {
+            $data['orderDescription'] = $product_desc . "Trả trước:" . $this->currency->format($first_charge, $this->session->data['currency']);
+        }
+        $data['totalItem'] = intval($nums);
+        $data['checkoutType'] = 1; // Thanh toán trả góp + nội địa + quốc tế
+        $data['buyerName'] = trim($firstname . $lastname);
+        $data['buyerEmail'] = trim($email);
+        $data['buyerPhone'] = trim($telephone);
+        $data['buyerAddress'] = $buyerAddress;
+        $data['buyerCity'] = trim($buyerCity);
+        $data['buyerCountry'] = trim($buyerCountry);
+//        $data['month'] = 3;
+        $data['paymentHours'] = 48; //48 tiếng :  Thời gian cho phép thanh toán (tính bằng giờ)
+
+
+        foreach ($data as $k => $v) {
+            if (empty($v)) {
+                $alepay->return_json("NOK", "Bắt buộc phải nhập/chọn tham số [ " . $k . " ]");
+                die();
+            }
+        }
+        $data['allowDomestic'] = true;
+
+
+        $result = $alepay->sendOrderToAlepay($data); // Khởi tạo
+
+        return $result;
+    }
+
+    public function nganluong() {
+
+        if ($this->customer->isLogged()) {
+            $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+            $firstname = $customer_info['firstname'];
+            $lastname = $customer_info['lastname'];
+            $email = $customer_info['email'];
+            $telephone = $customer_info['telephone'];
+        } elseif (isset($this->session->data['guest'])) {
+            $firstname = $this->session->data['guest']['firstname'];
+            $lastname = $this->session->data['guest']['lastname'];
+            $email = $this->session->data['guest']['email'];
+            $telephone = $this->session->data['guest']['telephone'];
+        }
+
+        $product_desc = '';
+        foreach ($this->cart->getProducts() as $product) {
+            $product_desc .= $product['model'] . "-" . $product['name'] . ":" . $product['quantity'] . 'x' . $this->currency->format($product['price'], $this->session->data['currency']) . '=' . $this->currency->format($product['total'], $this->session->data['currency']) . "\n";
+        }
+
+        $total_data = $this->session->data['total_data'];
+        $first_charge = $this->session->data['comment_price'];
+
+        //Mã đơn hàng
+        $order_code= $this->session->data['order_id'];
+        //Khai báo url trả về
+        $return_url= $this->url->link('checkout/success');
+        // Link nut hủy đơn hàng
+        $cancel_url= $this->url->link('checkout/failure');
+        //Giá của cả giỏ hàng
+//        $txh_name = $_POST['txh_name'];
+//        $txt_email = $_POST['txt_email'];
+//        $txt_phone = $_POST['txt_phone'];
+
+        $price = !empty($first_charge) ? $first_charge : (int)$total_data['total']['value'] ;
+
+        //Thông tin giao dịch
+        $buyer_info = $firstname . " ".$lastname . " - ".$telephone . " - " . $email;
+        $transaction_info= $buyer_info;
+        $currency= "vnd";
+        $quantity=1;
+        $tax=0;
+        $discount=0;
+        $fee_cal=0;
+        $fee_shipping=0;
+        $order_description="Thông tin đơn hàng: " . $product_desc;
+        if($first_charge) {
+            $order_description="Thông tin đơn hàng: " . $product_desc . "Trả trước:" . $this->currency->format($first_charge, $this->session->data['currency']);
+        }
+        $buyer_info = $firstname . " ".$lastname . " - ".$telephone . " - " . $email;
+        $affiliate_code="";
+
+        //Khai báo đối tượng của lớp NL_Checkout
+        $nl= new NL_Checkout();
+
+        $receiver = 'demo@nganluong.vn';
+        $nl->nganluong_url = 'https://www.nganluong.vn/checkout.php';
+        $nl->merchant_site_code = '36680';
+        $nl->secure_pass = 'matkhauketnoi';
+
+        //Tạo link thanh toán đến nganluong.vn
+        $url= $nl->buildCheckoutUrlExpand($return_url, $receiver, $transaction_info, $order_code, $price, $currency, $quantity, $tax, $discount , $fee_cal,    $fee_shipping, $order_description, $buyer_info , $affiliate_code);
+        //$url= $nl->buildCheckoutUrl($return_url, $receiver, $transaction_info, $order_code, $price);
+
+        return $url .='&cancel_url='. $cancel_url;
+    }
 }

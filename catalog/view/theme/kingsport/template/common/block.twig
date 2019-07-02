@@ -6,9 +6,10 @@
 				<h2>{{ block['block']['title'] }}</h2>
 			</div>
 			<div class="product-tab-nav">
-				<ul id="category-mega-nav-2">
-					<li class="active"><a href="javascript:void(0)" data-type="tab-category-1">Sản phẩm nổi bật</a></li>
-					<li><a href="javascript:void(0)" data-type="tab-category-2">Khuyến mãi tháng 6</a></li>
+				<ul id="category-mega-nav-{{ block['block']['block_id'] }}">
+					<li class="active"><a href="javascript:void(0)" data-type="tab-category-1-{{ block['block']['block_id'] }}">Sản phẩm nổi bật</a></li>
+					<li><a href="javascript:void(0)" data-type="tab-category-2-{{ block['block']['block_id'] }}">Khuyến mãi tháng 6</a></li>
+					<li><a href="javascript:void(0)" data-type="tab-category-3-{{ block['block']['block_id'] }}">Sản phẩm mới</a></li>
 			</div>
 		</div>
 		<div class="product-wrapper">
@@ -31,10 +32,11 @@
 					</div>
 				</div>
 				<div class="col-12 col-lg-9">
-					<div class="tab-category" id="tab-product-wrapper-2">
+					<div class="tab-category" id="tab-product-wrapper-{{ block['block']['block_id'] }}">
                     
-						<div class="tab-panel-category active" id="tab-category-1">
-							<div class="swiper-container swipper-nested-product-1" id="swiper-nested-2v1">
+						<div class="tab-panel-category active" id="tab-category-1-{{ block['block']['block_id'] }}">
+							<div class="swiper-container swipper-nested-product-1" 
+							id="swiper-nested-1v{{ block['block']['block_id'] }}">
 								<div class="swiper-wrapper">
                                 
                                     {% for product in block['feature'] %}
@@ -91,12 +93,70 @@
 								<div class="button-next-product"><i class="mdi mdi-chevron-right"></i></div>
 							</div>
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-product-2v1"></div>
+								<div 
+								class="swiper-pagination swiper-pagination-product-1v{{ block['block']['block_id'] }}">
+								</div>
 							</div>
+                            <script>
+                            	
+                                new Swiper("#swiper-nested-1v{{ block['block']['block_id'] }}", {
+                                    lazy: !0,
+                                    preloadImages: !1,
+                                    watchSlidesVisibility: !0,
+                                    direction: "horizontal",
+                                    slidesPerColumn: 1,
+                                    observer: !0,
+                                    observeParents: !0,
+                                    observeSlideChildren: !0,
+                                    simulateTouch: !0,
+                                    navigation: {
+                                        nextEl: ".button-next-product",
+                                        prevEl: ".button-prev-product"
+                                    },
+                                    pagination: {
+                                        el: ".swiper-pagination-product-1v{{ block['block']['block_id'] }}",
+                                        type: "bullets"
+                                    },
+                                    breakpointsInverse: !0,
+                                    breakpoints: {
+                                        0: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5
+                                        },
+                                        576: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        768: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        992: {
+                                            slidesPerView: 3,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        1200: {
+                                            touchEventsTarget: ".figure",
+                                            simulateTouch: !0,
+                                            draggable: !0,
+                                            slidesPerView: 3,
+                                            grabCursor: !0,
+                                            spaceBetween: 0,
+                                            centeredSlides: !1
+                                        }
+                                    }
+                                });
+                            </script>
 						</div>
                         
-						<div class="tab-panel-category" id="tab-category-2">
-							<div class="swiper-container swipper-nested-product-1" id="swiper-nested-2v2">
+						<div class="tab-panel-category" id="tab-category-2-{{ block['block']['block_id'] }}">
+							<div class="swiper-container swipper-nested-product-1" id="swiper-nested-2v{{ block['block']['block_id'] }}">
 								<div class="swiper-wrapper">
                                 
 									
@@ -154,11 +214,183 @@
 								<div class="button-next-product"><i class="mdi mdi-chevron-right"></i></div>
 							</div>
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-product-2v2"></div>
+								<div class="swiper-pagination swiper-pagination-product-2v{{ block['block']['block_id'] }}"></div>
 							</div>
+                            
+                            <script>
+                                new Swiper("#swiper-nested-2v{{ block['block']['block_id'] }}", {
+                                    lazy: !0,
+                                    preloadImages: !1,
+                                    watchSlidesVisibility: !0,
+                                    direction: "horizontal",
+                                    slidesPerColumn: 1,
+                                    observer: !0,
+                                    observeParents: !0,
+                                    observeSlideChildren: !0,
+                                    simulateTouch: !0,
+                                    navigation: {
+                                        nextEl: ".button-next-product",
+                                        prevEl: ".button-prev-product"
+                                    },
+                                    pagination: {
+                                        el: ".swiper-pagination-product-2v{{ block['block']['block_id'] }}",
+                                        type: "bullets"
+                                    },
+                                    breakpointsInverse: !0,
+                                    breakpoints: {
+                                        0: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5
+                                        },
+                                        576: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        768: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        992: {
+                                            slidesPerView: 3,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        1200: {
+                                            touchEventsTarget: ".figure",
+                                            simulateTouch: !0,
+                                            draggable: !0,
+                                            slidesPerView: 3,
+                                            grabCursor: !0,
+                                            spaceBetween: 0,
+                                            centeredSlides: !1
+                                        }
+                                    }
+                                });
+                            </script>
 						</div>
 						
-				
+						<div class="tab-panel-category" id="tab-category-3-{{ block['block']['block_id'] }}">
+							<div class="swiper-container swipper-nested-product-1" id="swiper-nested-3v{{ block['block']['block_id'] }}">
+								<div class="swiper-wrapper">
+									
+									{% for product in block['newest'] %}
+									<div class="swiper-slide">
+										<figure class="figure">
+											<div class="hot-item">
+												<h5>Hot</h5>
+											</div>
+											<div class="figure-image">
+                                                <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+												<!--<div class="swiper-lazy-preloader"></div>-->
+												<div class="add-cart">
+													<ul>
+														<li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
+                                                            <div class="label">
+                                                                <p>Lưu sản phẩm</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="mdi mdi-cart"></i></a>
+                                                            <div class="label">
+                                                                <p>Giỏ hàng</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a href="{{ product.href }}"><i class="mdi mdi-eye"></i></a>
+                                                            <div class="label">
+                                                                <p>Chi tiết</p>
+                                                            </div>
+                                                        </li>
+													</ul>
+												</div>
+											</div>
+											<div class="figure-caption">
+												<div class="caption-price">
+													{% if not product.special %}
+                                                        <h5>{{ product.price }}<span></span></h5>
+                                                    {% else %}
+                                                        <p>
+                                                            <s>{{ product.price }}</s>{{ product.percent }}
+                                                        </p>
+                                                        <h5>{{ product.special }}<span></span></h5>
+                                                    {% endif %}
+												</div>
+												<h5>{{ product.name }}</h5>
+												<div class="gift">
+													{{ product.gift|raw }}
+												</div>
+											</div>
+										</figure>
+									</div>
+                                    {% endfor %}
+								</div>
+								<div class="button-prev-product"><i class="mdi mdi-chevron-left"></i></div>
+								<div class="button-next-product"><i class="mdi mdi-chevron-right"></i></div>
+							</div>
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-product-3v{{ block['block']['block_id'] }}"></div>
+							</div>
+                            
+                            <script>
+                                new Swiper("#swiper-nested-3v{{ block['block']['block_id'] }}", {
+                                    lazy: !0,
+                                    preloadImages: !1,
+                                    watchSlidesVisibility: !0,
+                                    direction: "horizontal",
+                                    slidesPerColumn: 1,
+                                    observer: !0,
+                                    observeParents: !0,
+                                    observeSlideChildren: !0,
+                                    simulateTouch: !0,
+                                    navigation: {
+                                        nextEl: ".button-next-product",
+                                        prevEl: ".button-prev-product"
+                                    },
+                                    pagination: {
+                                        el: ".swiper-pagination-product-3v{{ block['block']['block_id'] }}",
+                                        type: "bullets"
+                                    },
+                                    breakpointsInverse: !0,
+                                    breakpoints: {
+                                        0: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5
+                                        },
+                                        576: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        768: {
+                                            slidesPerView: 2,
+                                            slidesPerColumn: 2,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        992: {
+                                            slidesPerView: 3,
+                                            spaceBetween: 5,
+                                            centeredSlides: !1
+                                        },
+                                        1200: {
+                                            touchEventsTarget: ".figure",
+                                            simulateTouch: !0,
+                                            draggable: !0,
+                                            slidesPerView: 3,
+                                            grabCursor: !0,
+                                            spaceBetween: 0,
+                                            centeredSlides: !1
+                                        }
+                                    }
+                                });
+                            </script>
+						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -172,4 +404,11 @@
 		</div>
 	</div>
 </section>
+<script>
+	$("ul#category-mega-nav-{{ block['block']['block_id'] }} li a").on("click", function() {
+        $(this).parents("ul#category-mega-nav-{{ block['block']['block_id'] }}").find("li").removeClass("active"), $(this).parents("li").addClass("active");
+        var e = $(this).attr("data-type");
+        $("#tab-product-wrapper-{{ block['block']['block_id'] }} > .tab-panel-category").removeClass("active"), $("#tab-product-wrapper-{{ block['block']['block_id'] }} > #" + e).addClass("active")
+    });
+</script>
 {% endfor %}

@@ -1,0 +1,67 @@
+{% if categories %}
+<nav class="laptop-navigation-all">
+    <ul class="navbar-list navbar-list-top">
+        <li class="nav-link" style="background:#EE1C25;"><a href="javascript:void(0)">
+                <div id="category-toggle" class="category"><i class="fas fa-bars"><span>danh mục sản phẩm</span></i></div></a>
+        </li>
+    </ul>
+	<script>
+		$('#category-toggle').click(function () {
+			var laptop = $('.laptop-navigation-all');
+			if(laptop.hasClass('active')) {
+                laptop.removeClass('active');
+			}else {
+                laptop.addClass('active');
+			}
+        });
+	</script>
+	<ul class="navbar-list navbar-list-bottom">
+        {% for category in categories %}  
+        {% if category.children %}      
+		<li class="nav-link"><a href="{{ category.href }}">{{ category.name }}</a>
+			<div class="material-line"></div>
+			<ul class="mega-menu">
+				<div class="mega-menu-list">
+					<div class="row">
+						<div class="col-2">
+							<div class="nav-sub-image">
+							{% if category.thumb %}
+							<img class="img-fluid" src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" />
+                            
+							{% endif %}
+                            </div>
+							<div class="title-nav-sub">
+								<h4>{{ category.name }}</h4>
+							</div>
+						</div>
+						<div class="col-10">
+                            
+							<div class="row no-gutters">
+                            {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                                {% for child in children %}
+								<div class="col-2">
+									<h4 class="mega-title row">{{ child.name }}</h4>
+                                    {% if child.children %}
+									<ul class="stander">
+                                        {% for child3 in child.children %}
+										<li><a href="{{ child3.href }}">{{ child3.name }}</a></li>
+                                        {% endfor %}
+									</ul>
+                                    {% endif %}
+								</div>
+                                {% endfor %}
+                                {% endfor %}
+							</div>
+                            
+						</div>
+					</div>
+				</div>
+			</ul>
+		</li>
+        {% else %}
+        <li class="nav-link"><a href="{{ category.href }}">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+	</ul>
+</nav>
+{% endif %}

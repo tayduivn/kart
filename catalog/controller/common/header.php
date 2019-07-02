@@ -77,6 +77,8 @@ class ControllerCommonHeader extends Controller {
 		$data['cart'] = $this->load->controller('common/cart');
 		$data['menu'] = $this->load->controller('common/menu');
 
+		$data['store'] = $this->url->link('web/store');
+
         $data['home_menu'] = $this->load->controller('common/home_menu');
         $data['mobile_menu'] = $this->load->controller('common/mobile_menu');
 

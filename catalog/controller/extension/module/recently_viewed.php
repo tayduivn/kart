@@ -27,7 +27,7 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 			$setting['limit'] = 4;
 		}
 
-		if ($setting['name']) {
+		if (!empty($setting['name'])) {
 			$data['heading_title'] = $setting['name'];
 		}
 
@@ -83,7 +83,7 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 		
 		$data['products'] = array();
 
-		if ($results) {
+		if ( $results && count($results) > 4) {
 			foreach ($results as $result) {
 				
 				$result = $this->model_catalog_product->getProduct($result);

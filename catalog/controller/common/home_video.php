@@ -10,10 +10,25 @@ class ControllerCommonHomeVideo extends Controller {
 		$data['videos'] = array();
 
         $filter = array(
-            'is_home' => 1
+            'is_home' => 1,
+            'start' => 0,
+            'limit' => 5
         );
 
-		$data['videos'] = $this->model_web_video->getVideos($filter);
+        $results = $this->model_web_video->getVideos($filter);
+
+		$data['videos'] = array();
+
+		foreach ($results as $result) {
+			$data['videos'][] = array(
+				'title' => $result['title'],
+				'main' => $result['main'],
+				'viewed' => $result['viewed'],
+				'youtube' => str_replace("watch?v=", "embed/", $result['youtube']),
+				'date_added' => $result['date_added'],
+				'href'     => $this->url->link('web/video', '&video_id=' . $result['video_id'])
+			);
+		}
 
 		return $this->load->view('common/home_video', $data);
 	}

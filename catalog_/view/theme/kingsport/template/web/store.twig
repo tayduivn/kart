@@ -1,0 +1,69 @@
+{{ header }}
+<div class="article-title">
+    <h2>{{ heading_title }}</h2>
+    <div class="find-showroom">
+        <input type="submit" value="Tìm cửa hàng gần nhất">
+    </div>
+</div>
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+</div>
+<!--Next-->
+<section class="showroom-wrapper">
+    <div class="container">
+        <nav class="top-nav-showroom">
+            <ul>
+                {% for branch in branches %}
+                    <li class="{{ branch.active  }}"><a href="javascript:void(0)" data-type="tab-panel-showroom-{{ branch.id  }}">{{ branch.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div class="tab-content-showroom">
+
+            {% for branch in branches %}
+            <div class="tab-panel active tab-panel-showroom-{{ branch.id }}">
+                <div class="row">
+
+                    {% for branch_child in branch.branches %}
+                    <div class="col-12 col-xl-6">
+                        <div class="figure">
+                            {% if branch_child.thumb %}
+                            <div class="figure-image">
+                                <img src="{{ branch_child.thumb }}" alt="">
+                            </div>
+                            {% endif %}
+                            <div class="figure-caption">
+                                <h5>{{ branch_child.title }}</h5>
+                                <p>Địa chỉ: {{ branch_child.address }}</p>
+                                <p>Điện thoại: {{ branch_child.phone }}</p>
+                                <p>{% if branch_child.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+                                <div class="figure-fancy">
+                                    <p>Hình ảnh chi tiết</p>
+                                    <a data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" href="https://www.google.com/maps/search/?api=1&amp;query=kingsport+nam+sai+gon">
+                                        <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
+                                    {% for image in branch_child.images %}
+                                    <a data-fancybox="gallery" href="{{ image.popup }}">
+                                        <img src="{{ image.thumb }}"></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{{ footer }}

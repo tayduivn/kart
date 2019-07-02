@@ -1,0 +1,222 @@
+{{ header }}
+<div class="article-title">
+    <h2>{{ heading_title }}</h2>
+</div>
+<div class="breadcrumb-wrapper" style="margin-bottom:0;">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="product-filter-nav-wrapper">
+    <div class="container">
+        <div class="product-filter-nav">
+            <div class="nav-left">
+                <h2>Chọn mức giá:</h2>
+                <div class="price-filter">
+                    <ul>
+                        {% for price in prices %}
+                        <li><a href="{{ price.href }}">{{ price.label }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="price-check">
+                    <ul>
+                        {% for status in product_status %}
+                        <li>
+                            <input type="checkbox" value="{{ status.href }}" onchange="location = this.value;"/>
+                            <label>{{ status.label }}</label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="select-option">
+                    <label>
+                        <select class="custom-select-option"><span></span>
+                            <option selected="">Tính năng</option>
+                            <!--<option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>-->
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="select-sort">
+                    <label>
+                        <select class="custom-select-sort" onchange="location = this.value;">
+                            <option selected="">Sắp xếp</option>
+                            {% for sorts in sorts %}
+                                {% if sorts.value == '%s-%s'|format(sort, order) %}
+                                    <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+                                {% else %}
+                                    <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Next-->
+
+{% if categories %}
+{% for category in categories %}
+{% if category.products %}
+<section class="product-display">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product-title">
+                    <h2>{{ category.name }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for product in category.products %}
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="figure">
+                    <div class="hot-item">
+                        <h5>Hot</h5>
+                    </div>
+                    <div class="figure-image">
+                        <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
+                        <div class="add-cart">
+                            <ul>
+                                <li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
+                                    <div class="label">
+                                        <p>Lưu sản phẩm</p>
+                                    </div>
+                                </li>
+                                <li><a onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="mdi mdi-cart"></i></a>
+                                    <div class="label">
+                                        <p>Giỏ hàng</p>
+                                    </div>
+                                </li>
+                                <li><a href="{{ product.href }}"><i class="mdi mdi-eye"></i></a>
+                                    <div class="label">
+                                        <p>Chi tiết</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="figure-caption">
+                        <div class="caption-price">
+                            {% if not product.special %}
+                                <h5>{{ product.price }}<span></span></h5>
+                            {% else %}
+                                <p>
+                                    <s>{{ product.price }}</s>{{ product.percent }}
+                                </p>
+                                <h5>{{ product.special }}<span></span></h5>
+                            {% endif %}
+                        </div>
+                        <a href="{{ product.href }}"><h5>{{ product.name }}</h5></a>
+                        <div class="gift">
+                            {{ product.gift|raw }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="watch-more"><a href="{{ category.href }}">Xem toàn bộ sản phẩm </a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if products %}
+<section class="product-display">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product-title">
+                    <h2>{{ heading_title }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="figure">
+                    <div class="hot-item">
+                        <h5>Hot</h5>
+                    </div>
+                    <div class="figure-image">
+                        <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
+                        <div class="add-cart">
+                            <ul>
+                                <li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
+                                    <div class="label">
+                                        <p>Lưu sản phẩm</p>
+                                    </div>
+                                </li>
+                                <li><a onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="mdi mdi-cart"></i></a>
+                                    <div class="label">
+                                        <p>Giỏ hàng</p>
+                                    </div>
+                                </li>
+                                <li><a href="{{ product.href }}"><i class="mdi mdi-eye"></i></a>
+                                    <div class="label">
+                                        <p>Chi tiết</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="figure-caption">
+                        <div class="caption-price">
+                            {% if not product.special %}
+                                <h5>{{ product.price }}<span></span></h5>
+                            {% else %}
+                                <p>
+                                    <s>{{ product.price }}</s>{{ product.percent }}
+                                </p>
+                                <h5>{{ product.special }}<span></span></h5>
+                            {% endif %}
+                        </div>
+                        <a href="{{ product.href }}"><h5>{{ product.name }}</h5></a>
+                        <div class="gift">
+                            {{ product.gift|raw }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!--<div class="row">
+            <div class="col-12">
+                <div class="watch-more"><a href="#">Xem toàn bộ sản phẩm </a></div>
+            </div>
+        </div>-->
+    </div>
+</section>
+{% endif %}
+
+{% if description %}
+<section class="social-network-media-player-2">
+    <div class="container">
+        <div class="social-media-player-wrapper">
+            <div class="row no-gutters">
+                {{ description }}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{{ footer }} 

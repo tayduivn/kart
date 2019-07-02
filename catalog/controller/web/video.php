@@ -31,22 +31,24 @@ class ControllerWebVideo extends Controller {
             );
 
             $videos = $this->model_web_video->getVideos([
-                'video_category_id' => $video_info['video_category_id']
+                'video_category_id' => $video_info['video_category_id'],
+                'limit' => 3,
+                'start' => 0
             ]);
 
             $data['videos'] = array();
 
             foreach ($videos as $result) {
 
-                if ($result['image']) {
-                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
-                } else {
-                    $image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
-                }
+                // if ($result['image']) {
+                //     $image = $this->model_tool_image->resize($result['image'], 300, 180);
+                // } else {
+                //     $image = $this->model_tool_image->resize('placeholder.png', 300, 180);
+                // }
 
                 $data['videos'][] = array(
                     'title'  => $result['title'],
-                    'thumb'  => $image,
+                    'thumb'  => '/image/' . $result['image'],
                     'youtube'  => $result['youtube'],
                     'date'   => $result['date_added'],
                     'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id'])

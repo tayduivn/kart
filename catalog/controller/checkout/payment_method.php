@@ -1,4 +1,6 @@
 <?php
+
+
 class ControllerCheckoutPaymentMethod extends Controller {
 	public function index() {
 		$this->load->language('checkout/checkout');
@@ -125,6 +127,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 	}
 
 	public function save() {
+
 		$this->load->language('checkout/checkout');
 
 		$json = array();
@@ -158,29 +161,27 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			}
 		}
 
-		if (!isset($this->request->post['payment_method'])) {
-			$json['error']['warning'] = $this->language->get('error_payment');
-		} elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
-			$json['error']['warning'] = $this->language->get('error_payment');
-		}
-
-		if ($this->config->get('config_checkout_id')) {
-			$this->load->model('catalog/information');
-
-			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_checkout_id'));
-
-			if ($information_info && !isset($this->request->post['agree'])) {
-				$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
-			}
-		}
+        $this->session->data['payment_method_kingsport'] = $this->request->post['payment_method'];
+        $this->session->data['comment_price'] = strip_tags($this->request->post['comment_price']);
 
 		if (!$json) {
-			$this->session->data['payment_method'] = $this->session->data['payment_methods'][$this->request->post['payment_method']];
+			//$this->session->data['payment_method'] = $this->session->data['payment_methods'][$this->request->post['payment_method']];
 
-			$this->session->data['comment'] = strip_tags($this->request->post['comment']);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	function config_alepay()
+    {    
+        $configAlepay = array(
+                "apiKey" => "iOAQ0PO6pcsSvpQ1zfxtlaEWGk32xX",
+                "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC49HDk1rIVwvIBjHi48lS4w71vkiNbQdYWFK2PadIG/eHJAO3PWp3oWBJ5nnNwwD1CkuFLNUrewQ5gO+cV26a5EZQQ3tK6hlb43HbYN1jPOVpJ81Y2Xwx0Z/0NR61InoUPWfteljeQMX3Drn45Iqen5pCU3Oco40WoTKuvFXYLSwIDAQAB",
+                "checksumKey" => "QfDodb44QpuI4sScXlOS6cVMV4tq45",
+                "callbackUrl" => $this->url->link('checkout/cart'), // Đường dẫn sẽ xử lý khi thanh toán xong.
+                "env" => "test", // or live
+            );
+    	return $configAlepay;
 	}
 }

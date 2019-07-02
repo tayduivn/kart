@@ -1,0 +1,394 @@
+{{ header }}
+<section class="product-top-banner">
+				<div class="container">
+					<div class="product-top-banner-wrapper">
+						<div class="banner-image mb"><img src="catalog/view/theme/kingsport/image/options-1/banner/top-2.jpg" alt="Giảm giá đến 26 ^"></div>
+						<div class="banner-image"><img src="catalog/view/theme/kingsport/image/options-1/banner/top-1.jpg" alt="Giảm giá đến 26 ^"></div>
+					</div>
+				</div>
+			</section>
+			<div class="breadcrumb-wrapper">
+				<div class="container">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+                            {% for breadcrumb in breadcrumbs %}
+                                <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                            {% endfor %}
+						</ol>
+					</nav>
+				</div>
+			</div>
+			<!--Next-->
+			<section class="product-detail">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="product-title-wrapper">
+								<div class="product-title">
+									<h2>{{ heading_title }}</h2>
+								</div>
+								<div class="product-rating-wrapper">
+									<p class="product-rating">
+                                        {% if product.rating %}
+                                           {% for j in 1..5 %}
+                                            {% if product.rating < j %} <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> {% else %} <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> {% endif %}
+                                           {% endfor %} 
+                                        {% endif %}
+                                    </p>
+                                    <span class="rating">{{ reviews }}</span>
+                                    
+								</div>
+								<div class="social-button">
+									<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-xl-9">
+							<div class="row">
+								<div class="col-12 col-xl-7">
+                                    {% if images %}
+									<div class="product-detail-swiper">
+										<div class="swiper-container swiper-product-top">
+											<div class="swiper-wrapper">
+                                                {% for image in images %}
+												<div class="swiper-slide"><img src="{{ image.popup }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
+							                    {% endfor %}
+                                            </div>
+											<div class="product-detail-button-next"></div>
+											<div class="product-detail-button-prev"></div>
+										</div>
+										<div class="swiper-container swiper-product-thumbs">
+											<div class="swiper-wrapper">
+												{% for image in images %}
+                                                <div class="swiper-slide"><img src="{{ image.thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
+							                    {% endfor %}
+                                            </div>
+										</div>
+									</div>
+                                    {% endif %}
+								</div>
+								<div class="col-12 col-xl-5">
+									<div class="product-information">
+										<div class="product-price">
+                                            {% if not special %}
+											<h2>{{ price }}</h2>
+                                            {% else %}
+                                            <p>{{ price }}</p>
+											<h2>{{ special }}</h2>
+                                            {% endif %}
+											<div class="credit-payment"><a href="#">Trả góp 0%</a></div>
+										</div>
+										<div class="shipping-time"><em class="mdi mdi-clock-outline"></em>
+											<h2>Nhận hàng trong 24 giờ</h2>
+										</div>
+
+										<div class="product-card">
+											<h3>Khuyển mãi</h3>
+											<div class="gift">
+												{{ product_gift|raw }}
+											</div>
+										</div>
+
+										<div class="product-requirements">
+											<input type="checkbox" />
+											<label>Yêu cầu nhân viên kỹ thuật giao hàng: <span>hỗ trợ lắp đặt, cài đặt, hướng dẫn sử dụng máy mới, giải đáp thắc mắc sản phẩm.</span></label>
+										</div>
+										<div class="product-button">
+											<div class="check-out"><a href="#">
+													<h3>Mua ngay</h3>
+													<p>Giao hàng trong 24 giờ hoặc tại showroom</p></a></div>
+											<div class="other-check-out-wrapper">
+												<div class="other-check-out"><a href="#">
+														<h3>Mua trả góp</h3>
+														<p>Bằng thẻ tín dụng</p></a></div>
+												<div class="other-check-out"><a href="#">
+														<h3>Mua trả góp qua thẻ </h3>
+														<p>Visa, Master, JCB</p></a></div>
+											</div>
+											<h5>Tư vấn mua hàng: <span>1800 6862</span>(HCM) (8:00 - 21:00)</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<div class="product-specification">
+										<ul class="nav-tab">
+											<li class="active"><a href="javascript:void(0)" data-type="tab-panel-1">Mô tả</a></li>
+											<li><a href="javascript:void(0)" data-type="tab-panel-2">Thông số kỹ thuật</a></li>
+											<li><a href="javascript:void(0)" data-type="tab-panel-3">Video</a></li>
+											<li><a href="javascript:void(0)" data-type="tab-panel-4">Đánh giá</a></li>
+										</ul>
+										<div class="tab-content-product-detail">
+											<div class="tab-panel-product-detail active tab-panel-1">
+												<article>
+                                                    {{ description }}
+                                                </article> 
+												<div class="show-more-wrapper"><a href="javascript:void(0)" id="show-more-information">Đọc thêm</a><span><em class="mdi mdi-menu-down"></em></span></div>
+											</div>
+											<div class="tab-panel-product-detail tab-panel-2">
+												<table class="table table-bordered">
+                                                    {% for attribute_group in attribute_groups %}
+                                                    <thead>
+                                                      <tr>
+                                                        <td colspan="2"><strong>{{ attribute_group.name }}</strong></td>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for attribute in attribute_group.attribute %}
+                                                    <tr>
+                                                      <td>{{ attribute.name }}</td>
+                                                      <td>{{ attribute.text }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                      </tbody>
+                                                    {% endfor %}
+                                                </table>
+											</div>
+											<div class="tab-panel-product-detail tab-panel-3">
+												{{ video }}
+											</div>
+											<div class="tab-panel-product-detail tab-panel-4">
+                                                {% if review_status %}
+												<form class="form-horizontal" id="form-review">
+                                                    <div id="review"></div>
+                                                    <h2>{{ text_write }}</h2>
+                                                    {% if review_guest %}
+                                                    <div class="form-group required">
+                                                      <div class="col-sm-12">
+                                                        <label class="control-label" for="input-name">{{ entry_name }}</label>
+                                                        <input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+                                                      </div>
+                                                    </div>
+                                                    <div class="form-group required">
+                                                      <div class="col-sm-12">
+                                                        <label class="control-label" for="input-review">{{ entry_review }}</label>
+                                                        <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+                                                        <div class="help-block">{{ text_note }}</div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="form-group required">
+                                                      <div class="col-sm-12">
+                                                        <label class="control-label">{{ entry_rating }}</label>
+                                                        &nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
+                                                        <input type="radio" name="rating" value="1" />
+                                                        &nbsp;
+                                                        <input type="radio" name="rating" value="2" />
+                                                        &nbsp;
+                                                        <input type="radio" name="rating" value="3" />
+                                                        &nbsp;
+                                                        <input type="radio" name="rating" value="4" />
+                                                        &nbsp;
+                                                        <input type="radio" name="rating" value="5" />
+                                                        &nbsp;{{ entry_good }}</div>
+                                                    </div>
+                                                    {{ captcha }}
+                                                    <div class="buttons clearfix">
+                                                      <div class="pull-right">
+                                                        <button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_continue }}</button>
+                                                      </div>
+                                                    </div>
+                                                    {% else %}
+                                                    {{ text_login }}
+                                                    {% endif %}
+                                                  </form>
+                                                  {% endif %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-xl-3">
+							<div class="product-detail-sidebar">
+								<div class="card-1">
+									<h4> Chỉ có tại Kingsport</h4>
+									<div class="card-row">
+										<h5>Đổi trả</h5>
+										<p>: Đổi /trả trong vòng 15 ngày</p>
+									</div>
+									<div class="card-row">
+										<h5>Hoàn tiền</h5>
+										<p>: Hoàn tiền 100% nếu không   hài lòng</p>
+									</div>
+									<div class="card-row">
+										<h5>Thanh toán</h5>
+										<p>: Thanh toán sau khi nhận hàng</p>
+									</div>
+									<div class="card-row">
+										<h5>Thương hiệu</h5>
+										<p>: KingSport thương hiệu bảo hộ   toàn cầu</p>
+									</div>
+									<div class="card-row">
+										<h5>Chính hãng</h5>
+										<p>: Cam kết 100% hàng chính hãng</p>
+									</div>
+									<div class="card-row">
+										<h5>Bảo trì</h5>
+										<p>: Bảo trì trọn đời tại KingSport</p>
+									</div>
+									<div class="card-row">
+										<h5>Lắp đặt</h5>
+										<p>: Giao hàng và lắp đặt tại nhà</p>
+									</div>
+								</div>
+								<div class="card-2">
+									<ul>
+										<li>
+											<p><strong>KingSport </strong>– Đẳng cấp với 5 ưu điểm vượt trội.</p>
+										</li>
+										<li>
+											<p>Công nghệ kết nối Bluetooth.</p>
+										</li>
+										<li>
+											<p>Ứng dụng trục massage L ôm trọn cơ thể</p>
+										</li>
+										<li>
+											<p>Công nghệ massage không trọng lực.</p>
+										</li>
+										<li>
+											<p> <strong>Giá bán tốt nhất </strong>hiện nay trên thị trường</p>
+										</li>
+										<li>
+											<p>Thanh toán trả góp lãi suất 0% với ACS</p>
+										</li>
+										<li>
+											<p>Thanh toán trả góp lãi suất 0% với ACS</p>
+										</li>
+										<li>
+											<p>Giao hàng nhanh, lắp đặt và bảo hành miễn phí tại nhà.</p>
+										</li>
+										<li>
+											<p>Được kiểm định chất lượng, tiêu chuẩn quốc tế từ kỹ sư KingSport.</p>
+										</li>
+										<li>
+											<p> <strong>Máy chạy bộ KingSport </strong>- Thương hiệu toàn cầu, TOP 10 bán chạy toàn thế giới.</p>
+										</li>
+									</ul>
+								</div>
+								<div class="card-3">
+									<div class="check-location"><em class="mdi mdi-map-marker-check"></em>
+										<p>Kiểm tra có hàng tại nơi bạn ở không ?</p>
+									</div>
+									<div class="card-body">
+										<h5>98 showroom trên toàn quốc</h5><a href="#">Tìm cửa hàng gần nhất</a>
+									</div>
+								</div>
+
+								{% if included_products %}
+								<div class="card-4">
+									<h3>Gợi ý mua kèm</h3>
+									<div class="swiper-container swiper-prodcut-detail-sidebar">
+										<div class="swiper-wrapper">
+                                        	{% for product in included_products %}
+											<div class="swiper-slide">
+												<div class="logo">
+												<img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}"></div>
+												<div class="caption"><span>Giảm 10%</span>
+													<h4>{{ product.name }}</h4>
+
+                                                    {% if not product.special %}
+													<h5>{{ product.price }}</h5>
+                                                    {% else %}
+													<h5>{{ product.special }}</h5>
+													<p>
+														<s>{{ product.price }}</s>
+													</p>
+													{% endif %}
+												</div>
+											</div>
+                                            {% endfor %}
+										</div>
+									</div>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+            {% if products %}
+			<section class="other-product">
+				<div class="container">
+					<h2>Sản phẩm cùng loại</h2>
+					<div class="swiper-container swiper-other-product-inclue">
+						<div class="swiper-wrapper">
+                            
+                            {% for product in products %}
+							<div class="swiper-slide">
+								<figure class="figure">
+									<div class="hot-item">
+										<h5>Hot</h5>
+									</div>
+									<div class="figure-image">
+                                        <img class="swiper-lazy" data-src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+										<div class="swiper-lazy-preloader"></div>
+										<div class="add-cart">
+											<ul>
+												<li><a data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="mdi mdi-heart"></i></a>
+													<div class="label">
+														<p>Lưu sản phẩm</p>
+													</div>
+												</li>
+												<li><a onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="mdi mdi-cart"></i></a>
+													<div class="label">
+														<p>Giỏ hàng</p>
+													</div>
+												</li>
+												<li><a href="{{ product.href }}"><i class="mdi mdi-eye"></i></a>
+													<div class="label">
+														<p>Chi tiết</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="figure-caption">
+										{% if product.price %}
+                                            <div class="caption-price"> 
+                                                {% if not product.special %}
+                                                <h5>{{ product.price }}</h5>
+                                                {% else %}
+                                                <p>
+                        							<s>{{ product.price }}</s>(-19%)
+                        						</p>
+                        						<h5>{{ product.special }}</h5>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+										<h5>{{ product.name }}</h5>
+										<div class="gift">
+                                            {{ product.gift }}
+										</div>
+									</div>
+								</figure>
+							</div>
+							{% endfor %}
+							
+							
+						</div>
+						<div class="button-prev-product"><i class="mdi mdi-chevron-left"></i></div>
+						<div class="button-next-product"><i class="mdi mdi-chevron-right"></i></div>
+					</div>
+					<div class="swiper-pagination-wrapper">
+						<div class="swiper-pagination swiper-pagination-other-product"></div>
+					</div>
+				</div>
+			</section>
+            {% endif %}
+			<!--<section class="pagination-verification">
+				<div class="container">
+					<ul style="justify-content: center;">
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#"><em class="mdi mdi-chevron-right"></em></a></li>
+					</ul>
+				</div>
+			</section>-->
+{{ footer }} 
+
+			
+			

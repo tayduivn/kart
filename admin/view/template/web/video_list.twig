@@ -59,7 +59,7 @@
                     <input type="checkbox" name="selected[]" value="{{ video.video_id }}" />
                     {% endif %}</td>
                   <td class="text-left">{{ video.title }}</td>
-                  <td class="text-left"><iframe width="120" height="80" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></td>
+                  <td class="text-left"><iframe width="120" height="80" src="{{ video.youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></td>
                   <td class="text-right">{{ video.sort_order }}</td>
                   <td class="text-right"><a href="{{ video.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>

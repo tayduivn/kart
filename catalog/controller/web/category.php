@@ -39,15 +39,15 @@ class ControllerWebCategory extends Controller {
             foreach ($results as $result) {
     				
                     if ($result['image']) {
-    					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+    					$image = $this->model_tool_image->resize($result['image'], 419, 278);
     				} else {
-    					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+    					$image = $this->model_tool_image->resize('placeholder.png', 419, 278);
     				}
                     
     				$data['blogs'][] = array(
     					'title'  => $result['title'],
                         'thumb'  => $image,
-                        'intro'  => $result['intro'],
+                        'intro'  => utf8_substr(trim(strip_tags(html_entity_decode($result['intro'], ENT_QUOTES, 'UTF-8'))), 0, 120) . '..',
                         'date'   => $result['date_added'],
                         'href'   => $this->url->link('web/blog', 'blog_id=' . $result['blog_id'])
     				);
@@ -89,15 +89,15 @@ class ControllerWebCategory extends Controller {
             foreach ($results as $result) {
 
                 if ($result['image']) {
-                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+                    $image = $this->model_tool_image->resize($result['image'], 419, 278);
                 } else {
-                    $image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+                    $image = $this->model_tool_image->resize('placeholder.png', 419, 278);
                 }
 
                 $data['blogs'][] = array(
                     'title'  => $result['title'],
                     'thumb'  => $image,
-                    'intro'  => $result['intro'],
+                    'intro'  => utf8_substr(trim(strip_tags(html_entity_decode($result['intro'], ENT_QUOTES, 'UTF-8'))), 0, 120) . '..',
                     'date'   => $result['date_added'],
                     'href'   => $this->url->link('web/blog', 'blog_id=' . $result['blog_id'])
                 );

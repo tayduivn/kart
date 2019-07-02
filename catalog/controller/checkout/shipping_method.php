@@ -9,24 +9,30 @@ class ControllerCheckoutShippingMethod extends Controller {
 
 			$this->load->model('setting/extension');
 
-			$results = $this->model_setting_extension->getExtensions('shipping');
+//			$results = $this->model_setting_extension->getExtensions('shipping');
+//
+//			foreach ($results as $result) {
+//				if ($this->config->get('shipping_' . $result['code'] . '_status')) {
+//					$this->load->model('extension/shipping/' . $result['code']);
+//
+//					$quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
+//
+//					if ($quote) {
+//						$method_data[$result['code']] = array(
+//							'title'      => $quote['title'],
+//							'quote'      => $quote['quote'],
+//							'sort_order' => $quote['sort_order'],
+//							'error'      => $quote['error']
+//						);
+//					}
+//				}
+//			}
 
-			foreach ($results as $result) {
-				if ($this->config->get('shipping_' . $result['code'] . '_status')) {
-					$this->load->model('extension/shipping/' . $result['code']);
-
-					$quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
-
-					if ($quote) {
-						$method_data[$result['code']] = array(
-							'title'      => $quote['title'],
-							'quote'      => $quote['quote'],
-							'sort_order' => $quote['sort_order'],
-							'error'      => $quote['error']
-						);
-					}
-				}
-			}
+            $method_data['free'] = array(
+                'title'      => 'Free',
+                'quote'      => 'Free',
+                'sort_order' => 1
+            );
 
 			$sort_order = array();
 
@@ -105,18 +111,18 @@ class ControllerCheckoutShippingMethod extends Controller {
 			}
 		}
 
-		if (!isset($this->request->post['shipping_method'])) {
-			$json['error']['warning'] = $this->language->get('error_shipping');
-		} else {
-			$shipping = explode('.', $this->request->post['shipping_method']);
-
-			if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
-				$json['error']['warning'] = $this->language->get('error_shipping');
-			}
-		}
+//		if (!isset($this->request->post['shipping_method'])) {
+//			$json['error']['warning'] = $this->language->get('error_shipping');
+//		} else {
+//			$shipping = explode('.', $this->request->post['shipping_method']);
+//
+//			if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
+//				$json['error']['warning'] = $this->language->get('error_shipping');
+//			}
+//		}
 
 		if (!$json) {
-			$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
+			//$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
 
 			$this->session->data['comment'] = strip_tags($this->request->post['comment']);
 		}

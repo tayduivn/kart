@@ -764,7 +764,7 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row['total'];
 	}
-
+	
 	public function getTotalProductsByOptionId($option_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_option WHERE option_id = '" . (int)$option_id . "'");
 
@@ -789,15 +789,29 @@ class ModelCatalogProduct extends Model {
 
         foreach ($query->rows as $product) {
             // Delete the path below the current one
-            $this->db->query("DELETE FROM `" . DB_PREFIX . "product_to_category` WHERE product_id = '" . (int)$product['product_id'] . "'");
+            // $this->db->query("DELETE FROM `" . DB_PREFIX . "product_to_category` WHERE product_id = '" . (int)$product['product_id'] . "'");
 
-            $cat_id = $product['cat_id'];
-            $cat_ids = explode(',', $cat_id);
+            // $cat_id = $product['cat_id'];
+            // $cat_ids = explode(',', $cat_id);
 
-            foreach ($cat_ids as $cat_id) {
-                $this->db->query("INSERT INTO `" . DB_PREFIX . "product_to_category` SET category_id = '" . (int)$cat_id . "', `product_id` = '" . (int)$product['product_id'] . "'");
+            // foreach ($cat_ids as $cat_id) {
+            //     $this->db->query("INSERT INTO `" . DB_PREFIX . "product_to_category` SET category_id = '" . (int)$cat_id . "', `product_id` = '" . (int)$product['product_id'] . "'");
 
+            // }
+
+        	$price_old = $product['price_old'];
+        	if( !empty($price_old) ) {
+        		//$this->db->query("INSERT INTO `" . DB_PREFIX . "product_special` SET product_id = '" . (int)$product['product_id'] . "', `price` = '" . $product['price'] .  "', date_start = NOW(), date_end = NOW() + INTERVAL 2 MONTH");
+        	       
+                //$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `price` = '" . $price_old .  "' WHERE product_id = '" . (int)$product['product_id'] . "'");
+            
+                
             }
+
+
+        	
+        	
+
         }
     }
 }
