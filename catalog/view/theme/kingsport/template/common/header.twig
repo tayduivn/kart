@@ -25,7 +25,7 @@
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />-->
 
 <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<link href="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>  
+<link href="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
 
 
 <link href="catalog/view/theme/kingsport/stylesheet/css/library.css" rel="stylesheet" />
@@ -152,8 +152,16 @@
 							<!--search-->
                             {{ search }}
 							<ul class="login-nav">
-								<li><a href="{{ register }}"><i class="mdi mdi-account-circle-outline"></i><span>Đăng ký</span></a></li>
-								<li><a href="{{ login }}">Đăng nhập</a></li>
+
+
+                                {% if logged %}
+									<li><a href="{{ account }}">{{ text_account }}</a></li>
+									<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+                                {% else %}
+									<li><a href="{{ register }}"><i class="mdi mdi-account-circle-outline"></i><span>Đăng ký</span></a></li>
+									<li><a href="{{ login }}">Đăng nhập</a></li>
+                                {% endif %}
+
 								<li>
                                     {{ cart }}
                                 </li>

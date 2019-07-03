@@ -87,6 +87,8 @@ class ControllerCheckoutGuest extends Controller {
 			$data['country_id'] = $this->config->get('config_country_id');
 		}
 
+        $data['country_id'] = $data['country_id'] ? $data['country_id'] : 230;
+
 		if (isset($this->session->data['payment_address']['zone_id'])) {
 			$data['zone_id'] = $this->session->data['payment_address']['zone_id'];
 		} elseif (isset($this->session->data['shipping_address']['zone_id'])) {
