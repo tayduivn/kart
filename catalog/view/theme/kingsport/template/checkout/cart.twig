@@ -47,7 +47,7 @@
                              <div class="style_order">
                                 <div class="style_step">
                                    <ul>
-                                      <li class="active"><span class="number">1</span><a href="https://www.kingsport.vn/san-pham/cart.html" class="text">Giỏ hàng</a></li>
+                                      <li class="active"><span class="number">1</span><a href="{{ pageLinks.cart }}" class="text">Giỏ hàng</a></li>
                                       <li><span class="number">2</span><span class="text">THÔNG TIN VÀ THANH TOÁN</span></li>
                                       <li><span class="number">3</span><span class="text">Xác nhận hóa đơn</span></li>
                                       <li><span class="number">4</span><span class="text">Hoàn tất</span></li>
@@ -96,7 +96,7 @@
                                                   <div class="choose-quantity">
                                                      <div class="input-group spinner cart_spinner">
 
-                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-plus"></i></button> 
+                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="btn qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-plus"></i></button> 
                                                         <input name="quantity[{{ product.cart_id }}]" type="text" readonly="readonly" value="{{ product.quantity }}" class="product-details-quantity-{{ product.cart_id }} form-control input-number" /> 
                                                         <button type="button" data-action='minus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-minus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-minus"></i></button>
 
@@ -155,7 +155,7 @@
                                          <div class="button-form">
                                           <div class="row">
                                             <div class="col-4">
-                                               <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
+                                               <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btn-default btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
                                             </div>
                                             <div class="col-8 text-right">
                                               <button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn btn-default do_clear"><span>Hủy bỏ</span></button>
