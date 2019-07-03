@@ -197,5 +197,58 @@ background: #df2025;
 
 .info-order .table-order thead tr td{background:#ed1c24; color: #fff; }
 
-
+/*Fix bug*/
+.nav-category{max-width: 12rem;}
+body.fixed .kingsport-header-all .kingsport-top-nav{display: none;}
+body.fixed{padding-top: 179px;}
+body.fixed .kingsport-header-all{position: fixed; top:0px; left: 0px; width: 100%; 
+        background: #fff;
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    z-index: 999;
+    height: 66px;
     
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    overflow: visible;
+
+}
+body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand{display: none;}
+body.fixed .kingsport-header-all .navbar-brand:after{display: none;}
+body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{
+    top:25px;
+}
+body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper{padding-left: 200px; height: auto;}
+body.fixed .kingsport-header-all .kingsport-main-nav .nav-wrapper{display: none;}
+body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper{margin-top: 13px;}
+body.fixed .navbar-list-top{margin-top: 0px;}
+body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list .nav-link:first-child{
+        padding-top: 8px;padding-bottom: 8px;
+}
+
+@media (max-width: 992px) {
+    body.fixed{padding-top: 0px;}
+}
+
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list-bottom .nav-link a h4{text-transform: capitalize; font-weight: 700;}
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list .nav-link .mega-menu .mega-menu-list .stander li a{text-transform: capitalize;}
+
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart:after{ display: none; }
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items{    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #ed1c24;
+    color: #fff;
+}
+
+.product-discount .product-wrapper .product-figure-wrapper h2{font-weight: 900; font-family: 'Muli', sans-serif; margin-top: 15px;}
