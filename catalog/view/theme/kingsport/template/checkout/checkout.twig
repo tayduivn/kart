@@ -58,7 +58,8 @@
                                                 <div class="info-order">
                                                     <div class="wrap-info-order">
                                                         <div class="div_title">Thông tin đặt hàng</div>
-                                                        <table class="table-order">
+                                                        <div class="table-responsive">
+                                                        <table class="table table-order">
                                                             <thead>
                                                             <tr>
                                                                 <td width="285px">Tên sản phẩm</td>
@@ -96,6 +97,7 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="info_customer">
@@ -137,16 +139,20 @@
                                                             Lưu ý: "Quý khách vui lòng nhập đúng thông tin họ và tên để thực hiện thanh toán và thực hiện xác nhận 3D – Secure".
                                                         </p>
                                                     </div>
-                                                    <div class="first-charge" style="display: none">
-                                                        <label for="">Trả trước</label>
-                                                        <input type="text" class="" name="comment_price"/>
-                                                    </div>
+                                                    
                                                 </div>
-                                                <div class="io-button"><input name="do_process" type="hidden" value="1">
-                                                    <button type="button" disabled name="btnConfirm" value="TIẾP TỤC THANH TOÁN" class="btn dosubmit" id="button-payment-method"><span>TIẾP TỤC THANH TOÁN</span>
-                                                    </button></div>
+                                                <div class="info_method first-charge" style="display: none">
+                                                    <div class="div_title">Trả trước</div>
+                                                    <input type="text" class="form-control" name="comment_price" placeholder="Nhập số tiền muốn trả trước" />
+                                                </div>
+                                                <div class="button-form text-right">
+                                                    <input name="do_process" type="hidden" value="1">
+                                                    <button type="button" disabled name="btnConfirm" value="TIẾP TỤC THANH TOÁN" class="btn dosubmit  btn-site" id="button-payment-method"><span>TIẾP TỤC THANH TOÁN</span>
+                                                    </button>
+                                                </div>
+
                                             </div>
-                                            <div class="clear"></div>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -158,7 +164,7 @@
                 </div>
              </div>
           </div>
-          <div class="clear"></div>
+          <div class="clearfix"></div>
        </div>
     </div>
     </div>
@@ -834,6 +840,7 @@ $(document).delegate('#button-payment-method', 'click', function() {
                         //redirect sang trang confirm
                         $('#collapse-checkout-confirm').html(html);
                         $('#collapse-checkout-confirm').show();
+                        $(".style_step ul li:nth-child(3)").addClass('active');
 
                         $('#f_checkout').hide();
 					},
@@ -882,6 +889,7 @@ $(document).delegate('#button-payment-address-back', 'click', function() {
 $(document).delegate('#button-payment-finish-back', 'click', function() {
     $('#f_checkout').show();
     $('#collapse-checkout-confirm').hide();
+    $(".style_step ul li:nth-child(3)").removeClass('active');
 });
 
 

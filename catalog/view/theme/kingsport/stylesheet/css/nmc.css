@@ -76,4 +76,126 @@ background: #df2025;
 .account-form .btn-forgot{color: #333; margin-top: 10px; display: block;}
 .account-form .input-group-addon{background: transparent; border-radius: 0px;}
 
+.style_form .total-price {padding: 10px;}
+.style_form .total-price strong{color: #ff001d; font-size: 25px; display: inline-block; }
+.btn-site{
+    position: relative;
+    overflow: hidden;
+    height: 2.5rem;
+    background: #ed1c24;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-family: Muli;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.625rem;
+    padding: 7px 25px;
+    border:0px;
+    border-radius: 0px;
+}
+.btn-site:hover{background: #f99d1c;}
+.cart-form .coupon_Total .Coupon{    background: url(../images/checkout/gift.png) no-repeat 22px 20px #fff; height: auto;}
+.cart-form .coupon_Total .Coupon .div-coupon{padding-bottom: 10px;}
+.cart-form .coupon_Total .Coupon .div-coupon p{margin-bottom: 0px;}
+.cart-form .coupon_Total .Coupon .div-coupon .input-group .form-control{border-bottom: 1px solid #e0e0e0;}
+.cart-form .button-form{padding:30px 10px;}
+/*.cart-form .button-form .btn{
+    position: relative;
+    overflow: hidden;
+    height: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-family: Muli;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.625rem;
+    padding: 7px 25px;
+    border:0px;
+    border-radius: 0px;
+}
+.cart-form .button-form .btn.btn-default{background: #666;}
+*/
+.info_customer h2{
+        border-bottom: 1px solid #e5e5e5;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 5px 0;
+}
+.info_customer .btn{
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    background: #df2025;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+    border: 0px;
+    outline: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+.info_customer #button-account{background: #df2025;}
+.info_customer .control-label{display: none;}
+.info_customer .form-control{ border-radius: 0px;}
+.info_customer .form-group{margin-bottom: 15px;}
+.info_customer .form-group a{margin-top: 12px; display: block;}
+.main.mg_bt{margin-bottom: 40px;}
+
+#checkout-checkout .wrapper{width: 100%;}
+
+.btn-ks{
+    height: auto;
+    padding: 10px;
+    background: #666;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+    border: 0px;
+    outline: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    text-transform: uppercase;
+}
+.btn-ks span{color: #fff;}
+.btn-ks.btn-primary{background: #ed1c24;}
+.btn-ks.btn-primary:hover{background: #f99d1c;}
+.btn-ks.btn-default{background: #666;}
+.btn-ks.btn-default:hover{background: #ed1c24;}
+
+.info-order .table-order thead tr td{background:#ed1c24; color: #fff; }
+
+
     
