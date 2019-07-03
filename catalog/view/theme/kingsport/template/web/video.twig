@@ -70,14 +70,15 @@
                             <p>Viết phản hồi</p></a><a href="#"><em class="mdi mdi-share"></em>
                             <p>Chia sẻ</p></a></div>
                 </div>
-                <div class="social-opinion">
+                <!--<div class="social-opinion">
                     <h2>Lorem ipsum dolor sit amet consectetur </h2>
                     <textarea class="form-control" rows="10" cols="69"></textarea>
-                </div>
+                </div>-->
                 <div class="social-comment">
                     <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="5"></div>
                 </div>
             </section>
+            {% if videos %}
             <section class="media-iframe">
                 <div class="other-media-1">
                     <h2>Các video khác</h2>
@@ -92,6 +93,7 @@
                     </div>
                 </div>
             </section>
+            {% endif %}
             {#<section class="pagination-verification">#}
                 {#<ul style="justify-content: flex-start;">#}
                     {#<li class="active"><a href="#">1</a></li>#}

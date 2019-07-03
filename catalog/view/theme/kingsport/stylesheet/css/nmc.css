@@ -1,3 +1,44 @@
+/* fluid 5 columns */
+.grid-sizer,
+.album-item { width: 25%; height: calc( (100vw - 150px) / 4 * 370/450);}
+.album-item{float:left;}
+.album-item img {  display: block;  max-width: 100%; height:auto;  padding:0px 15px;}
+/* 2 columns */
+.grid-item--width2 { width: 50%; }
+.grid-item--height2 {height:calc( (100vw - 150px) / 4 * 370/450 * 2); }
+
+
+#album_container{margin-bottom:30px;margin-left:-15px;margin-right:-15px;}
+#album_container .album-item{position:relative;text-align:center; display: block;}
+#album_container .album-item.hide{display: none;}
+#album_container .album-item .bg{background:#ccc;background-size:cover;position:absolute;background-position:center center;left:15px;top:15px;right:15px;bottom:15px;background-repeat:no-repeat;}
+#album_container .album-item .item-hover{background:rgba(0,0,0,0.5) url('../images/album/ico-eye.svg') no-repeat center center;position:absolute;width:calc(100% - 30px);height:calc(100% - 30px);top:15px;left:15px;border:solid 0px #ebebeb;opacity:0;-webkit-transition:all .4s ease;-moz-transition:all .4s ease;-o-transition:all .4s ease;transition:all .4s ease;}
+#album_container .album-item:hover .item-hover{opacity:1;}
+#album_container .album-item .item-hover .title{display:none;}
+
+@media screen and  (max-width:1199px){
+    .album-item img {padding:0px 5px;}
+    #album_container .album-item .bg{left:5px;top:5px;right:5px;bottom:5px;    }
+    #album_container .album-item .item-hover{width:calc(100% - 10px);height:calc(100% - 10px);top:5px;left:5px;}
+}
+@media screen and (min-width:992px) and (max-width:1199px){
+
+}
+@media screen and (max-width:991px){
+
+}
+@media screen and (max-width:767px){
+    .grid-sizer,
+    .album-item{height: calc((100vw - 150px) / 2 * 370/450 );  width: 50%;}
+    .grid-item--height2 {height:calc((100vw - 150px) / 2 * 370/450 * 2); }
+    .grid-item--width2 { width: 100%; }
+}
+@media screen and (max-width:480px){
+
+}
+
+
+
 .style_form .choose-quantity {max-width: 40px;}
 table.addtocart2 tbody tr td{border-right: 1px solid #eaeaea;}
 table.addtocart2 table.img-title tr td{border-right: 0px;}

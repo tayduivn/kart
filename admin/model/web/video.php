@@ -7,7 +7,7 @@ class ModelWebVideo extends Model {
             $this->db->query("UPDATE " . DB_PREFIX . "video SET main = '0'");
         }
         
-		$this->db->query("INSERT INTO " . DB_PREFIX . "video SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', main = '" . (isset($data['main']) ? (int)$data['main'] : 0) . "', home = '" . (isset($data['home']) ? (int)$data['home'] : 0) . "', video_category_id = '" . (int)$data['video_category_id'] . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "video SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', main = '" . (isset($data['main']) ? (int)$data['main'] : 0) . "', home = '" . (isset($data['home']) ? (int)$data['home'] : 0) . "', featured_video = '" . (isset($data['featured_video']) ? (int)$data['featured_video'] : 0) . "', video_category_id = '" . (int)$data['video_category_id'] . "', link_ref = '" . $data['link_ref'] . "', status = '" . (int)$data['status'] . "'");
 
 		$video_id = $this->db->getLastId();
 
@@ -49,7 +49,7 @@ class ModelWebVideo extends Model {
             $this->db->query("UPDATE " . DB_PREFIX . "video SET main = '0'");
         }   
        
-		$this->db->query("UPDATE " . DB_PREFIX . "video SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', main = '" . (isset($data['main']) ? (int)$data['main'] : 0) . "', home = '" . (isset($data['home']) ? (int)$data['home'] : 0) . "', video_category_id = '" . (int)$data['video_category_id'] . "', status = '" . (int)$data['status'] . "' WHERE video_id = '" . (int)$video_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "video SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', main = '" . (isset($data['main']) ? (int)$data['main'] : 0) . "', home = '" . (isset($data['home']) ? (int)$data['home'] : 0) . "', featured_video = '" . (isset($data['featured_video']) ? (int)$data['featured_video'] : 0) . "', video_category_id = '" . (int)$data['video_category_id'] . "', link_ref = '" . $data['link_ref'] . "', status = '" . (int)$data['status'] . "' WHERE video_id = '" . (int)$video_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "video_description WHERE video_id = '" . (int)$video_id . "'");
 

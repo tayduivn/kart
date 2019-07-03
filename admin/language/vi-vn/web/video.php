@@ -62,6 +62,10 @@ $_['entry_main']      = 'Video chính:';
 
 $_['entry_layout']      = 'Bố cục:';
 
+$_['entry_featured_video']= 'Video nổi bật:';
+$_['entry_link_ref']      = 'Link tham khảo:';
+$_['entry_category']      = 'Danh mục video:';
+
 
 
 // Help

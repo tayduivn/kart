@@ -414,6 +414,22 @@ class ControllerWebVideo extends Controller {
 			$data['main'] = 0;
 		}
 
+        if (isset($this->request->post['featured_video'])) {
+            $data['featured_video'] = $this->request->post['featured_video'];
+        } elseif (!empty($video_info)) {
+            $data['featured_video'] = $video_info['featured_video'];
+        } else {
+            $data['featured_video'] = 0;
+        }
+
+        if (isset($this->request->post['link_ref'])) {
+            $data['link_ref'] = $this->request->post['link_ref'];
+        } elseif (!empty($video_info)) {
+            $data['link_ref'] = $video_info['link_ref'];
+        } else {
+            $data['link_ref'] = '';
+        }
+
 		if (isset($this->request->post['status'])) {
 			$data['status'] = $this->request->post['status'];
 		} elseif (!empty($video_info)) {

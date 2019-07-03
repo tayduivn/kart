@@ -25,7 +25,10 @@ class ControllerWebStore extends Controller {
             'href' => $this->url->link('common/home')
         );
 
-
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('branch_meta_title'),
+            'href' => $this->url->link('web/store')
+        );
 
         $area = array();
         $index = 1;
@@ -87,9 +90,9 @@ class ControllerWebStore extends Controller {
             2 => $this->language->get('text_north'),
         );
 
-        $this->document->setTitle($this->language->get('meta_title'));
-        $this->document->setDescription($this->language->get('meta_description'));
-        $this->document->setKeywords($this->language->get('meta_keywords'));
+        $this->document->setTitle($this->language->get('branch_meta_title'));
+        $this->document->setDescription($this->language->get('branch_meta_description'));
+        $this->document->setKeywords($this->language->get('branch_meta_keywords'));
         $this->document->addLink($this->url->link('web/store'), 'canonical');
 
         $data['column_left'] = $this->load->controller('common/column_left');

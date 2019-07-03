@@ -55,11 +55,12 @@
 
 		<div class="col-12 col-lg-9">
 			<section class="product-media-iframe">
+
 				<div class="product-media-wrapper">
 					<div class="row">
 						<div class="col-12 col-md-6">
 							<div class="media-wrapper">
-								<iframe width="560" height="315" src="https://www.youtube.com/embed/0s_yNPfTQz4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                {{ featured_video.url|raw }}
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
@@ -68,7 +69,11 @@
 					</div>
 				</div>
 				<div class="media-title-product">
-					<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2><span>Xem thêm chi tiết thông số kỷ thuật <a href="#">tại đây</a></span>
+					<h2>{{ featured_video.title }}</h2>
+					{% if featured_video.link_ref %}
+					<span>Xem thêm chi tiết thông số kỷ thuật <a href="{{ featured_video.link_ref }}">tại đây</a>
+					</span>
+					{% endif %}
 				</div>
 
 
@@ -82,7 +87,9 @@
 							<img src="{{ video.thumb }}" alt="{{ video.title }}"></a></div>
 							<div class="figure-caption">
 								<a href="{{ video.href }}"><h5>{{ video.title }}</h5></a>
-								<span>Xem thêm chi tiết thông số kỷ thuật <a href="{{ video.href }}">tại đây</a></span>
+                                {% if video.link_ref %}
+								<span>Xem thêm chi tiết thông số kỷ thuật <a href="{{ video.link_ref }}">tại đây</a></span>
+								{% endif %}
 							</div>
 						</div>
 					</div>

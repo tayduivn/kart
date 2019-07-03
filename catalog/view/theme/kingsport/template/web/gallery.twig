@@ -1,0 +1,35 @@
+{{ header }}
+<div class="article-title">
+    <h2>{{ heading_title }}</h2>
+</div>
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+</div>
+<section class="product-original-v3 section-library">
+    <div class="container">
+        <div id="album_container" class="">
+            <div class='grid-sizer'></div>
+            <!--<div class='album-item grid-item--width2 grid-item--height2'>
+                <a data-fancybox="gallery" href='./images/album/album1.jpg' class='bg' style='background-image: url("./images/album/album1.jpg")'></a>
+            </div>-->
+            {% for photo in photos %}
+            <div class='album-item'>
+                <a data-fancybox="gallery" href='{{ photo['image'] }}' class='bg' style='background-image: url({{ photo['image'] }})'></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="catalog/view/theme/kingsport/stylesheet/js/image/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="catalog/view/theme/kingsport/stylesheet/js/image/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="catalog/view/theme/kingsport/stylesheet/js/image/packery-mode.pkgd.min.js"></script>
+<script type="text/javascript" src="catalog/view/theme/kingsport/stylesheet/js/image/album-scripts.js"></script>
+{{ footer }}

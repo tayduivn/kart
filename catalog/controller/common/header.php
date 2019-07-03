@@ -69,6 +69,7 @@ class ControllerCommonHeader extends Controller {
 		$data['shopping_cart'] = $this->url->link('checkout/cart');
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 		$data['contact'] = $this->url->link('information/contact');
+		$data['gallery'] = $this->url->link('web/gallery');
 
 		$data['about']  = $this->url->link('information/information', 'information_id=8');
 		$data['special_blog'] = $this->url->link('web/category', '&blog_category_id=5');

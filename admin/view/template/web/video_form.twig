@@ -121,6 +121,20 @@
                   </div>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-featured-video">{{ entry_featured_video }}</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if featured_video %}
+                        <input type="checkbox" name="featured_video" value="1" checked="checked" id="input-featured-video" />
+                        {% else %}
+                          <input type="checkbox" name="featured_video" value="1" id="input-featured-video" />
+                        {% endif %}
+                      &nbsp;</label>
+                  </div>
+                </div>
+              </div>
               
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-main">{{ entry_main }}</label>
@@ -140,6 +154,13 @@
                 <label class="col-sm-2 control-label" for="input-video-category">{{ entry_category }}</label>
                 <div class="col-sm-10">
                   <input type="text" name="video_category" value="{{ video_category }}" placeholder="{{ entry_category }}" id="input-video-category" class="form-control"/> <input type="hidden" name="video_category_id" value="{{ video_category_id }}"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-link-ref">{{ entry_link_ref }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="link_ref" value="{{ link_ref }}" placeholder="{{ entry_link_ref }}" id="input-link-ref" class="form-control"/>
                 </div>
               </div>
               

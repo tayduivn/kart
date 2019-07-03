@@ -35,25 +35,39 @@ class ControllerWebVideoCategory extends Controller {
     		);
     
     		$results = $this->model_web_video->getVideos($filter_data);
+
+    		$data['featured_video'] = [];
+
+
             
             foreach ($results as $result) {
-    				
-        //             if ($result['image']) {
-    				// 	$image = $this->model_tool_image->resize($result['image'], 300, 200);
-    				// } else {
-    				// 	$image = $this->model_tool_image->resize('placeholder.png', 300, 200);
-    				// }
-                    
-    				$data['videos'][] = array(
-    					'title'  => $result['title'],
-                        'thumb'  => '/image/' . $result['image'],
-//                        'intro'  => $result['intro'],
-                        'date'   => $result['date_added'],
-                        'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id'])
-    				);
-                    
+                    if(!empty($result['featured_video'])) {
+                        $data['featured_video'] = array(
+                            'title'  => $result['title'],
+                            'thumb'  => '/image/' . $result['image'],
+                            'date'   => $result['date_added'],
+                            'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
+                            'link_ref'   => $result['link_ref'],
+                            'featured_video'   => $result['featured_video'],
+                            'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
+                        );
+                    }else {
+                        $data['videos'][] = array(
+                            'title'  => $result['title'],
+                            'thumb'  => '/image/' . $result['image'],
+                            'date'   => $result['date_added'],
+                            'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
+                            'link_ref'   => empty($result['link_ref']),
+                            'featured_video'   => $result['featured_video'],
+                            'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
+                        );
+                    }
     		}
-            
+
+            if( empty($data['featured_video']) && count($data['videos']) != 0 ) {
+                $data['featured_video'] = $data['videos'][0];
+            }
+
             $this->document->setTitle($category_info['meta_title']);
     		$this->document->setDescription($category_info['meta_description']);
     		$this->document->setKeywords($category_info['meta_keyword']);
@@ -86,22 +100,34 @@ class ControllerWebVideoCategory extends Controller {
 
             $results = $this->model_web_video->getVideos(array());
 
+            $data['featured_video'] = [];
+
             foreach ($results as $result) {
-
-                if ($result['image']) {
-                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
-                } else {
-                    $image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+                if(!empty($result['featured_video'])) {
+                    $data['featured_video'] = array(
+                        'title'  => $result['title'],
+                        'thumb'  => '/image/' . $result['image'],
+                        'date'   => $result['date_added'],
+                        'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
+                        'link_ref'   => $result['link_ref'],
+                        'featured_video'   => $result['featured_video'],
+                        'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
+                    );
+                }else {
+                    $data['videos'][] = array(
+                        'title'  => $result['title'],
+                        'thumb'  => '/image/' . $result['image'],
+                        'date'   => $result['date_added'],
+                        'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
+                        'link_ref'   => $result['link_ref'],
+                        'featured_video'   => $result['featured_video'],
+                        'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
+                    );
                 }
+            }
 
-                $data['videos'][] = array(
-                    'title'  => $result['title'],
-                    'thumb'  => $image,
-//                    'intro'  => $result['intro'],
-                    'date'   => $result['date_added'],
-                    'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id'])
-                );
-
+            if( empty($data['featured_video']) && count($data['videos']) != 0 ) {
+                $data['featured_video'] = $data['videos'][0];
             }
 
             $this->document->setTitle($this->language->get('category_video_meta_title'));
