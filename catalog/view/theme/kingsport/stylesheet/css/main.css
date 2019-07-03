@@ -7476,7 +7476,7 @@ main {
     box-shadow: inset 0 5px 0 0 #684002
 }
 
-.article-title h2 {
+.article-title h2,.article-title h1 {
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
@@ -7505,14 +7505,14 @@ main {
 }
 
 @media screen and (max-width:1600px) {
-    .article-title h2 {
+    .article-title h2,.article-title h1 {
         font-size: 1.75rem;
         line-height: 35px
     }
 }
 
 @media screen and (max-width:1200px) {
-    .article-title h2 {
+    .article-title h2,.article-title h1 {
         font-size: 1.375rem;
         line-height: 30px
     }
@@ -7525,14 +7525,14 @@ main {
 }
 
 @media screen and (max-width:768px) {
-    .article-title h2 {
+    .article-title h2,.article-title h1 {
         font-size: 1.25rem;
         line-height: 27px
     }
 }
 
 @media screen and (max-width:400px) {
-    .article-title h2 {
+    .article-title h2,.article-title h1 {
         font-size: 1.125rem;
         line-height: 25px
     }

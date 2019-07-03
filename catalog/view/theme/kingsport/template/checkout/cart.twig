@@ -16,11 +16,11 @@
 <section class="shopping-cart-check-out"> 
 				<div class="container">
 					<div class="previous-page">
-                        <a href="{{ continue }}">
-                                <em class="mdi mdi-chevron-left"></em>
-    							<p>Mua thêm sản phẩm khác</p>
-                        </a>
-                    </div>
+                <a href="{{ continue }}">
+                    <em class="mdi mdi-chevron-left"></em>
+					         <p>Mua thêm sản phẩm khác</p>
+                </a>
+          </div>
                     
                     
                   
@@ -47,7 +47,7 @@
                              <div class="style_order">
                                 <div class="style_step">
                                    <ul>
-                                      <li class="active"><span class="number">1</span><a href="https://www.kingsport.vn/san-pham/cart.html" class="text">Giỏ hàng</a></li>
+                                      <li class="active"><span class="number">1</span><a href="{{ pageLinks.cart }}" class="text">Giỏ hàng</a></li>
                                       <li><span class="number">2</span><span class="text">THÔNG TIN VÀ THANH TOÁN</span></li>
                                       <li><span class="number">3</span><span class="text">Xác nhận hóa đơn</span></li>
                                       <li><span class="number">4</span><span class="text">Hoàn tất</span></li>
@@ -96,7 +96,7 @@
                                                   <div class="choose-quantity">
                                                      <div class="input-group spinner cart_spinner">
 
-                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-plus"></i></button> 
+                                                        <button type="button" data-action='plus' data-cart-id="{{ product.cart_id }}" class="btn qty-number qty-plus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-plus"></i></button> 
                                                         <input name="quantity[{{ product.cart_id }}]" type="text" readonly="readonly" value="{{ product.quantity }}" class="product-details-quantity-{{ product.cart_id }} form-control input-number" /> 
                                                         <button type="button" data-action='minus' data-cart-id="{{ product.cart_id }}" class="qty-number qty-minus btn btn-default btn-number"><i aria-hidden="true" class="mdi mdi-minus"></i></button>
 
@@ -107,7 +107,7 @@
                                                <td>
                                                <a onclick="cart.remove('{{ product.cart_id }}');" class="btnclear">
 
-                                                    <img src="catalog/view/theme/kingsport/images/icon-clear.png" alt="" />
+                                                    <img src="catalog/view/theme/kingsport/stylesheet/images/checkout/icon-clear.png" alt="" />
 
                                                </a></td>
                                             </tr>
@@ -119,9 +119,8 @@
                                         <div class="Total">
 
                                             <div id="info_coupon"></div>
-                                            <div class="row-total">
-                                               <div class="t-tile"><span id="text_cart_total">Tổng giỏ hàng</span> :</div>
-                                               <div class="t-price colorRed"><span id="TotalCart_price">{{ totals_text }}</span></div>
+                                            <div class="row-total text-right">
+                                               <div class="t-tile"><span id="text_cart_total">Tổng giỏ hàng</span> : <strong>{{ totals_text }}</strong></div>
 
                                                <div class="clearfix"></div>
                                             </div>
@@ -146,8 +145,7 @@
                                          </div>
                                          <div class="pay">
                                             <div>Các hình thức thanh toán</div>
-
-                                            <div><img src="catalog/view/theme/kingsport/images/img-pay.jpg" alt="" /></div>
+                                            <div><img src="catalog/view/theme/kingsport/stylesheet/images/checkout/img-pay.jpg" alt="" /></div>
                                          </div>
                                          <div class="clearfix"></div>
                                       </div>
@@ -155,11 +153,11 @@
                                          <div class="button-form">
                                           <div class="row">
                                             <div class="col-4">
-                                               <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
+                                               <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btn-default btn-ks btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
                                             </div>
                                             <div class="col-8 text-right">
-                                              <button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn btn-default do_clear"><span>Hủy bỏ</span></button>
-                                              <a type="button" name="btnCheckout" onclick="location.href='{{ checkout }}'" class="btn btn-default do_submit"><span>Tiến hành thanh toán</span></a>
+                                              <button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn btn-default btn-ks do_clear"><span>Hủy bỏ</span></button>
+                                              <button type="button" name="btnCheckout" onclick="location.href='{{ checkout }}'" class="btn btn-primary btn-ks do_submit"><span>Tiến hành thanh toán</span></button>
                                             </div>
                                           </div>
                                            

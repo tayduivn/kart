@@ -7,7 +7,8 @@
         <div class="info-order">
            <div class="wrap-info-order">
               <div class="div_title">Thông tin đặt hàng</div>
-              <table class="table-order">
+              <div class="table-responsive">
+              <table class="table table-order">
                  <thead>
                     <tr>
                        <td width="285px">Tên sản phẩm</td>
@@ -43,6 +44,7 @@
                     </tr>
                  </tbody>
               </table>
+              </div>
            </div>
         </div>
      </div>
@@ -98,16 +100,17 @@
            </div>
         </div>
         <div class="buttons clearfix">
-            <div class="pull-left">
-                <button class="btn btn-default" id="button-payment-finish-back" type="button">{{ button_back }}</button>
+          <div class="row">
+            <div class="col-xs-6">
+              <button class="btn btn-default  btn-ks btn-block" id="button-payment-finish-back" type="button">{{ button_back }}</button>
             </div>
-            <div class="pull-right">
-                <input type="button" value="Xác nhận" id="button-payment-finish" data-loading-text="{{ text_loading }}"
-                       class="btn btn-primary"/>
+            <div class="col-xs-6">
+              <input type="button" value="Xác nhận" id="button-payment-finish" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-ks btn-block"/>
             </div>
+          </div>
         </div>
      </div>
-     <div class="clear"></div>
+     <div class="clearfix"></div>
   </div>
 </form>
     <script type="text/javascript"><!--
