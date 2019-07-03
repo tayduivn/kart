@@ -126,13 +126,13 @@
 										</ul>
 										<div class="tab-content-product-detail">
 											<div class="tab-panel-product-detail active tab-panel-1">
-												<article>
+												<article id="article-information">
                                                     {{ description }}
                                                 </article> 
-												<div class="show-more-wrapper"><a href="javascript:void(0)" id="show-more-information">Đọc thêm</a><span><em class="mdi mdi-menu-down"></em></span></div>
+												<div class="show-more-wrapper"><a id="show-more-information2">Đọc thêm</a><span><em class="mdi mdi-menu-down"></em></span></div>
 											</div>
 											<div class="tab-panel-product-detail tab-panel-2">
-												<table class="table table-bordered">
+												<!--<table class="table table-bordered">
                                                     {% for attribute_group in attribute_groups %}
                                                     <thead>
                                                       <tr>
@@ -148,7 +148,8 @@
                                                     {% endfor %}
                                                       </tbody>
                                                     {% endfor %}
-                                                </table>
+                                                </table>-->
+                                                {{ param_tech }}
 											</div>
 											<div class="tab-panel-product-detail tab-panel-3">
 												{{ video }}
@@ -384,6 +385,37 @@
 
 
 <script type="text/javascript"><!--
+	
+	// (function productInformationShowMore() {
+	// 	var button = document.getElementById("show-more-information");
+	// 	var content = document.getElementById("article-information");
+	// 	//Connecting button variable to on click function
+	// 	button.onclick = function () {
+	// 		// If content class name is equal to open
+	// 		if (content.className == "open") {
+	// 			//removes class name
+	// 			content.className = "";
+	// 			// once removed button shows show more
+	// 			button.innerHTML = "Đọc thêm"
+	// 		} else {
+	// 			//other wise if its closed  button will show show less
+	// 			content.className = "open";
+	// 			button.innerHTML = "Thu gọn"
+	// 		}
+	// 	};
+
+	// })();
+
+	$('#show-more-information2').on('click', function() {
+		if( $('#article-information').hasClass('open') ) {
+			$('#article-information').removeClass('open');
+			$('#show-more-information2').html('Đọc thêm');
+		}else {
+			$('#article-information').addClass('open');
+			$('#show-more-information2').html('Thu gọn');
+		}
+	});
+
     $('#button-cart').on('click', function(e) {
         e.preventDefault();
         $.ajax({

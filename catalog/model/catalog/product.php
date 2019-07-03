@@ -74,6 +74,7 @@ class ModelCatalogProduct extends Model {
 				'viewed'           => $query->row['viewed'],
 				'gift'             => $query->row['gift'],
 				'video'            => $query->row['video'],
+				'param_tech'            => $query->row['param_tech'],
 				'is_featured'      => $query->row['is_featured'],
 			);
 		} else {

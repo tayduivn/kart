@@ -49,7 +49,7 @@ class ControllerCommonBlog extends Controller {
             
             $data['blogs'][] = $category;
 
-            $banners = $this->model_design_banner->getBanner(3);
+            $banners = $this->model_design_banner->getBanner(8);
 
             $data['banners'] = array();
 

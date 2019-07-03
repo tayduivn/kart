@@ -191,6 +191,8 @@ $_['entry_is_recurring']          = 'Trả góp 0%:';
 
 $_['entry_video']          = 'Video giới thiệu:';
 
+$_['entry_param']          = 'Thông số kĩ thuật:';
+
 
 
 $_['text_recurring_help']    = 'Khoản được thanh toán theo chu kỳ và định kỳ. <br />Ví dụ: Tần suát là 2, chu kỳ là 1 tuần tức là sẽ lập hóa đơn 1 tuần 2 lần, Thời hạn thanh toán định kỳ là: số lần khách hàng phải thanh toán. Đặt là 0 nếu yêu cầu thanh toán đến lúc khách hàng hủy bỏ.';

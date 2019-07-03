@@ -31,7 +31,7 @@ class ControllerWebCategory extends Controller {
                 
                 
             $filter_data = array(
-    			'filter_category_id' => $category_id
+    			'category_id' => $category_id
     		);
     
     		$results = $this->model_web_blog->getBlogs($filter_data);
