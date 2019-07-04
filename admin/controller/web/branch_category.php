@@ -398,6 +398,22 @@ class ControllerWebBranchCategory extends Controller {
 		} else {
 			$data['sort_order'] = '';
 		}
+
+        if (isset($this->request->post['hotline'])) {
+            $data['hotline'] = $this->request->post['hotline'];
+        } elseif (!empty($category_info)) {
+            $data['hotline'] = $category_info['hotline'];
+        } else {
+            $data['hotline'] = '';
+        }
+
+        if (isset($this->request->post['support'])) {
+            $data['support'] = $this->request->post['support'];
+        } elseif (!empty($category_info)) {
+            $data['support'] = $category_info['support'];
+        } else {
+            $data['support'] = '';
+        }
 		
 		if (isset($this->request->post['category_seo_url'])) {
 			$data['branch_category_seo_url'] = $this->request->post['branch_category_seo_url'];

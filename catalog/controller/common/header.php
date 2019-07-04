@@ -100,6 +100,7 @@ class ControllerCommonHeader extends Controller {
                 'branch_category_id' => $branch['branch_category_id'],
                 'title' => $branch['title'],
                 'supports' => explode(',', $branch['support']),
+                'support' => $branch['support'],
                 'hotline' => $branch['hotline'],
             );
             if( isset($this->request->cookie['customer_branch'])
@@ -110,6 +111,7 @@ class ControllerCommonHeader extends Controller {
                     'branch_category_id' => $branch['branch_category_id'],
                     'title' => $branch['title'],
                     'supports' => explode(',', $branch['support']),
+                    'support' => $branch['support'],
                     'hotline' => $branch['hotline'],
                 );
             }

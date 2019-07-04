@@ -106,4 +106,15 @@ class ControllerWebStore extends Controller {
 
         $this->response->setOutput($this->load->view('web/store', $data));
     }
+
+    public function update() {
+        $id = $this->request->post['id'];
+        setcookie('customer_branch', $id, 0, '/', $this->request->server['HTTP_HOST']);
+        $json = array(
+            'id' => $id,
+            'success' => true
+        );
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 }

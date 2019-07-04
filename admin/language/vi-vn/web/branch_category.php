@@ -51,6 +51,10 @@ $_['entry_bottom']           = 'Cuối trang';
 $_['entry_status']      = 'Tình trạng:';
 
 $_['entry_sort_order']  = 'Thứ tự:';
+$_['entry_is_home']  = 'Hiển thị trang chủ:';
+
+$_['entry_hotline']  = 'Hotline:';
+$_['entry_support']  = 'Hỗ trợ:';
 
 
 

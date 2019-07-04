@@ -3,7 +3,7 @@ class ModelWebBranchCategory extends Model {
 
 	public function addCategory($data) {
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "branch_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', is_home = '" . (isset($data['is_home']) ? (int)$data['is_home'] : 0) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "branch_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', is_home = '" . (isset($data['is_home']) ? (int)$data['is_home'] : 0) . "', status = '" . (int)$data['status'] . "', hotline = '" . $data['hotline'] . "', support = '" . $data['support'] . "'");
 
 		$category_id = $this->db->getLastId();
 
@@ -40,7 +40,7 @@ class ModelWebBranchCategory extends Model {
 	}
 
 	public function editCategory($category_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "branch_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', is_home = '" . (isset($data['is_home']) ? (int)$data['is_home'] : 0) . "', status = '" . (int)$data['status'] . "' WHERE branch_category_id = '" . (int)$category_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "branch_category SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', is_home = '" . (isset($data['is_home']) ? (int)$data['is_home'] : 0) . "', status = '" . (int)$data['status'] . "', hotline = '" . $data['hotline'] . "', support = '" . $data['support'] . "' WHERE branch_category_id = '" . (int)$category_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "branch_category_description WHERE branch_category_id = '" . (int)$category_id . "'");
 

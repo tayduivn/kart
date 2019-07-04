@@ -110,7 +110,7 @@
               </div>
               
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-is-home"><span>is home</span></label>
+                <label class="col-sm-2 control-label" for="input-is-home"><span>{{ entry_is_home }}</span></label>
                 <div class="col-sm-10">
                   <div class="checkbox">
                     <label>{% if is_home %}
@@ -137,12 +137,28 @@
                   </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
                 <div class="col-sm-10">
                   <input type="text" name="sort_order" value="{{ sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-hotline">{{ entry_hotline }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="hotline" value="{{ hotline }}" placeholder="0222 - 0936211210" id="input-hotline" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-support">{{ entry_support }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="support" value="{{ support }}" placeholder="1800 1111,1800 68624,1800 68625,1800 68626" id="input-support" class="form-control" />
+                </div>
+              </div>
+
             </div>
             <div class="tab-pane" id="tab-seo">
               <div class="alert alert-category"><i class="fa fa-category-circle"></i> {{ text_keyword }}</div>

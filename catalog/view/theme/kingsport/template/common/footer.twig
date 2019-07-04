@@ -224,7 +224,33 @@
 				//$('#store-location').modal('show');
 			</script>
 		{% endif %}
+		<script>
+			$('#selectLocationOption li').on('click', function () {
+				var id = $(this).data('value');
+				var hotline = $(this).data('hotline');
+				var support = $(this).data('support');
+				var title = $(this).text();
+				var supports = support.split(',');
 
+				var html = '';
+                for (var i = 0; i < supports.length; i++) {
+                    html += '<li>' + supports[i] + '</li>';
+				}
+
+				var first_support = supports.length ? supports[0] : '';
+                $.ajax({
+                    url: 'index.php?route=web/store/update',
+					type: 'post',
+					data: {id: id},
+                    success: function(json) {
+						$('.default-select-options span').text(title);
+						$('.default-hotline').text(hotline);
+						$('.default-hotline-option span').text(first_support);
+						$('#selectHotlineOption').html(html);
+					}
+                });
+            })
+		</script>
 		<script>
 			window.fbAsyncInit = function() {
 			FB.init({
