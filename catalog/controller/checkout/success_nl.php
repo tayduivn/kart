@@ -31,6 +31,7 @@ class ControllerCheckoutSuccessNl extends Controller {
 			$this->load->model('checkout/order');
 
             $this->model_checkout_order->updateOrderAfterPayment($order_code, $_GET);
+            $this->model_checkout_order->addOrderHistory($order_code, 1);
 			
 		}
 

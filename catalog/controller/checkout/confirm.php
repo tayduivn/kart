@@ -155,13 +155,28 @@ class ControllerCheckoutConfirm extends Controller {
 			if (isset($this->session->data['payment_method']['title'])) {
 				$order_data['payment_method'] = $this->session->data['payment_method']['title'];
 			} else {
-				$order_data['payment_method'] = '';
+                $method = $this->session->data['payment_method_kingsport'];
+                $payment_method = '';
+                if($method == 'home') {
+                    $payment_method = 'COD';
+                }
+                if($method == 'alepay') {
+                    $payment_method = 'Trả góp Online qua Alepay';
+                }
+                if($method == 'alepay_qt') {
+                    $payment_method = 'Thanh toán Online thẻ Quốc tế qua Alepay';
+                }
+                if($method == 'nganluong') {
+                    $payment_method = 'Thanh toán thẻ nội địa qua Ngân lượng';
+                }
+				$order_data['payment_method'] = $payment_method;
 			}
 
 			if (isset($this->session->data['payment_method']['code'])) {
 				$order_data['payment_code'] = $this->session->data['payment_method']['code'];
 			} else {
-				$order_data['payment_code'] = '';
+                $method = $this->session->data['payment_method_kingsport'];
+				$order_data['payment_code'] = $method;
 			}
 
 			if ($this->cart->hasShipping()) {

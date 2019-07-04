@@ -24,6 +24,9 @@ class ControllerCheckoutSuccess extends Controller {
         	$payment_info .= $product['quantity'] . ' ' . $product['name'] . ' ';
         }
 
+        $this->load->model('checkout/order');
+        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 1);
+
 		$this->load->language('checkout/success');
 
 		if (isset($this->session->data['order_id'])) {

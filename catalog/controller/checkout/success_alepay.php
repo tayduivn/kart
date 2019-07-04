@@ -40,6 +40,7 @@ class ControllerCheckoutSuccessAlepay extends Controller {
             $this->load->model('checkout/order');
 
             $this->model_checkout_order->updateOrderAfterPayment($info->orderCode, $info);
+            $this->model_checkout_order->addOrderHistory($info->orderCode, 1);
 
 		}
 
