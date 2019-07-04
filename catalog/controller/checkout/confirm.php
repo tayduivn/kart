@@ -474,7 +474,9 @@ class ControllerCheckoutConfirm extends Controller {
     }
 
     public function alepay() {
+
 		$this->load->model('account/customer');
+
         if ($this->customer->isLogged()) {
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
             $firstname = $customer_info['firstname'];
@@ -504,14 +506,8 @@ class ControllerCheckoutConfirm extends Controller {
         $buyerCountry = !empty($this->session->data['payment_address']['country']) ? $this->session->data['payment_address']['country'] : $this->session->data['shipping_address']['country'];
 
 
-        $config = array(
-            "apiKey" => "0COVspcyOZRNrsMsbHTdt8zesP9m0y", //Là key dùng để xác định tài khoản nào đang được sử dụng.
-            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIh+tv4h3y4piNwwX2WaDa7lo0uL7bo7vzp6xxNFc92HIOAo6WPZ8fT+EXURJzORhbUDhedp8B9wDsjgJDs9yrwoOYNsr+c3x8kH4re+AcBx/30RUwWve8h/VenXORxVUHEkhC61Onv2Y9a2WbzdT9pAp8c/WACDPkaEhiLWCbbwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
-            "checksumKey" => "hjuEmsbcohOwgJLCmJlf7N2pPFU1Le", //Là key dùng để tạo checksum data.
-            "callbackUrl" => $this->url->link('checkout/success'),
-            "env" => "test",
-        );
-        $alepay = new Alepay($config);
+        
+        $alepay = new Alepay( $this->alepay_config() );
         $data = array();
 
         $data['cancelUrl'] = $this->url->link('checkout/failure');
@@ -546,7 +542,9 @@ class ControllerCheckoutConfirm extends Controller {
     }
 
     public function alepay_qt() {
+
 		$this->load->model('account/customer');
+		
         if ($this->customer->isLogged()) {
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
             $firstname = $customer_info['firstname'];
@@ -576,15 +574,9 @@ class ControllerCheckoutConfirm extends Controller {
         $buyerCity = !empty($this->session->data['payment_address']['city']) ? $this->session->data['payment_address']['city'] : $this->session->data['shipping_address']['city'];
         $buyerCountry = !empty($this->session->data['payment_address']['country']) ? $this->session->data['payment_address']['country'] : $this->session->data['shipping_address']['country'];
 
-        $config = array(
-            "apiKey" => "0COVspcyOZRNrsMsbHTdt8zesP9m0y", //Là key dùng để xác định tài khoản nào đang được sử dụng.
-            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIh+tv4h3y4piNwwX2WaDa7lo0uL7bo7vzp6xxNFc92HIOAo6WPZ8fT+EXURJzORhbUDhedp8B9wDsjgJDs9yrwoOYNsr+c3x8kH4re+AcBx/30RUwWve8h/VenXORxVUHEkhC61Onv2Y9a2WbzdT9pAp8c/WACDPkaEhiLWCbbwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
-            "checksumKey" => "hjuEmsbcohOwgJLCmJlf7N2pPFU1Le", //Là key dùng để tạo checksum data.
-            "callbackUrl" => $this->url->link('checkout/success'),
-            "env" => "test",
-        );
+        
 
-        $alepay = new Alepay($config);
+        $alepay = new Alepay( $this->alepay_config() );
         $data = array();
 
         $data['cancelUrl'] = $this->url->link('checkout/failure');
@@ -622,7 +614,9 @@ class ControllerCheckoutConfirm extends Controller {
     }
 
     public function nganluong() {
+
     	$this->load->model('account/customer');
+    	
         if ($this->customer->isLogged()) {
             $customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
             $firstname = $customer_info['firstname'];
@@ -647,13 +641,10 @@ class ControllerCheckoutConfirm extends Controller {
         //Mã đơn hàng
         $order_code= $this->session->data['order_id'];
         //Khai báo url trả về
-        $return_url= $this->url->link('checkout/success');
+        $return_url= $this->url->link('checkout/success_nl');
         // Link nut hủy đơn hàng
         $cancel_url= $this->url->link('checkout/failure');
         //Giá của cả giỏ hàng
-//        $txh_name = $_POST['txh_name'];
-//        $txt_email = $_POST['txt_email'];
-//        $txt_phone = $_POST['txt_phone'];
 
         $price = !empty($first_charge) ? $first_charge : (int)$total_data['total']['value'] ;
 
@@ -676,10 +667,12 @@ class ControllerCheckoutConfirm extends Controller {
         //Khai báo đối tượng của lớp NL_Checkout
         $nl= new NL_Checkout();
 
-        $receiver = 'demo@nganluong.vn';
-        $nl->nganluong_url = 'https://www.nganluong.vn/checkout.php';
-        $nl->merchant_site_code = '36680';
-        $nl->secure_pass = 'matkhauketnoi';
+        $config = $this->nganluong_config();
+
+        $receiver = $config['receiver'];
+        $nl->nganluong_url = $config['url_test'];
+        $nl->merchant_site_code = $config['merchant_code'];
+        $nl->secure_pass = $config['secure_pass'];
 
         //Tạo link thanh toán đến nganluong.vn
         $url= $nl->buildCheckoutUrlExpand($return_url, $receiver, $transaction_info, $order_code, $price, $currency, $quantity, $tax, $discount , $fee_cal,    $fee_shipping, $order_description, $buyer_info , $affiliate_code);
@@ -687,4 +680,31 @@ class ControllerCheckoutConfirm extends Controller {
 
         return $url .='&cancel_url='. $cancel_url;
     }
+
+
+    //config
+    private function nganluong_config() {
+    	return array(
+    		'receiver' => 'thducuit@gmail.com',
+    		'url' => 'https://www.nganluong.vn/checkout.php',
+    		'url_test' => 'https://sandbox.nganluong.vn:8088/nl35/checkout.php',
+    		'merchant_code' => '47791',
+    		'secure_pass' => '5ecdced2fbe828b9d89d5ec2ebfc7344',
+    	);
+    }
+
+
+
+    private function alepay_config() {
+    	return  array(
+            "apiKey" => "iOAQ0PO6pcsSvpQ1zfxtlaEWGk32xX", //Là key dùng để xác định tài khoản nào đang được sử dụng.
+            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC49HDk1rIVwvIBjHi48lS4w71vkiNbQdYWFK2PadIG/eHJAO3PWp3oWBJ5nnNwwD1CkuFLNUrewQ5gO+cV26a5EZQQ3tK6hlb43HbYN1jPOVpJ81Y2Xwx0Z/0NR61InoUPWfteljeQMX3Drn45Iqen5pCU3Oco40WoTKuvFXYLSwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
+            "checksumKey" => "QfDodb44QpuI4sScXlOS6cVMV4tq45", //Là key dùng để tạo checksum data.
+            "callbackUrl" => $this->url->link('checkout/success_alepay'),
+            "env" => "test",
+        );
+    }
+
+
+
 }

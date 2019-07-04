@@ -1,6 +1,39 @@
 <?php
-class ControllerCheckoutSuccess extends Controller {
+class ControllerCheckoutSuccessNl extends Controller {
+
 	public function index() {
+
+		if (isset($_GET['payment_id'])) {
+			// Lấy các tham số để chuyển sang Ngânlượng thanh toán:
+			$config = $this->nganluong_config();
+
+			$transaction_info =$_GET['transaction_info'];
+			$order_code =$_GET['order_code'];
+			$price =$_GET['price'];
+			$payment_id =$_GET['payment_id'];
+			$payment_type =$_GET['payment_type'];
+			$error_text =$_GET['error_text'];
+			$secure_code =$_GET['secure_code'];
+
+		    //Khai báo đối tượng của lớp NL_Checkout
+			$nl= new NL_Checkout();
+			$nl->merchant_site_code = $config['merchant_code'];
+			$nl->secure_pass = $config['secure_pass'];
+			//Tạo link thanh toán đến nganluong.vn
+			$checkpay= $nl->verifyPaymentUrl($transaction_info, $order_code, $price, $payment_id, $payment_type, $error_text, $secure_code);
+			
+		    if ($checkpay) {	
+				$data['alert'] = "Giao dịch Thành Công! Mã đơn hàng: " . $order_code;
+			}else{
+				$data['alert'] =  "Giao dịch Thất Bại! Liên lạc Kingsport để biết thêm chi tiết. Mã đơn hàng: " . $$order_code;
+			}
+
+			$this->load->model('checkout/order');
+
+            $this->model_checkout_order->updateOrderAfterPayment($order_code, $_GET);
+			
+		}
+
 
 		$this->load->model('account/customer');
 		
@@ -23,6 +56,7 @@ class ControllerCheckoutSuccess extends Controller {
         foreach ($this->cart->getProducts() as $product) {
         	$payment_info .= $product['quantity'] . ' ' . $product['name'] . ' ';
         }
+        
 
 		$this->load->language('checkout/success');
 
@@ -69,10 +103,10 @@ class ControllerCheckoutSuccess extends Controller {
 
 		if ($this->customer->isLogged()) {
 			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
-		<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
+	<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
 		} else {
 			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
-		<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
+	<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
 		}
 
 		$data['continue'] = $this->url->link('common/home');
@@ -86,4 +120,16 @@ class ControllerCheckoutSuccess extends Controller {
 
 		$this->response->setOutput($this->load->view('common/success', $data));
 	}
+
+
+	private function nganluong_config() {
+    	return array(
+    		'receiver' => 'thducuit@gmail.com',
+    		'url' => 'https://www.nganluong.vn/checkout.php',
+    		'url_test' => 'https://sandbox.nganluong.vn:8088/nl35/checkout.php',
+    		'merchant_code' => '47791',
+    		'secure_pass' => '5ecdced2fbe828b9d89d5ec2ebfc7344',
+    	);
+    }
+
 }

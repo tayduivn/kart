@@ -382,4 +382,8 @@ class ModelCheckoutOrder extends Model {
 			$this->cache->delete('product');
 		}
 	}
+
+	public function updateOrderAfterPayment($order_id, $data) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET payment_result_info = '" . json_encode($data) . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+	}
 }
