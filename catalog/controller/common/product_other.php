@@ -16,8 +16,7 @@ class ControllerCommonProductOther extends Controller {
             'start' => 0,
             'limit' => 16,
             'filter_category_id'  => 66,
-            'filter_sub_category' => true,
-            'is_new'=> true
+            'filter_sub_category' => true
         );
 
         $results = $this->model_catalog_product->getProducts($filter_data);
@@ -58,6 +57,7 @@ class ControllerCommonProductOther extends Controller {
 
                 $data['products'][] = array(
                     'product_id'  => $result['product_id'],
+                    'name'        => $result['name'],
                     'thumb'       => $image,
                     'gift'        => trim(strip_tags(html_entity_decode($result['gift'], ENT_QUOTES, 'UTF-8'))),
                     'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',

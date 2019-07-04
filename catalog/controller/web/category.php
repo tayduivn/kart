@@ -2,7 +2,7 @@
 class ControllerWebCategory extends Controller {
 	public function index() {
 	   
-		$this->load->language('web/blog_category');
+		$this->load->language('web/category');
 
 		// Menu
 

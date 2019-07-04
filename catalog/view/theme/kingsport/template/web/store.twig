@@ -47,11 +47,13 @@
                                 <p>{% if branch_child.parking %}(Có chỗ đậu ô tô){% endif %}</p>
                                 <div class="figure-fancy">
                                     <p>Hình ảnh chi tiết</p>
+
                                     <a data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" href="https://www.google.com/maps/place/{{ branch_child.address }}/@{{ branch_child.lat }},{{ branch_child.lng }},17z">
+
                                         <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
-                                    {% for image in branch_child.images %}
-                                    <a data-fancybox="gallery" href="{{ image.thumb }}">
-                                        <img src="{{ image.popup }}"></a>
+                                    {% for image in branch_child.images | slice(0, 3) %}
+                                    <a data-fancybox="gallery" href="{{ image.popup }}">
+                                        <img src="{{ image.thumb }}"></a>
                                     {% endfor %}
                                 </div>
                             </div>

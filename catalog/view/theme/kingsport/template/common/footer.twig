@@ -230,14 +230,19 @@
 				var hotline = $(this).data('hotline');
 				var support = $(this).data('support');
 				var title = $(this).text();
-				var supports = support.split(',');
 
 				var html = '';
-                for (var i = 0; i < supports.length; i++) {
-                    html += '<li>' + supports[i] + '</li>';
-				}
+				var first_support = '';
+				console.log(support);
+				if(support) {
+					var supports = support.toString().split(',');
+	                for (var i = 0; i < supports.length; i++) {
+	                    html += '<li>' + supports[i] + '</li>';
+					}
 
-				var first_support = supports.length ? supports[0] : '';
+					first_support = supports.length ? supports[0] : '';
+				}
+				
                 $.ajax({
                     url: 'index.php?route=web/store/update',
 					type: 'post',

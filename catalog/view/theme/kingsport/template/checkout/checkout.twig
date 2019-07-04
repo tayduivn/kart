@@ -42,8 +42,8 @@
                             <div class="style_order">
                                <div class="style_step">
                                   <ul>
-                                     <li class="active"><span class="number">1</span><a href="#" class="text">Giỏ hàng</a></li>
-                                     <li class="active"><span class="number">2</span><a href="#" class="text">Thông tin và thanh toán</a></li>
+                                     <li class="active"><span class="number">1</span><span class="text">Giỏ hàng</span></li>
+                                     <li class="active"><span class="number">2</span><span class="text">Thông tin và thanh toán</span></li>
                                      <li><span class="number">3</span><span class="text">Xác nhận hóa đơn</span></li>
                                      <li><span class="number">4</span><span class="text">Hoàn tất</span></li>
                                   </ul>
@@ -843,6 +843,7 @@ $(document).delegate('#button-payment-method', 'click', function() {
                         //redirect sang trang confirm
                         $('#collapse-checkout-confirm').html(html);
                         $('#collapse-checkout-confirm').show();
+                        $('html, body').animate({ scrollTop: 0 }, 'slow');
                         $(".style_step ul li:nth-child(3)").addClass('active');
 
                         $('#f_checkout').hide();
