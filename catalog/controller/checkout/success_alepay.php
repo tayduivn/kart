@@ -131,13 +131,14 @@ class ControllerCheckoutSuccessAlepay extends Controller {
 
 
 
-	private function alepay_config() {
-    	return  array(
-            "apiKey" => "iOAQ0PO6pcsSvpQ1zfxtlaEWGk32xX", //Là key dùng để xác định tài khoản nào đang được sử dụng.
-            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC49HDk1rIVwvIBjHi48lS4w71vkiNbQdYWFK2PadIG/eHJAO3PWp3oWBJ5nnNwwD1CkuFLNUrewQ5gO+cV26a5EZQQ3tK6hlb43HbYN1jPOVpJ81Y2Xwx0Z/0NR61InoUPWfteljeQMX3Drn45Iqen5pCU3Oco40WoTKuvFXYLSwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
-            "checksumKey" => "QfDodb44QpuI4sScXlOS6cVMV4tq45", //Là key dùng để tạo checksum data.
+    private function alepay_config() {
+        $isTest = $this->config->get('config_env_test');
+        return  array(
+            "apiKey" => $this->config->get('config_alepay_api_key'),
+            "encryptKey" => $this->config->get('config_alepay_encrypt_key'),
+            "checksumKey" => $this->config->get('config_alepay_checksum_key'),
             "callbackUrl" => $this->url->link('checkout/success_alepay'),
-            "env" => "test",
+            "env" => $isTest ? "test" : 'live',
         );
     }
 

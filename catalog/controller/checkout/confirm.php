@@ -685,7 +685,7 @@ class ControllerCheckoutConfirm extends Controller {
         $config = $this->nganluong_config();
 
         $receiver = $config['receiver'];
-        $nl->nganluong_url = $config['url_test'];
+        $nl->nganluong_url = $config['url'];
         $nl->merchant_site_code = $config['merchant_code'];
         $nl->secure_pass = $config['secure_pass'];
 
@@ -699,24 +699,28 @@ class ControllerCheckoutConfirm extends Controller {
 
     //config
     private function nganluong_config() {
+        $isTest = $this->config->get('config_env_test');
+        $url = 'https://www.nganluong.vn/checkout.php';
+        if($isTest) {
+            $url = 'https://sandbox.nganluong.vn:8088/nl35/checkout.php';
+        }
     	return array(
-    		'receiver' => 'thducuit@gmail.com',
-    		'url' => 'https://www.nganluong.vn/checkout.php',
-    		'url_test' => 'https://sandbox.nganluong.vn:8088/nl35/checkout.php',
-    		'merchant_code' => '47791',
-    		'secure_pass' => '5ecdced2fbe828b9d89d5ec2ebfc7344',
+    		'receiver' => $this->config->get('config_ngluong_receiver'),
+    		'merchant_code' => $this->config->get('config_ngluong_merchant_code'),
+    		'url' => $url,
+    		'secure_pass' => $this->config->get('config_ngluong_secure_pass'),
     	);
     }
 
 
-
     private function alepay_config() {
+        $isTest = $this->config->get('config_env_test');
     	return  array(
-            "apiKey" => "iOAQ0PO6pcsSvpQ1zfxtlaEWGk32xX", //Là key dùng để xác định tài khoản nào đang được sử dụng.
-            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC49HDk1rIVwvIBjHi48lS4w71vkiNbQdYWFK2PadIG/eHJAO3PWp3oWBJ5nnNwwD1CkuFLNUrewQ5gO+cV26a5EZQQ3tK6hlb43HbYN1jPOVpJ81Y2Xwx0Z/0NR61InoUPWfteljeQMX3Drn45Iqen5pCU3Oco40WoTKuvFXYLSwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
-            "checksumKey" => "QfDodb44QpuI4sScXlOS6cVMV4tq45", //Là key dùng để tạo checksum data.
+            "apiKey" => $this->config->get('config_alepay_api_key'),
+            "encryptKey" => $this->config->get('config_alepay_encrypt_key'),
+            "checksumKey" => $this->config->get('config_alepay_checksum_key'),
             "callbackUrl" => $this->url->link('checkout/success_alepay'),
-            "env" => "test",
+            "env" => $isTest ? "test" : 'live',
         );
     }
 

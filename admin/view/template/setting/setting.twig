@@ -336,6 +336,72 @@
                   </select>
                 </div>
               </div>
+
+              <!--Payment-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{ entry_env_test }}</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline"> {% if config_env_test %}
+                      <input type="radio" name="config_env_test" value="1" checked="checked" />
+                          {{ text_yes }}
+                      {% else %}
+                        <input type="radio" name="config_env_test" value="1" />
+                          {{ text_yes }}
+                      {% endif %} </label>
+                  <label class="radio-inline"> {% if not config_env_test %}
+                      <input type="radio" name="config_env_test" value="0" checked="checked" />
+                          {{ text_no }}
+                      {% else %}
+                        <input type="radio" name="config_env_test" value="0" />
+                          {{ text_no }}
+                      {% endif %} </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-ngluong-receiver">{{ entry_ngluong_receiver }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_ngluong_receiver" value="{{ config_ngluong_receiver }}" placeholder="{{ entry_ngluong_receiver }}" id="input-ngluong-receiver" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-ngluong-merchant-code">{{ entry_ngluong_merchant_code }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_ngluong_merchant_code" value="{{ config_ngluong_merchant_code }}" placeholder="{{ entry_ngluong_merchant_code }}" id="input-ngluong-merchant-code" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-ngluong-secure-pass">{{ entry_ngluong_secure_pass }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_ngluong_secure_pass" value="{{ config_ngluong_secure_pass }}" placeholder="{{ entry_ngluong_secure_pass }}" id="input-ngluong-secure-pass" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-alepay-api-key">{{ entry_alepay_api_key }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_alepay_api_key" value="{{ config_alepay_api_key }}" placeholder="{{ entry_alepay_api_key }}" id="input-alepay-api-key" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-alepay-encrypt-key">{{ entry_alepay_encrypt_key }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_alepay_encrypt_key" value="{{ config_alepay_encrypt_key }}" placeholder="{{ entry_alepay_encrypt_key }}" id="input-alepay-encrypt-key" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-alepay-checksum-key">{{ entry_alepay_checksum_key }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_alepay_checksum_key" value="{{ config_alepay_checksum_key }}" placeholder="{{ entry_alepay_encrypt_key }}" id="input-alepay-checksum-key" class="form-control" />
+                </div>
+              </div>
+
+
+
             </div>
             <div class="tab-pane" id="tab-option">
               <fieldset>

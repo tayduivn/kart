@@ -52,6 +52,14 @@ $_['entry_currency']          = 'Tiền tệ:';
 $_['entry_currency_auto']     = 'Tự động cập nhật tiền tệ:';
 $_['entry_length_class']      = 'Đơn vị đo chiều dài:';
 $_['entry_weight_class']      = 'Đơn vị đo khối lượng:';
+$_['entry_env_test']            = 'Môi trường Test thanh toán:';
+$_['entry_ngluong_receiver']            = 'Ngân lượng - Receiver:';
+$_['entry_ngluong_merchant_code']            = 'Ngân lượng - Merchant Code:';
+$_['entry_ngluong_secure_pass']            = 'Ngân lượng - Secure Pass:';
+
+$_['entry_alepay_api_key']            = 'Alepay - API:';
+$_['entry_alepay_encrypt_key']            = 'Alepay - Encrypt Key:';
+$_['entry_alepay_checksum_key']            = 'Alepay - Checksum Key:';
 
 $_['entry_product_limit']              = 'Sản phẩm trên trang (Danh mục)';
 $_['entry_product_description_length'] = 'Mô tả ngắn (Danh mục)';

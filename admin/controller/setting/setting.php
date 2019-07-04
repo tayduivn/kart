@@ -876,6 +876,50 @@ class ControllerSettingSetting extends Controller {
 			$data['config_error_filename'] = $this->config->get('config_error_filename');
 		}
 
+
+        //Thanh toan
+        if (isset($this->request->post['config_env_test'])) {
+            $data['config_env_test'] = $this->request->post['config_env_test'];
+        } else {
+            $data['config_env_test'] = $this->config->get('config_env_test');
+        }
+        //ngan luong
+        if (isset($this->request->post['config_ngluong_receiver'])) {
+            $data['config_ngluong_receiver'] = $this->request->post['config_ngluong_receiver'];
+        } else {
+            $data['config_ngluong_receiver'] = $this->config->get('config_ngluong_receiver');
+        }
+
+        if (isset($this->request->post['config_ngluong_merchant_code'])) {
+            $data['config_ngluong_merchant_code'] = $this->request->post['config_ngluong_merchant_code'];
+        } else {
+            $data['config_ngluong_merchant_code'] = $this->config->get('config_ngluong_merchant_code');
+        }
+
+        if (isset($this->request->post['config_ngluong_secure_pass'])) {
+            $data['config_ngluong_secure_pass'] = $this->request->post['config_ngluong_secure_pass'];
+        } else {
+            $data['config_ngluong_secure_pass'] = $this->config->get('config_ngluong_secure_pass');
+        }
+        //Alepay
+        if (isset($this->request->post['config_alepay_api_key'])) {
+            $data['config_alepay_api_key'] = $this->request->post['config_alepay_api_key'];
+        } else {
+            $data['config_alepay_api_key'] = $this->config->get('config_alepay_api_key');
+        }
+
+        if (isset($this->request->post['config_alepay_encrypt_key'])) {
+            $data['config_alepay_encrypt_key'] = $this->request->post['config_alepay_encrypt_key'];
+        } else {
+            $data['config_alepay_encrypt_key'] = $this->config->get('config_alepay_encrypt_key');
+        }
+
+        if (isset($this->request->post['config_alepay_checksum_key'])) {
+            $data['config_alepay_checksum_key'] = $this->request->post['config_alepay_checksum_key'];
+        } else {
+            $data['config_alepay_checksum_key'] = $this->config->get('config_alepay_checksum_key');
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

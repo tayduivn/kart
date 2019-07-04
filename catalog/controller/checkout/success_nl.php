@@ -123,14 +123,18 @@ class ControllerCheckoutSuccessNl extends Controller {
 	}
 
 
-	private function nganluong_config() {
-    	return array(
-    		'receiver' => 'thducuit@gmail.com',
-    		'url' => 'https://www.nganluong.vn/checkout.php',
-    		'url_test' => 'https://sandbox.nganluong.vn:8088/nl35/checkout.php',
-    		'merchant_code' => '47791',
-    		'secure_pass' => '5ecdced2fbe828b9d89d5ec2ebfc7344',
-    	);
+    private function nganluong_config() {
+        $isTest = $this->config->get('config_env_test');
+        $url = 'https://www.nganluong.vn/checkout.php';
+        if($isTest) {
+            $url = 'https://sandbox.nganluong.vn:8088/nl35/checkout.php';
+        }
+        return array(
+            'receiver' => $this->config->get('config_ngluong_receiver'),
+            'merchant_code' => $this->config->get('config_ngluong_merchant_code'),
+            'url' => $url,
+            'secure_pass' => $this->config->get('config_ngluong_secure_pass'),
+        );
     }
 
 }
