@@ -121,6 +121,11 @@ class ControllerCommonHeader extends Controller {
             $data['default_branch'] = $data['branch_categories'][0];
         }
 
+        //Add Class
+        if (!isset($this->request->get['route']) || $this->request->get['route'] == 'common/home'){
+			$data['is_home']=1;
+		}
+
 		return $this->load->view('common/header', $data);
 	}
 }
