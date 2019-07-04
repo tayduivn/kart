@@ -3,8 +3,12 @@
 $_['heading_title'] = 'Đơn đặt hàng của bạn đã được tạo thành công!';
 
 // Text
-$_['text_customer'] = '<p>Chúc mừng! Bạn vừa đặt hàng thành công!</p><p>Nếu có thắc mắc, bạn vui lòng liên hệ <a href="%s">bộ phận chăm sóc khách hàng</a>.</p><p>Cám ơn bạn đã mua hàng của chúng tôi!</p>';
-$_['text_guest']    = '<p>Your order has been successfully processed!</p><p>Please direct any questions you have to the <a href="%s">store owner</a>.</p><p>Thanks for shopping with us online!</p>';
+$_['text_customer'] = '<p>Cảm ơn anh(chị) %s đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
+	<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>';
+
+$_['text_customer'] = '<p>Cảm ơn anh(chị) %s đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
+	<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>';
+	
 $_['text_basket']   = 'Basket';
 $_['text_checkout'] = 'Checkout';
 $_['text_success']  = 'Success';

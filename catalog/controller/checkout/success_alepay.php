@@ -1,6 +1,47 @@
 <?php
-class ControllerCheckoutSuccess extends Controller {
+class ControllerCheckoutSuccessAlepay extends Controller {
+
 	public function index() {
+
+		$data = [];
+		
+		$config = $this->alepay_config();
+
+		$encryptKey = $config['encryptKey'];
+
+		if (isset($_REQUEST['data']) && isset($_REQUEST['checksum'])) {
+
+		    $alepay = new Alepay($config);
+		    $utils = new AlepayUtils();
+		    $result = $utils->decryptCallbackData($_REQUEST['data'], $encryptKey);
+
+		    $obj_data = json_decode($result);
+
+		    //lay thong tin thanh toan
+            $info = json_decode($alepay->getTransactionInfo($obj_data->data));
+
+		    if ($obj_data->errorCode === '155') { // thanh toan tra gop Xử lý khi giao dịch chờ xác nhận
+                // 
+                $data['alert'] = "Trả góp Thành Công! Bạn nên xác nhận phía Ngân Hàng để Hoàn Thành thủ tục Giao Dịch";
+
+            } else if ($obj_data->errorCode === '000') {
+
+				$data['alert'] = "Giao dịch Thành Công! Mã đơn hàng: " . $info->orderCode;
+
+            }
+            else{
+
+                 $data['alert'] =  "Giao dịch Thất Bại! Liên lạc Kingsport để biết thêm chi tiết. Mã đơn hàng: " . $info->orderCode;
+
+            }
+
+            
+
+            $this->load->model('checkout/order');
+
+            $this->model_checkout_order->updateOrderAfterPayment($info->orderCode, $info);
+
+		}
 
 		$this->load->model('account/customer');
 		
@@ -69,10 +110,10 @@ class ControllerCheckoutSuccess extends Controller {
 
 		if ($this->customer->isLogged()) {
 			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
-		<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
+	<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
 		} else {
 			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
-		<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
+	<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
 		}
 
 		$data['continue'] = $this->url->link('common/home');
@@ -86,4 +127,17 @@ class ControllerCheckoutSuccess extends Controller {
 
 		$this->response->setOutput($this->load->view('common/success', $data));
 	}
+
+
+
+	private function alepay_config() {
+    	return  array(
+            "apiKey" => "iOAQ0PO6pcsSvpQ1zfxtlaEWGk32xX", //Là key dùng để xác định tài khoản nào đang được sử dụng.
+            "encryptKey" => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC49HDk1rIVwvIBjHi48lS4w71vkiNbQdYWFK2PadIG/eHJAO3PWp3oWBJ5nnNwwD1CkuFLNUrewQ5gO+cV26a5EZQQ3tK6hlb43HbYN1jPOVpJ81Y2Xwx0Z/0NR61InoUPWfteljeQMX3Drn45Iqen5pCU3Oco40WoTKuvFXYLSwIDAQAB", //Là key dùng để mã hóa dữ liệu truyền tới Alepay.
+            "checksumKey" => "QfDodb44QpuI4sScXlOS6cVMV4tq45", //Là key dùng để tạo checksum data.
+            "callbackUrl" => $this->url->link('checkout/success_alepay'),
+            "env" => "test",
+        );
+    }
+
 }

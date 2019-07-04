@@ -79,7 +79,10 @@
                                                                                 </a>
                                                                             </div>
                                                                         {% endif %}
-                                                                        <div class="title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+                                                                    
+                                                                        <div class="title">
+                                                                            <a href="{{ product.href }}">{{ product.name }}</a>
+                                                                        </div>
                                                                     </td>
                                                                     <td align="right">{{ product.price }}</td>
                                                                     <td align="center">{{ product.quantity }}</td>
@@ -90,7 +93,7 @@
                                                                 <td colspan="3" align="right">Tổng giỏ hàng</td>
                                                                 <td>{{ totals_text }}</td>
                                                             </tr>
-                                                            <tr></tr>
+                                                            
                                                             <tr>
                                                                 <td colspan="3" align="right">Thành tiền</td>
                                                                 <td>{{ totals_text }}</td>

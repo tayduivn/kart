@@ -19,25 +19,26 @@
                  </thead>
                  <tbody>
                     {% for product in products %}
-                    <td>
-                        {% if product.thumb %}
-                            <div class="img">
-                                <a href="{{ product.href }}">
-                                    <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
-                                </a>
-                            </div>
-                        {% endif %}
-                        <div class="title"><a href="{{ product.href }}">{{ product.name }}</a></div>
-                    </td>
-                    <td align="right">{{ product.price }}</td>
-                    <td align="center">{{ product.quantity }}</td>
-                    <td>{{ product.total }}</td>
+                    <tr>
+                        <td>
+                          {% if product.thumb %}
+                              <div class="img">
+                                  <a href="{{ product.href }}">
+                                      <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                                  </a>
+                              </div>
+                          {% endif %}
+                          <div class="title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+                      </td>
+                      <td align="right">{{ product.price }}</td>
+                      <td align="center">{{ product.quantity }}</td>
+                      <td>{{ product.total }}</td>
+                    </tr>
                     {% endfor %}
                     <tr>
                        <td colspan="3" align="right">Tổng giỏ hàng</td>
                        <td>{{ totals_text }}</td>
                     </tr>
-                    <tr></tr>
                     <tr>
                        <td colspan="3" align="right">Thành tiền</td>
                        <td>{{ totals_text }}</td>
