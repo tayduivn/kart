@@ -71,11 +71,11 @@ class ControllerCheckoutSuccess extends Controller {
 		);
 
 		if ($this->customer->isLogged()) {
-			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
-		<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
+			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Quý khách đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho Quý khách.</p>
+		<p class="hightlight">Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
 		} else {
-			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Anh đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho anh.</p>
-		<p>Xin chân thành cảm ơn và trân trọng phục vụ quý khách!</p>', $customer, $payment_info);
+			$data['text_message'] = sprintf('<p>Cảm ơn anh(chị) <strong>%s</strong> đã cho KingSport cơ hội được phục vụ. Quý khách đã đặt hàng thành công <strong>%s</strong> . Trước khi giao hàng nhân viên của KingSport sẽ gửi tin nhắn hoặc gọi xác nhận giao hàng cho Quý khách.</p>
+		<p class="hightlight">Xin chân thành cảm ơn và trân trọng phục vụ Quý khách!</p>', $customer, $payment_info);
 		}
 
 		$data['continue'] = $this->url->link('common/home');

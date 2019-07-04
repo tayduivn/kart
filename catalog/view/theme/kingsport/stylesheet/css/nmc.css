@@ -137,6 +137,8 @@ background: #df2025;
     border-radius: 0px;
 }
 .btn-site:hover{background: #f99d1c;}
+.btn-transparent{background: transparent; color: #ed1c24; font-weight: 700; border: solid 2px transparent;}
+.btn-transparent:hover{border: solid 2px #ed1c24; color: #ed1c24; background: transparent; }
 .cart-form .coupon_Total .Coupon{    background: url(../images/checkout/gift.png) no-repeat 22px 20px #fff; height: auto;}
 .cart-form .coupon_Total .Coupon .div-coupon{padding-bottom: 10px;}
 .cart-form .coupon_Total .Coupon .div-coupon p{margin-bottom: 0px;}
@@ -293,3 +295,11 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
 }
 
 .product-discount .product-wrapper .product-figure-wrapper h2{font-weight: 900; font-family: 'Muli', sans-serif; margin-top: 15px;}
+#common-success .box-border{border: solid 1px #ebebeb; padding: 25px 15%; text-align: center; margin-bottom: 30px;}
+#common-success .buttons{margin-bottom: 30px;}
+#common-success .box-border p.hightlight{color: #ed1c24; }
+#common-success .box-border img{max-width: 100%; height: auto; margin-bottom: 10px;}
+
+@media (max-width: 480px) {
+    #common-success .box-border{border:0px; padding: 0px;}
+}
