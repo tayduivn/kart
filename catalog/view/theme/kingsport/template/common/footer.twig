@@ -178,6 +178,9 @@
 				</div>
 			</section>
 		</main>
+
+
+
 		<script src="catalog/view/theme/kingsport/stylesheet/js/main.min.js" type="text/javascript"></script>   
 		<script src="catalog/view/theme/kingsport/stylesheet/js/custom.js" type="text/javascript"></script>   
         {% for script in scripts %}
@@ -188,7 +191,41 @@
         <script src="catalog/view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js"></script>  
         <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-        <script>
+
+
+		{% if not cookie_customer_branch %}
+			<div id="store-location" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Chọn Showroom gần chỗ bạn</h4>
+						</div>
+						<div class="modal-body">
+							<form action="">
+								<select name="choose-branch" id="choose-branch">
+									{% for branch in branches %}
+									<option value="{{ branch.branch_category_id }}">{{ branch.title }}</option>
+									{% endfor %}
+								</select>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Bỏ qua</button>
+							<button type="button" class="btn btn-primary">Chọn</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<script>
+				//$('#store-location').modal('show');
+			</script>
+		{% endif %}
+
+		<script>
 			window.fbAsyncInit = function() {
 			FB.init({
 			appId            : 'your-app-id',
@@ -199,6 +236,6 @@
 			};
 		</script>
 		<script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v3.3"></script>
-        
+
     </body>
 </html>

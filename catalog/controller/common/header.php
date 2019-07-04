@@ -87,6 +87,38 @@ class ControllerCommonHeader extends Controller {
         $data['home_menu'] = $this->load->controller('common/home_menu');
         $data['mobile_menu'] = $this->load->controller('common/mobile_menu');
 
+        //check branch
+        $this->load->model('web/branch_category');
+
+        $branches = $this->model_web_branch_category->getCategories([
+            'sort' => 'sort_order',
+            'order' => 'ASC'
+        ]);
+
+        foreach ($branches as $branch) {
+            $data['branch_categories'][] = array(
+                'branch_category_id' => $branch['branch_category_id'],
+                'title' => $branch['title'],
+                'supports' => explode(',', $branch['support']),
+                'hotline' => $branch['hotline'],
+            );
+            if( isset($this->request->cookie['customer_branch'])
+                && !empty($this->request->cookie['customer_branch'])
+                && (int)$this->request->cookie['customer_branch'] == (int)$branch['branch_category_id']) {
+
+                $data['default_branch'] = array(
+                    'branch_category_id' => $branch['branch_category_id'],
+                    'title' => $branch['title'],
+                    'supports' => explode(',', $branch['support']),
+                    'hotline' => $branch['hotline'],
+                );
+            }
+        }
+
+        if (empty($data['default_branch']) || !count($data['default_branch']) ) {
+            $data['default_branch'] = $data['branch_categories'][0];
+        }
+
 		return $this->load->view('common/header', $data);
 	}
 }

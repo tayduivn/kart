@@ -64,8 +64,15 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$data['scripts'] = $this->document->getScripts('footer');
-        
-        
+
+        //check branch
+        $this->load->model('web/branch_category');
+
+        $data['branches'] = $this->model_web_branch_category->getCategories([
+            'sort' => 'sort_order',
+            'order' => 'ASC'
+        ]);
+        $data['cookie_customer_branch'] = !empty($this->request->cookie['customer_branch']) ? true : false;
 		
 		return $this->load->view('common/footer', $data);
 	}

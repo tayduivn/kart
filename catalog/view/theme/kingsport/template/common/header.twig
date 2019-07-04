@@ -81,7 +81,7 @@
 					<div class="nav-mobile-right">
 						<div class="hot-line-mobile">
 							<p>Hotline</p>
-							<h5>0918 64 84 19</h5>
+							<h5>{{ default_branch['hotline'] }}</h5>
 						</div>
 						<div class="mobile-hotline"><a href="#"><img class="img-fluid pulsate-bck" src="catalog/view/theme/kingsport/image/icon-mobile/icon-phone.png" alt="hot line icon" /></a></div>
 					</div>
@@ -97,12 +97,11 @@
 						<p>Khu vực của bạn </p>
 						<div class="location-contact-options">
 							<ul class="default-select" data-selected-value="ted">
-								<li class="default-select-options"><span> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh</span></li>
+								<li class="default-select-options"><span>  {{ default_branch['title'] }}</span></li>
 								<ul class="options" id="selectLocationOption">
-									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh 1 </li>
-									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh2 </li>
-									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh 3 </li>
-									<li data-value=""> Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh 4</li>
+									{% for branch_category in branch_categories %}
+									<li data-support="{{ branch_category['support'] }}" data-hotline="{{ branch_category['hotline'] }}" data-value="{{ branch_category['branch_category_id'] }}"> {{ branch_category['title'] }} </li>
+									{% endfor %}
 								</ul>
 							</ul>
 						</div>
@@ -116,19 +115,18 @@
                             </li>
 							<li><a href="#"><i class="mdi mdi-phone pulsate-bck"></i>
 									<h5 class="opacity-6">Hotline</h5>
-									<p>0918648419 - 0936211210</p></a>
+									<p>{{ default_branch['hotline'] }}</p></a>
                             </li>
 							<li>
                                 <a href="#">
 									<h5 class="opacity-6">Hỗ trợ</h5>
 									<div class="hotline-contact-option">
 										<ul class="default-hotline-select" data-selected-value="ted">
-											<li class="default-hotline-option"><span>1800 6862</span></li>
+											<li class="default-hotline-option"><span>{{ default_branch['supports'][0] }}</span></li>
 											<ul class="hotline-option" id="selectHotlineOption">
-												<li data-value="">1800 68623</li>
-												<li data-value="">1800 68624</li>
-												<li data-value="">1800 68625</li>
-												<li data-value="">1800 68626</li>
+												{% for support in default_branch['supports'] %}
+												<li data-value="">{{ support }}</li>
+												{% endfor %}
 											</ul>
 										</ul>
 									</div>
