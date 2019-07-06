@@ -5,9 +5,11 @@
 		{% for product in products %}
 		<div class="swiper-slide">
 			<figure class="figure">
-				<div class="hot-item">
-					<h5>Hot</h5>
-				</div>
+				{% if product.hot %}
+                <div class="hot-item">
+                  <h5>Hot</h5>
+                </div>
+                {% endif %}
 				<div class="figure-image">
                 <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
 					<div class="add-cart">

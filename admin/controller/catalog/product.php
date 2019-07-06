@@ -706,6 +706,14 @@ class ControllerCatalogProduct extends Controller {
             $data['is_recurring'] = 0;
         }
 
+        if (isset($this->request->post['is_receive'])) {
+            $data['is_receive'] = $this->request->post['is_receive'];
+        } elseif (!empty($product_info)) {
+            $data['is_receive'] = $product_info['is_receive'];
+        } else {
+            $data['is_receive'] = 0;
+        }
+
 		if (isset($this->request->post['location'])) {
 			$data['location'] = $this->request->post['location'];
 		} elseif (!empty($product_info)) {

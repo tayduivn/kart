@@ -314,6 +314,10 @@ class ControllerProductProduct extends Controller {
 				$data['price'] = false;
 			}
 
+			if( (int)$product_info['price'] == 0 ) {
+                $data['price'] = 'Liên hệ';
+            }
+
 			if ((float)$product_info['special']) {
 				$data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
 			} else {
@@ -424,6 +428,10 @@ class ControllerProductProduct extends Controller {
 					$price = false;
 				}
 
+				if( (int)$result['price'] == 0 ) {
+	                $price = 'Liên hệ';
+	            }
+
 				if ((float)$result['special']) {
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
 				} else {
@@ -444,12 +452,14 @@ class ControllerProductProduct extends Controller {
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+					'hot'  => $result['is_featured'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'gift'        => trim(strip_tags(html_entity_decode($result['gift'], ENT_QUOTES, 'UTF-8'))),
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
+					'percent'     =>    "(". (round(($result['special'] - $result['price']) / $result['price'] , 2)) * 100 . "%)",
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $rating,
@@ -475,6 +485,10 @@ class ControllerProductProduct extends Controller {
                     $price = false;
                 }
 
+                if( (int)$result['price'] == 0 ) {
+	                $price = 'Liên hệ';
+	            }
+
                 if ((float)$result['special']) {
                     $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
                 } else {
@@ -495,12 +509,14 @@ class ControllerProductProduct extends Controller {
 
                 $data['included_products'][] = array(
                     'product_id'  => $result['product_id'],
+                    'hot'  => $result['is_featured'],
                     'thumb'       => $image,
                     'name'        => $result['name'],
                     'gift'        => trim(strip_tags(html_entity_decode($result['gift'], ENT_QUOTES, 'UTF-8'))),
                     'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
                     'price'       => $price,
                     'special'     => $special,
+                    'percent'     =>    "(". (round(($result['special'] - $result['price']) / $result['price'] , 2)) * 100 . "%)",
                     'tax'         => $tax,
                     'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
                     'rating'      => $rating,

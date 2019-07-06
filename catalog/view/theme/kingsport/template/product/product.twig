@@ -328,9 +328,11 @@
                             {% for product in products %}
 							<div class="swiper-slide">
 								<figure class="figure">
+									{% if product.hot %}
 									<div class="hot-item">
 										<h5>Hot</h5>
 									</div>
+                                    {% endif %}
 									<div class="figure-image">
                                         <img class="swiper-lazy" data-src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
 										<div class="swiper-lazy-preloader"></div>

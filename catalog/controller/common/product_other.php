@@ -70,7 +70,7 @@ class ControllerCommonProductOther extends Controller {
                 );
             }
 
-            $data['readmore'] = $this->url->link('product/category', 'category_id=66');
+            $data['readmore'] = $this->url->link('product/category', 'path=66');
             return $this->load->view('common/product_other', $data);
         }
     }

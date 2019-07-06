@@ -119,6 +119,10 @@ class ControllerCommonBlock extends Controller {
 			$price = false;
 		}
 
+        if( (int)$product['price'] == 0 ) {
+            $price = 'Liên hệ';
+        }
+
 		if ((float)$product['special']) {
 			$special = $this->currency->format($this->tax->calculate($product['special'], $product['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
 		} else {
@@ -139,13 +143,14 @@ class ControllerCommonBlock extends Controller {
 
 		return array(
 			'product_id'  => $product['product_id'],
+            'hot'  => $product['is_featured'],
 			'thumb'       => $image,
 			'name'        => $product['name'],
 			'gift'        => trim(strip_tags(html_entity_decode($product['gift'], ENT_QUOTES, 'UTF-8'))),
 			'description' => utf8_substr(trim(strip_tags(html_entity_decode($product['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
 			'price'       => $price,
 			'special'     => $special,
-            'percent'     =>    "(". (round(($special - $price) / $price , 2)) * 100 . "%)",
+            'percent'     =>    "(". (round(($product['special'] - $product['price']) / $product['price'] , 2)) * 100 . "%)",
 			'tax'         => $tax,
 			'minimum'     => $product['minimum'] > 0 ? $product['minimum'] : 1,
 			'rating'      => $product['rating'],

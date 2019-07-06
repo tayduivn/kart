@@ -189,6 +189,8 @@ $_['entry_is_second']          = 'Thanh lý:';
 
 $_['entry_is_recurring']          = 'Trả góp 0%:';
 
+$_['entry_is_receive']          = 'Sản phẩm sắp về:';
+
 $_['entry_video']          = 'Video giới thiệu:';
 
 $_['entry_param']          = 'Thông số kĩ thuật:';

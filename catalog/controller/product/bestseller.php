@@ -113,6 +113,7 @@ class ControllerProductBestSeller extends Controller {
 
 			$data['products'][] = array(
 				'product_id'  => $result['product_id'],
+				'hot'  => $result['is_featured'],
 				'thumb'       => $image,
 				'name'        => $result['name'],
 				'gift'        => trim(strip_tags(html_entity_decode($result['gift'], ENT_QUOTES, 'UTF-8'))),

@@ -35,16 +35,13 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="select-option">
+                <!--<div class="select-option">
                     <label>
                         <select class="custom-select-option"><span></span>
                             <option selected="">Tính năng</option>
-                            <!--<option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>-->
                         </select>
                     </label>
-                </div>
+                </div>-->
             </div>
             <div class="nav-right">
                 <div class="select-sort">
@@ -82,9 +79,11 @@
                         {% for product in category.products %}
                             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                                 <div class="figure">
+                                    {% if product.hot %}
                                     <div class="hot-item">
                                         <h5>Hot</h5>
                                     </div>
+                                    {% endif %}
                                     <div class="figure-image">
                                         <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
                                         <div class="add-cart">
@@ -152,9 +151,11 @@
                 {% for product in products %}
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                         <div class="figure">
+                            {% if product.hot %}
                             <div class="hot-item">
                                 <h5>Hot</h5>
                             </div>
+                            {% endif %}
                             <div class="figure-image">
                                 <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
                                 <div class="add-cart">

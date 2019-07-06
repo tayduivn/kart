@@ -458,7 +458,7 @@ class ModelCatalogProduct extends Model {
 		    $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p 
             LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) 
             WHERE p.status = '1' AND p.date_available <= NOW() 
-            AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND p.is_new = 1 
+            AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND p.is_receive = 1 
             ORDER BY p.date_added DESC ";
 
 		    if($limit) {

@@ -42,9 +42,11 @@
                                     {% for product in block['feature'] %}
 									<div class="swiper-slide">
 										<figure class="figure">
+                                            {% if product.hot %}
 											<div class="hot-item">
 												<h5>Hot</h5>
 											</div>
+                                            {% endif %}
 											<div class="figure-image">
                                                 <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
 												<!--<div class="swiper-lazy-preloader"></div>-->
@@ -163,9 +165,11 @@
 									{% for product in block['specials'] %}
 									<div class="swiper-slide">
 										<figure class="figure">
-											<div class="hot-item">
-												<h5>Hot</h5>
-											</div>
+											{% if product.hot %}
+                                            <div class="hot-item">
+                                                <h5>Hot</h5>
+                                            </div>
+                                            {% endif %}
 											<div class="figure-image">
                                                 <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
 												<!--<div class="swiper-lazy-preloader"></div>-->
@@ -281,9 +285,11 @@
 									{% for product in block['newest'] %}
 									<div class="swiper-slide">
 										<figure class="figure">
-											<div class="hot-item">
-												<h5>Hot</h5>
-											</div>
+											{% if product.hot %}
+                                            <div class="hot-item">
+                                                <h5>Hot</h5>
+                                            </div>
+                                            {% endif %}
 											<div class="figure-image">
                                                 <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
 												<!--<div class="swiper-lazy-preloader"></div>-->
