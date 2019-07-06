@@ -17,7 +17,7 @@
     </div>
 </div>
 <!--Next-->
-<section class="showroom-wrapper">
+<section class="showroom-wrapper contact-wrapper">
     <div class="container">
         <div class="row">
 
@@ -31,16 +31,14 @@
                     
                     <div class="figure-caption">
                         <h5>{{ branch_child.title }}</h5>
-                        <p><i class="fa fa-home" aria-hidden="true"></i> Địa chỉ: {{ branch_child.address }}</p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> Điện thoại: {{ branch_child.phone }}</p>
-                        <p>{% if branch_child.parking %}(Có chỗ đậu ô tô){% endif %}</p>
+                        <p><i class="fa fa-home" aria-hidden="true"></i> {{ branch_child.address }}</p>
+                        <p><i class="fa fa-phone" aria-hidden="true"></i> {{ branch_child.phone }}</p>
+                        <p>{% if branch_child.parking %}<i class="fa fa-car" aria-hidden="true"></i> (Có chỗ đậu ô tô){% endif %}</p>
                         <div class="figure-fancy">
-                            <p>Hình ảnh chi tiết</p>
-
-                            <a data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" 
-                            href="https://maps.google.com/maps?output=embed&amp;hl=vn&amp;q={{ branch_child.lat }}, {{ branch_child.lng }}&amp;z=17">
-
-                                <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
+                            <a class="btn btn-site btn-primary" data-fancybox="" data-options="{&quot;iframe&quot; : {&quot;css&quot; : {&quot;width&quot; : &quot;80%&quot;, &quot;height&quot; : &quot;80%&quot;}}}" 
+                            href="https://www.google.com/maps/search/?api=1&amp;query={{ branch_child.lat }}, {{ branch_child.lng }}">
+                                <i class="fa fa-map-marker " aria-hidden="true"></i> Xem bản đồ
+                            </a>
                         </div>
                     </div>
                 </div>

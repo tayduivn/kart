@@ -391,3 +391,6 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
 .swiper-container:hover .button-prev{
     opacity: 1;
 }
+
+.contact-wrapper .figure{background: #f1f1f1; padding: 35px;}
+.contact-wrapper .figure .btn{margin-top: 5px;}
