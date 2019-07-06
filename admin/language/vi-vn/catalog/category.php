@@ -71,6 +71,9 @@ $_['entry_status']           = 'Trạng thái:';
 
 $_['entry_layout']           = 'Bố cục:';
 
+$_['entry_is_mobile_tag']           = 'Menu trên mobile:';
+$_['entry_icon']           = 'Loại icon (1-10):';
+
 
 
 // Help

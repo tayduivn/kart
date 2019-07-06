@@ -9,7 +9,7 @@ class ControllerCommonMobileHomeBanner extends Controller {
 
         $this->load->model('design/banner');
 
-        $banners = $this->model_design_banner->getBanner('2');
+        $banners = $this->model_design_banner->getBanner(10);
 
         $data['banners'] = array();
 

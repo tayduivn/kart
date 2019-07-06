@@ -480,6 +480,22 @@ class ControllerCatalogCategory extends Controller {
 		} else {
 			$data['status'] = true;
 		}
+
+		if (isset($this->request->post['is_mobile_tag'])) {
+			$data['is_mobile_tag'] = $this->request->post['is_mobile_tag'];
+		} elseif (!empty($category_info)) {
+			$data['is_mobile_tag'] = $category_info['is_mobile_tag'];
+		} else {
+			$data['is_mobile_tag'] = false;
+		}
+
+		if (isset($this->request->post['icon'])) {
+			$data['icon'] = $this->request->post['icon'];
+		} elseif (!empty($category_info)) {
+			$data['icon'] = $category_info['icon'];
+		} else {
+			$data['icon'] = '';
+		}
 		
 		if (isset($this->request->post['category_seo_url'])) {
 			$data['category_seo_url'] = $this->request->post['category_seo_url'];
