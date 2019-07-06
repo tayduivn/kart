@@ -303,3 +303,38 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
 @media (max-width: 480px) {
     #common-success .box-border{border:0px; padding: 0px;}
 }
+
+.kingsport-home-1v3 .home-wrapper .home-video-wrapper{    width: calc(100% ); padding-left: 270px;}
+.kingsport-home-1v3 .home-wrapper .home-video-wrapper .box:first-child{border-left: 1.25rem solid transparent;}
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand,
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{
+    width: 290px;
+}
+.kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper{width: auto;}
+
+@media screen and (max-width: 1600px){
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand,
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{
+    width: 240px;
+    }
+    .kingsport-home-1v3 .home-wrapper .home-video-wrapper{padding-left: 218px;}
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list .nav-link .mega-menu{
+        left: 240px;
+    }
+}
+
+
+@media screen and (max-width: 1200px){
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand,
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{
+        width: 240px;
+    }
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{left: 32px;}
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list .nav-link .mega-menu{
+        left: 240px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .kingsport-main-nav > .container{padding-left: 0px; padding-right: 0px;}
+}
