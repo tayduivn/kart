@@ -196,8 +196,114 @@ function productRecentlyInit() {
 }
 
 function swiperDiscountInit() {
-    new Swiper("#swiper-product-deal-nested-2v2", {
+    $(".swiper-slide-custom").each(function(index, el) {
+        var ethis = $(this);
+        new Swiper(ethis, {
         direction: "horizontal",
+        simulateTouch:false,
+        navigation: {
+            nextEl: $(".button-next",ethis),
+            prevEl: $(".button-prev",ethis)
+        },
+        slidesPerView: 4,
+        slidesPerColumn: 1.5,
+        spaceBetween: 1,
+        pagination: {
+            el: $(".swiper-pagination-product-discount",ethis),
+            type: "bullets"
+        },
+        breakpointsInverse: !0,
+        clickable: !0,
+        draggable: !0,
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+                slidesPerColumn: 1
+            },
+            576: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+                slidesPerColumn: 1.5
+            },
+            992: {
+                slidesPerView: 3,
+                slidesPerColumn: 2
+            },
+            1200: {
+                slidesPerView: 4,
+                slidesPerColumn: 2
+            }
+        }
+    })    
+    });
+
+    $(".swipper-nested-product-1").each(function(index, el) {
+        var ethis = $(this);
+        new Swiper(ethis, {
+        lazy: !0,
+        preloadImages: !1,
+        watchSlidesVisibility: !0,
+        direction: "horizontal",
+        slidesPerColumn: 1,
+        observer: !0,
+        observeParents: !0,
+        observeSlideChildren: !0,
+        simulateTouch: false,
+        clickable: !0,
+        draggable: !0,
+        navigation: {
+            nextEl: $(".button-next-product",ethis),
+            prevEl: $(".button-prev-product",ethis)
+        },
+        pagination: {
+            el: $(".swiper-pagination",ethis),
+            type: "bullets"
+        },
+        breakpointsInverse: !0,
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+                slidesPerColumn: 2,
+                spaceBetween: 5
+            },
+            576: {
+                slidesPerView: 2,
+                slidesPerColumn: 2,
+                spaceBetween: 5,
+                centeredSlides: !1
+            },
+            768: {
+                slidesPerView: 2,
+                slidesPerColumn: 2,
+                spaceBetween: 5,
+                centeredSlides: !1
+            },
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 5,
+                centeredSlides: !1
+            },
+            1200: {
+                touchEventsTarget: ".figure",
+                //simulateTouch: !0,
+                draggable: !0,
+                slidesPerView: 3,
+                grabCursor: !0,
+                spaceBetween: 0,
+                centeredSlides: !1
+            }
+        }
+    });
+    });
+
+    /*new Swiper("#swiper-product-deal-nested-2v2", {
+        direction: "horizontal",
+        simulateTouch:false,
+        navigation: {
+            nextEl: "#swiper-product-deal-nested-2v2 .button-next",
+            prevEl: "#swiper-product-deal-nested-2v2 .button-prev"
+        },
         slidesPerView: 4,
         slidesPerColumn: 1.5,
         spaceBetween: 1,
@@ -206,6 +312,8 @@ function swiperDiscountInit() {
             type: "bullets"
         },
         breakpointsInverse: !0,
+        clickable: !0,
+        draggable: !0,
         breakpoints: {
             0: {
                 slidesPerView: 2,
@@ -286,7 +394,7 @@ function swiperDiscountInit() {
                 slidesPerColumn: 2
             }
         }
-    });
+    });*/
 }
 
 function tabActiveProductDiscount() {
@@ -298,7 +406,7 @@ function tabActiveProductDiscount() {
 }
 
 function productSwiperOriginInit() {
-    new Swiper("#swiper-nested-1v1", {
+   /*new Swiper("#swiper-nested-1v1", {
         lazy: !0,
         preloadImages: !1,
         watchSlidesVisibility: !0,
@@ -1338,7 +1446,7 @@ function productSwiperOriginInit() {
                 centeredSlides: !1
             }
         }
-    });
+    });*/
 }
 
 function tabActiveCategory1() {
@@ -1882,7 +1990,7 @@ function prodcutInputQuantityIncreament() {
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    asyncProductDiscount();
+    //asyncProductDiscount();
 }), document.addEventListener("DOMContentLoaded", function(e) {
     newsSideToggle(), slideToggle(), hotlineSelectOption(), headerSelectLocation(), 
     hamburgerLaptopActive(), hamburgerMobileActive(), mobileHomeslide(), mobileNav(), 
