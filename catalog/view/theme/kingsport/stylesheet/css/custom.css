@@ -77,3 +77,15 @@
     max-width: 100%;
     width: auto;
 }
+
+
+.swiper-pagination {
+    bottom: 0!important
+}
+
+@media screen and (max-width: 1400px) {}
+    .showroom-wrapper .figure .figure-caption .figure-fancy a img  {
+        height: auto;
+        width: auto; 
+    }
+}

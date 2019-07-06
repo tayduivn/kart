@@ -22,7 +22,7 @@ class ControllerWebGallery extends Controller {
 
         $this->load->model('design/banner');
 
-        $photos = $this->model_design_banner->getBanner('8');
+        $photos = $this->model_design_banner->getBanner('9');
 
         $data['photos'] = array();
 

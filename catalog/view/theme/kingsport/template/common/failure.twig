@@ -1,0 +1,33 @@
+{{ header }}
+<div id="common-success" class="container">
+  <div class="article-title">
+    <h2>{{ heading_title }}</h2>
+  </div>
+  <div class="breadcrumb-wrapper">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+              <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endfor %}
+        </ol>
+      </nav>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div id="content" class="box-border {{ class }}">
+        {{ alert }}
+        {{ text_message }}
+        
+        </div>
+        <div class="buttons">
+          <div class="text-center"><a href="{{ continue }}" class="btn btn-site btn-primary btn-transparent"><i class="fa fa-reply" aria-hidden="true"></i> Về trang chủ</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

@@ -145,18 +145,21 @@
                   </div>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-column"><span data-toggle="tooltip" title="{{ help_column }}">{{ entry_column }}</span></label>
                 <div class="col-sm-10">
                   <input type="text" name="column" value="{{ column }}" placeholder="{{ entry_column }}" id="input-column" class="form-control" />
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
                 <div class="col-sm-10">
                   <input type="text" name="sort_order" value="{{ sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
                 <div class="col-sm-10">
@@ -171,6 +174,29 @@
                   </select>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-is-mobile-tag">{{ entry_is_mobile_tag }}</label>
+                <div class="col-sm-10">
+                  <select name="is_mobile_tag" id="input-is-mobile-tag" class="form-control">
+                    {% if is_mobile_tag %}
+                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                    <option value="0">{{ text_disabled }}</option>
+                    {% else %}
+                    <option value="1">{{ text_enabled }}</option>
+                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                    {% endif %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-icon">{{ entry_icon }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="icon" value="{{ icon }}" placeholder="{{ entry_icon }}" id="input-icon" class="form-control" />
+                </div>
+              </div>
+
             </div>
             <div class="tab-pane" id="tab-seo">
               <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_keyword }}</div>

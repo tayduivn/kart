@@ -167,7 +167,12 @@ var cart = {
                         $('.shopping-cart .num-of-items').text(json['count_products']);
 					}, 100);
 
-					$('html, body').animate({ scrollTop: 0 }, 'slow');
+					// $('html, body').animate({ scrollTop: 0 }, 'slow');
+					$('.shopping-cart').addClass('pulsate-bck');
+					setTimeout(function() {
+						$('.shopping-cart').removeClass('pulsate-bck');
+					}, 500);
+					
 
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
 				}

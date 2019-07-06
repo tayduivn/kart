@@ -20,6 +20,11 @@ class ControllerCommonHomeBanner extends Controller {
                     'link'  => $banner['link'],
                     'image' => $this->model_tool_image->resize($banner['image'], 339, 229)
                 );
+            }else {
+                $data['banners'][] = array(
+                    'title' => $banner['title'],
+                    'link'  => $banner['link']
+                );
             }
         }
 

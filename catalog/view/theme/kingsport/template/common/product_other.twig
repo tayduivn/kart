@@ -22,8 +22,12 @@
                                             <div class="figure-image">
                                                 <img src="{{ product.thumb }}" alt="">
                                             </div>
-                                            <div class="figure-caption"><span>Giảm {{ product.percent }}</span>
-                                                <h4>{{ product.title }}</h4>
+                                            <div class="figure-caption">
+                                                {% if product.special %}
+                                                <span>Giảm {{ product.percent }}</span>
+                                                {% endif %}
+
+                                                <h4>{{ product.name }}</h4>
                                                 {% if not product.special %}
                                                     <h5>{{ product.price }}<span></span></h5>
                                                 {% else %}
@@ -36,7 +40,7 @@
                                         </figure>
                                     </a>
                                 </div>
-                                {% enfor %}
+                                {% endfor %}
 
                             </div>
                         </div>

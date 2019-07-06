@@ -41,13 +41,16 @@ class ControllerWebVideoCategory extends Controller {
 
             
             foreach ($results as $result) {
+
+                    $ref = !empty($result['link_ref']) ? $result['link_ref'] : '';
+
                     if(!empty($result['featured_video'])) {
                         $data['featured_video'] = array(
                             'title'  => $result['title'],
                             'thumb'  => '/image/' . $result['image'],
                             'date'   => $result['date_added'],
                             'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
-                            'link_ref'   => $result['link_ref'],
+                            'link_ref'   => $ref,
                             'featured_video'   => $result['featured_video'],
                             'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
                         );
@@ -57,7 +60,7 @@ class ControllerWebVideoCategory extends Controller {
                             'thumb'  => '/image/' . $result['image'],
                             'date'   => $result['date_added'],
                             'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
-                            'link_ref'   => empty($result['link_ref']),
+                            'link_ref'   =>  $ref,
                             'featured_video'   => $result['featured_video'],
                             'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
                         );
@@ -103,13 +106,16 @@ class ControllerWebVideoCategory extends Controller {
             $data['featured_video'] = [];
 
             foreach ($results as $result) {
+
+                $ref = !empty($result['link_ref']) ? $result['link_ref'] : '';
+
                 if(!empty($result['featured_video'])) {
                     $data['featured_video'] = array(
                         'title'  => $result['title'],
                         'thumb'  => '/image/' . $result['image'],
                         'date'   => $result['date_added'],
                         'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
-                        'link_ref'   => $result['link_ref'],
+                        'link_ref'   => $ref,
                         'featured_video'   => $result['featured_video'],
                         'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
                     );
@@ -119,7 +125,7 @@ class ControllerWebVideoCategory extends Controller {
                         'thumb'  => '/image/' . $result['image'],
                         'date'   => $result['date_added'],
                         'href'   => $this->url->link('web/video', 'video_id=' . $result['video_id']),
-                        'link_ref'   => $result['link_ref'],
+                        'link_ref'   => $ref,
                         'featured_video'   => $result['featured_video'],
                         'url' => html_entity_decode($result['url'], ENT_QUOTES, 'UTF-8')
                     );

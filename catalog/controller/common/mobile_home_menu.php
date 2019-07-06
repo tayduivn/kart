@@ -14,6 +14,8 @@ class ControllerCommonMobileHomeMenu extends Controller {
 
         $categories = $this->model_catalog_category->getCategories(0);
 
+        
+
         foreach ($categories as $category) {
 
             if ( !empty($category['icon']) ) {
@@ -22,6 +24,7 @@ class ControllerCommonMobileHomeMenu extends Controller {
                     'name'     => $category['name'],
                     'description' => htmlspecialchars_decode($category['description']),
                     'icon'      => $category['icon'],
+                    'is_mobile_tag'      => $category['is_mobile_tag'],
                     'column'   => $category['column'] ? $category['column'] : 1,
                     'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
                 );

@@ -48,15 +48,17 @@ class ControllerWebStore extends Controller {
 
                 foreach ($results as $result) {
                     $images[] = array(
-                        'popup' => $this->model_tool_image->resize($result['image'], 100, 100),
-                        'thumb' => $this->model_tool_image->resize($result['image'], 900 , 900)
+                        'popup' => $this->model_tool_image->resize($result['image'], 900, 900),
+                        'thumb' => $this->model_tool_image->resize($result['image'], 70 , 70)
                     );
                 }
 
                 if ($branch['image']) {
-                    $image = $this->model_tool_image->resize($branch['image'], 270, 248);
-                } else {
-                    $image = '';
+                    $image = $this->model_tool_image->resize($branch['image'], 168, 154);
+                } 
+
+                if(!$image) {
+                    $image = $this->model_tool_image->resize($results[0]['image'], 168, 154);
                 }
 
                 $branchArr[] = array(
@@ -72,6 +74,8 @@ class ControllerWebStore extends Controller {
                     'images'   => $images
                 );
             }
+
+            //var_dump($branchArr); die();
 
             $area[] = array(
                 'title' => $branch_category['title'],
