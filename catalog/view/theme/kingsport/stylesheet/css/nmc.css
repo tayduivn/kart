@@ -319,6 +319,7 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
     width: 290px;
 }
 .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper{width: auto;}
+body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper{width: 100%;}
 
 @media screen and (max-width: 1600px){
     .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand,
@@ -394,3 +395,29 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
 
 .contact-wrapper .figure{background: #f1f1f1; padding: 35px;}
 .contact-wrapper .figure .btn{margin-top: 5px;}
+
+@media screen and (max-width: 1200px){
+    body, html{font-size: 14px;}
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list-bottom .nav-link a,
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list-bottom .nav-link:first-child a,
+    .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list-bottom .nav-link a h4{font-size: 13px !important;}
+
+    .product-discount .product-wrapper .product-tab-nav ul li a,
+    .product-original-v3 .product-title-wrapper .product-tab-nav ul li a,
+    .map-showroom .map-showroom-wrapper .map-showroom-nav .swiper-container .swiper-slide a{font-size: 13px;}
+    .product-discount .product-wrapper .product-figure-wrapper h2,
+    .product-original-v3 .product-title-wrapper .product-title h2,
+    .product-today .product-wrapper .product-title h2,
+    .kingsport-news-option1v3 .news-wrapper .news-title h2,
+    .map-showroom .map-showroom-wrapper .address-title h2
+    {font-size: 22px;}
+
+    .kingsport-bottom-banner .banner-row-wrapper .figure .figure-caption p{font-size: 14px;}
+    .kingsport-footer-2v2 .col-wrapper ul li a{font-size: 13px;}
+
+    .kingsport-header-all .kingsport-main-nav .nav-wrapper .container .nav-main-menu {
+        padding: 0 0 0 16rem;
+    }
+    body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper{padding-left: 240px;}
+
+}
