@@ -433,3 +433,7 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
 @media screen and (min-width: 992px) and (max-width: 1199px){
     .child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{top:130px;}
 }
+
+@media screen and (min-width: 1601px) {
+    .child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{top:186px;}
+}
