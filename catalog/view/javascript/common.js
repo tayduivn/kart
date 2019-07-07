@@ -298,7 +298,11 @@ var wishlist = {
 				$('#wishlist-total span').html(json['total']);
 				$('#wishlist-total').attr('title', json['total']);
 
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				//$('html, body').animate({ scrollTop: 0 }, 'slow');
+				bootbox.alert({
+				    message: "Đã thêm sản phẩm vào danh sách yêu thích",
+				    className: 'success-alert'
+				});
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

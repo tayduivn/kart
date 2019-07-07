@@ -374,17 +374,17 @@ class ControllerProductSearch extends Controller {
 				);
 			}
 
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_model_asc'),
-				'value' => 'p.model-ASC',
-				'href'  => $this->url->link('product/search', 'sort=p.model&order=ASC' . $url)
-			);
+			// $data['sorts'][] = array(
+			// 	'text'  => $this->language->get('text_model_asc'),
+			// 	'value' => 'p.model-ASC',
+			// 	'href'  => $this->url->link('product/search', 'sort=p.model&order=ASC' . $url)
+			// );
 
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_model_desc'),
-				'value' => 'p.model-DESC',
-				'href'  => $this->url->link('product/search', 'sort=p.model&order=DESC' . $url)
-			);
+			// $data['sorts'][] = array(
+			// 	'text'  => $this->language->get('text_model_desc'),
+			// 	'value' => 'p.model-DESC',
+			// 	'href'  => $this->url->link('product/search', 'sort=p.model&order=DESC' . $url)
+			// );
 
 			$url = '';
 
@@ -633,15 +633,18 @@ class ControllerProductSearch extends Controller {
         $data['product_status'] = array(
             array(
                 'label' => $this->language->get('text_is_new'),
-                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_new=1')
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_new=1'),
+                'checked' => !empty($is_new) ? 'checked' : ''
             ),
             array(
                 'label' => $this->language->get('text_is_second'),
-                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_second=1')
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_second=1'),
+                'checked' => !empty($is_second) ? 'checked' : ''
             ),
             array(
                 'label' => $this->language->get('text_is_recurring'),
-                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1')
+                'href' => $this->url->link('product/search', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1'),
+                'checked' => !empty($is_recurring) ? 'checked' : ''
             )
         );
 

@@ -29,7 +29,7 @@
                     <ul>
                         {% for status in product_status %}
                         <li>
-                            <input type="checkbox" value="{{ status.href }}" onchange="location = this.value;"/>
+                            <input type="checkbox" value="{{ status.href }}" {{ status.checked }} onchange="location = this.value;"/>
                             <label>{{ status.label }}</label>
                         </li>
                         {% endfor %}

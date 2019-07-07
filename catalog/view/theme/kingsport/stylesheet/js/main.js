@@ -1499,10 +1499,10 @@ function multiRowProductToday() {
         slidesPerView: 4,
         slidesPerColumn: 2,
         spaceBetween: 10,
-        pagination: {
-            el: ".swiper-pagination-product-today",
-            clickable: !0
-        },
+        // pagination: {
+        //     el: ".swiper-pagination-product-today",
+        //     clickable: !0
+        // },
         breakpointsInverse: !0,
         breakpoints: {
             0: {

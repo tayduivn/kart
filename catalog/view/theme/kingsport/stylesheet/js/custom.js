@@ -16,6 +16,9 @@ function triggerScrollEvent(){
 }
 jQuery(document).ready(function($) {
     triggerScrollEvent();
+
+    $(".breadcrumb li:last-child").addClass("active");
+    $(".tab-content-showroom .tab-panel:first-child").addClass("active");
 });
 
 jQuery(window).scroll(function(){

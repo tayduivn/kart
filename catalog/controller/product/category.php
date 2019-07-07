@@ -270,7 +270,8 @@ class ControllerProductCategory extends Controller {
                     
     
     				$data['categories'][$result['category_id']] = array(
-    					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                        // 'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+    					'name' => $result['name'],
     					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url),
     				    'products' => $product_list
                     );
@@ -420,17 +421,17 @@ class ControllerProductCategory extends Controller {
                 );
             }
 
-            $data['sorts'][] = array(
-                'text'  => $this->language->get('text_model_asc'),
-                'value' => 'p.model-ASC',
-                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=ASC' . $url)
-            );
+            // $data['sorts'][] = array(
+            //     'text'  => $this->language->get('text_model_asc'),
+            //     'value' => 'p.model-ASC',
+            //     'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=ASC' . $url)
+            // );
 
-            $data['sorts'][] = array(
-                'text'  => $this->language->get('text_model_desc'),
-                'value' => 'p.model-DESC',
-                'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
-            );
+            // $data['sorts'][] = array(
+            //     'text'  => $this->language->get('text_model_desc'),
+            //     'value' => 'p.model-DESC',
+            //     'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
+            // );
 
             $url = '';
 
@@ -615,15 +616,18 @@ class ControllerProductCategory extends Controller {
             $data['product_status'] = array(
                 array(
                     'label' => $this->language->get('text_is_new'),
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_new=1')
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_new=1'),
+                    'checked' => !empty($is_new) ? 'checked' : ''
                 ),
                 array(
                     'label' => $this->language->get('text_is_second'),
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_second=1')
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_second=1'),
+                    'checked' => !empty($is_second) ? 'checked' : ''
                 ),
                 array(
                     'label' => $this->language->get('text_is_recurring'),
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1')
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1'),
+                    'checked' => !empty($is_recurring) ? 'checked' : ''
                 )
             );
 
