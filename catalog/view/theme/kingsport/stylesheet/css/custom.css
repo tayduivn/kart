@@ -87,6 +87,42 @@
     display: none!important
 }
 
+.map-showroom .map-showroom-wrapper .map-showroom-nav .swiper-container {
+    width: auto;
+}
+
+#store-location .modal-content, .bootbox .modal-content{
+    border-radius: 0;
+}
+#store-location .modal-header {
+    color: #fff;
+    background: #ec1d25
+}
+#store-location .close {
+    font-size: 30px;
+    color: #fff;
+    outline: none
+}
+
+#store-location #choose-branch {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+
+#store-location .btn-default{
+    border-radius: 0;
+}
+
+#store-location .btn-choose, .bootbox .bootbox-accept{
+    border-radius: 0;
+    background: #ec1d25;
+        border: 1px solid #ec1d25;
+        outline: none
+}
+
 @media screen and (max-width: 1400px) {}
     .showroom-wrapper .figure .figure-caption .figure-fancy a img  {
         height: auto;
