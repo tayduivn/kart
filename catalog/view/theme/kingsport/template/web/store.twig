@@ -29,7 +29,7 @@
         <div class="tab-content-showroom">
 
             {% for branch in branches %}
-            <div class="tab-panel active tab-panel-showroom-{{ branch.id }}">
+            <div class="tab-panel tab-panel-showroom-{{ branch.id }}">
                 <div class="row">
 
                     {% for branch_child in branch.branches %}
@@ -42,7 +42,7 @@
                             {% endif %}
                             <div class="figure-caption">
                                 <h5>{{ branch_child.title }}</h5>
-                                <p>Địa chỉ: {{ branch_child.address }}</p>
+                                <p class='address'>Địa chỉ: {{ branch_child.address }}</p>
                                 <p>Điện thoại: {{ branch_child.phone }}</p>
                                 <p>{% if branch_child.parking %}(Có chỗ đậu ô tô){% endif %}</p>
                                 <div class="figure-fancy">
@@ -52,8 +52,10 @@
 
                                         <img src="catalog/view/theme/kingsport/image/options-1/showroom/sr-1-1.png"></a>
                                     {% for image in branch_child.images | slice(0, 3) %}
+                                    {% if image.thumb  %}
                                     <a data-fancybox="gallery" href="{{ image.popup }}">
                                         <img src="{{ image.thumb }}"></a>
+                                    {% endif %}    
                                     {% endfor %}
                                 </div>
                             </div>
