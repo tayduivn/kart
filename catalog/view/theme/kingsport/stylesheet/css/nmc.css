@@ -421,3 +421,15 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
     body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper{padding-left: 240px;}
 
 }
+
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand{padding-bottom: 45px;}
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand a{display: block; height: 100%;}
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .navbar-brand a img{max-height: 100%;}
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown{z-index: 102;}
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{    top: 154px;}
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list{margin-top: 0px;}
+.child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all .navbar-list .nav-link:first-child{height: 36px; padding-top: 8px;}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{top:130px;}
+}
