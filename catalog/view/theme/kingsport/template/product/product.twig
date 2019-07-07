@@ -86,12 +86,14 @@
 											<h2>Nhận hàng trong 24 giờ</h2>
 										</div>
 
+										{% if product_gift %}
 										<div class="product-card">
 											<h3>Khuyển mãi</h3>
 											<div class="gift">
 												{{ product_gift|raw }}
 											</div>
 										</div>
+										{% endif %}
 
 										<div class="product-requirements">
 											<input type="checkbox" />
@@ -103,10 +105,10 @@
 													<h3>Mua ngay</h3>
 													<p>Giao hàng trong 24 giờ hoặc tại showroom</p></a></div>
 											<div class="other-check-out-wrapper">
-												<div class="other-check-out"><a href="#">
+												<div class="other-check-out"><a target="_blank" href="{{ link1 }}">
 														<h3>Mua trả góp</h3>
 														<p>Bằng thẻ tín dụng</p></a></div>
-												<div class="other-check-out"><a href="#">
+												<div class="other-check-out"><a target="_blank" href="{{ link2 }}">
 														<h3>Mua trả góp qua thẻ </h3>
 														<p>Visa, Master, JCB</p></a></div>
 											</div>

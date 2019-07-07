@@ -61,6 +61,8 @@ $_['entry_alepay_api_key']            = 'Alepay - API:';
 $_['entry_alepay_encrypt_key']            = 'Alepay - Encrypt Key:';
 $_['entry_alepay_checksum_key']            = 'Alepay - Checksum Key:';
 
+$_['entry_reviewed_nums']            = 'Sản phẩm đã xem tối thiểu:';
+
 $_['entry_product_limit']              = 'Sản phẩm trên trang (Danh mục)';
 $_['entry_product_description_length'] = 'Mô tả ngắn (Danh mục)';
 $_['entry_limit_admin']                = 'Sản phẩm trên trang (Quản trị)';

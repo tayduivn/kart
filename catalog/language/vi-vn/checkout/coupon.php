@@ -1,13 +1,14 @@
 <?php
 // Heading
-$_['heading_title'] = 'Use Coupon Code';
+$_['heading_title'] = 'Sử dụng Mã Coupon';
 
 // Text
-$_['text_success']  = 'Success: Your coupon discount has been applied!';
+$_['text_success']  = 'Thành công: Phiếu giảm giá của bạn đã được áp dụng!';
 
 // Entry
-$_['entry_coupon']  = 'Enter your coupon here';
+$_['entry_coupon']  = 'Nhập Phiếu giảm giá';
 
 // Error
-$_['error_coupon']  = 'Warning: Coupon is either invalid, expired or reached its usage limit!';
-$_['error_empty']   = 'Warning: Please enter a coupon code!';
+$_['error_coupon']  = 'Thông báo: Phiếu giảm giá không hợp lệ, hết hạn hoặc đạt đến giới hạn sử dụng!';
+
+$_['error_empty']   = 'Thông báo: Vui lòng nhập Phiếu giảm giá!';
