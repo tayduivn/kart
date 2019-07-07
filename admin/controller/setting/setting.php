@@ -920,6 +920,13 @@ class ControllerSettingSetting extends Controller {
             $data['config_alepay_checksum_key'] = $this->config->get('config_alepay_checksum_key');
         }
 
+
+        if (isset($this->request->post['config_reviewed_nums'])) {
+            $data['config_reviewed_nums'] = $this->request->post['config_reviewed_nums'];
+        } else {
+            $data['config_reviewed_nums'] = $this->config->get('config_reviewed_nums');
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

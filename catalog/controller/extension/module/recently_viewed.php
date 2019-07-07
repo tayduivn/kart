@@ -14,6 +14,7 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 		$data['button_compare'] = $this->language->get('button_compare');
 
 		$this->load->model('catalog/product');
+		$this->load->model('catalog/category');
 
 		$this->load->model('tool/image');
 		
@@ -83,7 +84,10 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 		
 		$data['products'] = array();
 
-		if ( $results && count($results) > 4) {
+		$reviewed_nums  = $this->config->get('config_reviewed_nums');
+		$reviewed_nums  = $reviewed_nums ? (int)$reviewed_nums : 4;
+
+		if ( $results && count($results) > $reviewed_nums) {
 			foreach ($results as $result) {
 				
 				$result = $this->model_catalog_product->getProduct($result);
@@ -122,9 +126,14 @@ class ControllerExtensionModuleRecentlyViewed extends Controller {
 					$rating = false;
 				}
 
+				$categories = $this->model_catalog_product->getCategories($result['product_id']);
+				$category_id = count($categories) ? $categories[0]['category_id'] : 0;
+				$category = $this->model_catalog_category->getCategory($category_id);
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
+					'category_name' => $category['name'],
 					'name'        => $result['name'],
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,

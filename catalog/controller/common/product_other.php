@@ -35,6 +35,10 @@ class ControllerCommonProductOther extends Controller {
                     $price = false;
                 }
 
+                if( (int)$result['price'] == 0 ) {
+                    $price = 'Liên hệ';
+                }
+
                 if ((float)$result['special']) {
                     $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
                 } else {
@@ -53,7 +57,7 @@ class ControllerCommonProductOther extends Controller {
                     $rating = false;
                 }
 
-                $percent = is_numeric($special) && is_numeric($price) ? (round(($special - $price) / $price , 2)) * 100 : 0;
+                $percent = is_numeric($result['special']) && is_numeric($result['price']) ? (round(($result['special'] - $result['price']) / $result['price'] , 2)) * 100 : 0;
 
                 $data['products'][] = array(
                     'product_id'  => $result['product_id'],
