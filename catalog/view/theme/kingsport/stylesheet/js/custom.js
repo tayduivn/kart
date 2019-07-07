@@ -16,6 +16,8 @@ function triggerScrollEvent(){
 }
 jQuery(document).ready(function($) {
     triggerScrollEvent();
+
+    $(".breadcrumb li:last-child").addClass("active");
 });
 
 jQuery(window).scroll(function(){

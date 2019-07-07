@@ -83,6 +83,10 @@
     bottom: 0!important
 }
 
+.breadcrumb>li+li:before {
+    display: none!important
+}
+
 @media screen and (max-width: 1400px) {}
     .showroom-wrapper .figure .figure-caption .figure-fancy a img  {
         height: auto;
