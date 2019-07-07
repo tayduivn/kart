@@ -91,6 +91,19 @@
     min-height: 46px;
 }
 
+.back-to-top {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+    background: #ec1d25;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 50%
+}
 @media screen and (max-width: 1400px) {
     .showroom-wrapper .figure .figure-caption .figure-fancy a img  {
         height: auto;
