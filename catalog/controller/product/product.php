@@ -548,6 +548,10 @@ class ControllerProductProduct extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
+			$data['link1']  = $this->url->link('information/information', 'information_id=5');
+			$data['link2']  = $this->url->link('information/information', 'information_id=11');
+			$data['store']  = $this->url->link('web/store');
+
 			$data['product_id'] = $this->request->get['product_id'];
 
 			$this->response->setOutput($this->load->view('product/product', $data));
@@ -610,6 +614,10 @@ class ControllerProductProduct extends Controller {
 			$this->document->setTitle($this->language->get('text_error'));
 
 			$data['continue'] = $this->url->link('common/home');
+
+			$data['link1']  = $this->url->link('information/information', 'information_id=5');
+			$data['link2']  = $this->url->link('information/information', 'information_id=11');
+			$data['store']  = $this->url->link('web/store');
 
 			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 

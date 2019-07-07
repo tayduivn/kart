@@ -41,7 +41,31 @@ class ControllerStartupSeoUrl extends Controller {
 						$this->request->get['information_id'] = $url[1];
 					}
 
-					if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id') {
+					if ($url[0] == 'blog_id') {
+						$this->request->get['blog_id'] = $url[1];
+					}
+
+					if ($url[0] == 'blog_category_id') {
+						$this->request->get['blog_category_id'] = $url[1];
+					}
+
+					if ($url[0] == 'video_id') {
+						$this->request->get['video_id'] = $url[1];
+					}
+
+					if ($url[0] == 'video_category_id') {
+						$this->request->get['video_category_id'] = $url[1];
+					}
+
+					if ($query->row['query'] && 
+						$url[0] != 'video_id' && 
+						$url[0] != 'video_category_id' && 
+						$url[0] != 'blog_id' && 
+						$url[0] != 'blog_category_id' && 
+						$url[0] != 'information_id' && 
+						$url[0] != 'manufacturer_id' && 
+						$url[0] != 'category_id' && 
+						$url[0] != 'product_id') {
 						$this->request->get['route'] = $query->row['query'];
 					}
 				} else {
@@ -60,6 +84,14 @@ class ControllerStartupSeoUrl extends Controller {
 					$this->request->get['route'] = 'product/manufacturer/info';
 				} elseif (isset($this->request->get['information_id'])) {
 					$this->request->get['route'] = 'information/information';
+				}elseif (isset($this->request->get['blog_id'])) {
+					$this->request->get['route'] = 'web/blog';
+				}elseif (isset($this->request->get['blog_category_id'])) {
+					$this->request->get['route'] = 'web/category';
+				}elseif (isset($this->request->get['video_category_id'])) {
+					$this->request->get['route'] = 'web/video_category';
+				}elseif (isset($this->request->get['video_id'])) {
+					$this->request->get['route'] = 'web/video';
 				}
 			}
 		}
@@ -76,7 +108,13 @@ class ControllerStartupSeoUrl extends Controller {
 
 		foreach ($data as $key => $value) {
 			if (isset($data['route'])) {
-				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+				if (($data['route'] == 'product/product' && $key == 'product_id') || 
+					(($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')
+						|| ($data['route'] == 'web/blog' && $key == 'blog_id')
+						|| ($data['route'] == 'web/category' && $key == 'blog_category_id')
+						|| ($data['route'] == 'web/video_category' && $key == 'video_category_id')
+						|| ($data['route'] == 'web/video' && $key == 'video_id')
+					) {
 					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "' AND store_id = '" . (int)$this->config->get('config_store_id') . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 					if ($query->num_rows && $query->row['keyword']) {
@@ -100,6 +138,29 @@ class ControllerStartupSeoUrl extends Controller {
 					}
 
 					unset($data[$key]);
+				}
+				elseif( 
+					$data['route'] == 'web/gallery' ||
+					$data['route'] == 'web/contact' ||
+					$data['route'] == 'product/special' ||
+					$data['route'] == 'product/newest' ||
+					$data['route'] == 'product/bestseller' ||
+					$data['route'] == 'product/search' ||
+					$data['route'] == 'web/category' ||
+					$data['route'] == 'web/store' ||
+					$data['route'] == 'common/home' ||
+					$data['route'] == 'web/video_category'
+				 ) {
+					//my custom
+					 $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE `query` = '" . $data['route'] . "'");
+ 
+	                if ($query->num_rows && $query->row['keyword']) {
+	                    $url .= '/' . $query->row['keyword'];
+	                } else {
+	                    $url = '';
+	                     
+	                    break;
+	                }
 				}
 			}
 		}
