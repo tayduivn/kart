@@ -19,10 +19,11 @@ class ControllerCheckoutSuccess extends Controller {
         $customer = $firstname . ' ' . $lastname;
 
 
-        $payment_info = '';
+        $payment_infos = array();
         foreach ($this->cart->getProducts() as $product) {
-        	$payment_info .= $product['quantity'] . ' ' . $product['name'] . ' ';
+        	$payment_infos []= $product['quantity'] . ' ' . $product['name'];
         }
+        $payment_info = implode(',', $payment_infos);
 
         $this->load->model('checkout/order');
         $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 1);

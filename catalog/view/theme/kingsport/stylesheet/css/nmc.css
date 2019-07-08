@@ -186,7 +186,7 @@ background: #df2025;
     font-size: 16px;
     line-height: 20px;
     color: #fff;
-    border: 0px;
+    border: 1px solid #df2025;
     outline: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -240,11 +240,11 @@ background: #df2025;
     transition: all .5s ease;
     text-transform: uppercase;
 }
-.btn-ks span{color: #fff;}
-.btn-ks.btn-primary{background: #ed1c24;}
+/*.btn-ks span{color: #fff;}*/
+.btn-ks.btn-primary{background: #ed1c24; border: 1px solid #ed1c24; }
 .btn-ks.btn-primary:hover{background: #f99d1c;}
 .btn-ks.btn-default{background: #666;}
-.btn-ks.btn-default:hover{background: #ed1c24;}
+/*.btn-ks.btn-default:hover{background: #ed1c24;}*/
 
 .info-order .table-order thead tr td{background:#ed1c24; color: #fff; }
 

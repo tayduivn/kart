@@ -61,10 +61,11 @@ class ControllerCheckoutSuccessAlepay extends Controller {
         $customer = $firstname . ' ' . $lastname;
 
 
-        $payment_info = '';
+        $payment_infos = array();
         foreach ($this->cart->getProducts() as $product) {
-        	$payment_info .= $product['quantity'] . ' ' . $product['name'] . ' ';
+        	$payment_infos []= $product['quantity'] . ' ' . $product['name'];
         }
+        $payment_info = implode(',', $payment_infos);
 
 		$this->load->language('checkout/success');
 

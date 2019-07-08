@@ -59,6 +59,7 @@ class ControllerExtensionModuleBestSeller extends Controller {
 					'percent'     =>    "(". (round(($result['special'] - $result['price']) / $result['price'] , 2)) * 100 . "%)",
 					'tax'         => $tax,
 					'rating'      => $rating,
+					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}

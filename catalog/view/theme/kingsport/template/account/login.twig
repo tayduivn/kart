@@ -48,6 +48,7 @@
                 </div>
                 <a class="btn-forgot" href="{{ forgotten }}">{{ text_forgotten }}</a>  
               </div>
+              {{ opc_login }}
               <button type="submit" value="" class="btn btn-primary btn-submit"><span>{{ button_login }}</span></button>
               {% if redirect %}
               <input type="hidden" name="redirect" value="{{ redirect }}" />

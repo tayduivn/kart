@@ -203,6 +203,22 @@ class ControllerCommonColumnLeft extends Controller {
 				);					
 			}
 
+            if ($this->user->hasPermission('access', 'web/newsletter')) {
+                $web[] = array(
+                    'name'	   => $this->language->get('text_web_newsletter'),
+                    'href'     => $this->url->link('web/newsletter', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if ($this->user->hasPermission('access', 'web/prize')) {
+                $web[] = array(
+                    'name'	   => $this->language->get('text_web_prize'),
+                    'href'     => $this->url->link('web/prize', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
 			if ($web) {
 				$data['menus'][] = array(
 					'id'       => 'menu-web-util',

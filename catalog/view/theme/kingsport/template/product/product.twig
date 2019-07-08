@@ -88,7 +88,7 @@
 
 										{% if product_gift %}
 										<div class="product-card">
-											<h3>Khuyển mãi</h3>
+											<h3>Khuyến mãi</h3>
 											<div class="gift">
 												{{ product_gift|raw }}
 											</div>
@@ -131,7 +131,7 @@
 												<article id="article-information">
                                                     {{ description }}
                                                 </article> 
-												<div class="show-more-wrapper"><a id="show-more-information2">Đọc thêm</a><span><em class="mdi mdi-menu-down"></em></span></div>
+												<div class="show-more-wrapper"><a id="show-more-information2">Đọc thêm</a><span><em id='my-icon' class="mdi mdi-menu-down"></em></span></div>
 											</div>
 											<div class="tab-panel-product-detail tab-panel-2">
 												<!--<table class="table table-bordered">
@@ -336,7 +336,8 @@
 									</div>
                                     {% endif %}
 									<div class="figure-image">
-                                        <img class="swiper-lazy" data-src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+										<a href="{{ product.href }}"><img class="swiper-lazy" data-src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
+                                        
 										<div class="swiper-lazy-preloader"></div>
 										<div class="add-cart">
 											<ul>
@@ -371,7 +372,7 @@
                                                 {% endif %}
                                             </div>
                                         {% endif %}
-										<h5>{{ product.name }}</h5>
+										<a href="{{ product.href }}"><h5>{{ product.name }}</h5></a>
 										<div class="gift">
                                             {{ product.gift }}
 										</div>
