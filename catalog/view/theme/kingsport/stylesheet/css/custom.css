@@ -213,3 +213,10 @@
     color: #8c8c8c;
     border: 1px solid #8c8c8c;
 }
+
+.product-detail .tab-panel-product-detail.active table {
+    width: 100%!important
+}
+.product-detail .tab-panel-product-detail.active ul li {
+    display: inherit;
+}

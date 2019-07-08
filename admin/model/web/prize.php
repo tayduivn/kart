@@ -105,7 +105,7 @@ class ModelWebPrize extends Model {
 
 	public function getPrizes($data = array()) {
 		if ($data) {
-			$sql = "SELECT id.*, i.*, bcd.title as category_title FROM " . DB_PREFIX . "prize i LEFT JOIN " . DB_PREFIX . "prize_description id ON (i.prize_id = id.prize_id) LEFT JOIN " . DB_PREFIX . "prize_category_description bcd ON (bcd.category_id = i.category_id)  WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT id.*, i.* FROM " . DB_PREFIX . "prize i LEFT JOIN " . DB_PREFIX . "prize_description id ON (i.prize_id = id.prize_id)  WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			if ( isset($data['category']) && !empty($data['category'])  ) {
 				$sql .= ' AND i.category_id = ' . (int)$data['category'];
