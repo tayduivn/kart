@@ -204,7 +204,9 @@ table.addtocart2 table.img-title tr td:nth-child(1) {
 }
 
 .btn-ks.btn-default {
-    background: #ed1c24;
+    background: #fff;
+    color: #8c8c8c;
+    border: 1px solid #8c8c8c;
 }
 
 .coupon_Total .Coupon .div-coupon {

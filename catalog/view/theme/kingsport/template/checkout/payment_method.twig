@@ -37,7 +37,13 @@
 {% else %}
 <div class="buttons">
   <div class="pull-right">
-    <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+    <div class="col-xs-6">
+      <button type="button" class="btn btn-default" id="button-payment-method-back">{{ button_back }}</button>
+    </div>
+    <div class="col-xs-6">
+      <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+    </div>
+
   </div>
 </div>
 {% endif %} 

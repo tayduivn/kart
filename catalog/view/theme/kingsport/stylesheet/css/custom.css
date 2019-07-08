@@ -206,4 +206,10 @@
 
 .product-detail .tab-panel-product-detail.active iframe{
     max-width: 100%
-} 
+}
+
+.info_customer .btn-default {
+    background: #fff;
+    color: #8c8c8c;
+    border: 1px solid #8c8c8c;
+}
