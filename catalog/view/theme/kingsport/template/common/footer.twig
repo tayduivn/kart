@@ -60,7 +60,7 @@
 								<h4>Quý khách nhập điện thoại để được tư vấn nhanh từ KINGSPORT</h4>
 								<form class="form">
 									<div class="form-group">
-										<input class="form-control" id="formEmail" type="tel" placeholder="Điện thoại của bạn"><a class="ripple" id="support-phone" href="#">Tư vấn</a>
+										<input class="form-control" data-type="1" id="formEmail" type="tel" placeholder="Điện thoại của bạn"><a class="ripple" id="support-phone" href="#">Tư vấn</a>
 									</div>
 								</form>
 								<p>Chúng tôi sẽ không bao giờ chia sẻ số điện thoại của bạn với bên thứ ba.</p>
@@ -253,13 +253,11 @@
 		<script>
 
 			$(window).scroll(function() {
-			  
 			  if ( $(window).scrollTop() ==0 ) {
 				    $('.back-to-top').fadeOut();
 				  } else  {
 				    $('.back-to-top').fadeIn();
 				};
-
 			});
 			
 
@@ -301,13 +299,15 @@
             $('#support-phone').click(function(e) {
             	e.preventDefault();
             	var phone = $('#formEmail').val();
-            	if( phone.length < 10 ) {
+            	var patt1 = /(09|01[2|6|8|9])+([0-9]{8})/;
+            	var patt2 = /(0[1-9])+([0-9]{8})/;
+            	if( phone.length < 10 || phone.length > 11 || !(patt1.test(phone) || patt2.test(phone)) ) {
             		bootbox.alert("Số điện thoại chưa đúng");
             	}else {
             		$.ajax({
                     url: 'index.php?route=web/phone/update',
 					type: 'post',
-					data: {phone: phone},
+					data: {phone: phone, type: 1},
                     success: function(json) {
                     	$('#formEmail').val('');
 						bootbox.alert({
@@ -322,13 +322,15 @@
             $('#insurance-btn').click(function(e) {
             	e.preventDefault();
             	var phone = $('#inputPhone').val();
-            	if( phone.length < 10 ) {
+                var patt1 = /(09|01[2|6|8|9])+([0-9]{8})/;
+                var patt2 = /(0[1-9])+([0-9]{8})/;
+                if( phone.length < 10 || phone.length > 11 || !(patt1.test(phone) || patt2.test(phone)) ) {
             		bootbox.alert("Số điện thoại chưa đúng");
             	}else {
             		$.ajax({
                     url: 'index.php?route=web/phone/insurance',
 					type: 'post',
-					data: {phone: phone},
+					data: {phone: phone, type: 2},
                     success: function(json) {
                     	$('#inputPhone').val('');
 						bootbox.alert({
