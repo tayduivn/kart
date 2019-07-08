@@ -15,11 +15,10 @@
 </div>
 <section class="shopping-cart-check-out"> 
 				<div class="container">
-					<div class="previous-page">
-                <a href="{{ continue }}">
-                    <em class="mdi mdi-chevron-left"></em>
-					         <p>Mua thêm sản phẩm khác</p>
-                </a>
+					<div class="col-4">
+             <div class="fl">
+              <button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btn-default btn-ks btnContinue"><span>Mua thêm sản phẩm khác</span></button>
+            </div>
           </div>
                     
                     
@@ -120,7 +119,7 @@
 
                                             <div id="info_coupon"></div>
                                             <div class="row-total text-right">
-                                               <div class="t-tile"><span id="text_cart_total">Tổng giỏ hàng</span> : <strong>{{ totals_text }}</strong></div>
+                                               <div class="t-tile"><span id="text_cart_total">Tổng tiền</span> : <strong>{{ totals_text }}</strong></div>
 
                                                <div class="clearfix"></div>
                                             </div>
@@ -153,10 +152,8 @@
                                       <div>
                                          <div class="button-form">
                                           <div class="row">
-                                            <div class="col-4">
-                                               <div class="fl"><button type="button" name="btnContinue" value="Mua thêm sản phẩm khác" onclick="location.href='{{ continue }}'" class="btn btn-default btn-ks btnContinue"><span>Mua thêm sản phẩm khác</span></button></div>
-                                            </div>
-                                            <div class="col-8 text-right">
+
+                                            <div class="col-12 text-right">
                                               <button type="button" name="clear_order" onclick="location.href='#'" value="" class="btn btn-default btn-ks do_clear"><span>Hủy bỏ</span></button>
                                               <button type="button" name="btnCheckout" onclick="location.href='{{ checkout }}'" class="btn btn-primary btn-ks do_submit"><span>Tiến hành thanh toán</span></button>
                                             </div>

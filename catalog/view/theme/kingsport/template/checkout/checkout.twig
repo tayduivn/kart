@@ -339,6 +339,8 @@ $(document).delegate('#button-register', 'click', function() {
                                     $('#collapse-shipping-address').html(html);
                                     $('#collapse-shipping-address').show();
 
+                                    $('#collapse-payment-address').hide();
+
                                 },
                                 error: function(xhr, ajaxOptions, thrownError) {
                                     alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -464,8 +466,8 @@ $(document).delegate('#button-payment-address', 'click', function() {
 						url: 'index.php?route=checkout/payment_address',
 						dataType: 'html',
 						success: function(html) {
-                            $('#collapse-payment-address').html(html);
-							$('#collapse-payment-address').hide();
+       //                      $('#collapse-payment-address').html(html);
+							// $('#collapse-payment-address').hide();
 						},
 						error: function(xhr, ajaxOptions, thrownError) {
 							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -575,8 +577,8 @@ $(document).delegate('#button-shipping-address', 'click', function() {
 						url: 'index.php?route=checkout/payment_address',
 						dataType: 'html',
 						success: function(html) {
-                            $('#collapse-payment-address').html(html);
-							$('#collapse-payment-address').show();
+                            //$('#collapse-payment-address').html(html);
+							//$('#collapse-payment-address').show();
 						},
 						error: function(xhr, ajaxOptions, thrownError) {
 							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

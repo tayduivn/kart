@@ -616,17 +616,17 @@ class ControllerProductCategory extends Controller {
             $data['product_status'] = array(
                 array(
                     'label' => $this->language->get('text_is_new'),
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_new=1'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_new=' . (!empty($is_new) ? '0' : '1') ),
                     'checked' => !empty($is_new) ? 'checked' : ''
                 ),
                 array(
                     'label' => $this->language->get('text_is_second'),
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_second=1'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_second=' . (!empty($is_second) ? '0' : '1') ),
                     'checked' => !empty($is_second) ? 'checked' : ''
                 ),
                 array(
                     'label' => $this->language->get('text_is_recurring'),
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_recurring=1'),
+                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&is_recurring=' . (!empty($is_recurring) ? '0' : '1') ),
                     'checked' => !empty($is_recurring) ? 'checked' : ''
                 )
             );
