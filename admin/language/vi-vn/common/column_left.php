@@ -147,4 +147,5 @@ $_['text_web_video_category']   = 'Danh mục Video';
 $_['text_web_video']      		= 'Video';
 $_['text_web_category']         = 'Danh mục tin tức';
 $_['text_web_block']            = 'Block sản phẩm trang chủ';
-$_['text_web_newsletter']            = 'Newsletter';
+$_['text_web_newsletter']       = 'Newsletter';
+$_['text_web_prize']            = 'Chứng nhận giải thưởng';
