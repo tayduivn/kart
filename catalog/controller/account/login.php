@@ -152,6 +152,8 @@ class ControllerAccountLogin extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
+		$data['opc_login'] = $this->load->controller('extension/module/opc_login');
+
 		$this->response->setOutput($this->load->view('account/login', $data));
 	}
 
