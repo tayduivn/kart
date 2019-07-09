@@ -164,6 +164,9 @@ class ControllerCatalogProduct extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
+			//
+            $this->syncZalo(true);
+
 			$this->response->redirect($this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
@@ -387,12 +390,15 @@ class ControllerCatalogProduct extends Controller {
 				'product_id' => $result['product_id'],
 				'image'      => $image,
 				'name'       => $result['name'],
+				'sort_order'       => $result['sort_order'],
+				'zalo_product_id'       => $result['zalo_product_id'],
 				'model'      => $result['model'],
 				'price'      => $this->currency->format($result['price'], $this->config->get('config_currency')),
 				'special'    => $special,
 				'quantity'   => $result['quantity'],
 				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('catalog/product/edit', 'user_token=' . $this->session->data['user_token'] . '&product_id=' . $result['product_id'] . $url, true)
+				'edit'       => $this->url->link('catalog/product/edit', 'user_token=' . $this->session->data['user_token'] . '&product_id=' . $result['product_id'] . $url, true),
+				'zalo'       => $this->url->link('catalog/product/syncZalo', 'user_token=' . $this->session->data['user_token'] . '&product_id=' . $result['product_id'] . $url, true)
 			);
 		}
 
@@ -1433,4 +1439,62 @@ class ControllerCatalogProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+	public function syncZalo($isDelete = false) {
+        $this->load->library('zalo');
+        $this->zalo->loadConfig($this->zaloConfig());
+
+        $this->load->model('catalog/product');
+
+        if($isDelete) {
+            $product_ids = $this->request->post['selected'];
+            foreach($product_ids as $product_id) {
+                $product_info = $this->model_catalog_product->getProduct($product_id);
+                if( !empty($product_info->zalo_product_id) ) {
+                    $this->zalo->deleteProduct($product_info->zalo_product_id);
+                }
+            }
+        }else {
+            $product_id = $this->request->get['product_id'];
+            $this->session->data['success'] = $this->language->get('text_zalo_sync_success');
+            $product_info = $this->model_catalog_product->getProduct($product_id);
+
+            if( empty($product_info->zalo_product_id) ) { //create
+                $data = array(
+                    'cateids' => [],
+                    'name' => html_entity_decode($product_info->name),
+                    'desc' => html_entity_decode($product_info->description),
+                    'code' => $product_info->model,
+                    'price' => $product_info->price,
+                    'photos' => [],
+                    'display' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
+                    'payment' => 3 // 2 - enable | 3 - disable
+                );
+                $response = $this->zalo->createProduct($data);
+            }
+            else
+            { //update
+                $data = array(
+                    'cateids' => [],
+                    'name' => html_entity_decode($product_info->name),
+                    'desc' => html_entity_decode($product_info->description),
+                    'code' => $product_info->model,
+                    'price' => $product_info->price,
+                    'photos' => [],
+                    'display' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
+                    'payment' => 3 // 2 - enable | 3 - disable
+                );
+                $response = $this->zalo->updateProduct($product_info->zalo_product_id, $data);
+            }
+        }
+    }
+
+    private function zaloConfig() {
+        return [
+            'app_id' => $this->config->get('config_zalo_app_id'),
+            'app_secret' => $this->config->get('config_zalo_app_secret'),
+            'oa_id' => $this->config->get('config_zalo_oa_id'),
+            'oa_secret' => $this->config->get('config_zalo_oa_secret')
+        ];
+    }
 }

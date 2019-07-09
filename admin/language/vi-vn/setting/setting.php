@@ -63,6 +63,11 @@ $_['entry_alepay_checksum_key']            = 'Alepay - Checksum Key:';
 
 $_['entry_reviewed_nums']            = 'Sản phẩm đã xem tối thiểu:';
 
+$_['entry_zalo_app_id']            = 'Zalo - APP ID:';
+$_['entry_zalo_app_secret']            = 'Zalo - APP Secret:';
+$_['entry_zalo_oa_id']            = 'Zalo - OA ID:';
+$_['entry_zalo_oa_secret']            = 'Zalo - OA Secret:';
+
 $_['entry_product_limit']              = 'Sản phẩm trên trang (Danh mục)';
 $_['entry_product_description_length'] = 'Mô tả ngắn (Danh mục)';
 $_['entry_limit_admin']                = 'Sản phẩm trên trang (Quản trị)';

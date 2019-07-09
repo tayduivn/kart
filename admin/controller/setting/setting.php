@@ -927,6 +927,30 @@ class ControllerSettingSetting extends Controller {
             $data['config_reviewed_nums'] = $this->config->get('config_reviewed_nums');
         }
 
+        if (isset($this->request->post['config_zalo_app_id'])) {
+            $data['config_zalo_app_id'] = $this->request->post['config_zalo_app_id'];
+        } else {
+            $data['config_zalo_app_id'] = $this->config->get('config_zalo_app_id');
+        }
+
+        if (isset($this->request->post['config_zalo_app_secret'])) {
+            $data['config_zalo_app_secret'] = $this->request->post['config_zalo_app_secret'];
+        } else {
+            $data['config_zalo_app_secret'] = $this->config->get('config_zalo_app_secret');
+        }
+
+        if (isset($this->request->post['config_zalo_oa_id'])) {
+            $data['config_zalo_oa_id'] = $this->request->post['config_zalo_oa_id'];
+        } else {
+            $data['config_zalo_oa_id'] = $this->config->get('config_zalo_oa_id');
+        }
+
+        if (isset($this->request->post['config_zalo_oa_secret'])) {
+            $data['config_zalo_oa_secret'] = $this->request->post['config_zalo_oa_secret'];
+        } else {
+            $data['config_zalo_oa_secret'] = $this->config->get('config_zalo_oa_secret');
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

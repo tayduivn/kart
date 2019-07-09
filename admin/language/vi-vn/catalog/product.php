@@ -54,6 +54,10 @@ $_['column_status']          = 'Trạng thái';
 
 $_['column_action']          = 'Thao tác';
 
+$_['column_sort_order']          = 'Thứ tự';
+
+$_['button_sync_zalo']          = 'Sync sản phẩm lên Zalo shop';
+
 
 
 // Entry
