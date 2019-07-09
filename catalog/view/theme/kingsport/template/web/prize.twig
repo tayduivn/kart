@@ -17,82 +17,25 @@
 <section class="verification-award">
     <div class="container">
         <div class="row">
+            {% for prize in prizes %}
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/1.jpg" alt=""></div>
+                    <div class="figure-image">
+                        {% if prize.thumb %}
+                        <img src="{{ prize.thumb }}" alt="" />
+                        {% endif %}
+                    </div>
                     <div class="figure-caption">
-                        <h5>sản phẩm UY tín do người tiêu dùng bình chọn Là tập đoàn bán lẻ</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
+                        <h5>{{ prize.title }}</h5>
+                        <p>{{ prize.intro }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/2.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>Giải thưởng sản phẩm vì sức khoẻ cộng đồng Là tập đoàn bán lẻ h</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/3.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>sản phẩm UY tín do người tiêu dùng bình chọn Là tập đoàn bán lẻ</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/4.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>sản phẩm UY tín do người tiêu dùng bình chọn Là tập đoàn bán lẻ</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/5.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>sản phẩm UY tín do người tiêu dùng bình chọn Là tập đoàn bán lẻ</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/6.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>sản phẩm UY tín do người tiêu dùng bình chọn Là tập đoàn bán lẻ</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/7.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>Giải thưởng sản phẩm vì sức khoẻ cộng đồng Là tập đoàn bán lẻ h</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="figure">
-                    <div class="figure-image"><img src="./images/options-1/verification/8.jpg" alt=""></div>
-                    <div class="figure-caption">
-                        <h5>sản phẩm UY tín do người tiêu dùng bình chọn Là tập đoàn bán lẻ</h5>
-                        <p>Là tập đoàn bán lẻ hàng đầu Việt Nam trong lĩnh vực thể thao, cung cấp các sản phẩm và dịch vụ theo chuẩn mực quốc tế với giá cả hợp lý, với mong muốn mang lại sức khỏe và thịnh vượng cho dân tộc.</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
-<section class="pagination-verification">
+<!--<section class="pagination-verification">
     <div class="container">
         <ul style="justify-content: center;">
             <li class="active"><a href="#">1</a></li>
@@ -101,5 +44,5 @@
             <li><a href="#"><em class="mdi mdi-chevron-right"></em></a></li>
         </ul>
     </div>
-</section>
+</section>-->
 {{ footer }}

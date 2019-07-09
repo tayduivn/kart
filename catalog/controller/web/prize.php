@@ -7,7 +7,26 @@ class ControllerWebPrize extends Controller {
         // Menu
         $this->load->model('web/prize');
 
+        $this->load->model('tool/image');
+
         $data['prizes'] = array();
+
+        $results = $this->model_web_prize->getPrizes();
+
+        foreach($results as $result) {
+
+            if ($result['image']) {
+                $image = $this->model_tool_image->resize($result['image'], 419, 344);
+            } else {
+                $image = $this->model_tool_image->resize('placeholder.png', 419, 344);
+            }
+
+            $data['prizes'][] = array(
+                'title'  => $result['title'],
+                'thumb'  => $image,
+                'intro'  => trim(strip_tags(html_entity_decode($result['intro'], ENT_QUOTES, 'UTF-8')))
+            );
+        }
 
         $data['breadcrumbs'] = array();
 
