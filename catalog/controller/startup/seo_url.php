@@ -57,10 +57,15 @@ class ControllerStartupSeoUrl extends Controller {
 						$this->request->get['video_category_id'] = $url[1];
 					}
 
+                    if ($url[0] == 'landing_id') {
+                        $this->request->get['landing_id'] = $url[1];
+                    }
+
 					if ($query->row['query'] && 
 						$url[0] != 'video_id' && 
 						$url[0] != 'video_category_id' && 
-						$url[0] != 'blog_id' && 
+						$url[0] != 'landing_id' &&
+						$url[0] != 'blog_id' &&
 						$url[0] != 'blog_category_id' && 
 						$url[0] != 'information_id' && 
 						$url[0] != 'manufacturer_id' && 
@@ -92,7 +97,9 @@ class ControllerStartupSeoUrl extends Controller {
 					$this->request->get['route'] = 'web/video_category';
 				}elseif (isset($this->request->get['video_id'])) {
 					$this->request->get['route'] = 'web/video';
-				}
+				}elseif (isset($this->request->get['landing_id'])) {
+                    $this->request->get['route'] = 'web/landing';
+                }
 			}
 		}
 	}
@@ -114,6 +121,7 @@ class ControllerStartupSeoUrl extends Controller {
 						|| ($data['route'] == 'web/category' && $key == 'blog_category_id')
 						|| ($data['route'] == 'web/video_category' && $key == 'video_category_id')
 						|| ($data['route'] == 'web/video' && $key == 'video_id')
+						|| ($data['route'] == 'web/landing' && $key == 'landing_id')
 					) {
 					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "' AND store_id = '" . (int)$this->config->get('config_store_id') . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -149,6 +157,7 @@ class ControllerStartupSeoUrl extends Controller {
 					$data['route'] == 'web/category' ||
 					$data['route'] == 'web/store' ||
 					$data['route'] == 'common/home' ||
+					$data['route'] == 'web/prize' ||
 					$data['route'] == 'web/video_category'
 				 ) {
 					//my custom
