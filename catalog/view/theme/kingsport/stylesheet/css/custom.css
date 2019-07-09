@@ -4,6 +4,9 @@
     display: none
 }
 
+img {
+    max-width: 100%
+}
 .kingsport-header-main .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .login-nav li a .shopping-cart .num-of-items {
     display: flex;
     justify-content: center;
@@ -212,4 +215,11 @@
     background: #fff;
     color: #8c8c8c;
     border: 1px solid #8c8c8c;
+}
+
+.product-detail .tab-panel-product-detail.active table {
+    width: 100%!important
+}
+.product-detail .tab-panel-product-detail.active ul li {
+    display: inherit;
 }
