@@ -951,6 +951,26 @@ class ControllerSettingSetting extends Controller {
             $data['config_zalo_oa_secret'] = $this->config->get('config_zalo_oa_secret');
         }
 
+        //facebook
+        if (isset($this->request->post['config_facebook_app_id'])) {
+            $data['config_facebook_app_id'] = $this->request->post['config_facebook_app_id'];
+        } else {
+            $data['config_facebook_app_id'] = $this->config->get('config_facebook_app_id');
+        }
+
+
+        if (isset($this->request->post['config_prevent_delete_information'])) {
+            $data['config_prevent_delete_information'] = $this->request->post['config_prevent_delete_information'];
+        } else {
+            $data['config_prevent_delete_information'] = $this->config->get('config_prevent_delete_information');
+        }
+
+        if (isset($this->request->post['config_prevent_delete_banner'])) {
+            $data['config_prevent_delete_banner'] = $this->request->post['config_prevent_delete_banner'];
+        } else {
+            $data['config_prevent_delete_banner'] = $this->config->get('config_prevent_delete_banner');
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

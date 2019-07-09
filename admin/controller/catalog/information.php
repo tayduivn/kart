@@ -470,6 +470,10 @@ class ControllerCatalogInformation extends Controller {
 
 		$this->load->model('setting/store');
 
+        $prevents = $this->config->get('config_prevent_delete_information');
+
+        $prevent_ids = explode(',', $prevents);
+
 		foreach ($this->request->post['selected'] as $information_id) {
 			if ($this->config->get('config_account_id') == $information_id) {
 				$this->error['warning'] = $this->language->get('error_account');
@@ -486,6 +490,10 @@ class ControllerCatalogInformation extends Controller {
 			if ($this->config->get('config_return_id') == $information_id) {
 				$this->error['warning'] = $this->language->get('error_return');
 			}
+
+			if ( in_array($information_id, $prevent_ids) ) {
+                $this->error['warning'] = $this->language->get('error_prevent');
+            }
 
 			$store_total = $this->model_setting_store->getTotalStoresByInformationId($information_id);
 

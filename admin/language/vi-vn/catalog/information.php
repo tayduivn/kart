@@ -92,3 +92,5 @@ $_['error_store']       = 'Cảnh báo: không thể xóa, vì trang thông tin 
 
 $_['error_return']           = 'Cảnh báo: Thông tin này không thể xóa vì nó đang được sử dụng như một điều khoản bắt buộc của gian hàng!';
 
+$_['error_prevent']           = 'Cảnh báo: Một số bài viết không được xóa vì ảnh hưởng đến web ngoài!';
+

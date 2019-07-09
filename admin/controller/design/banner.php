@@ -83,9 +83,13 @@ class ControllerDesignBanner extends Controller {
 
 		$this->load->model('design/banner');
 
+
+
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $banner_id) {
-				$this->model_design_banner->deleteBanner($banner_id);
+
+                    $this->model_design_banner->deleteBanner($banner_id);
+
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -393,6 +397,16 @@ class ControllerDesignBanner extends Controller {
 		if (!$this->user->hasPermission('modify', 'design/banner')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
+
+        $prevents = $this->config->get('config_prevent_delete_banner');
+        $prevent_ids = explode(',', $prevents);
+        foreach ($this->request->post['selected'] as $banner_id) {
+
+            if( in_array($banner_id, $prevent_ids) ) {
+                $this->error['warning'] = $this->language->get('error_prevent');
+            }
+        }
+
 
 		return !$this->error;
 	}
