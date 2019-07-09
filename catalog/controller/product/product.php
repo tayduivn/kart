@@ -266,7 +266,7 @@ class ControllerProductProduct extends Controller {
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
-			$data['video'] = html_entity_decode($product_info['video'], ENT_QUOTES, 'UTF-8');
+			$data['video'] = html_entity_decode($product_info['video']);
 			$data['param_tech'] = html_entity_decode($product_info['param_tech'], ENT_QUOTES, 'UTF-8');
 
             $product_gift = $this->model_catalog_product->getProductGift($this->request->get['product_id']);
