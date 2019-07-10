@@ -1,4 +1,33 @@
 <?php
+
+// spl_autoload_register(function ($class) {
+//     include 'zalo/' . $class . '.php';
+// });
+
+include 'zalo/Zalo.php';
+include 'zalo/ZaloConfig.php';
+include 'zalo/ZaloFile.php';
+include 'zalo/ZaloEndpoint.php';
+include 'zalo/ZaloClient.php';
+include 'zalo/ZaloRequest.php';
+include 'zalo/ZaloResponse.php';
+include 'zalo/HttpClients/ZaloHttpClientInterface.php';
+include 'zalo/HttpClients/HttpClientsFactory.php';
+include 'zalo/HttpClients/ZaloCurlHttpClient.php';
+include 'zalo/HttpClients/ZaloCurl.php';
+include 'zalo/Url/UrlDetectionInterface.php';
+include 'zalo/Url/ZaloUrlDetectionHandler.php';
+include 'zalo/Url/ZaloUrlManipulator.php';
+include 'zalo/Http/RequestBodyInterface.php';
+include 'zalo/Http/RequestBodyRaw.php';
+include 'zalo/Http/GraphRawResponse.php';
+include 'zalo/Exceptions/ZaloSDKException.php';
+include 'zalo/Exceptions/ZaloResponseException.php';
+include 'zalo/Exceptions/ZaloOAException.php';
+
+
+
+
 /**
  * @package		OpenCart
  * @author		Daniel Kerr

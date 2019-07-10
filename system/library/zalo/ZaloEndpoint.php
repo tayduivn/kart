@@ -17,13 +17,13 @@ class ZaloEndpoint {
     protected static $instance;
 
 
-    const API_OA_STORE_CREATE_PRODUCT = "";
-    const API_OA_STORE_UPDATE_PRODUCT = "";
-    const API_OA_STORE_REMOVE_PRODUCT = "";
+    const API_OA_STORE_CREATE_PRODUCT = "https://openapi.zaloapp.com/oa/v1/store/product/create";
+    const API_OA_STORE_UPDATE_PRODUCT = "https://openapi.zaloapp.com/oa/v1/store/product/update";
+    const API_OA_STORE_REMOVE_PRODUCT = "https://openapi.zaloapp.com/oa/v1/store/product/remove";
     const API_OA_STORE_UPLOAD_PRODUCT_PHOTO = "";
 
-    const API_OA_STORE_CREATE_CATEGORY = "";
-    const API_OA_STORE_UPDATE_CATEGORY = "";
+    const API_OA_STORE_CREATE_CATEGORY = "https://openapi.zaloapp.com/oa/v1/store/category/create";
+    const API_OA_STORE_UPDATE_CATEGORY = "https://openapi.zaloapp.com/oa/v1/store/category/update";
     const API_OA_STORE_UPLOAD_CATEGORY_PHOTO = "";
 
     /**

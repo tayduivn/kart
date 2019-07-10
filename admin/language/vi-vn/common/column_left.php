@@ -150,3 +150,4 @@ $_['text_web_block']            = 'Block sản phẩm trang chủ';
 $_['text_web_newsletter']       = 'Newsletter';
 $_['text_web_prize']            = 'Chứng nhận giải thưởng';
 $_['text_web_landing']          = 'Landing Page';
+$_['text_facebook_feed']          = 'Facebook Feed';

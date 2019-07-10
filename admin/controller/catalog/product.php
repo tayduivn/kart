@@ -1441,7 +1441,10 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	public function syncZalo($isDelete = false) {
+		$this->load->language('catalog/product');
+		
         $this->load->library('zalo');
+
         $this->zalo->loadConfig($this->zaloConfig());
 
         $this->load->model('catalog/product');
@@ -1456,21 +1459,22 @@ class ControllerCatalogProduct extends Controller {
             }
         }else {
             $product_id = $this->request->get['product_id'];
-            $this->session->data['success'] = $this->language->get('text_zalo_sync_success');
+            
             $product_info = $this->model_catalog_product->getProduct($product_id);
 
             if( empty($product_info->zalo_product_id) ) { //create
                 $data = array(
                     'cateids' => [],
-                    'name' => html_entity_decode($product_info->name),
-                    'desc' => html_entity_decode($product_info->description),
-                    'code' => $product_info->model,
-                    'price' => $product_info->price,
-                    'photos' => [],
+                    'name' => 'Test create product',
+		            'desc' => 'create product',
+		            'code' => '1010',
+		            'price' => 15000,
                     'display' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
                     'payment' => 3 // 2 - enable | 3 - disable
                 );
                 $response = $this->zalo->createProduct($data);
+                $this->error['warning']  = $response['errorMsg'];
+                //var_dump($response); die();
             }
             else
             { //update
@@ -1485,7 +1489,10 @@ class ControllerCatalogProduct extends Controller {
                     'payment' => 3 // 2 - enable | 3 - disable
                 );
                 $response = $this->zalo->updateProduct($product_info->zalo_product_id, $data);
+                $this->error['warning'] = $response['errorMsg'];
             }
+
+            $this->getList();
         }
     }
 

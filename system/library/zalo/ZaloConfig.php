@@ -17,16 +17,16 @@ class ZaloConfig {
     protected static $instance;
     
     /** config your app id here */
-    const ZALO_APP_ID_CFG = "1131677296116040198";
+    const ZALO_APP_ID_CFG = "3696735339434881474";
     
     /** config your app secret key here */
-    const ZALO_APP_SECRET_KEY_CFG = "rbZ5wQ2tVUh7Y3y6Kxqe";
+    const ZALO_APP_SECRET_KEY_CFG = "9PSeVW9FAXJZYEb7GHmd";
     
     /** config your offical account id here */
-    const ZALO_OA_ID_CFG = "2491302944280861639";
+    const ZALO_OA_ID_CFG = "2338698074743865252";
     
     /** config your offical account secret key here */
-    const ZALO_OA_SECRET_KEY_CFG = "cZB2PwByVjLQWj6MiM0X";
+    const ZALO_OA_SECRET_KEY_CFG = "W5xhH89TE5bsiN42EFUH";
 
     /**
      * Get a singleton instance of the class
