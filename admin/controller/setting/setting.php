@@ -971,6 +971,12 @@ class ControllerSettingSetting extends Controller {
             $data['config_prevent_delete_banner'] = $this->config->get('config_prevent_delete_banner');
         }
 
+        if (isset($this->request->post['config_default_area_id'])) {
+            $data['config_default_area_id'] = $this->request->post['config_default_area_id'];
+        } else {
+            $data['config_default_area_id'] = $this->config->get('config_default_area_id');
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

@@ -80,6 +80,7 @@ class ControllerWebBranch extends Controller {
 				'branch_id' => $result['branch_id'],
 				'title'            => $result['title'],
 				'sort_order'      => $result['sort_order'],
+				'is_main'      => $result['is_main'],
 				'edit'            => $this->url->link('web/branch/edit', 'user_token=' . $this->session->data['user_token'] . '&branch_id=' . $result['branch_id'] . $url, true)
 			);
 		}
@@ -421,6 +422,14 @@ class ControllerWebBranch extends Controller {
 			$data['parking'] = $branch_info['parking'];
 		} else {
 			$data['parking'] = 0;
+		}
+
+		if (isset($this->request->post['is_main'])) {
+			$data['is_main'] = $this->request->post['is_main'];
+		} elseif (!empty($branch_info)) {
+			$data['is_main'] = $branch_info['is_main'];
+		} else {
+			$data['is_main'] = 0;
 		}
         
         if (isset($this->request->post['area'])) {

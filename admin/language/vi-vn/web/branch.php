@@ -28,6 +28,8 @@ $_['column_sort_order']	= 'Thứ tự';
 
 $_['column_action']     = 'Thao tác';
 
+$_['column_is_main']     = 'Chi nhánh chính';
+
 
 
 // Entry
@@ -63,6 +65,8 @@ $_['entry_layout']      = 'Bố cục:';
 $_['entry_parking']      = 'Chỗ đậu oto:';
 
 $_['entry_area']      = 'Khu vực:';
+
+$_['entry_is_main']      = 'Chi nhánh chính:';
 
 // Help
 

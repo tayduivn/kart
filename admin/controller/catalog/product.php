@@ -1498,10 +1498,10 @@ class ControllerCatalogProduct extends Controller {
 
     private function zaloConfig() {
         return [
-            'app_id' => $this->config->get('config_zalo_app_id'),
-            'app_secret' => $this->config->get('config_zalo_app_secret'),
-            'oa_id' => $this->config->get('config_zalo_oa_id'),
-            'oa_secret' => $this->config->get('config_zalo_oa_secret')
+            'app_id' => '3696735339434881474',
+            'app_secret' => '9PSeVW9FAXJZYEb7GHmd',
+            'oa_id' => '2338698074743865252',
+            'oa_secret' => 'W5xhH89TE5bsiN42EFUH'
         ];
     }
 }

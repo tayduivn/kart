@@ -223,3 +223,56 @@ img {
 .product-detail .tab-panel-product-detail.active ul li {
     display: inherit;
 }
+
+.account-form .well .list-group img {
+    width: 165px;
+    height: 35px;
+}
+
+.pagination-verification .pagination {
+    justify-content: center;
+}
+
+.pagination-verification ul li.active span {
+    text-decoration: none;
+    display: inline-flex;
+    padding: .25rem 1rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #999;
+    color: #999;
+    font-size: 24px;
+    font-family: Muli;
+    font-weight: 700;
+    -o-object-fit: scale-down;
+    object-fit: scale-down;
+    /* border-radius: 0; */
+    font-size: 18px;
+    width: 1.5rem;
+    height: 1.7rem;
+        color: #de1f25;
+    border-color: #de1f25;
+        background: #fff;
+}
+
+.pagination-verification .pagination>li:first-child a,
+.pagination-verification .pagination>li:last-child a{
+    text-decoration: none;
+    display: inline-flex;
+    padding: .25rem 1rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #999;
+    color: #999;
+    font-size: 24px;
+    font-family: Muli;
+    font-weight: 700;
+    -o-object-fit: scale-down;
+    object-fit: scale-down;
+    /* border-radius: 0; */
+    font-size: 18px;
+    width: 1.5rem;
+    height: 1.7rem;
+}

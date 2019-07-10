@@ -73,6 +73,8 @@ $_['entry_facebook_app_id']            = 'FACEBOOK - APP ID:';
 $_['entry_prevent_delete_information']       = 'Chặn xóa các Thông tin(id cách nhau dấu ,):';
 $_['entry_prevent_delete_banner']            = 'Chặn xóa các Banner(id cách nhau dấu ,):';
 
+$_['entry_default_area_id']            = 'Khu vực mặc định(nhập ID):';
+
 $_['entry_product_limit']              = 'Sản phẩm trên trang (Danh mục)';
 $_['entry_product_description_length'] = 'Mô tả ngắn (Danh mục)';
 $_['entry_limit_admin']                = 'Sản phẩm trên trang (Quản trị)';

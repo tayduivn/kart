@@ -348,6 +348,7 @@
                     navigator.geolocation.getCurrentPosition(showPosition);
                 } else {
                     alert("Geolocation is not supported by this browser.");
+                    window.location.href = 'index.php?route=web/store/search';
 
                 }
             });
@@ -355,17 +356,9 @@
             function showPosition(position) {
                 console.log('position', position);
                 if(position && position.coords) {
-                    $.ajax({
-                        url: 'index.php?route=web/store/search',
-                        type: 'post',
-                        data: {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        },
-                        success: function(json) {
-                            console.log(json);
-                        }
-                    });
+                    window.location.href = 'index.php?route=web/store/search&lat=' + position.coords.latitude + '&lng=' + position.coords.longitude;
+				}else {
+					window.location.href = 'index.php?route=web/store/search';
 				}
             }
 		</script>
