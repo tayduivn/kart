@@ -276,3 +276,38 @@ img {
     width: 1.5rem;
     height: 1.7rem;
 }
+
+.shopping-cart-check-out .cart-item-wrapper {
+    border: none;
+}
+
+.policy-pay {
+     padding: 20px;
+     border-bottom: none!important;
+}
+
+.coupon_Total .Coupon .div-coupon .input-group .form-control {
+    height: 42px!important;
+    border-bottom: 1px solid #e0e0e0!important;
+}
+
+.button-form {
+    margin-top: 15px;
+}
+
+#collapse-checkout-option .login-note {
+    margin: 22px 0;
+}
+
+.choose-quantity .cart_spinner {
+    display: flex;
+}
+.cart_spinner .btn {
+    width: 53px!important;
+    height: 40px!important;
+    font-size: 26px!important;
+}
+.cart_spinner input {
+    background-color: #fff!important;
+    border-radius: 0!important;
+}
