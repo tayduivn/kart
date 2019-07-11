@@ -209,9 +209,10 @@ function swiperDiscountInit() {
         slidesPerColumn: 1.5,
         spaceBetween: 1,
         pagination: {
-            el: $(".swiper-pagination-product-discount",ethis),
+            el: $(".swiper-pagination",ethis.next()),
             type: "bullets"
         },
+        paginationClickable: !0,
         breakpointsInverse: !0,
         clickable: !0,
         draggable: !0,
@@ -257,9 +258,10 @@ function swiperDiscountInit() {
             prevEl: $(".button-prev-product",ethis)
         },
         pagination: {
-            el: $(".swiper-pagination",ethis),
+            el: $(".swiper-pagination",ethis.next()),
             type: "bullets"
         },
+        paginationClickable: !0,
         breakpointsInverse: !0,
         breakpoints: {
             0: {

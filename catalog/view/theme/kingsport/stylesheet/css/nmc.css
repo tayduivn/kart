@@ -437,3 +437,23 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
 @media screen and (min-width: 1601px) {
     .child-page .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-nav-wrapper .search-nav-wrapper .top-nav-dropdown .laptop-navigation-all{top:186px;}
 }
+
+.product-discount .product-wrapper .product-figure-wrapper .swiper-container .swiper-wrapper .swiper-slide .figure:hover,
+.product-original-v3 .product-wrapper .tab-category .tab-panel-category .swipper-nested-product-1 .swiper-wrapper .swiper-slide .figure:hover{background: #fafafa;}
+.product-discount .product-wrapper .product-figure-wrapper .swiper-container .swiper-wrapper .swiper-slide .figure .figure-image:before,
+.product-original-v3 .product-wrapper .tab-category .tab-panel-category .swipper-nested-product-1 .swiper-wrapper .swiper-slide .figure .figure-image:before{
+    position: absolute; left: 0px; top:0px; width: 100%; height: 100%; background: #fff; content: '';
+}
+
+@media screen and (max-width: 767.9px) {
+    .product-discount .product-wrapper .product-figure-wrapper .swiper-container .swiper-wrapper .swiper-slide .figure,
+    .product-original-v3 .product-wrapper .tab-category .tab-panel-category .swipper-nested-product-1 .swiper-wrapper .swiper-slide .figure{
+        height: 100%; background: #fafafa;
+    }
+
+    .product-original-v3 .product-wrapper .tab-category .tab-panel-category .swiper-pagination-wrapper,
+    .product-discount .product-wrapper .product-figure-wrapper .swiper-pagination-wrapper{position: relative;}
+
+    .product-discount .product-wrapper .product-figure-wrapper .swiper-container .swiper-wrapper .swiper-slide{ margin-bottom: 1.125rem;}
+}
+
