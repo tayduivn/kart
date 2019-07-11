@@ -456,7 +456,8 @@ body.fixed .kingsport-header-all .kingsport-main-nav .main-nav-wrapper .bottom-n
     }
 
     .product-original-v3 .product-wrapper .tab-category .tab-panel-category .swiper-pagination-wrapper,
-    .product-discount .product-wrapper .product-figure-wrapper .swiper-pagination-wrapper{position: relative;}
+    .product-discount .product-wrapper .product-figure-wrapper .swiper-pagination-wrapper,
+    .kingsport-news-option1v3 .news-box .swiper-pagination-wrapper{position: relative;}
 
     .product-discount .product-wrapper .product-figure-wrapper .swiper-container .swiper-wrapper .swiper-slide{ margin-bottom: 1.125rem;}
 }
