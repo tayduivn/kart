@@ -14,11 +14,22 @@ function triggerScrollEvent(){
         
     }
 }
+
+function productEqualHeight(){
+    $(".product-discount .product-wrapper .product-figure-wrapper .swiper-slide-custom, .product-original-v3 .product-wrapper .tab-category .tab-panel-category .swipper-nested-product-1 .swiper-wrapper").each(function(index, el) {
+        $(".swiper-slide .figure", this).matchHeight({
+            byRow: false,
+        });
+    });
+}
+
 jQuery(document).ready(function($) {
     triggerScrollEvent();
 
     $(".breadcrumb li:last-child").addClass("active");
     $(".tab-content-showroom .tab-panel:first-child").addClass("active");
+
+    productEqualHeight();
 });
 
 jQuery(window).scroll(function(){
