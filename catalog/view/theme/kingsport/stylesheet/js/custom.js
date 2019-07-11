@@ -21,6 +21,22 @@ function productEqualHeight(){
             byRow: false,
         });
     });
+
+    $(".row.gutter-5-xs").each(function(index, el) {
+        $(".figure", this).matchHeight({
+            byRow: true,
+        });       
+    });
+}
+
+function editorIframeResponsive(){
+    $("iframe").each(function(index, el) {
+        if(!$(this).hasClass('embed-responsive-item')) {
+            $(this).wrap('<div class="embed-responsive embed-responsive-16by9"/>');
+            $(this).addClass('embed-responsive-item');        
+        }
+    });
+    
 }
 
 jQuery(document).ready(function($) {
@@ -30,6 +46,7 @@ jQuery(document).ready(function($) {
     $(".tab-content-showroom .tab-panel:first-child").addClass("active");
 
     productEqualHeight();
+    //editorIframeResponsive();
 });
 
 jQuery(window).scroll(function(){
