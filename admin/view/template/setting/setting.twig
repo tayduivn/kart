@@ -430,6 +430,13 @@
               </div>
 
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-zalo-access-token">{{ entry_zalo_access_token }}</label>
+                <div class="col-sm-10">
+                  <textarea name="config_zalo_access_token" placeholder="{{ entry_zalo_access_token }}" id="input-zalo-access-token" class="form-control" >{{ config_zalo_access_token }}</textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-reviewed-nums">{{ entry_reviewed_nums }}</label>
                 <div class="col-sm-10">
                   <input type="text" name="config_reviewed_nums" value="{{ config_reviewed_nums }}" placeholder="{{ entry_reviewed_nums }}" id="input-reviewed-nums" class="form-control" />

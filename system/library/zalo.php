@@ -58,9 +58,12 @@ class Zalo {
 		}
 	}
 
-	public function loadConfig($config) {
+	public function loadConfig($config, $accessToken = null) {
         $class = 'Zalo\\Zalo';
         $this->adaptor =  new $class($config);
+        if($accessToken) {
+            $this->accessToken = $accessToken
+        }
     }
 
     public function getProducts() {

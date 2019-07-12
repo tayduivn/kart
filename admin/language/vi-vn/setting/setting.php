@@ -74,6 +74,7 @@ $_['entry_prevent_delete_information']       = 'Chặn xóa các Thông tin(id c
 $_['entry_prevent_delete_banner']            = 'Chặn xóa các Banner(id cách nhau dấu ,):';
 
 $_['entry_default_area_id']            = 'Khu vực mặc định(nhập ID):';
+$_['entry_zalo_access_token']            = 'Zalo - Access Token:';
 
 $_['entry_product_limit']              = 'Sản phẩm trên trang (Danh mục)';
 $_['entry_product_description_length'] = 'Mô tả ngắn (Danh mục)';

@@ -951,6 +951,12 @@ class ControllerSettingSetting extends Controller {
             $data['config_zalo_oa_secret'] = $this->config->get('config_zalo_oa_secret');
         }
 
+        if (isset($this->request->post['config_zalo_access_token'])) {
+            $data['config_zalo_access_token'] = $this->request->post['config_zalo_access_token'];
+        } else {
+            $data['config_zalo_access_token'] = $this->config->get('config_zalo_access_token');
+        }
+
         //facebook
         if (isset($this->request->post['config_facebook_app_id'])) {
             $data['config_facebook_app_id'] = $this->request->post['config_facebook_app_id'];
