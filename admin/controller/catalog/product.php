@@ -124,6 +124,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->load->model('catalog/product');
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
+			$this->syncZalo(true);
 			foreach ($this->request->post['selected'] as $product_id) {
 				$this->model_catalog_product->deleteProduct($product_id);
 			}
@@ -165,7 +166,7 @@ class ControllerCatalogProduct extends Controller {
 			}
 
 			//
-            $this->syncZalo(true);
+            
 
 			$this->response->redirect($this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
@@ -1377,7 +1378,7 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$limit = $this->request->get['limit'];
 			} else {
-				$limit = 5;
+				$limit = 25;
 			}
 
 			$filter_data = array(
@@ -1441,6 +1442,7 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	public function syncZalo($isDelete = false) {
+
 		$this->load->language('catalog/product');
 		
         $this->load->library('zalo');
@@ -1453,43 +1455,88 @@ class ControllerCatalogProduct extends Controller {
             $product_ids = $this->request->post['selected'];
             foreach($product_ids as $product_id) {
                 $product_info = $this->model_catalog_product->getProduct($product_id);
-                if( !empty($product_info->zalo_product_id) ) {
-                    $this->zalo->deleteProduct($product_info->zalo_product_id);
+                if( !empty($product_info['zalo_product_id']) ) {
+                    $response = $this->zalo->deleteProduct($product_info['zalo_product_id']);
+                    if( is_array($response) ) {
+		        		if($response['error'] == 0) {
+							$this->session->data['success'] = 'Sản phẩm' . $product_info['name'] . 'vừa được xóa trên Zalo Shop';
+		        		}else {
+		        			$this->error['warning']  = $response['errorMsg'];
+		        		}
+		        	}
                 }
             }
         }else {
             $product_id = $this->request->get['product_id'];
-            
             $product_info = $this->model_catalog_product->getProduct($product_id);
 
-            if( empty($product_info->zalo_product_id) ) { //create
+            //zalo image
+            $imagePath = DIR_IMAGE . $product_info['image'];
+            $response = $this->zalo->createProductPhoto($imagePath);
+            $imageZaloId = '';
+        	if( is_array($response) ) {
+        		if($response['error'] == 0) {
+					$imageZaloId = $response['data']['id'];
+        		}else {
+        			$this->error['warning']  = $response['errorMsg'];
+        		}
+        	}else {
+        		$this->error['warning']  = 'Lỗi hình ảnh: ' . $response;
+        	}
+
+            if( empty($product_info['zalo_product_id']) ) { //create
                 $data = array(
-                    'cateids' => [],
-                    'name' => 'Test create product',
-		            'desc' => 'create product',
-		            'code' => '1010',
-		            'price' => 15000,
-                    'display' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
-                    'payment' => 3 // 2 - enable | 3 - disable
+                    'name' => $product_info['name'],
+		            'description' => html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'),
+		            'code' => $product_info['model'],
+		            'price' => $product_info['price'],
+                    'status' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
+                    'photos' => [$imageZaloId],
+                    'package_size' => [
+					    'weight' => 0.1,
+					    'length' => 1,
+					    'width' => 1,
+					    'height' => 1
+					]
                 );
                 $response = $this->zalo->createProduct($data);
-                $this->error['warning']  = $response['errorMsg'];
-                //var_dump($response); die();
+                if( is_array($response) ) {
+                	if($response['error'] == 0) {
+                		$productZaloId = $response['data']['id'];
+                		$this->session->data['success'] = 'Sản phẩm vừa được tạo trên Zalo Shop';
+                		$this->model_catalog_product->updateZaloId($product_info['product_id'], $productZaloId);
+                	}
+                }else {
+                	$this->error['warning']  = 'Lỗi tạo sản phẩm mới trên zalo store: ' . $response;
+                }
             }
             else
             { //update
                 $data = array(
-                    'cateids' => [],
-                    'name' => html_entity_decode($product_info->name),
-                    'desc' => html_entity_decode($product_info->description),
-                    'code' => $product_info->model,
-                    'price' => $product_info->price,
-                    'photos' => [],
-                    'display' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
-                    'payment' => 3 // 2 - enable | 3 - disable
+                	'id' => $product_info['zalo_product_id'],
+                    'name' => $product_info['name'],
+		            'description' => html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'),
+		            'code' => $product_info['model'],
+		            'price' => $product_info['price'],
+                    'status' => (int)$product_info->status == 1 ? 'show' : 'hide', // show | hide
+                    'photos' => [$imageZaloId],
+                    'package_size' => [
+					    'weight' => 0.1,
+					    'length' => 1,
+					    'width' => 1,
+					    'height' => 1
+					]
                 );
-                $response = $this->zalo->updateProduct($product_info->zalo_product_id, $data);
-                $this->error['warning'] = $response['errorMsg'];
+                
+                $response = $this->zalo->updateProduct($data);
+                if( is_array($response) ) {
+                	if($response['error'] == 0) {
+                		$productZaloId = $response['data']['id'];
+                		$this->session->data['success'] = 'Sản phẩm vừa được cập nhật trên Zalo Shop';
+                	}
+                }else {
+                	$this->error['warning']  = 'Lỗi cập nhật sản phẩm trên zalo store: ' . $response;
+                }
             }
 
             $this->getList();

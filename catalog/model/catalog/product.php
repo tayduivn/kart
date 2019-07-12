@@ -717,6 +717,40 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+		if (!empty($data['is_new'])) {
+            $sql .= " AND p.is_new = '1'";
+        }
+
+        if (!empty($data['is_second'])) {
+            $sql .= " AND p.is_second = '1'";
+        }
+
+        if (!empty($data['is_recurring'])) {
+            $sql .= " AND p.is_recurring = '1'";
+        }
+
+        if (!empty($data['price'])) {
+		    if ($data['price'] == 'under2') {
+                $sql .= " AND p.price <= 2000000";
+            }
+
+            if ($data['price'] == '2to4') {
+                $sql .= " AND p.price >= 2000000 AND p.price <= 4000000";
+            }
+
+            if ($data['price'] == '4to7') {
+                $sql .= " AND p.price >= 4000000 AND p.price <= 7000000";
+            }
+
+            if ($data['price'] == '7to13') {
+                $sql .= " AND p.price >= 7000000 AND p.price <= 13000000";
+            }
+
+            if ($data['price'] == 'upper13') {
+                $sql .= " AND p.price >= 13000000";
+            }
+        }
+
 		$query = $this->db->query($sql);
 
 		return $query->row['total'];

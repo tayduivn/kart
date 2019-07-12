@@ -808,11 +808,12 @@ class ModelCatalogProduct extends Model {
             
                 
             }
-
-
-        	
-        	
-
         }
+    }
+
+    public function updateZaloId($product_id, $productZaloId) {
+    	$this->db->query("UPDATE " . DB_PREFIX . "product SET zalo_product_id = '" . $this->db->escape($productZaloId) . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+    	
+    	$this->cache->delete('product');
     }
 }
