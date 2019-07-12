@@ -1532,6 +1532,7 @@ class ControllerCatalogProduct extends Controller {
                 if( is_array($response) ) {
                 	if($response['error'] == 0) {
                 		$productZaloId = $response['data']['id'];
+                		$this->model_catalog_product->updateZaloId($product_info['product_id'], $productZaloId);
                 		$this->session->data['success'] = 'Sản phẩm vừa được cập nhật trên Zalo Shop';
                 	}
                 }else {

@@ -62,7 +62,7 @@ class Zalo {
         $class = 'Zalo\\Zalo';
         $this->adaptor =  new $class($config);
         if($accessToken) {
-            $this->accessToken = $accessToken
+            $this->accessToken = $accessToken;
         }
     }
 
@@ -108,6 +108,8 @@ class Zalo {
         $response = curl_exec($ch);
 
         $response = json_decode($response, true);
+
+        curl_close($ch);
 
         return $response;
     }
