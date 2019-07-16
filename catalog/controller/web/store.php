@@ -54,11 +54,13 @@ class ControllerWebStore extends Controller {
                 }
 
                 if ($branch['image']) {
-                    $image = $this->model_tool_image->resize($branch['image'], 168, 154);
+                    // $image = $this->model_tool_image->resize($branch['image'], 168, 154);
+                    $image = '/image/' . $branch['image'];
                 } 
 
                 if(!$image) {
-                    $image = $this->model_tool_image->resize($results[0]['image'], 168, 154);
+                    // $image = $this->model_tool_image->resize($results[0]['image'], 168, 154);
+                    $image = '/image/' . $branch[0]['image'];
                 }
 
                 $branchArr[] = array(

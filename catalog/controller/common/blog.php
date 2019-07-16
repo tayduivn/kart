@@ -30,11 +30,13 @@ class ControllerCommonBlog extends Controller {
             $results = $this->model_web_blog->getBlogs($filters);
 
             foreach ($results as $result) {
-                if ($result['image']) {
-                    $image = $this->model_tool_image->resize($result['image'], 408, 408);
-                } else {
-                    $image = $this->model_tool_image->resize('placeholder.png', 408, 408);
-                }
+                // if ($result['image']) {
+                //     $image = $this->model_tool_image->resize($result['image'], 408, 408);
+                // } else {
+                //     $image = $this->model_tool_image->resize('placeholder.png', 408, 408);
+                // }
+
+                $image = '/image/' . $result['image'];
 
                 $category['blogs'][] = array(
                     'thumb'  => $image,
